@@ -191,7 +191,7 @@ function changeLeyenda(selLeyenda) {
         legendDelitos.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                grades = [0, 1, 2, 3, 4, 5],
                 labels = [],
                 from, to;
 
@@ -225,7 +225,7 @@ function changeLeyenda(selLeyenda) {
         legendConvivencia.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                grades = [0, 0.5, 1, 1.5, 2],
                 labels = [],
                 from, to;
 
@@ -234,7 +234,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorConvivencia(from + 1) + '"></i> ' +
+                    '<i style="background:' + getColorConvivencia(from + 0.5) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
@@ -259,7 +259,7 @@ function changeLeyenda(selLeyenda) {
         legendFenomenos.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                grades = [0, 1, 2, 3],
                 labels = [],
                 from, to;
 
@@ -282,8 +282,8 @@ function changeLeyenda(selLeyenda) {
     case "Institucional":
 
         localidad_01.setStyle(styleInstitucional);
-        localidad_02.setStyle(styleDelitos);
-        localidad_03.setStyle(styleDelitos);
+        localidad_02.setStyle(styleInstitucional);
+        localidad_03.setStyle(styleInstitucional);
 
         map.removeControl(legendISCB);
         map.removeControl(legendConvivencia);
@@ -293,7 +293,7 @@ function changeLeyenda(selLeyenda) {
         legendInstitucional.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                grades = [0, 0.5, 1],
                 labels = [],
                 from, to;
 
@@ -302,7 +302,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorInstitucional(from + 1) + '"></i> ' +
+                    '<i style="background:' + getColorInstitucional(from + 0.5) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
