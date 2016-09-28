@@ -15,5 +15,5 @@ var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x
 });
 
 /* Capas geograficas de Google */
-//var googleSatelliteLayer = new L.Google();
+var googleSatelliteLayer = new L.Google();
 //var googleTerrainLayer = new L.Google('TERRAIN');

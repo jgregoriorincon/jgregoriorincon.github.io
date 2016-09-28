@@ -268,9 +268,9 @@ $.getJSON("data/parqueaderos.geojson", function (data) {
 /* Ajusta el titulo de la aplicacion */
 function ajustTitle() {
     if (document.body.clientWidth <= 400) {
-        $('#Titulo').text('ISCB');
+        $('#Titulo').text('ODSC');
     } else {
-        $('#Titulo').text('Índice de Seguridad y Convivencia Barrial');
+        $('#Titulo').text('Mapa ODSC Santa Marta');
     }
 }
 
@@ -462,7 +462,7 @@ if (jQuery.browser.mobile) {
 /* ------------------- CAPAS -------------- */
 // Basemaps disponibles, pueden quitarse y dejar uno solo, esta por defecto el gris que contrasta mejor con el mapa de calor
 var baseMaps = {
-    //"Satelite": googleSatelliteLayer,
+    "Satelite": googleSatelliteLayer,
     "OSM": OpenStreetMap_Mapnik,
     "Calles": Esri_WorldStreetMap,
     "Gris": cartoLight

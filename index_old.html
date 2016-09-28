@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Servicio Web Geográfico 2D del ODSC de Santa Marta">
+    <meta name="author" content="jgregoriorincon@gmail.com">
+    <title>ODSC Santa Marta</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+    <link rel="stylesheet" href="css/leaflet.groupedlayercontrol.css">
+    <link rel="stylesheet" href="css/ZoomBox.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="img/LOGO_UMNG-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/LOGO_UMNG-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/LOGO_UMNG-152.png">
+    <link rel="icon" sizes="196x196" href="img/LOGO_UMNG-196.png">
+    <!--    <link rel="icon" type="image/x-icon" href="img/LOGO_UMNG.ico">-->
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-icon-container">
+                    <!--  fa hace llamado a la libreria de fuentes de iconos, -bars es para listado, -search es para la lupa fa-lg es el tamano en el que sale el icono y para este caso es el mas pequeno. Se puede cambiar a 2x, 3x,... white fue definido dentro del css para que los iconos siempre sean blancos-->
+                    <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                    <a href="#" class="navbar-icon pull-right visible-xs" id="about-toggle-btn"><i class="fa fa-question-circle fa-lg white"></i></a>
+                    <a href="#" class="navbar-icon pull-right visible-xs" id="full-extent-toggle-btn"><i class="fa fa fa-globe fa-lg white"></i></a>
+                    <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-map-pin fa-lg white"></i></a>
+                </div>
+                <a class="navbar-brand" href="#" id="Titulo"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <!-- Configuracion del icono de busqueda dentro del espacio de busqueda de objetos geograficos-->
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group has-feedback">
+                        <input id="searchbox" type="text" placeholder="Buscar" class="form-control">
+                        <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+                    </div>
+                </form>
+                <!-- Aca se define como se comportan las opciones de navegacion, es manejado por bootstrap, en un navegador de escritorio salen de forma horizontal, en un dispositivo movil sale de forma vertical-->
+                <ul class="nav navbar-nav">
+                    <li class="hidden-xs">
+                        <a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;Acerca de</a>
+                    </li>
+                    <li class="hidden-xs">
+                        <a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Zoom</a></li>
+                    <li class="hidden-xs">
+                        <a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-map-pin white"></i>&nbsp;&nbsp;Filtros</a></li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="panel panel-default" id="features">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Filtrado por Barrios
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+                    </div>
+                    <div class="panel-body container-fluid">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <input type="text" class="form-control search" placeholder="Filtro" />
+                                <!--                                    <button type="button" class="btn btn-block btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Ordenar</button>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-table">
+                        <table class="table table-hover" id="feature-list">
+                            <thead class="hidden">
+                                <tr>
+                                    <th>Icon</th>
+                                    <tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <tr>
+                                                <tr>
+                                                    <th>Chevron</th>
+                                                    <tr>
+                            </thead>
+                            <tbody class="list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map">
+
+<!--        <div class="logo">Logo ObservaDHores</div>-->
+
+        </div>
+    </div>
+    <div id="loading">
+        <div class="loading-indicator">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-info progress-bar-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Índice de Seguridad y Convivencia Barrial</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+                        <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Acerca del Proyecto</a></li>
+                        <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Advertencia</a></li>
+                    </ul>
+                    <div class="tab-content" id="aboutTabsContent">
+                        <div class="tab-pane fade active in" id="about">
+                            <p>Un mapa de Información del indice de seguridad de la ciudad de Santa Marta.</p>
+                            <p>Esta aplicación esta construida utilizando el framework <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, y <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>.</p>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Caracteristicas</div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Mapa a pantalla completo ajustado a dispositivos moviles con una barra de navegación responsive</li>
+                                    <li class="list-group-item">Carga de datos GeoJSON usando jQuery</li>
+                                    <li class="list-group-item">Manejo de datos en cluster de manera dinamica utilizando el <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">plugin leaflet marker cluster</a></li>
+                                    <li class="list-group-item">Manejo de busquedas inteligentes y autocompletado usando <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
+                                    <li class="list-group-item">Listado de atributos responsive, sincronizando limites del mapa a través de <a href="http://listjs.com/" target="_blank">list.js</a></li>
+                                    <li class="list-group-item">Iconos de elementos disponibles usando el pligin <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="disclaimer" class="tab-pane fade text-danger">
+                            <p>Los datos de este sitio son propiedad exclusiva de la ODSC de Santa Marta y estan disponibles solo para propositos informativos.</p>
+                            <p>Ninguna precisión, exactitud o completitud en los datos se encuentra gararantizada o implica obligatoriedad de la ODSC Santa Marta. Toda información en este mapa se encuentra sujeta a cambios, variaciones y correcciones de acuerdo a las situaciones que se presenten con los mismos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-primary" id="feature-title"></h4>
+                </div>
+                <div class="modal-body" id="feature-info"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div class="modal fade" id="attributionModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">
+              Desarrollado por la Fundacion <a href='http://www.pares.com.co'>Paz y Reconcilización</a>
+            </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="attribution"></div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Codigo y Funciones -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_RKxqNEjsl_3fUWwWtZrzX4L8TM_sBqQ" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/1.7.0/layer/tile/Google.min.js"></script>
+    <script src="js/leaflet.groupedlayercontrol.js"></script>
+    <script src="js/detectmobilebrowser.js"></script>
+    <script src="js/choropleth.js"></script>
+    <script src="js/leaflet.defaultextent.js"></script>
+    <script src="js/twoFingerZoom.js"></script>
+    <script src="js/ZoomBox.js"></script>
+    <script src="js/basemaps.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
