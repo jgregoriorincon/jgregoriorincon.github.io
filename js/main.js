@@ -68,7 +68,7 @@ legendISCB.onAdd = function (map) {
         to = grades[i + 1];
 
         labels.push(
-            '<i style="background:' + getColorISCB(from + 1) + '"></i> ' +
+            '<i style="background:' + getColorISCB(from + 0.9) + '"></i> ' +
             from + (to === undefined ? '+' : '&ndash;' + to));
     }
 
@@ -202,7 +202,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorDelitos(from + 1) + '"></i> ' +
+                    '<i style="background:' + getColorDelitos(from + 0.9) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
@@ -236,7 +236,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorConvivencia(from + 0.5) + '"></i> ' +
+                    '<i style="background:' + getColorConvivencia(from + 0.4) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
@@ -270,7 +270,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorFenomenos(from + 1) + '"></i> ' +
+                    '<i style="background:' + getColorFenomenos(from + 0.9) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
