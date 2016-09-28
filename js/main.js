@@ -101,10 +101,13 @@ var localidad_02;
 var localidad_03;
 
 function resetHighlight(e) {
-    //geojson.resetStyle(e.target);
     localidad_01.resetStyle(e.target);
     localidad_02.resetStyle(e.target);
     localidad_03.resetStyle(e.target);
+
+    var leyenda = document.getElementById('selLeyenda');
+    changeLeyenda(leyenda);
+
     info.update();
 }
 
@@ -163,7 +166,6 @@ map.attributionControl.addAttribution('Índice de Seguridad y Convivencia Barria
 function changeLeyenda(selLeyenda) {
     var selLeyenda = selLeyenda.value;
 
-    console.log(selLeyenda);
     switch (selLeyenda) {
     case "ISCB":
         localidad_01.setStyle(styleISCB);
