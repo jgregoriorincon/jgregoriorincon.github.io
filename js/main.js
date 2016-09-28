@@ -304,7 +304,7 @@ function changeLeyenda(selLeyenda) {
                 to = grades[i + 1];
 
                 labels.push(
-                    '<i style="background:' + getColorInstitucional(from + 0.5) + '"></i> ' +
+                    '<i style="background:' + getColorInstitucional(from + 0.4) + '"></i> ' +
                     from + (to === undefined ? '+' : '&ndash;' + to));
             }
 
