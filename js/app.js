@@ -58,7 +58,7 @@ var legendInstitucional = L.control({
 // Ajusta la leyenda
 legendISCB.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),     
+    var div = L.DomUtil.create('div', 'info legend'),
         grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
         labels = [],
         from, to;
@@ -152,164 +152,166 @@ var overlayMaps = {
     'Localidad 03': localidad_03
 };
 
-layerbox = L.control.layers(null, overlayMaps, {collapsed: false, position: 'bottomleft'}).addTo(map);
+layerbox = L.control.layers(null, overlayMaps, {
+    collapsed: false,
+    position: 'bottomleft'
+}).addTo(map);
 
 map.attributionControl.addAttribution('Índice de Seguridad y Convivencia Barrial &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
 // Cambiar leyenda
-function changeLeyenda(selLeyenda){
+function changeLeyenda(selLeyenda) {
     var selLeyenda = selLeyenda.value;
-    
+
     console.log(selLeyenda);
     switch (selLeyenda) {
-        case "ISCB":
-            localidad_01.setStyle(styleISCB);
-            localidad_02.setStyle(styleISCB);
-            localidad_03.setStyle(styleISCB);                    
+    case "ISCB":
+        localidad_01.setStyle(styleISCB);
+        localidad_02.setStyle(styleISCB);
+        localidad_03.setStyle(styleISCB);
 
-            map.removeControl(legendDelitos);
-            map.removeControl(legendConvivencia);
-            map.removeControl(legendFenomenos);
-            map.removeControl(legendInstitucional);
-            legendISCB.addTo(map);
-            
-          break;
-        case "Delitos":
+        map.removeControl(legendDelitos);
+        map.removeControl(legendConvivencia);
+        map.removeControl(legendFenomenos);
+        map.removeControl(legendInstitucional);
+        legendISCB.addTo(map);
 
-            localidad_01.setStyle(styleDelitos);
-            localidad_02.setStyle(styleDelitos);
-            localidad_03.setStyle(styleDelitos);
-            
-            map.removeControl(legendISCB);
-            map.removeControl(legendConvivencia);
-            map.removeControl(legendFenomenos);
-            map.removeControl(legendInstitucional);
-            
-            legendDelitos.onAdd = function (map) {
+        break;
+    case "Delitos":
 
-                var div = L.DomUtil.create('div', 'info legend'),     
-                    grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
-                    labels = [],
-                    from, to;
+        localidad_01.setStyle(styleDelitos);
+        localidad_02.setStyle(styleDelitos);
+        localidad_03.setStyle(styleDelitos);
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i + 1];
+        map.removeControl(legendISCB);
+        map.removeControl(legendConvivencia);
+        map.removeControl(legendFenomenos);
+        map.removeControl(legendInstitucional);
 
-                    labels.push(
-                        '<i style="background:' + getColorDelitos(from + 1) + '"></i> ' +
-                        from + (to === undefined ? '+' : '&ndash;' + to));
-                }
+        legendDelitos.onAdd = function (map) {
 
-                div.innerHTML = labels.join('<br>');
-                return div;
-            };
-            
-            legendDelitos.addTo(map);
-            
-          break;
-        case "Convivencia":
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                labels = [],
+                from, to;
 
-            localidad_01.setStyle(styleConvivencia);
-            localidad_02.setStyle(styleConvivencia);
-            localidad_03.setStyle(styleConvivencia);
-            
-            map.removeControl(legendISCB);
-            map.removeControl(legendDelitos);
-            map.removeControl(legendFenomenos);
-            map.removeControl(legendInstitucional);
-            
-            legendConvivencia.onAdd = function (map) {
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
 
-                var div = L.DomUtil.create('div', 'info legend'),     
-                    grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
-                    labels = [],
-                    from, to;
+                labels.push(
+                    '<i style="background:' + getColorDelitos(from + 1) + '"></i> ' +
+                    from + (to === undefined ? '+' : '&ndash;' + to));
+            }
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i + 1];
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
 
-                    labels.push(
-                        '<i style="background:' + getColorConvivencia(from + 1) + '"></i> ' +
-                        from + (to === undefined ? '+' : '&ndash;' + to));
-                }
+        legendDelitos.addTo(map);
 
-                div.innerHTML = labels.join('<br>');
-                return div;
-            };
-            
-            legendConvivencia.addTo(map);
-            
-          break;     
-        case "Fenomenos":
+        break;
+    case "Convivencia":
 
-            localidad_01.setStyle(styleFenomenos);
-            localidad_02.setStyle(styleFenomenos);
-            localidad_03.setStyle(styleFenomenos);
-            
-            map.removeControl(legendISCB);
-            map.removeControl(legendConvivencia);
-            map.removeControl(legendDelitos);
-            map.removeControl(legendInstitucional);
-            
-            legendFenomenos.onAdd = function (map) {
+        localidad_01.setStyle(styleConvivencia);
+        localidad_02.setStyle(styleConvivencia);
+        localidad_03.setStyle(styleConvivencia);
 
-                var div = L.DomUtil.create('div', 'info legend'),     
-                    grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
-                    labels = [],
-                    from, to;
+        map.removeControl(legendISCB);
+        map.removeControl(legendDelitos);
+        map.removeControl(legendFenomenos);
+        map.removeControl(legendInstitucional);
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i + 1];
+        legendConvivencia.onAdd = function (map) {
 
-                    labels.push(
-                        '<i style="background:' + getColorFenomenos(from + 1) + '"></i> ' +
-                        from + (to === undefined ? '+' : '&ndash;' + to));
-                }
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                labels = [],
+                from, to;
 
-                div.innerHTML = labels.join('<br>');
-                return div;
-            };
-            
-            legendFenomenos.addTo(map);
-            
-          break;    
-        case "Institucional":
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
 
-            localidad_01.setStyle(styleInstitucional);
-            localidad_02.setStyle(styleDelitos);
-            localidad_03.setStyle(styleDelitos);
-            
-            map.removeControl(legendISCB);
-            map.removeControl(legendConvivencia);
-            map.removeControl(legendFenomenos);
-            map.removeControl(legendDelitos);
-            
-            legendInstitucional.onAdd = function (map) {
+                labels.push(
+                    '<i style="background:' + getColorConvivencia(from + 1) + '"></i> ' +
+                    from + (to === undefined ? '+' : '&ndash;' + to));
+            }
 
-                var div = L.DomUtil.create('div', 'info legend'),     
-                    grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
-                    labels = [],
-                    from, to;
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
 
-                for (var i = 0; i < grades.length; i++) {
-                    from = grades[i];
-                    to = grades[i + 1];
+        legendConvivencia.addTo(map);
 
-                    labels.push(
-                        '<i style="background:' + getColorInstitucional(from + 1) + '"></i> ' +
-                        from + (to === undefined ? '+' : '&ndash;' + to));
-                }
+        break;
+    case "Fenomenos":
 
-                div.innerHTML = labels.join('<br>');
-                return div;
-            };
-            
-            legendInstitucional.addTo(map);
-            
-          break;            
-      };
-  }
-  
+        localidad_01.setStyle(styleFenomenos);
+        localidad_02.setStyle(styleFenomenos);
+        localidad_03.setStyle(styleFenomenos);
+
+        map.removeControl(legendISCB);
+        map.removeControl(legendConvivencia);
+        map.removeControl(legendDelitos);
+        map.removeControl(legendInstitucional);
+
+        legendFenomenos.onAdd = function (map) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                labels = [],
+                from, to;
+
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
+
+                labels.push(
+                    '<i style="background:' + getColorFenomenos(from + 1) + '"></i> ' +
+                    from + (to === undefined ? '+' : '&ndash;' + to));
+            }
+
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+
+        legendFenomenos.addTo(map);
+
+        break;
+    case "Institucional":
+
+        localidad_01.setStyle(styleInstitucional);
+        localidad_02.setStyle(styleDelitos);
+        localidad_03.setStyle(styleDelitos);
+
+        map.removeControl(legendISCB);
+        map.removeControl(legendConvivencia);
+        map.removeControl(legendFenomenos);
+        map.removeControl(legendDelitos);
+
+        legendInstitucional.onAdd = function (map) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [-1.0, 0, 1, 2, 3, 4, 6, 8],
+                labels = [],
+                from, to;
+
+            for (var i = 0; i < grades.length; i++) {
+                from = grades[i];
+                to = grades[i + 1];
+
+                labels.push(
+                    '<i style="background:' + getColorInstitucional(from + 1) + '"></i> ' +
+                    from + (to === undefined ? '+' : '&ndash;' + to));
+            }
+
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+
+        legendInstitucional.addTo(map);
+
+        break;
+    };
+}
