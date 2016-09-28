@@ -1,12 +1,12 @@
 // get color depending on population density value
 function getColorISCB(d) {
-    return d > 8.1 ? '#FF0000' :
-        d > 6.1 ? '#EA0700' :
-        d > 4.1 ? '#CC5A00' :
-        d > 3.1 ? '#B86E00' :
-        d > 2.1 ? '#A2821C' :
-        d > 1.1 ? '#8B932E' :
-        d > 0.1 ? '#6BA83E' :
+    return d > 7.9 ? '#FF0000' :
+        d > 5.9 ? '#EA0700' :
+        d > 3.9 ? '#CC5A00' :
+        d > 2.9 ? '#B86E00' :
+        d > 1.9 ? '#A2821C' :
+        d > 0.9 ? '#8B932E' :
+        d > -0.1 ? '#6BA83E' :
         '#50B547';
 }
 
@@ -23,12 +23,12 @@ function styleISCB(feature) {
 
 // -----------------------------------------------------
 function getColorDelitos(d) {
-    return d > 5.1 ? '#FF0000' :
-        d > 4.1 ? '#FF1C00' :
-        d > 3.1 ? '#FF5500' :
-        d > 2.1 ? '#E0841D' :
-        d > 1.1 ? '#9AA13A' :
-        d > 0.0 ? '#50B547' :
+    return d > 4.9 ? '#FF0000' :
+        d > 3.9 ? '#FF1C00' :
+        d > 2.9 ? '#FF5500' :
+        d > 1.9 ? '#E0841D' :
+        d > 0.9 ? '#9AA13A' :
+        d > -0.1 ? '#50B547' :
         '#50B547';
 }
 
@@ -45,11 +45,11 @@ function styleDelitos(feature) {
 
 // -----------------------------------------------------
 function getColorConvivencia(d) {
-    return d > 2.1 ? '#FF3A00' :
-        d > 1.6 ? '#F37500' :
-        d > 1.1 ? '#DF841E' :
-        d > 0.6 ? '#94A23B' :
-        d > 0.1 ? '#50B547' :
+    return d > 1.9 ? '#FF3A00' :
+        d > 1.4 ? '#F37500' :
+        d > 0.9 ? '#DF841E' :
+        d > 0.4 ? '#94A23B' :
+        d > -0.1 ? '#50B547' :
         '#50B547';
 }
 
@@ -66,10 +66,10 @@ function styleConvivencia(feature) {
 
 // -----------------------------------------------------
 function getColorFenomenos(d) {
-    return d > 3.1 ? '#FF0000' :
-        d > 2.1 ? '#FF3A00' :
-        d > 1.1 ? '#FE7500' :
-        d > 0.1 ? '#50B547' :
+    return d > 2.9 ? '#FF0000' :
+        d > 1.9 ? '#FF3A00' :
+        d > 0.9 ? '#FE7500' :
+        d > -0.1 ? '#50B547' :
         '#50B547';
 }
 
@@ -86,9 +86,9 @@ function styleFenomenos(feature) {
 
 // -----------------------------------------------------
 function getColorInstitucional(d) {
-    return d > 1.1 ? '#50B547' :
-        d > 0.6 ? '#FE7500' :
-        d > 0.1 ? '#FF0000' :
+    return d > 0.9 ? '#50B547' :
+        d > 0.4 ? '#FE7500' :
+        d > -0.1 ? '#FF0000' :
         '#FF0000';
 }
 
