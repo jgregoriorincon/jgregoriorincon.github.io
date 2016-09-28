@@ -1,61 +1,64 @@
 html,
 body,
 #container {
-    height: 100%;
     width: 100%;
     overflow: hidden;
+    height: 100vh;
+    margin: 0;
 }
 
-body {
-    padding-top: 50px;
+
+/*
+    MAPA
+*/
+
+#map {
+    width: auto;
+    height: 100vh;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
 }
 
-div.logo {
-    content: url("../images/Logo_observaDHores.jpg");
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 150px;
-    height: 56px;
-    z-index: 100
-}
 
-.legend {
-    color: #555;
+/*
+    INFORMACION
+*/
+
+.info {
     padding: 6px 8px;
-    font: 12px Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
 
-.legend ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    clear: both;
-}
-
-.legend li {
-    display: inline-block;
-    width: 30px;
-    height: 22px;
-}
-
-.legend .min {
-    float: left;
-    padding-bottom: 5px;
-}
-
-.legend .max {
-    float: right;
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
 }
 
 
 /*
-  Control Home
+    LEYENDA
+*/
+
+.legend {
+    text-align: left;
+    line-height: 18px;
+    color: #555;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+
+/*
+  HOME
 */
 
 .leaflet-control-defaultextent-toggle {
@@ -68,263 +71,54 @@ div.logo {
 }
 
 
-/* CSS for high-resolution devices */
-
-@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
-only screen and (-moz-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min-device-pixel-ratio: 1.5) {
-    .leaflet-control-defaultextent-toggle {
-        background-image: url('images/leaflet.defaultextent@2X.png');
-        background-size: 26px 26px;
-        background-repeat: no-repeat;
-    }
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-    margin: 0;
-}
-
-#sidebar {
-    display: block;
-    height: 100%;
-    max-width: 100%;
-    float: left;
-    width: 30%;
-}
-
-#map {
-    width: auto;
-    height: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-#loading {
-    position: absolute;
-    width: 220px;
-    height: 19px;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -110px;
-    z-index: 20001;
-}
-
-#features {
-    margin: 0px;
-    border: none;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    font-size: 14px;
-}
-
-#sidebar-hide-btn {
-    margin-top: -2px;
-}
-
-#aboutTabsContent {
-    padding-top: 10px;
-}
-
-
-/*#sort-btn {
-    margin-top: 10px;
-}
+/*
+    LOGO
 */
 
-.progress-bar-full {
-    width: 100%;
-}
-
-.white {
-    color: #ffffff;
-}
-
-.panel-heading {
-    width: 100%;
-}
-
-.panel-body {
-    width: 100%;
-    padding: 0px;
-    margin-top: 10px;
-}
-
-.sidebar-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.sidebar-table {
+div.logo {
+    content: url("../images/Logo_observaDHores.jpg");
     position: absolute;
-    width: 100%;
-    top: 103px;
     bottom: 0px;
-    overflow: auto;
+    left: 0px;
+    width: 150px;
+    height: 56px;
+    z-index: 100
 }
 
-.leaflet-control-layers {
-    overflow: auto;
-}
-
-.leaflet-control-layers label {
-    font-weight: normal;
-    margin-bottom: 0px;
-}
-
-.leaflet-control-layers-list input[type="radio"],
-input[type="checkbox"] {
-    margin: 2px;
-}
-
-.table {
-    margin-bottom: 0px;
-}
-
-.navbar .navbar-brand {
-    font-weight: bold;
-    font-size: 18px;
-    color: #FFFFFF;
-}
-
-.navbar-collapse.in {
-    overflow-y: hidden;
-}
-
-.navbar-header .navbar-icon-container {
-    margin-right: 15px;
-}
-
-.navbar-header .navbar-icon {
-    line-height: 50px;
-    height: 50px;
-}
-
-.navbar-header a.navbar-icon {
-    margin-left: 25px;
-}
-
-.typeahead {
-    background-color: #FFFFFF;
-}
-
-.tt-dropdown-menu {
-    background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 4px;
-    padding: 4px 0;
-    width: 100%;
-    max-height: 300px;
-    overflow: auto;
-}
-
-.tt-suggestion {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 3px 10px;
-}
-
-.tt-suggestion.tt-cursor {
-    background-color: #0097CF;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.tt-suggestion p {
-    margin: 0;
-}
-
-.tt-suggestion + .tt-suggestion {
-    border-top: 1px solid #ccc;
-}
-
-.typeahead-header {
-    margin: 0 5px 5px 5px;
-    padding: 3px 0;
-    border-bottom: 2px solid #333;
-}
-
-.has-feedback .form-control-feedback {
+/*
+    TIPOS DE LEYENDAS
+*/
+#Leyenda-wrapper {
     position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    text-align: center;
+    bottom: 100px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    padding-top: 0px;
+  }
+  #selLeyenda {
+    margin-bottom: 5px;
+  }
+
+/*
+    FILTRO POR LOCALIDAD
+*/
+/*
+.filtros {
+    background: #f00;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+    padding: 10px;
+    border-radius: 3px;
 }
 
-@media (max-width: 992px) {
-    .navbar .navbar-brand {
-        font-size: 18px;
-    }
-    #features {
-        font-size: 13px;
-    }
-    .feature-row {
-        cursor: pointer;
-        width: 90%;
-    }
-    #sidebar {
-        width: 33%
-    }
+.dotLegend {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display:inline-block;
 }
-
-@media (max-width: 767px) {
-    #sidebar {
-        display: none;
-        width: 35%
-    }
-    .url-break {
-        word-break: break-all;
-        word-break: break-word;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-    }
-    .dropdown-menu a i {
-        color: #e80a0a;
-    }
-    .feature-row {
-        cursor: pointer;
-        width: 90%;
-    }
-    #features {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 400px) {
-    .navbar .navbar-brand {
-        font-size: 15px;
-    }
-    #features {
-        font-size: 11px;
-    }
-    #sidebar {
-        width: 40%
-    }
-    .feature-row {
-        cursor: pointer;
-        width: 80%;
-    }
-}
-
-
-/* Print Handling */
-
-
-/* Elimina la barra de navegación y el contenedor de los grupos de capas al momento de imprimir */
-
-@media print {
-    .navbar {
-        display: none !important;
-    }
-    .leaflet-control-container {
-        display: none !important;
-    }
-}
+*/
