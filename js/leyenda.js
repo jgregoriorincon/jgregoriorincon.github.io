@@ -86,9 +86,9 @@ function styleFenomenos(feature) {
 
 // -----------------------------------------------------
 function getColorInstitucional(d) {
-    return d > 0.9 ? '#50B547' :
-        d > 0.4 ? '#FE7500' :
-        d > 0.0 ? '#FF0000' :
+    return d > 1.1 ? '#50B547' :
+        d > 0.6 ? '#FE7500' :
+        d > 0.1 ? '#FF0000' :
         '#FF0000';
 }
 
