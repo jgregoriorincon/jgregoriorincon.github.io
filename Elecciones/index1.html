@@ -87,7 +87,7 @@
 
             map.setView([4.5, -74.20], 6);
 
-            $.getJSON('data/Mpios.topo.json').done(addTopoData);
+            $.getJSON('data/Mpios.json').done(addTopoData);
 
             function addTopoData(topoData) {
                 topoLayer.addData(topoData);
@@ -114,7 +114,7 @@
             }
 
             function enterLayer() {
-                var countryName = this.feature.properties.MPIO;
+                var countryName = this.feature.properties.MON_MUNI;
                 $countryName.text(countryName).show();
 
                 this.bringToFront();
