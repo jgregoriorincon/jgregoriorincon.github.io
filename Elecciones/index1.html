@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maps with Leaflet,TopoJSON & Chroma.js</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <style>
+  *{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+  }
+  body,html,#worldmap{
+    height:100%;
+  }
+  body{
+    color:#333;
+    font-family:sans-serif;
+  }
+  #worldmap{
+    background:white;
+  }
+  .country-name{
+    position: absolute;
+    top:2em;
+    right:1em;
+    z-index:6;
+    background:rgba(0,0,0,.75);
+    color:white;
+    padding:.5em .75em;
+    font-size:.85em;
+    display:none;
+  }
+  </style>
+</head>
+<body>
+
+  <div id="worldmap"></div>
+  <div class="country-name"></div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/chroma-js/0.5.9/chroma.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script>
+    // Copyright (c) 2013 Ryan Clark
+    // https://gist.github.com/rclark/5779673
+    L.TopoJSON = L.GeoJSON.extend({
+      addData: function(jsonData) {
+        if (jsonData.type === "Topology") {
+          for (key in jsonData.objects) {
+            geojson = topojson.feature(jsonData, jsonData.objects[key]);
+            L.GeoJSON.prototype.addData.call(this, geojson);
+          }
+        }
+        else {
+          L.GeoJSON.prototype.addData.call(this, jsonData);
+        }
+      }
+    });
+  </script>
+  <script>
+
+    (function(){
+
+    'use strict'
+
+    var map = L.map('worldmap',{maxZoom:10,minZoom:3}),
+      topoLayer = new L.TopoJSON(),
+      $countryName = $('.country-name'),
+      colorScale = chroma
+        .scale(['#D5E3FF', '#003171'])
+        .domain([0,1]);
+
+    map.setView([4.5,-74.20], 6);
+
+    $.getJSON('data/Mpios.topo.json').done(addTopoData);
+
+    function addTopoData(topoData){
+      topoLayer.addData(topoData);
+      topoLayer.addTo(map);
+      topoLayer.eachLayer(handleLayer);
+    }
+
+    function handleLayer(layer){
+        var randomValue = Math.random(),
+          fillColor = colorScale(randomValue).hex();
+
+        layer.setStyle({
+          fillColor : fillColor,
+          fillOpacity: 1,
+          color:'#555',
+          weight:1,
+          opacity:.5
+        });
+
+        layer.on({
+          mouseover : enterLayer,
+          mouseout: leaveLayer
+        });
+    }
+
+    function enterLayer(){
+      var countryName = this.feature.properties.MPIO;
+      $countryName.text(countryName).show();
+
+      this.bringToFront();
+      this.setStyle({
+        weight:2,
+        opacity: 1
+      });
+    }
+
+    function leaveLayer(){
+      $countryName.hide();
+
+      this.bringToBack();
+      this.setStyle({
+        weight:1,
+        opacity:.5
+      });
+    }
+
+    }());
+  </script>
+</body>
+</html>
