@@ -82,12 +82,12 @@
                 topoLayer = new L.TopoJSON(),
                 $countryName = $('.country-name'),
                 colorScale = chroma
-                .scale(['#D5E3FF', '#003171'])
+                .scale(['#00ACC7', '#008037'])
                 .domain([0, 1]);
 
             map.setView([4.5, -74.20], 6);
 
-            $.getJSON('data/Mpios.json').done(addTopoData);
+            $.getJSON('data/Dptos.topo.json').done(addTopoData);
 
             function addTopoData(topoData) {
                 topoLayer.addData(topoData);
@@ -96,12 +96,17 @@
             }
 
             function handleLayer(layer) {
+
+                var Ganador = layer.feature.properties.Ganador;
+
+                var fillColor = Ganador == 'Si' ? '#00ACC7' : '#008037';
+                /*
                 var randomValue = Math.random(),
                     fillColor = colorScale(randomValue).hex();
-
+*/
                 layer.setStyle({
                     fillColor: fillColor,
-                    fillOpacity: 1,
+                    fillOpacity: 0.8,
                     color: '#555',
                     weight: 1,
                     opacity: .5
@@ -114,7 +119,7 @@
             }
 
             function enterLayer() {
-                var countryName = this.feature.properties.MON_MUNI;
+                var countryName = this.feature.properties.DEPTO;
                 $countryName.text(countryName).show();
 
                 this.bringToFront();

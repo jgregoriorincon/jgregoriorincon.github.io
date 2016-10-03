@@ -1,12 +1,61 @@
+'use strict'
+
 // var map, featureList;
 
 /* ------------------- MAPA ------------------*/
-var map = L.map('map').setView([4.5, -74.20], 6);
+var map = L.map('map', {
+        maxZoom: 18,
+        minZoom: 3
+    }),
+    topoLayer = new L.TopoJSON()
+    /*,
+        $countryName = $('.country-name'),
+        colorScale = chroma
+        .scale(['#00ACC7', '#008037'])
+        .domain([0, 1])*/
+;
+
+map.setView([4.5, -74.20], 5);
+
+//var map = L.map('map').setView([4.5, -74.20], 6);
 
 cartoLight.addTo(map);
 
+
+$.getJSON('data/Dptos.topo.json').done(addTopoData);
+
+function addTopoData(topoData) {
+    topoLayer.addData(topoData);
+    topoLayer.addTo(map);
+    topoLayer.eachLayer(handleLayer);
+}
+
+function handleLayer(layer) {
+
+    var Ganador = layer.feature.properties.Ganador;
+
+    var fillColor = Ganador == 'Si' ? '#00ACC7' : '#008037';
+    /*
+                var randomValue = Math.random(),
+                    fillColor = colorScale(randomValue).hex();
+*/
+    layer.setStyle({
+        fillColor: fillColor,
+        fillOpacity: 0.8,
+        color: '#555',
+        weight: 1,
+        opacity: .5
+    });
+    /*
+        layer.on({
+            mouseover: enterLayer,
+            mouseout: leaveLayer
+        });
+    */
+}
+
 // control that shows state info on hover
-var info = L.control();
+/* var info = L.control();
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info');
@@ -20,6 +69,7 @@ info.update = function (props) {
 };
 
 info.addTo(map);
+*/
 
 // Controles
 L.control.defaultExtent().addTo(map);
@@ -155,7 +205,7 @@ var overlayMaps = {
     'Localidad 03': localidad_03
 };
 
-layerbox = L.control.layers(null, overlayMaps, {
+var layerbox = L.control.layers(null, overlayMaps, {
     collapsed: false,
     position: 'bottomleft'
 }).addTo(map);
