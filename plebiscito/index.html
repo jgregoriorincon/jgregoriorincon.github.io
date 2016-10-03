@@ -39,7 +39,7 @@
             padding: 10px;
             position: absolute;
             width: 300px;
-            height: 390px;
+            height: 150px;
             background: rgba(255, 255, 255, 1);
             -ms-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#B2000000, endColorstr=#B2000000);
             filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#B2000000, endColorstr=#B2000000);
@@ -59,6 +59,7 @@
             -webkit-box-shadow: 2px 2px 5px #000;
             z-index: 600;
         }
+/*
 
         .legend {
             text-align: right;
@@ -73,6 +74,7 @@
             margin-right: 8px;
             opacity: 0.7;
         }
+*/
 
         #map {
             width: auto !important;
@@ -171,6 +173,7 @@
 
     <div id="infobox">
         <h1 style="font-size: 14px;font-family: Verdana;">Plebiscito por la Paz</h1>
+<!--
         <div>
             <label for="select">Opción a desplegar:</label>
             <select>
@@ -178,9 +181,11 @@
                 <option value="No">No</option>
             </select>
         </div>
+-->
         <p id="caption" align="center"><b>SI: 49.78% NO: 50.21% (Resultado Final)</b></p>
         <div class="chart"></div>
         <hr/>
+<!--
         <p align="right"><b>Leyenda</b></p>
         <div class="legend">
             <i id="n0" style="background-color: rgb(247, 251, 255); background-position: initial initial; background-repeat: initial initial;"></i> <span id="t0">(0%, 34.4%]</span>
@@ -201,27 +206,29 @@
             <br>
             <i id="n8" style="background-color: rgb(8, 48, 107); background-position: initial initial; background-repeat: initial initial;"></i> <span id="t8">(73.5%, 79.2%]</span>
         </div>
+-->
 
         <script type="text/javascript">
             var clusterColors = ["#E41A1C", "#FFFF33", "#2166AC",
              "#984EA3", "#FF7F00", "white", "white",
                      "white", "white"];
             /*The intuitive names of the clusters*/
-            var clusterNames = ["Si", "No"];
+//            var clusterNames = ["Si", "No"];
             //legend labels
-            var cutPoints = ["(0%, 34.4%]", "(34.4%, 40.0%]", "(40.0%, 45.6%]",
+/*
+        var cutPoints = ["(0%, 34.4%]", "(34.4%, 40.0%]", "(40.0%, 45.6%]",
          "(45.6%, 51.2%]",
          "(51.2%, 56.7%]", "(56.7%, 62.3%]",
          "(62.3%, 67.9%]", "(67.9%, 73.5%]", "(73.5%, 79.2%]"];
-
-            var feature, selection = "Si";
+*/
+            var feature, datoSi = "Si", datoNo = "No";
             var digit = d3.format(".1%");
             var digit0 = d3.format(".0%");
 
             colorScale = function () {
-                if (selection == "Si")
+                if (datoSi == "Si")
                     return colorbrewer.Blues[9];
-                else if (selection == "No")
+                else if (datoSi == "No")
                     return colorbrewer.Greens[9];
             };
             var color = function () {
@@ -271,7 +278,8 @@
                     .data(topojson.object(topology, topology.objects.Departamentos).geometries)
                     .enter().append("path")
                     .style("fill", function (d) {
-                        return color()(d.properties[selection]);
+                        return d.properties[datoSi] > d.properties[datoNo] ? '#00ACC7' : '#008037';
+                        //return color()(d.properties[datoSi]);
                     })
                     .on('mouseover', showCaption)
                     .on('mousemove', showCaption)
@@ -310,8 +318,8 @@
 
 
             d3.select("select").on("change", function () {
-                selection = this.value.toString();
-                if (selection != "Cluster")
+                datoSi = this.value.toString();
+                if (datoSi != "Cluster")
                     for (i = 0; i < 9; i++) {
                         d3.select("#n" + i).style("background", colorScale()[i]);
                         d3.select("#t" + i).html(cutPoints[i]);
@@ -321,10 +329,10 @@
                             d3.select("#t" + i).html(clusterNames[i]);
                         }
                 d3.selectAll("path").style("fill", function (d) {
-                    if (selection == "Cluster")
+                    if (datoSi == "Cluster")
                         return d.properties.color;
                     else
-                        return color()(d.properties[selection]);
+                        return color()(d.properties[datoSi]);
                 });
             });
         </script>
