@@ -10,7 +10,7 @@ var map = L.map('map', {
     topoLayer = new L.TopoJSON()
 ;
 
-map.setView([4.5, -72.80], 6);
+map.setView([4.5, -73.0], 6);
 
 cartoLight.addTo(map);
 
