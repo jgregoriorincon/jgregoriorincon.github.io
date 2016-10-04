@@ -39,25 +39,6 @@ body,
 
 
 /*
-    LEYENDA
-*/
-
-.legend {
-    text-align: left;
-    line-height: 18px;
-    color: #555;
-}
-
-.legend i {
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
-}
-
-
-/*
   HOME
 */
 
@@ -86,9 +67,7 @@ div.logo {
 }
 
 
-/*
-    TIPOS DE LEYENDAS
-*/
+
 
 #infobox {
     padding: 10px;
@@ -104,7 +83,7 @@ div.logo {
     color: #000;
     right: 64px;
     font-size: .8em;
-    top: 45px;
+    top: 15px;
     overflow: visible;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -114,43 +93,3 @@ div.logo {
     -webkit-box-shadow: 2px 2px 5px #000;
     z-index: 600;
 }
-
-
-#Leyenda-wrapper {
-    position: absolute;
-    bottom: 100px;
-    left: 10px;
-    z-index: 1000;
-    background: white;
-    padding: 10px;
-    padding-top: 0px;
-}
-
-#selLeyenda {
-    margin-bottom: 5px;
-}
-
-
-/*
-    FILTRO POR LOCALIDAD
-*/
-
-
-/*
-.filtros {
-    background: #f00;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 100;
-    padding: 10px;
-    border-radius: 3px;
-}
-
-.dotLegend {
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    display:inline-block;
-}
-*/
