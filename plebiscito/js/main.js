@@ -7,10 +7,10 @@ var map = L.map('map', {
         maxZoom: 18,
         minZoom: 3
     }),
-    topoLayer = new L.TopoJSON()    
+    topoLayer = new L.TopoJSON()
 ;
 
-map.setView([4.5, -70.70], 6);
+map.setView([4.5, -72.80], 6);
 
 cartoLight.addTo(map);
 
@@ -44,7 +44,7 @@ function handleLayer(layer) {
     var datoNo = layer.feature.properties.No;
 
     var fillColor = datoSi > datoNo ? '#00ACC7' : '#008037';
-  
+
     layer.setStyle({
         fillColor: fillColor,
         fillOpacity: 0.8,
@@ -52,7 +52,7 @@ function handleLayer(layer) {
         weight: 1,
         opacity: .5
     });
-    
+
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -92,17 +92,17 @@ function highlightFeature(e) {
         layer.bringToFront();
     }
 
-    showCaption("Dpto: ", layer.feature);    
+    showCaption("Dpto: ", layer.feature);
 }
 
 function resetHighlight(e) {
     //topoLayer.resetStyle(e.target);
-    
+
     var datoSi = e.target.feature.properties.Si;
     var datoNo = e.target.feature.properties.No;
 
     var fillColor = datoSi > datoNo ? '#00ACC7' : '#008037';
-  
+
     e.target.setStyle({
         fillColor: fillColor,
         fillOpacity: 0.8,
@@ -110,7 +110,7 @@ function resetHighlight(e) {
         weight: 1,
         opacity: .5
     });
-    
+
     caption.html(starter);
     barData = [.5021, .4978];
     redraw();
@@ -120,7 +120,7 @@ function resetHighlight(e) {
 function highlightFeatureCapital(e) {
     var layer = e.target;
 
-    showCaption("Capital: ", layer.feature);    
+    showCaption("Capital: ", layer.feature);
 }
 
 function resetHighlightCapital(e) {
