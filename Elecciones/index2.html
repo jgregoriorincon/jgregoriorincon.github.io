@@ -208,8 +208,7 @@
              "#984EA3", "#FF7F00", "white", "white",
                      "white", "white"];
             /*The intuitive names of the clusters*/
-            var clusterNames = ["Si", "No", "Nulos", "PRI-PAN",
-            "PRI-PRD", "", "", "", ""];
+            var clusterNames = ["Si", "No", "Nulos"];
             //legend labels
             var cutPoints = ["(0%, 7.4%]", "(7.4%, 14.9%]", "(14.9%, 22.3%]",
          "(22.3%, 29.8%]",
@@ -238,7 +237,7 @@
                 starter = caption.html();
 
             function showCaption(d, i) {
-                barData = [d.properties.PRI, d.properties.PRD, d.properties.PAN];
+                barData = [d.properties.Si, d.properties.No, d.properties.Nulos];
                 redraw();
                 caption.html(["Si:", digit(d.properties.Si),
                   "No:", digit(d.properties.No),
