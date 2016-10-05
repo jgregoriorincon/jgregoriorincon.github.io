@@ -237,11 +237,11 @@
                 starter = caption.html();
 
             function showCaption(d, i) {
-                barData = [d.properties.Si, d.properties.No, d.properties.Nulos];
+                barData = [d.properties.Si/100, d.properties.No/100, d.properties.Nulos/100];
                 redraw();
-                caption.html(["Si:", digit(d.properties.Si),
-                  "No:", digit(d.properties.No),
-                  "Nulos:", digit(d.properties.Nulos)].join(" "));
+                caption.html(["Si:", digit(d.properties.Si/100),
+                  "No:", digit(d.properties.No/100),
+                  "Nulos:", digit(d.properties.Nulos/100)].join(" "));
             }
 
             //var map = L.map('map').setView([24.8, -96], 5);
