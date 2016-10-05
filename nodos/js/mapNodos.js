@@ -28,7 +28,7 @@ var Departamentos = L.geoJson(Dptos, {
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.7,
+                fillOpacity: 0.8,
                 fillColor: '#b2df8a'
             };
         case 'Centro':
@@ -36,7 +36,7 @@ var Departamentos = L.geoJson(Dptos, {
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.7,
+                fillOpacity: 0.8,
                 fillColor: '#fdcb7b'
             };
         case 'Sur':
@@ -44,7 +44,7 @@ var Departamentos = L.geoJson(Dptos, {
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.7,
+                fillOpacity: 0.8,
                 fillColor: '#a5bfdd'
             };
         default:
@@ -52,7 +52,7 @@ var Departamentos = L.geoJson(Dptos, {
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.3,
+                fillOpacity: 0.8,
                 fillColor: '#f1f4c7'
             };
         }
