@@ -237,11 +237,11 @@
                 starter = caption.html();
 
             function showCaption(d, i) {
-                barData = [d.properties.Si/100, d.properties.No/100, d.properties.Nulos/100];
+                barData = [d.properties.Si, d.properties.No];
                 redraw();
-                caption.html(["Si:", digit(d.properties.Si/100),
-                  "No:", digit(d.properties.No/100),
-                  "Nulos:", digit(d.properties.Nulos/100)].join(" "));
+                caption.html(["Si:", digit(d.properties.Si),
+                  "No:", digit(d.properties.No),
+                  "Nulos:", digit(d.properties.No)].join(" "));
             }
 
             //var map = L.map('map').setView([24.8, -96], 5);
@@ -267,21 +267,21 @@
             var svg = d3.select(map.getPanes().overlayPane).append("svg"),
                 g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
-            d3.json("data/Dptos.topo.json", function (topology) {
-                var bounds = d3.geo.bounds(topojson.object(topology, topology.objects.Dptos)),
+            d3.json("data/Departamentos.topo.json", function (topology) {
+                var bounds = d3.geo.bounds(topojson.object(topology, topology.objects.Departamentos)),
                     path = d3.geo.path().projection(project);
 
                 feature = g.selectAll("path")
-                    .data(topojson.object(topology, topology.objects.Dptos).geometries)
+                    .data(topojson.object(topology, topology.objects.Departamentos).geometries)
                     .enter().append("path")
                     .style("fill", function (d) {
-                        return color()(d.properties[selection]/100);
+                        return color()(d.properties[selection]);
                     })
                     .on('mouseover', showCaption)
                     .on('mousemove', showCaption)
                     .on('mouseout', function () {
                         caption.html(starter);
-                        barData = [.5021, .4978, .0001];
+                        barData = [.5021, .4978];
                         redraw();
                     });;
 
@@ -334,7 +334,7 @@
         </script>
         <script>
             //final results of the 2012 election
-            var barData = [.4978, .5021, .0001];
+            var barData = [.4978, .5021];
             var gap = 2;
             //padding for the party labels
             var left_padding = 30;
