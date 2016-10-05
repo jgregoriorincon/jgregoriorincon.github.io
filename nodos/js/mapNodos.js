@@ -101,10 +101,10 @@ map.addControl(searchControl); //inizialize search control
 
 
 // Se parsean los datos de InfoMapaV2 en un GeoJSON
+/*
 var eventos = GeoJSON.parse(InfoMapaV2.infoMapa, {
     Point: ['Lat', 'Lon']
 });
-
 
 // elementos geográficos
 var hechos = L.geoJson(eventos, {
@@ -160,6 +160,7 @@ clusterHechos.addLayer(hechos);
 
 // Adicionar las capas al mapa
 L.control.layers(baseMaps).addTo(mapNodos);
+*/
 
 // Funcion para convertir primera letra en mayuscula
 function toTitleCase(str) {
