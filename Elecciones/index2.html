@@ -269,11 +269,11 @@
                 g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
             d3.json("data/Dptos.topo.json", function (topology) {
-                var bounds = d3.geo.bounds(topojson.object(topology, topology.objects.distritos)),
+                var bounds = d3.geo.bounds(topojson.object(topology, topology.objects.Dptos)),
                     path = d3.geo.path().projection(project);
 
                 feature = g.selectAll("path")
-                    .data(topojson.object(topology, topology.objects.distritos).geometries)
+                    .data(topojson.object(topology, topology.objects.Dptos).geometries)
                     .enter().append("path")
                     .style("fill", function (d) {
                         return color()(d.properties[selection]);
