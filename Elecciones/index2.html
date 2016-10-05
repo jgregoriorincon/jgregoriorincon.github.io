@@ -240,9 +240,9 @@
             function showCaption(d, i) {
                 barData = [d.properties.PRI, d.properties.PRD, d.properties.PAN];
                 redraw();
-                caption.html(["Si:", digit(d.properties.PRI),
-                  "No:", digit(d.properties.PRD),
-                  "Nulos:", digit(d.properties.PAN)].join(" "));
+                caption.html(["Si:", digit(d.properties.Si),
+                  "No:", digit(d.properties.No),
+                  "Nulos:", digit(d.properties.Nulos)].join(" "));
             }
 
             //var map = L.map('map').setView([24.8, -96], 5);
