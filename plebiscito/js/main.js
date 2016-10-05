@@ -43,7 +43,7 @@ function handleLayer(layer) {
     var datoSi = layer.feature.properties.Si;
     var datoNo = layer.feature.properties.No;
 
-    var fillColor = datoSi > datoNo ? '#00ACC7' : '#008037';
+    var fillColor = datoSi > datoNo ? '#00C285' : '#FF894C';
 
     layer.setStyle({
         fillColor: fillColor,
@@ -101,7 +101,7 @@ function resetHighlight(e) {
     var datoSi = e.target.feature.properties.Si;
     var datoNo = e.target.feature.properties.No;
 
-    var fillColor = datoSi > datoNo ? '#00ACC7' : '#008037';
+    var fillColor = datoSi > datoNo ? '#00C285' : '#FF894C';
 
     e.target.setStyle({
         fillColor: fillColor,
