@@ -69,9 +69,9 @@ var gap = 2;
                 .attr("width", x)
                 .attr("height", 20)
                 .attr("fill", function (d, i) {
-                    if (i == 1) return "#008037";
+                    if (i == 1) return "#FF894C";
                     //if (i == 2) return "#377EB8";
-                    else return "#00ACC7";
+                    else return "#00C285";
                 });
 
             //labels for the parties
