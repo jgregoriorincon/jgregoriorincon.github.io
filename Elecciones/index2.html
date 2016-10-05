@@ -275,7 +275,7 @@
                     .data(topojson.object(topology, topology.objects.Dptos).geometries)
                     .enter().append("path")
                     .style("fill", function (d) {
-                        return color()(d.properties[selection]);
+                        return color()(d.properties[selection]/100);
                     })
                     .on('mouseover', showCaption)
                     .on('mousemove', showCaption)
