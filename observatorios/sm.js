@@ -10,7 +10,7 @@ $(document).on('ready', function () {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: new google.maps.LatLng(4.58642, -75.07710),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoom: 5,
+        zoom: 6,
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
         },
