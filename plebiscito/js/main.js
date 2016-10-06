@@ -186,8 +186,107 @@ legendaFinal.onAdd = function (map) {
     return div;
 };
 
-legendaFinal.addTo(map);
+legendParticipacion.onAdd = function (map) {
 
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
+        labels = [],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColorParticipacion(from + 0.1) + '"></i> ' +
+            from + (to === undefined ? '+' : '&ndash;' + to));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legendSi.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+        labels = [],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColorSi(from + 0.1) + '"></i> ' +
+            from + (to === undefined ? '+' : '&ndash;' + to));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legendNo.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+        labels = [],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColorNo(from + 0.1) + '"></i> ' +
+            from + (to === undefined ? '+' : '&ndash;' + to));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legendNulos.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0.0, 0.01, 0.02, 0.03],
+        labels = [],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColorNulos(from + 0.01) + '"></i> ' +
+            from + (to === undefined ? '+' : '&ndash;' + to));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legendNoMarcados.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0.0, 0.01, 0.02],
+        labels = [],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColorNoMarcados(from + 0.01) + '"></i> ' +
+            from + (to === undefined ? '+' : '&ndash;' + to));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legendaFinal.addTo(map);
 
 // Cambiar leyenda
 function changeLeyenda(selLeyenda) {
@@ -216,130 +315,60 @@ function changeLeyenda(selLeyenda) {
         map.removeControl(legendNulos);
         map.removeControl(legendNoMarcados);
 
-        legendParticipacion.onAdd = function (map) {
-
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
-                labels = [],
-                from, to;
-
-            for (var i = 0; i < grades.length; i++) {
-                from = grades[i];
-                to = grades[i + 1];
-
-                labels.push(
-                    '<i style="background:' + getColorParticipacion(from + 0.1) + '"></i> ' +
-                    from + (to === undefined ? '+' : '&ndash;' + to));
-            }
-
-            div.innerHTML = labels.join('<br>');
-            return div;
-        };
-
         legendParticipacion.addTo(map);
 
         break;
-    case "Convivencia":
+    case "SiDepartamento":
 
-        localidad_01.setStyle(styleConvivencia);
-        localidad_02.setStyle(styleConvivencia);
-        localidad_03.setStyle(styleConvivencia);
+        DepartamentosLayer.setStyle(styleSi);
 
-        map.removeControl(legendISCB);
-        map.removeControl(legendDelitos);
-        map.removeControl(legendFenomenos);
-        map.removeControl(legendInstitucional);
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
 
-        legendConvivencia.onAdd = function (map) {
-
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 0.5, 1, 1.5, 2],
-                labels = [],
-                from, to;
-
-            for (var i = 0; i < grades.length; i++) {
-                from = grades[i];
-                to = grades[i + 1];
-
-                labels.push(
-                    '<i style="background:' + getColorConvivencia(from + 0.4) + '"></i> ' +
-                    from + (to === undefined ? '+' : '&ndash;' + to));
-            }
-
-            div.innerHTML = labels.join('<br>');
-            return div;
-        };
-
-        legendConvivencia.addTo(map);
+        legendSi.addTo(map);
 
         break;
-    case "Fenomenos":
+    case "NoDepartamento":
 
-        localidad_01.setStyle(styleFenomenos);
-        localidad_02.setStyle(styleFenomenos);
-        localidad_03.setStyle(styleFenomenos);
+        DepartamentosLayer.setStyle(styleNo);
 
-        map.removeControl(legendISCB);
-        map.removeControl(legendConvivencia);
-        map.removeControl(legendDelitos);
-        map.removeControl(legendInstitucional);
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
 
-        legendFenomenos.onAdd = function (map) {
-
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 1, 2, 3],
-                labels = [],
-                from, to;
-
-            for (var i = 0; i < grades.length; i++) {
-                from = grades[i];
-                to = grades[i + 1];
-
-                labels.push(
-                    '<i style="background:' + getColorFenomenos(from + 0.9) + '"></i> ' +
-                    from + (to === undefined ? '+' : '&ndash;' + to));
-            }
-
-            div.innerHTML = labels.join('<br>');
-            return div;
-        };
-
-        legendFenomenos.addTo(map);
+        legendNo.addTo(map);
 
         break;
-    case "Institucional":
+    case "NulosDepartamento":
 
-        localidad_01.setStyle(styleInstitucional);
-        localidad_02.setStyle(styleInstitucional);
-        localidad_03.setStyle(styleInstitucional);
+        DepartamentosLayer.setStyle(styleNulos);
 
-        map.removeControl(legendISCB);
-        map.removeControl(legendConvivencia);
-        map.removeControl(legendFenomenos);
-        map.removeControl(legendDelitos);
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNoMarcados);
 
-        legendInstitucional.onAdd = function (map) {
-
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 0.5, 1],
-                labels = [],
-                from, to;
-
-            for (var i = 0; i < grades.length; i++) {
-                from = grades[i];
-                to = grades[i + 1];
-
-                labels.push(
-                    '<i style="background:' + getColorInstitucional(from + 0.4) + '"></i> ' +
-                    from + (to === undefined ? '+' : '&ndash;' + to));
-            }
-
-            div.innerHTML = labels.join('<br>');
-            return div;
-        };
-
-        legendInstitucional.addTo(map);
+        legendNulos.addTo(map);
 
         break;
+    case "NoMarcadosDepartamento":
+
+        DepartamentosLayer.setStyle(styleNoMarcados);
+
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+
+        legendNoMarcados.addTo(map);
+
+        break;            
     };
 }
