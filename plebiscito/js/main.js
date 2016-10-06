@@ -7,41 +7,37 @@ var map = L.map('map', {
         maxZoom: 18,
         minZoom: 3
     }),
-    topoLayer = new L.TopoJSON()
+    DepartamentosLayer = new L.TopoJSON(),
+    MunicipiosLayer = new L.TopoJSON(),
+    ELNLayer = new L.TopoJSON(),
+    ZonasVeredalesLayer = new L.TopoJSON(),
+    ZonasCampamentariasLayer = new L.TopoJSON()
 ;
 
 map.setView([4.5, -73.0], 6);
 
 cartoLight.addTo(map);
 
-var smallIcon = new L.Icon({
-     iconSize: [22, 22],
-     iconAnchor: [13, 27],
-     popupAnchor:  [1, -24],
-     iconUrl: 'images/capital.png'
- });
+$.getJSON('data/Departamentos.topo.json').done(addDptosData);
 
-L.geoJson(Capitales, {
-    pointToLayer: function(feature, latlng) {
-        return L.marker(latlng, {
-          icon: smallIcon
-        });
-      },
-      onEachFeature: onEachFeature
-}).addTo(map);
-
-$.getJSON('data/Departamentos.topo.json').done(addTopoData);
-
-function addTopoData(topoData) {
-    topoLayer.addData(topoData);
-    topoLayer.addTo(map);
-    topoLayer.eachLayer(handleLayer);
+function addDptosData(topoData) {
+    DepartamentosLayer.addData(topoData);
+    DepartamentosLayer.addTo(map);
+    DepartamentosLayer.eachLayer(handleLayerDepartamento);
 }
 
-function handleLayer(layer) {
+$.getJSON('data/Municipios.topo.json').done(addMpiosData);
 
-    var datoSi = layer.feature.properties.Si;
-    var datoNo = layer.feature.properties.No;
+function addMpiosData(topoData) {
+    MunicipiosLayer.addData(topoData);
+    //MunicipiosLayer.addTo(map);
+    //MunicipiosLayer.eachLayer(handleLayer);
+}
+
+function handleLayerDepartamento(layer) {
+
+    var datoSi = layer.feature.properties.PorcSi;
+    var datoNo = layer.feature.properties.PorcNo;
 
     var fillColor = datoSi > datoNo ? '#00C285' : '#FF894C';
 
@@ -54,9 +50,9 @@ function handleLayer(layer) {
     });
 
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
+        mouseover: highlightFeatureDepartamento,
+        mouseout: resetHighlightDepartamento,
+        click: zoomToFeatureDepartamento
     });
 }
 
@@ -64,10 +60,10 @@ var caption = d3.select('#caption'),
     starter = caption.html();
 
 function showCaption(titulo, d, i) {
-    barData = [d.properties.Si, d.properties.No];
+    barData = [d.properties.PorcSi, d.properties.PorcNo];
     redraw();
-    caption.html("<b>"+titulo+[d.properties.NOMBRE,"<br />Votos Si: ", digit(d.properties.Si),
-      "Votos No: ", digit(d.properties.No)].join("")+"</b>");
+    caption.html("<b>"+titulo+[d.properties.NOMBRE,"<br />Votos Si: ", digit(d.properties.PorcSi),
+      "Votos No: ", digit(d.properties.PorcNo)].join("")+"</b>");
 }
 
 // Controles
@@ -78,7 +74,7 @@ var control = L.control.zoomBox({
 });
 map.addControl(control);
 
-function highlightFeature(e) {
+function highlightFeatureDepartamento(e) {
     var layer = e.target;
 
     layer.setStyle({
@@ -95,11 +91,11 @@ function highlightFeature(e) {
     showCaption("Dpto: ", layer.feature);
 }
 
-function resetHighlight(e) {
-    //topoLayer.resetStyle(e.target);
+function resetHighlightDepartamento(e) {
+    //DepartamentosLayer.resetStyle(e.target);
 
-    var datoSi = e.target.feature.properties.Si;
-    var datoNo = e.target.feature.properties.No;
+    var datoSi = e.target.feature.properties.PorcSi;
+    var datoNo = e.target.feature.properties.PorcNo;
 
     var fillColor = datoSi > datoNo ? '#00C285' : '#FF894C';
 
@@ -129,7 +125,7 @@ function resetHighlightCapital(e) {
     redraw();
 }
 
-function zoomToFeature(e) {
+function zoomToFeatureDepartamento(e) {
     map.fitBounds(e.target.getBounds());
 }
 
@@ -140,5 +136,41 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlightCapital
     });
 }
+
+$.getJSON('data/ELN.topo.json').done(addELNData);
+
+function addELNData(topoData) {
+    ELNLayer.addData(topoData);
+    //ELNLayer.addTo(map);
+    //ELNLayer.eachLayer(handleLayer);
+}
+
+$.getJSON('data/ZonasVeredales.topo.json').done(addZonasVeredales);
+
+function addZonasVeredales(topoData) {
+    ZonasVeredalesLayer.addData(topoData);
+    //ZonasVeredalesLayer.addTo(map);
+    //ZonasVeredalesLayer.eachLayer(handleLayer);
+}
+
+$.getJSON('data/ZonasCampamentarias.topo.json').done(addZonasCampamentarias);
+
+function addZonasCampamentarias(topoData) {
+    ZonasCampamentariasLayer.addData(topoData);
+    //ZonasCampamentariasLayer.addTo(map);
+    //ZonasCampamentariasLayer.eachLayer(handleLayer);
+}
+
+//add layer controls/legend
+var overlayMaps = {
+    'Presencia ELN': ELNLayer,
+    'Zonas Veredales': ZonasVeredalesLayer,
+    'Zonas Campamentarias': ZonasCampamentariasLayer
+};
+
+var layerbox = L.control.layers(null, overlayMaps, {
+    collapsed: false,
+    position: 'bottomleft'
+}).addTo(map);
 
 map.attributionControl.addAttribution('Plebiscito &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');

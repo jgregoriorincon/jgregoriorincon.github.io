@@ -93,3 +93,21 @@ div.logo {
     -webkit-box-shadow: 2px 2px 5px #000;
     z-index: 600;
 }
+
+/*
+    TIPOS DE LEYENDAS
+*/
+
+#Leyenda-wrapper {
+    position: absolute;
+    bottom: 100px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+#selLeyenda {
+    margin-bottom: 5px;
+}

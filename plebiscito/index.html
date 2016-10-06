@@ -14,14 +14,27 @@
 </head>
 
 <body>
-    <div id="map"> </div>    
-    
+    <div id="map"> </div>
+
     <div id="infobox">
         <h1 style="font-size: 14px;font-family: Verdana;">Plebiscito por la Paz</h1>
         <p id="caption" align="center"><b>RESULTADO FINAL<br />SI: 49.78% NO: 50.21%</b></p>
         <div class="chart"></div>
     </div>
-    
+
+    <div id="Leyenda-wrapper" class="leaflet-bar">
+        <h5>Seleccione las variables a mapear</h5>
+        <select name="selLeyenda" id="selLeyenda" onChange="changeLeyenda(selLeyenda)">
+            <option value="ResultadosFinales">Resultados Finales por Departamento</option>
+            <option value="ParticipacionDepartamento">Participacion por Departamento</option>
+            <option value="SiDepartamento">Votos por el SI por Departamento</option>
+            <option value="NoDepartamento">Votos por el NO por Departamento</option>
+            <option value="NulosDepartamento">Votos Nulos por Departamento</option>
+            <option value="NoMarcadosDepartamento">Votos No Marcados por Departamento</option>
+        </select>
+    </div>
+
+
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/d3.min.js"></script>
     <script src="js/topojson.min.js"></script>
@@ -29,14 +42,14 @@
     <script src="js/leaflet.js"></script>
 
     <script src="js/basemaps.js"></script>
-    
+
     <script src="js/leaflet.defaultextent.js"></script>
     <script src="js/ZoomBox.js"></script>
     <script src="js/twoFingerZoom.js"></script>
 
     <script src="js/TopoJSON.js"></script>
 
-    <script src="data/Capitales.json"></script>         
+    <script src="data/Capitales.json"></script>
     <script src="js/chart.js"></script>
     <script src="js/main.js"></script>
 
