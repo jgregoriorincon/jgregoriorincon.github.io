@@ -21,6 +21,7 @@ var map = L.map('map', {
     FARCLayer = new L.TopoJSON(),
     PostConflictoLayer = new L.TopoJSON(),
     ELNLayer = new L.TopoJSON(),
+    CultivosCocaLayer = new L.TopoJSON(),
     ZonasVeredalesLayer = new L.TopoJSON(),
     ZonasCampamentariasLayer = new L.TopoJSON();
 
@@ -153,6 +154,14 @@ function addPostConflictoData(topoData) {
     //ELNLayer.eachLayer(handleLayer);
 }
 
+$.getJSON('data/Coca.topo.json').done(addCocaData);
+
+function addCocaData(topoData) {
+    CultivosCocaLayer.addData(topoData);
+    //ELNLayer.addTo(map);
+    //ELNLayer.eachLayer(handleLayer);
+}
+
 $.getJSON('data/ZonasVeredales.topo.json').done(addZonasVeredales);
 
 function addZonasVeredales(topoData) {
@@ -174,6 +183,7 @@ var overlayMaps = {
     'Presencia FARC': FARCLayer,
     'Presencia ELN': ELNLayer,
     'Municipios Post Conflicto': PostConflictoLayer,
+    'Zonas con Cultivos de Coca': CultivosCocaLayer,
     'Zonas Veredales': ZonasVeredalesLayer,
     'Zonas Campamentarias': ZonasCampamentariasLayer
 };
