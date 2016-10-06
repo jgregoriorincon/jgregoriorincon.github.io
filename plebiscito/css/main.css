@@ -72,7 +72,7 @@ div.logo {
 #infobox {
     padding: 10px;
     position: absolute;
-    width: 250px;
+    width: 330px;
     height: 170px;
     background: rgba(255, 255, 255, 1);
     -ms-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#B2000000, endColorstr=#B2000000);
@@ -83,7 +83,7 @@ div.logo {
     color: #000;
     right: 15px;
     font-size: .8em;
-    top: 150px;
+    top: 50px;
     overflow: visible;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -100,7 +100,7 @@ div.logo {
 
 #Leyenda-wrapper {
     position: absolute;
-    bottom: 100px;
+    bottom: 150px;
     left: 10px;
     z-index: 1000;
     background: white;
