@@ -2,7 +2,7 @@
 function getColorFinal(d) {
     return d ==  'SI' ? '#00C285' :
         d == 'NO' ? '#FF894C' :
-        '#FF0000';
+        '#00C285';
 }
 
 function styleFinal(feature) {

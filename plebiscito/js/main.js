@@ -199,7 +199,7 @@ legendParticipacion.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColorParticipacion(from + 0.1) + '"></i> ' +
-            from + (to === undefined ? '+' : '&ndash;' + to));
+            (from*100) + (to === undefined ? '% +' : '% &ndash; ' + (to*100) + '%'));
     }
 
     div.innerHTML = labels.join('<br>');
@@ -219,7 +219,7 @@ legendSi.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColorSi(from + 0.1) + '"></i> ' +
-            from + (to === undefined ? '+' : '&ndash;' + to));
+            (from*100) + (to === undefined ? '% +' : '% &ndash; ' + (to*100) + '%'));
     }
 
     div.innerHTML = labels.join('<br>');
@@ -239,7 +239,7 @@ legendNo.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColorNo(from + 0.1) + '"></i> ' +
-            from + (to === undefined ? '+' : '&ndash;' + to));
+            (from*100) + (to === undefined ? '% +' : '% &ndash; ' + (to*100) + '%'));
     }
 
     div.innerHTML = labels.join('<br>');
@@ -259,7 +259,7 @@ legendNulos.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColorNulos(from + 0.01) + '"></i> ' +
-            from + (to === undefined ? '+' : '&ndash;' + to));
+            (from*100) + (to === undefined ? '% +' : '% &ndash; ' + (to*100) + '%'));
     }
 
     div.innerHTML = labels.join('<br>');
@@ -279,7 +279,7 @@ legendNoMarcados.onAdd = function (map) {
 
         labels.push(
             '<i style="background:' + getColorNoMarcados(from + 0.01) + '"></i> ' +
-            from + (to === undefined ? '+' : '&ndash;' + to));
+            (from*100) + (to === undefined ? '% +' : '% &ndash; ' + (to*100) + '%'));
     }
 
     div.innerHTML = labels.join('<br>');
@@ -294,8 +294,26 @@ function changeLeyenda(selLeyenda) {
 
     switch (selLeyenda) {
     case "ResultadosFinalesDepartamento":
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleFinal);
+        
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
 
+        legendaFinal.addTo(map);
+
+        break;
+    case "ResultadosFinalesMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleFinal);
+        
         map.removeControl(legendParticipacion);
         map.removeControl(legendSi);
         map.removeControl(legendNo);
@@ -306,7 +324,9 @@ function changeLeyenda(selLeyenda) {
 
         break;
     case "ParticipacionDepartamento":
-
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleParticipacion);
 
         map.removeControl(legendaFinal);
@@ -318,8 +338,25 @@ function changeLeyenda(selLeyenda) {
         legendParticipacion.addTo(map);
 
         break;
-    case "SiDepartamento":
+    case "ParticipacionMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleParticipacion);
 
+        map.removeControl(legendaFinal);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
+
+        legendParticipacion.addTo(map);
+
+        break;            
+    case "SiDepartamento":
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleSi);
 
         map.removeControl(legendaFinal);
@@ -331,8 +368,25 @@ function changeLeyenda(selLeyenda) {
         legendSi.addTo(map);
 
         break;
-    case "NoDepartamento":
+    case "SiMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleSi);
 
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
+
+        legendSi.addTo(map);
+
+        break;            
+    case "NoDepartamento":
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleNo);
 
         map.removeControl(legendaFinal);
@@ -344,8 +398,25 @@ function changeLeyenda(selLeyenda) {
         legendNo.addTo(map);
 
         break;
-    case "NulosDepartamento":
+    case "NoMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleNo);
 
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNulos);
+        map.removeControl(legendNoMarcados);
+
+        legendNo.addTo(map);
+
+        break;            
+    case "NulosDepartamento":
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleNulos);
 
         map.removeControl(legendaFinal);
@@ -357,8 +428,25 @@ function changeLeyenda(selLeyenda) {
         legendNulos.addTo(map);
 
         break;
-    case "NoMarcadosDepartamento":
+    case "NulosMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleNulos);
 
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNoMarcados);
+
+        legendNulos.addTo(map);
+
+        break;            
+    case "NoMarcadosDepartamento":
+        
+        map.removeLayer(MunicipiosLayer);
+        DepartamentosLayer.addTo(map);
         DepartamentosLayer.setStyle(styleNoMarcados);
 
         map.removeControl(legendaFinal);
@@ -367,8 +455,23 @@ function changeLeyenda(selLeyenda) {
         map.removeControl(legendNo);
         map.removeControl(legendNulos);
 
-        legendNoMarcados.addTo(map);
+        legendNoMarcados.addTo(map);        
+        
+        break;    
+    case "NoMarcadosMunicipio":
+        
+        map.removeLayer(DepartamentosLayer);
+        MunicipiosLayer.addTo(map);
+        MunicipiosLayer.setStyle(styleNoMarcados);
 
-        break;            
+        map.removeControl(legendaFinal);
+        map.removeControl(legendParticipacion);
+        map.removeControl(legendSi);
+        map.removeControl(legendNo);
+        map.removeControl(legendNulos);
+
+        legendNoMarcados.addTo(map);        
+        
+        break;              
     };
 }
