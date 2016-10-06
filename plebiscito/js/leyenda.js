@@ -42,13 +42,13 @@ function styleParticipacion(feature) {
 // -----------------------------------------------------
 function getColorSi(d) {
     return d > 0.9 ? '#005824' :
-        d > 0.8 ? '#238b45' :
-        d > 0.7 ? '#41ae76' :
-        d > 0.6 ? '#66c2a4' :
-        d > 0.5 ? '#99d8c9' :
-        d > 0.4 ? '#ccece6' :
-        d > 0.3 ? '#e5f5f9' :
-        '#f7fcfd';
+        d > 0.8 ? '#005824' :
+        d > 0.7 ? '#238b45' :
+        d > 0.6 ? '#41ae76' :
+        d > 0.5 ? '#66c2a4' :
+        d > 0.4 ? '#99d8c9' :
+        d > 0.3 ? '#ccece6' :
+        '#e5f5f9';
 }
 
 function styleSi(feature) {

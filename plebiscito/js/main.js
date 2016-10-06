@@ -1,6 +1,15 @@
 'use strict'
 
 var digit0 = d3.format(".0%");
+var caption = d3.select('#caption'),
+    starter = caption.html();
+
+function showCaption(titulo, d, i) {
+    barData = [d.properties.PorcSi, d.properties.PorcNo];
+    redraw();
+    caption.html("<b>" + titulo + [d.properties.NOMBRE, "<br />Votos SI: ", digit(d.properties.PorcSi),
+      "Votos NO: ", digit(d.properties.PorcNo)].join("") + "</b>");
+}
 
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
@@ -9,6 +18,8 @@ var map = L.map('map', {
     }),
     DepartamentosLayer = new L.TopoJSON(),
     MunicipiosLayer = new L.TopoJSON(),
+    FARCLayer = new L.TopoJSON(),
+    PostConflictoLayer = new L.TopoJSON(),
     ELNLayer = new L.TopoJSON(),
     ZonasVeredalesLayer = new L.TopoJSON(),
     ZonasCampamentariasLayer = new L.TopoJSON();
@@ -26,40 +37,13 @@ function addDptosData(topoData) {
     DepartamentosLayer.eachLayer(handleLayerDepartamento);
 }
 
-$.getJSON('data/Municipios.topo.json').done(addMpiosData);
-
-function addMpiosData(topoData) {
-    MunicipiosLayer.addData(topoData);
-    //MunicipiosLayer.addTo(map);
-    //MunicipiosLayer.eachLayer(handleLayer);
-}
-
 function handleLayerDepartamento(layer) {
-
     layer.on({
         mouseover: highlightFeatureDepartamento,
         mouseout: resetHighlightDepartamento,
-        click: zoomToFeatureDepartamento
+        click: zoomToFeature
     });
 }
-
-var caption = d3.select('#caption'),
-    starter = caption.html();
-
-function showCaption(titulo, d, i) {
-    barData = [d.properties.PorcSi, d.properties.PorcNo];
-    redraw();
-    caption.html("<b>" + titulo + [d.properties.NOMBRE, "<br />Votos Si: ", digit(d.properties.PorcSi),
-      "Votos No: ", digit(d.properties.PorcNo)].join("") + "</b>");
-}
-
-// Controles
-L.control.defaultExtent().addTo(map);
-
-var control = L.control.zoomBox({
-    modal: true
-});
-map.addControl(control);
 
 function highlightFeatureDepartamento(e) {
 
@@ -93,22 +77,78 @@ function resetHighlightDepartamento(e) {
 
 }
 
-function zoomToFeatureDepartamento(e) {
+function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
 
-function onEachFeature(feature, layer) {
-    feature.layer = layer;
+$.getJSON('data/Municipios.topo.json').done(addMpiosData);
+
+function addMpiosData(topoData) {
+    MunicipiosLayer.addData(topoData);
+    //MunicipiosLayer.addTo(map);
+    MunicipiosLayer.eachLayer(handleLayerMunicipio);
+}
+
+function handleLayerMunicipio(layer) {
     layer.on({
-        mouseover: highlightFeatureCapital,
-        mouseout: resetHighlightCapital
+        mouseover: highlightFeatureMunicipio,
+        mouseout: resetHighlightMunicipio,
+        click: zoomToFeature
     });
+}
+
+function highlightFeatureMunicipio(e) {
+
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    showCaption("Municipio: ", layer.feature);
+}
+
+function resetHighlightMunicipio(e) {
+
+    MunicipiosLayer.resetStyle(e.target);
+    MunicipiosLayer.setStyle(styleFinal);
+
+    var leyenda = document.getElementById('selLeyenda');
+    changeLeyenda(leyenda);
+
+    caption.html(starter);
+    barData = [.5021, .4978];
+    redraw();
+
+}
+
+$.getJSON('data/FARC.topo.json').done(addFARCData);
+
+function addFARCData(topoData) {
+    FARCLayer.addData(topoData);
+    //ELNLayer.addTo(map);
+    //ELNLayer.eachLayer(handleLayer);
 }
 
 $.getJSON('data/ELN.topo.json').done(addELNData);
 
 function addELNData(topoData) {
     ELNLayer.addData(topoData);
+    //ELNLayer.addTo(map);
+    //ELNLayer.eachLayer(handleLayer);
+}
+
+$.getJSON('data/PostConflicto.topo.json').done(addPostConflictoData);
+
+function addPostConflictoData(topoData) {
+    PostConflictoLayer.addData(topoData);
     //ELNLayer.addTo(map);
     //ELNLayer.eachLayer(handleLayer);
 }
@@ -131,7 +171,9 @@ function addZonasCampamentarias(topoData) {
 
 //add layer controls/legend
 var overlayMaps = {
+    'Presencia FARC': FARCLayer,
     'Presencia ELN': ELNLayer,
+    'Municipios Post Conflicto': PostConflictoLayer,
     'Zonas Veredales': ZonasVeredalesLayer,
     'Zonas Campamentarias': ZonasCampamentariasLayer
 };
@@ -140,6 +182,14 @@ var layerbox = L.control.layers(null, overlayMaps, {
     collapsed: false,
     position: 'bottomleft'
 }).addTo(map);
+
+// Controles
+L.control.defaultExtent().addTo(map);
+
+var control = L.control.zoomBox({
+    modal: true
+});
+map.addControl(control);
 
 map.attributionControl.addAttribution('Plebiscito &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
