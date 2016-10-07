@@ -1,3 +1,9 @@
+// Basemaps disponibles, pueden quitarse y dejar uno solo, esta por defecto el gris que contrasta mejor con el mapa de calor
+var baseMaps = {
+	"Gris": cartoLight,
+    "OSM": OpenStreetMap_Mapnik,
+    "Calles": Esri_WorldStreetMap
+};
 
 // Variable del Cluster
 var clusterHechos = L.markerClusterGroup();

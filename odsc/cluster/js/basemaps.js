@@ -13,10 +13,3 @@ var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
-
-// Basemaps disponibles, pueden quitarse y dejar uno solo, esta por defecto el gris que contrasta mejor con el mapa de calor
-var baseMaps = {
-    "Gris": cartoLight,
-    "OSM": OpenStreetMap_Mapnik,
-    "Calles": Esri_WorldStreetMap
-};
