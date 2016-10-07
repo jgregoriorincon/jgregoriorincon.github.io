@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Índice de Seguridad y Convivencia Barrial</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/ZoomBox.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <div id="Leyenda-wrapper" class="leaflet-bar">
+        <h5>Seleccione una variable a mapear</h5>
+        <select name="selLeyenda" id="selLeyenda" onChange="changeLeyenda(selLeyenda)">
+            <option value="ISCB">Total ISCB</option>
+            <option value="Delitos">Delitos</option>
+            <option value="Convivencia">Convivencia</option>
+            <option value="Fenomenos">Fenomenos</option>
+            <option value="Institucional">Institucional</option>
+        </select>
+    </div>
+
+    <script src="js/leaflet.js"></script>
+
+    <script src="js/basemaps.js"></script>
+    <script src="js/choropleth.js"></script>
+    <script src="js/leaflet.defaultextent.js"></script>
+    <script src="js/ZoomBox.js"></script>
+    <script src="js/twoFingerZoom.js"></script>
+
+    <script src="data/Barrios.json"></script>
+
+    <script src="js/leyenda.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
