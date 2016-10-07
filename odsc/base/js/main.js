@@ -16,7 +16,7 @@ info.onAdd = function (map) {
 
 info.update = function (props) {
     this._div.innerHTML = '<h3>Barrios de Santa Marta</h3>' + (props ?
-        '<p align="right"><b>' + Nombre + '<br />Localidad ' + Localidad + '<br /> Codigo ' + Codigo + '</b><br />' + '</p></b>' : 'Pase el cursor sobre un barrio');
+        '<p align="right"><b>' + props.NOMBRE + '<br />Localidad ' + props.LOCALIDAD + '<br /> Codigo ' + props.CODIGO + '</b><br />' + '</p></b>' : 'Pase el cursor sobre un barrio');
 };
 
 info.addTo(map);
@@ -49,12 +49,6 @@ function highlightFeature(e) {
         layer.bringToFront();
     }
 	
-	// Daniel
-	// Almaceno los valores para usarlos 
-	Localidad =layer.feature.properties.LOCALIDAD;
-	Codigo = layer.feature.properties.CODIGO;
-	Nombre = layer.feature.properties.NOMBRE;
-	
     info.update(layer.feature.properties);
 }
 
@@ -66,6 +60,18 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+    var layer = e.target;
+
+	// Daniel
+	// Almaceno los valores para usarlos 
+	Localidad =layer.feature.properties.LOCALIDAD;
+	Codigo = layer.feature.properties.CODIGO;
+	Nombre = layer.feature.properties.NOMBRE;
+    
+    console.log(Localidad);
+    console.log(Codigo);
+    console.log(Nombre);
+    
     map.fitBounds(e.target.getBounds());
 }
 
