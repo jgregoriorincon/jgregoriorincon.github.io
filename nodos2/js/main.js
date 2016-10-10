@@ -224,47 +224,35 @@ function zoomToFeature(e) {
 }
 
 map.on('zoomend', function () {
-	
+	if (map.getZoom() >= 8) // && map.hasLayer(NodosLayer)) 
+	{
+    	map.removeLayer(NodosLayer);
+    	map.removeLayer(DptosNodosLayer);
+    	map.addLayer(MpiosCaribeLayer);
+    	map.addLayer(MpiosCentroLayer);
+    	map.addLayer(MpiosSurLayer);
+	}
 	if (map.getZoom() < 7) // && map.hasLayer(NodosLayer) == false)
 	{
     	map.addLayer(NodosLayer);
-		
     	map.removeLayer(DptosNodosLayer);
-		
     	map.removeLayer(MpiosCaribeLayer);
     	map.removeLayer(MpiosCentroLayer);
     	map.removeLayer(MpiosSurLayer);
-		// Add Data
-	map.removeLayer(clusterObservatoriosSur);
-	map.removeLayer(clusterObservatoriosCentro);
-	map.removeLayer(clusterObservatoriosCaribe);
 	}  
 	if (map.getZoom() == 7) // && map.hasLayer(NodosLayer) == false)
 	{
     	map.removeLayer(NodosLayer);
-		
     	map.addLayer(DptosNodosLayer);
-		
     	map.removeLayer(MpiosCaribeLayer);
     	map.removeLayer(MpiosCentroLayer);
     	map.removeLayer(MpiosSurLayer);
 	}   
-	if (map.getZoom() >= 8) // && map.hasLayer(NodosLayer)) 
-	{
-    	map.removeLayer(NodosLayer);
-		
-    	map.removeLayer(DptosNodosLayer);
-	
-	map.hasLayer(MpiosCaribeLayer) == false ? map.addLayer(MpiosCaribeLayer): nothing;
-	map.hasLayer(MpiosCentroLayer) == false ? map.addLayer(MpiosCentroLayer): nothing;
-	map.hasLayer(MpiosSurLayer) == false ? map.addLayer(MpiosSurLayer): nothing;
-
-	}
 }); 
 
 /* ------------------- OBSERVATORIOS ------------------*/
 // SUR
-var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 150});
+var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 100});
 var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.OBSERVATORIO);
@@ -273,7 +261,7 @@ var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
 clusterObservatoriosSur.addLayer(ObservatoriosSurLayer);
 
 // CENTRO
-var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 150});
+var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 180});
 var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro, {
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.OBSERVATORIO);
@@ -290,9 +278,10 @@ var ObservatoriosCaribeLayer = L.geoJson(ObservatoriosCaribe, {
 	});
 clusterObservatoriosCaribe.addLayer(ObservatoriosCaribeLayer);
 
-map.hasLayer(clusterObservatoriosSur) == false ? map.addLayer(clusterObservatoriosSur): nothing;
-map.hasLayer(clusterObservatoriosCentro) == false ? map.addLayer(clusterObservatoriosCentro): nothing;
-map.hasLayer(clusterObservatoriosCaribe) == false ? map.addLayer(clusterObservatoriosCaribe): nothing;
+// Add Data
+map.addLayer(clusterObservatoriosSur);
+map.addLayer(clusterObservatoriosCentro);
+map.addLayer(clusterObservatoriosCaribe);
 
 /* ------------------- CONTROLES ------------------*/
 L.control.defaultExtent().addTo(map);
@@ -303,4 +292,3 @@ var control = L.control.zoomBox({
 map.addControl(control);
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
-
