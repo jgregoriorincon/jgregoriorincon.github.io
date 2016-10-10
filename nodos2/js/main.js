@@ -224,7 +224,7 @@ function zoomToFeature(e) {
 }
 
 map.on('zoomend', function () {
-	if (map.getZoom() >= 8) // && map.hasLayer(NodosLayer)) 
+	if (map.getZoom() >= 10) // && map.hasLayer(NodosLayer)) 
 	{
     	map.removeLayer(NodosLayer);
     	map.removeLayer(DptosNodosLayer);
