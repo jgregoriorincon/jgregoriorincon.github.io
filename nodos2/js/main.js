@@ -245,10 +245,9 @@ map.on('zoomend', function () {
 		
     	map.addLayer(DptosNodosLayer);
 	
-	// Add Data
-	map.addLayer(clusterObservatoriosSur);
-	map.addLayer(clusterObservatoriosCentro);
-	map.addLayer(clusterObservatoriosCaribe);
+	map.hasLayer(clusterObservatoriosSur) == false ? map.addLayer(clusterObservatoriosSur): nothing;
+	map.hasLayer(clusterObservatoriosCentro) == false ? map.addLayer(clusterObservatoriosCentro): nothing;
+	map.hasLayer(clusterObservatoriosCaribe) == false ? map.addLayer(clusterObservatoriosCaribe): nothing;
 		
     	map.removeLayer(MpiosCaribeLayer);
     	map.removeLayer(MpiosCentroLayer);
@@ -259,10 +258,15 @@ map.on('zoomend', function () {
     	map.removeLayer(NodosLayer);
 		
     	map.removeLayer(DptosNodosLayer);
-		
-    	map.addLayer(MpiosCaribeLayer);
-    	map.addLayer(MpiosCentroLayer);
-    	map.addLayer(MpiosSurLayer);
+	
+	map.hasLayer(MpiosCaribeLayer) == false ? map.addLayer(MpiosCaribeLayer): nothing;
+	map.hasLayer(MpiosCentroLayer) == false ? map.addLayer(MpiosCentroLayer): nothing;
+	map.hasLayer(MpiosSurLayer) == false ? map.addLayer(MpiosSurLayer): nothing;
+	
+	map.hasLayer(clusterObservatoriosSur) == false ? map.addLayer(clusterObservatoriosSur): nothing;
+	map.hasLayer(clusterObservatoriosCentro) == false ? map.addLayer(clusterObservatoriosCentro): nothing;
+	map.hasLayer(clusterObservatoriosCaribe) == false ? map.addLayer(clusterObservatoriosCaribe): nothing;
+
 	}
 }); 
 
