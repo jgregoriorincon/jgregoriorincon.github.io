@@ -272,7 +272,7 @@ map.on('zoomend', function () {
 
 /* ------------------- OBSERVATORIOS ------------------*/
 // SUR
-var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 100});
+var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 80});
 var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.OBSERVATORIO);
@@ -281,7 +281,7 @@ var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
 clusterObservatoriosSur.addLayer(ObservatoriosSurLayer);
 
 // CENTRO
-var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 180});
+var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 80});
 var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro, {
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.OBSERVATORIO);
@@ -290,7 +290,7 @@ var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro, {
 clusterObservatoriosCentro.addLayer(ObservatoriosCentroLayer);
 
 // CARIBE
-var clusterObservatoriosCaribe = L.markerClusterGroup({maxClusterRadius: 150});
+var clusterObservatoriosCaribe = L.markerClusterGroup({maxClusterRadius: 80});
 var ObservatoriosCaribeLayer = L.geoJson(ObservatoriosCaribe, {
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup(feature.properties.OBSERVATORIO);
