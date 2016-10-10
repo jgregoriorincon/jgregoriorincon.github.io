@@ -1,0 +1,453 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.115733,9.721064 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":131,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Grupo de Investigaciòn Derecho del Trabajo y Seguridad Social, linea Derechos Humanos.",
+    "CONTACTO":"raul benavides",
+    "SECTOR":"Academia",
+    "FECHA INICIO":"5/7/2014",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"EL CARMEN DE BOLIVAR",
+    "DIRECCIÓN":"Colegio iti",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"9 a 12 y 2 a 5 ",
+    "TELEFONO":"3102775413",
+    "CORREO":"proyectoderechodelasvictimas@unicartagena.edu.co;rebenavides7@hotmail.com",
+    "SITIO WEB":"",
+    "TWITER":"@prodevic",
+    "FACEBOOK":"no",
+    "PRODUCTOS":"",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO DEDICADO":"Medio tiempo",
+    "PRESUPUESTO":"En proceso de búsqueda de financiación",
+    "ALIADOS":"",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.5458657,10.4240979 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":133,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"SECRETARIA DEL INTERIOR Y CONVIVENCIA CIUDADANA - ALCALDIA MAYOR DE CARTAGENA ",
+    "CONTACTO":" ARMELY GARCIA ARRIETA",
+    "SECTOR":"Gubernamental",
+    "FECHA INICIO":"5/16/2008",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"CENTRO, LA MATUNA, PISO 3 DEL ANTIGUO EDIFICIO DE LAS EMPRESAS PUBLICAS",
+    "NUEVA NOMENCLATURA":"SI",
+    "HORARIO":"8:00 a.m. - 6:00 p.m. (lunes a jueves) 8:00 a.m. - 5:00 p.m. (viernes)",
+    "TELEFONO":"6501092 ext. 2716",
+    "CORREO":"armelygarcia@gmail.com",
+    "SITIO WEB":"www.cartagena.gov.co",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"redes sociales, periódicos, televisión ",
+    "RECONOCIMIENTOS":"Por el trabajo en la defensa y protección de los Derechos de los NNA, Certificación del Centro Histórico, como Destino Sostenible",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Entre 50 y 200 millones",
+    "ALIADOS":"COMITÉ DISTRITAL DE DERECHOS HUMANOS ",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.5466441,10.4264018 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":134,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio Distrital Antidiscriminación Racial de Cartagena, ODAR",
+    "CONTACTO":"Edwin Salcedo",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"7/15/2015",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Calle de Quero # 9-95",
+    "NUEVA NOMENCLATURA":"SI",
+    "HORARIO":"Lunes a Viernes de 9:00 am a 5:00 pm",
+    "TELEFONO":"+573108181547 ;+573108181547 ",
+    "CORREO":"pilas.colombia@hotmail.com;edwin.salcedo@hotmail.es",
+    "SITIO WEB":"",
+    "TWITER":"",
+    "FACEBOOK":"https://www.facebook.com/Ser-Negro-Es-Hermoso-480266332142530/ ",
+    "PRODUCTOS":"",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Medio tiempo",
+    "PRESUPUESTO":"Entre 5 y 50 millones",
+    "ALIADOS":"Universidades Locales / Personería Distrital de Cartagena / Fiscalía Seccional de Bolívar / Defensoría del Pueblo / Oficina del Trabajo / Museo Histórico de Cartagena / Canal Cartagena / Periódico El Universal / FUNCICAR / Cartagena Como Vamos... Entre otros",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.924108,7.477887 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":137,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio de Paz Integral del Magdalena Medio",
+    "CONTACTO":"Santiago Camargo",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"2/1/2003",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"SAN PABLO",
+    "DIRECCIÓN":"Calle 49 No. 6 B - 93, oficina 702",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8 a 12 y 2 a 5",
+    "TELEFONO":"(7)6220274;311-4912907",
+    "CORREO":"opazintegral@yahoo.es;salcamargocamargo@gmail.com",
+    "SITIO WEB":"",
+    "TWITER":"@ObservatorioOpi",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Los BOLETINES mensuales y los INFORMES de coyuntura mensual se encuentran en www.opi.org.co. Igualmente se cuenta con una biblioteca virtual con 5.000 documentos sobre el Magdalena Medio, que incluye bases de datos y archivos de prensa.",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 6 a 20 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"Entre 50 y 200 millones",
+    "ALIADOS":"Bancos de datos de derechos humanos, red nacional de observatorios de planeta paz y del Cinep",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.5495243,10.4260766 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":148,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"OBSERVATORIO  DE DESPLAZAMIENTO, CONFLICTO Y CONSTRUCCIÓN DE PAZ .",
+    "CONTACTO":"ROSA JIMENEZ AHUMADA",
+    "SECTOR":"Academia",
+    "FECHA INICIO":"5/4/2001",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Kra 6 Nº 36-100 Centro ",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"Lunes a viernes de 8-12 y de  2-5",
+    "TELEFONO":"6602358;3008167476",
+    "CORREO":"observatorio@unicartagena.edu.co;rjimeneza@unicartagena.edu.co;skype:rojia5",
+    "SITIO WEB":"",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Other Significant Products   -\t2013. INVIAS. Adviser black communities affected by the Cartagena -Barranquilla bridge. -\t-2013. Director of the Socio-Economic Impact study by the bridge Pasacaballos. -\t2013. Unicef – Cartagena University. Director of Project Educational Quality. -\t2012. Fundacion Diocesana. Regional expert in Education. -\t2005-2010, TRanscaribe. Director of Social Management Plan in the process of involuntary resettlement  informal economy  in Cartagena. -\t2004. Director in the design of Social Management Plan Perimetral  road .Cartagena –Colombia.  -\t2011. Regional Project Coordinator in the prevention of forced recruitment in Cartagena. -\t2003. ECOPETROL. Coordinator of the study on impact zones of the Colombia Caribbean.  Bibliographic Production Development and Peace in the Montes de María. \" In : Colombia Territorial Dimensions of War and Peace ISSN : 95870141 ed. v.1 fasc. p.503 - 518, 2002.   Book Chapters -\tRosa Jiménez, Amaranto Daniels and others, \" Economic Effects of Displacement in Colombia : Departments of Antioquia, Bolívar and Cauca y Valle. 19 Economic Effects of Forced Displacement in Colombia : Departments Antioquia, Bolívar and Valle.199-2004 \" ISBN: 978-958-97598-9-9. -\tCharacterization of Displacement Organizations  in Cartagena. 2011. ISBN 978-958-9230-84-8  -\t2012. Peace initiatives. Dignity and visibility of the victims in Cartagena de Indias. Colombia ISBN 978-958-725-109-8. 1st Edition,. Jorge Tadeo Lozano University.  -\t2005. Census Resettlement Plans as methodological instrument for the implementation of Urban Social Policy In Colombia, Bogotá-Colombia.  Another production -\t2013. Teachers Peace. University awarded Best Documentary Film festival Cartagena.",
+    "RECONOCIMIENTOS":"Maestros de Paz . Premio a la mejor producción universitaria en el Festival de Cine India Catalina.2013",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"Entre 5 y 50 millones",
+    "ALIADOS":"Red de Observatorio del delito de la DIJIN,  ACAC . RED PRODEPAZ-CLACSO",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.4777754,10.3831505 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":150,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Fundacion Red de Empoderamiento de Las Mujeres de Cartagena y Bolivar",
+    "CONTACTO":"Manuela Arvilla Herrera",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"1/1/0001",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Villas de la victoria, Casa 240",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8AM-12PM        2PM-4PM",
+    "TELEFONO":"3165280577",
+    "CORREO":"reddeempoderamiento@yahoo.com;cemci97@yahoo.com",
+    "SITIO WEB":"www.reddeempoderamiento.org",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Analis de la particion politico de las mujeres el el marco de las elecciones de 2011, Modulos de Derechos Humanos y participacion, Modulo de legislacion, Modulos de proteccion, Modulos de politicas publicas",
+    "RECONOCIMIENTOS":"Alcaldía de cartagena, Año 2006",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Entre 50 y 200 millones",
+    "ALIADOS":"red nacional de mujeres, la red movimiento de social, alianza nacional mujeres libres de violencia, mesa por la vida y la salud de las mujeres",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.1998591,11.253456 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":152,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"fundacion de derechos humanos de las victimas de la violencia en colombia   FUNDEHUVICOL",
+    "CONTACTO":"maria choles toro",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"1/1/0001",
+    "DEPARTAMENTO":"MAGDALENA",
+    "MUNICIPIO":"SANTA MARTA",
+    "DIRECCIÓN":"carrera 15 # 2-56  barrio 20 de julio ",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8am 3pm",
+    "TELEFONO":"3005621520;3126498858",
+    "CORREO":"fundehuvicol01@hotmail.com;mcholes@hotmail.com",
+    "SITIO WEB":"",
+    "TWITER":"",
+    "FACEBOOK":"fundacion fundehuvicol",
+    "PRODUCTOS":"",
+    "RECONOCIMIENTOS":"premio nacional de paz mencion de honor al premio franco aleman ",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"En proceso de búsqueda de financiación",
+    "ALIADOS":"alianza de iniciativa de mujeres colombiana por la paz IMP  red de mujeres del magdalena ",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.5444065,10.420387 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":153,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio a la Transparencia en la Contratación Pública de Cartagena de Indias, Fundación Cívico Social Pro Cartagena - Caribe",
+    "CONTACTO":"Carolina Calderón Guillot",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"1/6/2013",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Barrio Getsemaní, Calle del Espíritu Santo, N° 29-200",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8:00 a.m. - 5:00 p.m.",
+    "TELEFONO":"3205491885;3002275887",
+    "CORREO":"carolina.calderon@funcicar.org;proyectos@funcicar.org",
+    "SITIO WEB":"www.funcicar.org",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Análisis de la Transparencia en la Contratación 2015 (http://www.funcicar.org/sites/default/files/archivos/contratacion2015.pdf), Propuestas en Transparencia y Fortalecimiento Institucional (http://www.funcicar.org/sites/default/files/archivos/propuestas_en_transparencia_y_fortalecimiento_institucional_concejo.pdf), Recomendaciones al CTP sobre el borrados del Plan de Desarrollo, tema Transparencia (http://www.funcicar.org/sites/default/files/archivos/ppt_ctp_2016_1.pdf), Informe investigativo: Transparencia en la Contratación Estatal en los 100 días de Gobierno de Manuel Vicente Duque (http://www.funcicar.org/sites/default/files/archivos/100_dias_contratacion.compressed.pdf), 2do informe de Seguimiento al Crédito Público (http://www.funcicar.org/sites/default/files/archivos/seguimiento_obras_credito_publico_ii.pdf), Informe de seguimiento al Crédito Público Obras en infraestructura Educativa y de Salud (http://www.funcicar.org/sites/default/files/archivos/informe_credito_publico_imprimir.compressed.pdf), Despierta Cartagena Informe Final (http://www.funcicar.org/sites/default/files/archivos/informe_final_despierta_cartagena.compressed.pdf), Agenda Ciudadana por la Paz y la Transparencia (http://www.funcicar.org/sites/default/files/archivos/agenda_ciudadana_por_la_paz_y_la_transparencia_-_cartagena.pdf), Consolidado de la Transparencia en la Contratación Estatal 1er semestre de 2014 (http://www.funcicar.org/sites/default/files/archivos/consolidado_primer_semestre_2014_0.pdf)",
+    "RECONOCIMIENTOS":"Somos parte de la Terna de la cual la Presidencia de la República seleccionará el representante del sector ONG para conformar la Comisión Nacional de Lucha Contra la Corrupción",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"Entre 50 y 200 millones",
+    "ALIADOS":"Secretaría de la Transparencia de la Presidencia de la República, Corporación Transparencia por Colombia, Consejo Gremial de Bolívar, ANDI seccional Bolívar, NDI, NED, IRI, Fundación Mamonal, Corporación Cívica de Caldas, El Universal, Q'hubo, RCN Radio, Canal Cartagena, Observatorio al Concejo Distrital de Cartagena de Indias, Observatorio a la Asamblea Departamental de Bolívar, Cartagena Cómo Vamos.",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.3953075,9.2921537 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":155,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Pazcaribe",
+    "CONTACTO":"MAGGIE URUETA",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"2/2/2004",
+    "DEPARTAMENTO":"SUCRE",
+    "MUNICIPIO":"SINCELEJO",
+    "DIRECCIÓN":"calle 32 No. 15-92 Avenida Alfonso Lopez",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8:00 am - 4:00 pm",
+    "TELEFONO":"2768120",
+    "CORREO":"pazcaribe@hotmail.com;verg63@hotmail.com",
+    "SITIO WEB":"",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Construccion de una Ingfaestructura de Paz a partir de los Montes de Maria, Reclutamiento de ninos/as, adolescentes y jovenes en el Departamento de Sucre, Politica Publica de Discapacidad Sucre y Bolivar, VIH, Politica de Juventud en Sucre, Mujer, Productividad, entre otros",
+    "RECONOCIMIENTOS":"Rochelas 2005, Buenas practicas PNUD.",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Menos de 5 millones",
+    "ALIADOS":"Recolvih, IAS, Red de Organizaciones Comunitarias, Mesa Departamental de paz de Sucre, Abvocacy International",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.7815086,10.9840231 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":158,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"ASOCOLEMAD (ASOCIACIÓN COLECTIVO MUJERES AL DERECHO)",
+    "CONTACTO":"Luz Estella Romero Villalba",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"1/1/2007",
+    "DEPARTAMENTO":"ATLANTICO",
+    "MUNICIPIO":"BARRANQUILLA",
+    "DIRECCIÓN":"Calle 40 #44-39 oficina 8h",
+    "NUEVA NOMENCLATURA":"SI",
+    "HORARIO":"lun-vier 08:00 am-05:00 pm",
+    "TELEFONO":"3721747;3176671045",
+    "CORREO":"info@colectivomujeresalderecho.org",
+    "SITIO WEB":"www.colectivomujeresalderecho.org",
+    "TWITER":"@asocolemad",
+    "FACEBOOK":"",
+    "PRODUCTOS":"www.colectivomujeresalderecho.org",
+    "RECONOCIMIENTOS":"www.colectivomujeresalderecho.org",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"Entre 5 y 50 millones",
+    "ALIADOS":"colciencias, espacio de articulación regional de mujeres por la paz, comunidades de base campesina, organizaciones de la sociedad civil, otros",
+    "COMENTARIOS":"Quedamos atentas al intercambio de experiencias e información para el fortalecimiento investigativo en derechos humanos"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.8599843,11.0163431 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":160,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio de Condiciones socioeconómicas del Atlántico OCSA",
+    "CONTACTO":"Paola Roldán",
+    "SECTOR":"Privado",
+    "FECHA INICIO":"8/20/2008",
+    "DEPARTAMENTO":"ATLANTICO",
+    "MUNICIPIO":"BARRANQUILLA",
+    "DIRECCIÓN":"Kilómetro 5 vía Puerto Colombia",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8:00 AM a 12:00 AM y de 2:00 PM a 6:00 PM",
+    "TELEFONO":"5 3509509  extensión  4606     ",
+    "CORREO":"proldan@uninorte.edu.co;rsandra@uninorte.edu.co",
+    "SITIO WEB":"http://www.uninorte.edu.co/web/ocsa",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"http://www.uninorte.edu.co/web/ocsa/boletin-ocsa     http://www.uninorte.edu.co/web/ocsa/documentos",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO DEDICADO":"Menos de 10 horas semanales",
+    "PRESUPUESTO":"",
+    "ALIADOS":"",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.545273,10.4208148 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":172,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio del Caribe Colombiano",
+    "CONTACTO":"Beatriz Bechara de Borge",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"12/12/1997",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Getsemaní, Calle del Guerrero #29-02",
+    "NUEVA NOMENCLATURA":"NO",
+    "HORARIO":"8 am a 5:30 pm",
+    "TELEFONO":"6601364;313 5349752",
+    "CORREO":"info@ocaribe.org;asistentededireccion@ocaribe.org",
+    "SITIO WEB":"www.ocaribe.org",
+    "TWITER":"@ocaribe",
+    "FACEBOOK":"https://es-es.facebook.com/ocaribe/",
+    "PRODUCTOS":"PER Caribe, SID Caribe, Corredor Caribe, PD Caribe, Repositorio Digital del Caribe Colombiano, ",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO DEDICADO":"Menos de 10 horas semanales",
+    "PRESUPUESTO":"Ninguno",
+    "ALIADOS":"Nodo Caribe de The Millenium Project, Universidad de Cartagena, Universidad del Atlántico, Universidad de Magdalena, Universidad del Cesar, Universidad de la Guajira, Cámara de Comercio de Cartagena, Cámara de Comercio de Cartagena, Cámara de Comercio de Montería, Cámara de Comercio de Magangué, Cámara de Comercio de La Guajira, Cámara de Comercio de Sincelejo",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.8050894,11.0018634 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":184,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Caribe Afirmativo",
+    "CONTACTO":"",
+    "SECTOR":"Sociedad Civil",
+    "FECHA INICIO":"1/1/0001",
+    "DEPARTAMENTO":"ATLANTICO",
+    "MUNICIPIO":"BARRANQUILLA",
+    "DIRECCIÓN":"carrera 53 No 75- 87",
+    "NUEVA NOMENCLATURA":"SI",
+    "HORARIO":"9.00 a.m 6.00 p.m",
+    "TELEFONO":"3116810;3007500551",
+    "CORREO":"observatorio@caribeafirmativo.lgbt;direccion@caribeafirmativo.lgbt",
+    "SITIO WEB":"www.caribeafirmativo.lgbt",
+    "TWITER":"caribeafirmativ",
+    "FACEBOOK":"184",
+    "PRODUCTOS":"Informes de  derechos  humanos de personas  LGBT , versión anual desde 2007 a 2015",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Permanente",
+    "PRESUPUESTO":"Entre 5 y 50 millones",
+    "ALIADOS":"Red de  Organizaciones  LGBT de Colombia",
+    "COMENTARIOS":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.550176,10.425166 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":188,
+    "NODO":"Caribe",
+    "OBSERVATORIO":"Observatorio de Convivencia Escolar y Ciudadana. OCEC-CURN",
+    "CONTACTO":"Heidi Del Castillo Ballestas",
+    "SECTOR":"Privado",
+    "FECHA INICIO":"6/6/2013",
+    "DEPARTAMENTO":"BOLIVAR",
+    "MUNICIPIO":"CARTAGENA",
+    "DIRECCIÓN":"Centro Clle de la Soledad No. 5-70",
+    "NUEVA NOMENCLATURA":"SI",
+    "HORARIO":"8:00 am a 12:00.m y de 2:00 pm a 6:00 pm",
+    "TELEFONO":"6607777 ;3114361764",
+    "CORREO":"heidi.delcastillo@curn.edu.co;karentcespedes@curnvirtual.edu.co",
+    "SITIO WEB":"www.ocec.curn.edu.co",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO DEDICADO":"Menos de 10 horas semanales",
+    "PRESUPUESTO":"",
+    "ALIADOS":"",
+    "COMENTARIOS":""
+    }
+  }
+]
+}
