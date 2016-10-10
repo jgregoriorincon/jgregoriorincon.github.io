@@ -1,0 +1,89 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2795960999999,1.2187842 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":18,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2922707592904,1.23149554043224 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":140,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2837083073414,1.223227200826 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":168,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2994109999999,1.2104617 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":187,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2933285081408,1.23246632305413 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":189,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2769878999999,1.2126717 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":196,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.2772397407853,1.21395438559957 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":198,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"NARIÑO"
+    }
+  }
+]
+}

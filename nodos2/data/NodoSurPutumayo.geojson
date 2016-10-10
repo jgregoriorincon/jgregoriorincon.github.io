@@ -1,0 +1,53 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -76.6474173999999,1.1536973 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":16,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"PUTUMAYO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -76.6503704,1.1529072 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":193,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"PUTUMAYO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -76.6457946,1.1459102 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":204,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"PUTUMAYO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -76.6487413999999,1.1467824 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":207,
+    "NODO":"Sur",
+    "DEPARTAMENTO":"PUTUMAYO"
+    }
+  }
+]
+}

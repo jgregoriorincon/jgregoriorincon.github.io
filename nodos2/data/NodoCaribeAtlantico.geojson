@@ -1,0 +1,41 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.7815086,10.9840231 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":158,
+    "NODO":"Caribe",
+    "DEPARTAMENTO":"ATLANTICO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.8599842999999,11.0163431 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":160,
+    "NODO":"Caribe",
+    "DEPARTAMENTO":"ATLANTICO"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.8050894,11.0018634 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":184,
+    "NODO":"Caribe",
+    "DEPARTAMENTO":"ATLANTICO"
+    }
+  }
+]
+}

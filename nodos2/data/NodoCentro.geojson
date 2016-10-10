@@ -1,0 +1,233 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.0803816,4.6306671 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":125,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOGOTA D.C"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6132384999999,4.1518526 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":129,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -72.4990088,7.88364429999999 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":135,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.74633,7.05305 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":136,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.1019818284889,7.06772573531951 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":138,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -72.5016052479907,7.88626557719895 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":143,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.1286884,7.11669569999999 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":147,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.0693282,4.6285263 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":162,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"HUILA"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.3614856774064,5.53311543882278 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":164,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOYACA"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.0715865,4.61291539999999 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":165,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOGOTA D.C"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.0692835,4.628598 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":166,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOGOTA D.C"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.1049998,4.6880422 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":167,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOGOTA D.C"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -72.5031716723104,7.88327163631881 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":170,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -74.0707867,4.6006908 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":174,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOGOTA D.C"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -72.4968904,7.91285689999999 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":177,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -72.464650538691,7.83809074304868 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":179,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.3539033999999,5.5434981 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":190,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOYACA"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.3206587,8.23676019999999 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":194,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"NORTE DE SANTANDER"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6358072,4.1556788 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":195,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META"
+    }
+  }
+]
+}

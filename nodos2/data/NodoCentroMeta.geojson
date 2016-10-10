@@ -1,0 +1,29 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6132384999999,4.1518526 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":129,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6358072,4.1556788 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":195,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META"
+    }
+  }
+]
+}
