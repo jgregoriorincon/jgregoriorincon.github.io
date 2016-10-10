@@ -19,7 +19,8 @@ function showCaptionMpio(titulo, d) {
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
         maxZoom: 18,
-        minZoom: 5
+        minZoom: 5 ,
+        zoomControl:false 
     }),
     NodosLayer = new L.TopoJSON(),
     DptosNodosLayer = new L.TopoJSON(),
@@ -34,7 +35,6 @@ map.setView([4.5, -73.0], 6);
 cartoLight.addTo(map);
 
 /* ------------------- NODOS ------------------*/
-
 $.getJSON('data/Nodos.topo.json').done(addNodosData);
 
 function addNodosData(topoData) {
@@ -44,11 +44,17 @@ function addNodosData(topoData) {
     NodosLayer.eachLayer(handleLayerNodos);
 }
 
+/*
+NodosLayer.bindTooltip("My polygon",
+   {permanent: true, direction:"center"}
+  ).openTooltip()
+*/
+
 function handleLayerNodos(layer) {
     layer.on({
         mouseover: highlightFeatureNodos,
         mouseout: resetHighlightNodos,
-        click: zoomToFeature
+        click: zoomToFeatureNodos
     });
 }
 
@@ -78,6 +84,29 @@ function resetHighlightNodos(e) {
 
 }
 
+function zoomToFeatureNodos(e) {
+    map.fitBounds(e.target.getBounds());
+    
+    map.removeLayer(NodosLayer);
+    
+    map.removeLayer(clusterObservatoriosSur);
+	map.removeLayer(clusterObservatoriosCentro);
+	map.removeLayer(clusterObservatoriosCaribe);
+
+    map.addLayer(DptosNodosLayer);
+   
+    map.addLayer(clusterObservatoriosSurCauca);
+    map.addLayer(clusterObservatoriosSurValle);
+	map.addLayer(clusterObservatoriosSurNarino);
+    map.addLayer(clusterObservatoriosSurPutumayo);   
+   
+    map.addLayer(clusterObservatoriosCaribeAtlantico);
+    map.addLayer(clusterObservatoriosCaribeBolivar);
+	map.addLayer(clusterObservatoriosCaribeMagdalena);
+    map.addLayer(clusterObservatoriosCaribeSucre);   
+    
+    
+}
 /* ------------------- DPTOS NODOS ------------------*/
 
 $.getJSON('data/Dptos_Nodos.topo.json').done(addDptosNodosData);
@@ -222,7 +251,7 @@ function resetHighlightMpiosSur(e) {
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
-
+/*
 map.on('zoomend', function () {
 	if (map.getZoom() >= 10) // && map.hasLayer(NodosLayer)) 
 	{
@@ -249,39 +278,103 @@ map.on('zoomend', function () {
     	map.removeLayer(MpiosSurLayer);
 	}   
 }); 
-
-/* ------------------- OBSERVATORIOS ------------------*/
+*/
+/* ------------------- OBSERVATORIOS X NODO ------------------*/
 // SUR
-var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 100});
-var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.OBSERVATORIO);
-			}
-	});
+var clusterObservatoriosSur = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 200});
+var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur);
 clusterObservatoriosSur.addLayer(ObservatoriosSurLayer);
 
 // CENTRO
-var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 180});
-var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro, {
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.OBSERVATORIO);
-			}
-	});
+var clusterObservatoriosCentro = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 200});
+var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro);
 clusterObservatoriosCentro.addLayer(ObservatoriosCentroLayer);
 
 // CARIBE
-var clusterObservatoriosCaribe = L.markerClusterGroup({maxClusterRadius: 150});
-var ObservatoriosCaribeLayer = L.geoJson(ObservatoriosCaribe, {
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup(feature.properties.OBSERVATORIO);
-			}
-	});
+var clusterObservatoriosCaribe = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 200});
+var ObservatoriosCaribeLayer = L.geoJson(ObservatoriosCaribe);
 clusterObservatoriosCaribe.addLayer(ObservatoriosCaribeLayer);
 
 // Add Data
 map.addLayer(clusterObservatoriosSur);
 map.addLayer(clusterObservatoriosCentro);
 map.addLayer(clusterObservatoriosCaribe);
+
+/* ------------------- OBSERVATORIOS X NODO X DEPARTAMENTO ------------------*/
+
+// ---------------------------  SUR
+// CAUCA
+var clusterObservatoriosSurCauca = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosSurCaucaLayer = L.geoJson(ObservatoriosSurCauca, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosSurCauca.addLayer(ObservatoriosSurCaucaLayer);
+
+// VALLE DEL CAUCA
+var clusterObservatoriosSurValle = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 40});
+var ObservatoriosSurValleLayer = L.geoJson(ObservatoriosSurValle, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosSurValle.addLayer(ObservatoriosSurValleLayer);
+
+// NARIÑO
+var clusterObservatoriosSurNarino = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosSurNarinoLayer = L.geoJson(ObservatoriosSurNarino, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosSurNarino.addLayer(ObservatoriosSurNarinoLayer);
+
+// PUTUMAYO
+var clusterObservatoriosSurPutumayo = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosSurPutumayoLayer = L.geoJson(ObservatoriosSurPutumayo, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosSurPutumayo.addLayer(ObservatoriosSurPutumayoLayer);
+
+// ---------------------------  CARIBE
+// ATLANTICO
+var clusterObservatoriosCaribeAtlantico = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosCaribeAtlanticoLayer = L.geoJson(ObservatoriosCaribeAtlantico, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosCaribeAtlantico.addLayer(ObservatoriosCaribeAtlanticoLayer);
+
+// BOLIVAR
+var clusterObservatoriosCaribeBolivar = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 250});
+var ObservatoriosCaribeBolivarLayer = L.geoJson(ObservatoriosCaribeBolivar, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosCaribeBolivar.addLayer(ObservatoriosCaribeBolivarLayer);
+
+// MAGDALENA
+var clusterObservatoriosCaribeMagdalena = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosCaribeMagdalenaLayer = L.geoJson(ObservatoriosCaribeMagdalena, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosCaribeMagdalena.addLayer(ObservatoriosCaribeMagdalenaLayer);
+
+// SUCRE
+var clusterObservatoriosCaribeSucre = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 120});
+var ObservatoriosCaribeSucreLayer = L.geoJson(ObservatoriosCaribeSucre, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.IDENTIFICADOR);
+			}
+	});
+clusterObservatoriosCaribeSucre.addLayer(ObservatoriosCaribeSucreLayer);
 
 /* ------------------- CONTROLES ------------------*/
 L.control.defaultExtent().addTo(map);
