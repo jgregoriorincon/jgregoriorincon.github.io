@@ -239,7 +239,7 @@ map.on('zoomend', function () {
 	map.removeLayer(clusterObservatoriosCentro);
 	map.removeLayer(clusterObservatoriosCaribe);
 	}  
-	else if (map.getZoom() == 7) // && map.hasLayer(NodosLayer) == false)
+	if (map.getZoom() == 7) // && map.hasLayer(NodosLayer) == false)
 	{
     	map.removeLayer(NodosLayer);
 		
@@ -249,7 +249,7 @@ map.on('zoomend', function () {
     	map.removeLayer(MpiosCentroLayer);
     	map.removeLayer(MpiosSurLayer);
 	}   
-	else if (map.getZoom() >= 8) // && map.hasLayer(NodosLayer)) 
+	if (map.getZoom() >= 8) // && map.hasLayer(NodosLayer)) 
 	{
     	map.removeLayer(NodosLayer);
 		
