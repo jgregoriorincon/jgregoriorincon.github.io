@@ -25,10 +25,11 @@ var map = L.map('map', {
     DptosNodosLayer = new L.TopoJSON(),
     MpiosCaribeLayer = new L.TopoJSON(),
     MpiosCentroLayer = new L.TopoJSON(),
-    MpiosSurLayer = new L.TopoJSON()
-    ;
+    MpiosSurLayer = new L.TopoJSON();
+    
 
 map.setView([4.5, -73.0], 6);
+
 
 cartoLight.addTo(map);
 
@@ -248,6 +249,39 @@ map.on('zoomend', function () {
     	map.removeLayer(MpiosSurLayer);
 	}   
 }); 
+
+/* ------------------- OBSERVATORIOS ------------------*/
+// SUR
+var clusterObservatoriosSur = L.markerClusterGroup({maxClusterRadius: 100});
+var ObservatoriosSurLayer = L.geoJson(ObservatoriosSur, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.OBSERVATORIO);
+			}
+	});
+clusterObservatoriosSur.addLayer(ObservatoriosSurLayer);
+
+// CENTRO
+var clusterObservatoriosCentro = L.markerClusterGroup({maxClusterRadius: 180});
+var ObservatoriosCentroLayer = L.geoJson(ObservatoriosCentro, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.OBSERVATORIO);
+			}
+	});
+clusterObservatoriosCentro.addLayer(ObservatoriosCentroLayer);
+
+// CARIBE
+var clusterObservatoriosCaribe = L.markerClusterGroup({maxClusterRadius: 150});
+var ObservatoriosCaribeLayer = L.geoJson(ObservatoriosCaribe, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.OBSERVATORIO);
+			}
+	});
+clusterObservatoriosCaribe.addLayer(ObservatoriosCaribeLayer);
+
+// Add Data
+map.addLayer(clusterObservatoriosSur);
+map.addLayer(clusterObservatoriosCentro);
+map.addLayer(clusterObservatoriosCaribe);
 
 /* ------------------- CONTROLES ------------------*/
 L.control.defaultExtent().addTo(map);
