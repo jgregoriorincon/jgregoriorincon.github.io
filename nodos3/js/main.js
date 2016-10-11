@@ -2,6 +2,8 @@ var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
 var DptosLayer, MpiosLayer;
 
 var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
+var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
+var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
 var NodosSur, NodosCentro, NodosCaribe;
 
 /* Overlay Layers */
@@ -125,6 +127,29 @@ function zoomToFeatureNodos(e) {
         map.addLayer(NodosSurNarino);
         map.addLayer(NodosSurValleCauca);
         map.addLayer(NodosSurCauca);
+    } else if (NodoSeleccionado == 'Centro') {
+        NodosCentroBogota = renderMarkersData(NodoCentroBogota);
+        NodosCentroMeta = renderMarkersData(NodoCentroMeta);
+        NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca);
+        NodosCentroSantander = renderMarkersData(NodoCentroSantander);
+        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander);
+
+        map.addLayer(NodosCentroBogota);
+        map.addLayer(NodosCentroMeta);
+        map.addLayer(NodosCentroBoyaca);
+        map.addLayer(NodosCentroSantander);
+        map.addLayer(NodosCentroNteSantander);
+
+    } else if (NodoSeleccionado == 'Caribe') {
+        NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico);
+        NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena);
+        NodosCaribeSucre = renderMarkersData(NodoCaribeSucre);
+        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 500);
+
+        map.addLayer(NodosCaribeAtlantico);
+        map.addLayer(NodosCaribeMagdalena);
+        map.addLayer(NodosCaribeSucre);
+        map.addLayer(NodosCaribeBolivar);
     }
 
     DptosLayer.addData(Dptos);
@@ -147,10 +172,21 @@ function zoomToFeatureDptos(e) {
 
     map.removeLayer(DptosLayer);
 
-    map.removeLayer(NodosSurPutumayo);
-    map.removeLayer(NodosSurNarino);
-    map.removeLayer(NodosSurCauca);
-    map.removeLayer(NodosSurValleCauca);
+    map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
+    map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
+    map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
+    map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
+
+    map.hasLayer(NodosCentroBogota) === true && map.removeLayer(NodosCentroBogota);
+    map.hasLayer(NodosCentroBoyaca) === true && map.removeLayer(NodosCentroBoyaca);
+    map.hasLayer(NodosCentroMeta) === true && map.removeLayer(NodosCentroMeta);
+    map.hasLayer(NodosCentroSantander) === true && map.removeLayer(NodosCentroSantander);
+    map.hasLayer(NodosCentroNteSantander) === true && map.removeLayer(NodosCentroNteSantander);
+
+    map.hasLayer(NodosCaribeAtlantico) === true && map.removeLayer(NodosCaribeAtlantico);
+    map.hasLayer(NodosCaribeBolivar) === true && map.removeLayer(NodosCaribeBolivar);
+    map.hasLayer(NodosCaribeMagdalena) === true && map.removeLayer(NodosCaribeMagdalena);
+    map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
 
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
@@ -172,9 +208,62 @@ function zoomToFeatureDptos(e) {
 
     switch (DptoSeleccionado) {
     case 'PUTUMAYO':
-        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 10);
+        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 5);
         map.addLayer(NodosSurPutumayo);
         break;
+    case 'NARIÑO':
+        NodosSurNarino = renderMarkersData(NodoSurNarino, 5);
+        map.addLayer(NodosSurNarino);
+        break;
+     case 'CAUCA':
+        NodosSurCauca = renderMarkersData(NodoSurCauca, 5);
+        map.addLayer(NodosSurCauca);
+        break;
+     case 'VALLE DEL CAUCA':
+        NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 5);
+        map.addLayer(NodosSurValleCauca);
+        break;
+    case 'META':
+        NodosCentroMeta = renderMarkersData(NodoCentroMeta, 5);
+        map.addLayer(NodosCentroMeta);
+        break;
+    case 'SANTANDER':
+        NodosCentroSantander = renderMarkersData(NodoCentroSantander, 5);
+        map.addLayer(NodosCentroSantander);
+        break;
+    case 'NORTE DE SANTANDER':
+        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 5);
+        map.addLayer(NodosCentroNteSantander);
+        break;
+    case 'BOYACÁ':
+        NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
+        map.addLayer(NodosCentroBoyaca);
+        break;
+    case 'BOGOTÁ':
+        NodosCentroBogota = renderMarkersData(NodoCentroBogota, 5);
+        map.addLayer(NodosCentroBogota);
+        break;
+    case 'CUNDINAMARCA':
+        NodosCentroCundinamarca = renderMarkersData(NodoCentroCundinamarca, 5);
+        map.addLayer(NodosCentroCundinamarca);
+        break;
+    case 'ATLÁNTICO':
+        NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico, 5);
+        map.addLayer(NodosCaribeAtlantico);
+        break;
+    case 'MAGDALENA':
+        NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena, 5);
+        map.addLayer(NodosCaribeMagdalena);
+        break;
+    case 'SUCRE':
+        NodosCaribeSucre = renderMarkersData(NodoCaribeSucre, 5);
+        map.addLayer(NodosCaribeSucre);
+        break;
+    case 'BOLÍVAR':
+        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 15);
+        map.addLayer(NodosCaribeBolivar);
+        break;
+
     }
 
     MpiosLayer.addData(Mpios);
@@ -283,6 +372,17 @@ map.on('zoomend', function () {
         map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
         map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
         map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
+
+        map.hasLayer(NodosCentroBogota) === true && map.removeLayer(NodosCentroBogota);
+        map.hasLayer(NodosCentroBoyaca) === true && map.removeLayer(NodosCentroBoyaca);
+        map.hasLayer(NodosCentroMeta) === true && map.removeLayer(NodosCentroMeta);
+        map.hasLayer(NodosCentroSantander) === true && map.removeLayer(NodosCentroSantander);
+        map.hasLayer(NodosCentroNteSantander) === true && map.removeLayer(NodosCentroNteSantander);
+
+        map.hasLayer(NodosCaribeAtlantico) === true && map.removeLayer(NodosCaribeAtlantico);
+        map.hasLayer(NodosCaribeBolivar) === true && map.removeLayer(NodosCaribeBolivar);
+        map.hasLayer(NodosCaribeMagdalena) === true && map.removeLayer(NodosCaribeMagdalena);
+        map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
 
         map.hasLayer(NodosLayer) === false && map.addLayer(NodosLayer);
 
