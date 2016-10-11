@@ -7,10 +7,10 @@ var NodosSur, NodosCentro, NodosCaribe;
 /* Overlay Layers */
 var highlight = L.geoJson(null);
 var highlightStyle = {
-  stroke: false,
-  fillColor: "#00FFFF",
-  fillOpacity: 0.7,
-  radius: 10
+    stroke: false,
+    fillColor: "#00FFFF",
+    fillOpacity: 0.7,
+    radius: 10
 };
 
 

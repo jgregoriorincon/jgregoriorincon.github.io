@@ -18,7 +18,6 @@ body,
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
 }
 
-
 .leaflet-tooltip {
     padding: 2px;
     font-size: 10px;
@@ -72,9 +71,6 @@ div.logo {
     z-index: 100
 }
 
-
-
-
 #infobox {
     padding: 10px;
     position: absolute;
@@ -99,6 +95,7 @@ div.logo {
     -webkit-box-shadow: 2px 2px 5px #000;
     z-index: 600;
 }
+
 
 /*
     TIPOS DE LEYENDAS
