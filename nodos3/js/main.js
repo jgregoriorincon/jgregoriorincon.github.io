@@ -44,17 +44,18 @@ var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/
 var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
     attribution: cartodbAttribution,
     pane: 'labels'
-});
+}).addTo(map);
 
 // Capa de NODOS
 var NodosLayer = L.geoJson(undefined, {
     style: styleNodos,
     onEachFeature: function (feature, layer) {
         if (feature.properties.NODO !== "Resto") {
+            /*
             layer.bindTooltip("Nodo " + feature.properties.NODO, {
-                permanent: true,
-                direction: "auto"
-            });
+                permanent: false,
+                direction: "left"
+            });*/
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightNodos);
             layer.on('click', zoomToFeatureNodos);
@@ -105,11 +106,11 @@ function zoomToFeatureNodos(e) {
         },
         style: styleNodos,
         onEachFeature: function (feature, layer) {
-
+/*
             layer.bindTooltip(feature.properties.DEPTO, {
                 permanent: true,
                 direction: "auto"
-            });
+            });*/
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightDptos);
             layer.on('click', zoomToFeatureDptos);
@@ -232,14 +233,14 @@ function zoomToFeatureDptos(e) {
         map.addLayer(NodosCentroSantander);
         break;
     case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 5);
+        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 15);
         map.addLayer(NodosCentroNteSantander);
         break;
     case 'BOYACÁ':
         NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
         map.addLayer(NodosCentroBoyaca);
         break;
-    case 'BOGOTÁ':
+    case 'BOGOTA':
         NodosCentroBogota = renderMarkersData(NodoCentroBogota, 5);
         map.addLayer(NodosCentroBogota);
         break;
@@ -328,6 +329,7 @@ function renderMarkersBase(data, distancia = 1500) {
     });
 
     var layer = L.geoJson(data);
+    layer.setZIndex(700);
     cluster.addLayer(layer);
 
     return cluster;
@@ -344,7 +346,7 @@ function renderMarkersData(data, distancia = 100) {
         onEachFeature: function (feature, layer) {
 
             if (feature.properties) {
-                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<table>";
+                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><img src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + " style='width:150px;height:50px;'></tr>" + "<table>";
                 layer.on({
                     click: function (e) {
                         $("#feature-title").html(feature.properties.OBSERVATORIO);
@@ -356,6 +358,9 @@ function renderMarkersData(data, distancia = 100) {
             }
         }
     });
+
+    layer.setZIndex(700);
+
     cluster.addLayer(layer);
 
     return cluster;
