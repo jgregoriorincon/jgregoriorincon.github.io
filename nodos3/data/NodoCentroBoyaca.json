@@ -1,0 +1,90 @@
+var NodoCentroBoyaca =
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.36148568,5.533115439 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":164,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOYACA",
+    "MUNICIPIO":"TUNJA",
+    "OBSERVATORIO":"Observatorio Social de Boyacá",
+    "CONTACTO":"Amparo Camacho Cárdenas",
+    "SECTOR":"Gubernamental",
+    "FECHA_INICIO":"5/6/2013",
+    "DIRECCION":"Calle 20 No. 9-90 Palacio de la Torre",
+    "NUEVA_NOMENCLATURA":"SI",
+    "HORARIO":"8:00 a 12:00  y 2:00 a 6:00 p.m.",
+    "TELEFONO":"7420150 ext. 2113;3165218729",
+    "CORREO":"observatorio.social@boyaca.gov.co;amparo.camacho@boyaca.gov.co",
+    "SITIO_WEB":"www.boyaca.gov.co",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"en la página del observatorio, boletines y legislación",
+    "RECONOCIMIENTOS":"Reconocimiento de Procuraduría para rendición de cuentas.",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO_DEDICADO":"Menos de 10 horas semanales",
+    "PRESUPUESTO":"Ninguno",
+    "ALIADOS":"Secretarias sectoriales, ICBF, Política, Procuraduria, Medicina Legal, uariv, Departamento Administrativo de Planeación",
+    "COMENTARIOS":"",
+    "TEMATICA":"['Convivencia y seguridad ciudadana','Derecho Internacional Humanitario','Derechos de la infancia y adolescencia','Derechos Sociales, Culturales y Ambientales (por ejemplo acceso a vivienda, la alimentación, el agua, la atención de salud, participación en la vida cultural y la educación)','Genero (mujeres, comunidad LGBTI)','Graves violaciones a los DDHH (ejecuciones, desaparición, tortura, violaciones masivas y sistemáticas)','Otro','Víctimas','Familia, Seguridad Alimentaria, Objetivos de desarrollo del Milenio  (ODS), pobreza, violencias, infancia y adolescencia']",
+    "NIVEL_TERRITORIAL":"['Municipal','Provincial','Departamental','Otro']",
+    "TIPO_INORMACION":"['Bases de datos','Boletines','Encuestas']",
+    "FRECUENCIA":"['Semestral']",
+    "PUBLICO":"['Ámbito académico e intelectual','Medios de comunicación y opinión pública','Público interno (de la organización o institución)']",
+    "FUENTE_INFO":"['Académicas','Gubernamentales']",
+    "FUENTE_CUALITATIVA":"['Bases de datos','Legislación']",
+    "FUENTE_CUANTITAIVA":"['Bases de datos','Legislación']",
+    "HERRAMIENTA":"['Aplicativo']",
+    "GEOGRAFICO":"['D´vInfo','Otro']"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.3539034,5.5434981 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":190,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"BOYACA",
+    "MUNICIPIO":"TUNJA",
+    "OBSERVATORIO":"OBSERVATORIO DEPARTAMENTAL DEL DEPORTE",
+    "CONTACTO":"CAROLINA TAPASCO OSPINA",
+    "SECTOR":"Gubernamental",
+    "FECHA_INICIO":"3/1/2016",
+    "DIRECCION":"AV VILLA OLIMPICA  CASA DEL DEPORTE",
+    "NUEVA_NOMENCLATURA":"NO",
+    "HORARIO":"8: 12 AM - 2:00 A 6:00PM",
+    "TELEFONO":"7422365;3174359500",
+    "CORREO":"observatorio@indeportesboyaca.gov.co;gerencia@indeportesboyaca.gov.co",
+    "SITIO_WEB":"http://indeportesboyaca.gov.co/",
+    "TWITER":"@indeportesboy",
+    "FACEBOOK":"indeportesboyaca",
+    "PRODUCTOS":"Cartilla Nº 1 Observatorio por publicar http://indeportesboyaca.gov.co/observatorio-departamental-del-deporte/ ",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO_DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Entre 5 y 50 millones",
+    "ALIADOS":"ACADEMIAS , INSTITUTOS MUNICIPALES DE RECREAIÓN Y DEPORTE",
+    "COMENTARIOS":"",
+    "TEMATICA":"['Otro','Tema étnico racial (pueblos indigenaas, afrodescendientes, raciales, etc)','impacto poblacional de programas de actividad física, recreación y Deporte, análisis de datos estadísticos del sector Deporte,recreación y/o actividad física, articulación interinstitucional, investigaciones']",
+    "NIVEL_TERRITORIAL":"['Localidad','Municipal','Departamental']",
+    "TIPO_INORMACION":"['Bases de datos','Boletines','Comunicados','Informes','Investigaciones','Reportes']",
+    "FRECUENCIA":"['Mensual','trimestral']",
+    "PUBLICO":"['Ámbito académico e intelectual','Comunidades y organizaciones de base','Público interno (de la organización o institución)','entrenadores y comunidad en general']",
+    "FUENTE_INFO":"['Académicas','Institutos Municipales de Recreacióny Deporte']",
+    "FUENTE_CUALITATIVA":"['Bases de datos','Informes','Sistemas de información']",
+    "FUENTE_CUANTITAIVA":"['Bases de datos','Informes','Sistemas de información']",
+    "HERRAMIENTA":"['Excel','Otro']",
+    "GEOGRAFICO":"['Aplicativo o herramienta propia']"
+    }
+  }
+]
+}

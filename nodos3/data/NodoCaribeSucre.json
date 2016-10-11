@@ -1,0 +1,48 @@
+var NodoCaribeSucre =
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -75.3953075,9.2921537 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":155,
+    "NODO":"Caribe",
+    "DEPARTAMENTO":"SUCRE",
+    "MUNICIPIO":"SINCELEJO",
+    "OBSERVATORIO":"Pazcaribe",
+    "CONTACTO":"MAGGIE URUETA",
+    "SECTOR":"Sociedad Civil",
+    "FECHA_INICIO":"2/2/2004",
+    "DIRECCION":"calle 32 No. 15-92 Avenida Alfonso Lopez",
+    "NUEVA_NOMENCLATURA":"NO",
+    "HORARIO":"8:00 am - 4:00 pm",
+    "TELEFONO":2768120,
+    "CORREO":"pazcaribe@hotmail.com;verg63@hotmail.com",
+    "SITIO_WEB":"",
+    "TWITER":"",
+    "FACEBOOK":"",
+    "PRODUCTOS":"Construccion de una Ingfaestructura de Paz a partir de los Montes de Maria, Reclutamiento de ninos/as, adolescentes y jovenes en el Departamento de Sucre, Politica Publica de Discapacidad Sucre y Bolivar, VIH, Politica de Juventud en Sucre, Mujer, Productividad, entre otros",
+    "RECONOCIMIENTOS":"Rochelas 2005, Buenas practicas PNUD.",
+    "RRHH":"De 3 a 5 personas",
+    "TIEMPO_DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Menos de 5 millones",
+    "ALIADOS":"Recolvih, IAS, Red de Organizaciones Comunitarias, Mesa Departamental de paz de Sucre, Abvocacy International",
+    "COMENTARIOS":"",
+    "TEMATICA":"['Conflicto armado','Construcción de paz y postconflicto','Convivencia y seguridad ciudadana','Democracia y gobernabilidad','Derecho Internacional Humanitario','Derechos de la infancia y adolescencia','Derechos Sociales, Culturales y Ambientales (por ejemplo acceso a vivienda, la alimentación, el agua, la atención de salud, participación en la vida cultural y la educación)','Genero (mujeres, comunidad LGBTI)','Graves violaciones a los DDHH (ejecuciones, desaparición, tortura, violaciones masivas y sistemáticas)','Migraciones y desplazamiento','Sector empresarial','Tema étnico racial (pueblos indigenaas, afrodescendientes, raciales, etc)','Temas rurales y de tierras','Víctimas','Violencia y persecución política']",
+    "NIVEL_TERRITORIAL":"['Veredal','Corregimiento','Localidad','Municipal','Departamental','Sub region de Montes de Maria, Alta Montana y Mojana Sucre','Nacional']",
+    "TIPO_INORMACION":"['Bases de datos','Boletines','Comunicados','Documentación de casos','Encuestas','Informes','Investigaciones','Legislación','Noticias','Reportes']",
+    "FRECUENCIA":"['Por coyuntura','Mensual','Semestral','Anual']",
+    "PUBLICO":"['Ámbito académico e intelectual','Comunidades y organizaciones de base','Medios de comunicación y opinión pública','Organismos internacionales','Público interno (de la organización o institución)']",
+    "FUENTE_INFO":"['Académicas','Gubernamentales','No gubernamentales']",
+    "FUENTE_CUALITATIVA":"['Bases de datos','Encuestas','Informes','Legislación','Medios de comunicación','Sistemas de información','Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "FUENTE_CUANTITAIVA":"['Bases de datos','Encuestas','Informes','Legislación','Medios de comunicación','Sistemas de información','Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "HERRAMIENTA":"['Aplicativo']",
+    "GEOGRAFICO":"['MAP-INFO','Cartografia Social','Aplicativo o herramienta propia']"
+    }
+  }
+]
+}

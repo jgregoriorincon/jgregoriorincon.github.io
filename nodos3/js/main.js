@@ -1,6 +1,8 @@
 var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
-var DptosLayer;
+var DptosLayer, MpiosLayer;
 
+var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
+var NodosSur, NodosCentro, NodosCaribe;
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
     maxZoom: 18,
@@ -70,12 +72,6 @@ function resetHighlightNodos(e) {
     NodosLayer.setStyle(styleNodos);
 }
 
-// Quitar Resaltado DEPARTAMENTOS
-function resetHighlightDptos(e) {
-    DptosLayer.resetStyle(e.target);
-    DptosLayer.setStyle(styleNodos);
-}
-
 // Zoom al elemento
 function zoomToFeatureNodos(e) {
     var layer = e.target;
@@ -85,6 +81,9 @@ function zoomToFeatureNodos(e) {
     NodoSeleccionado = layer.feature.properties.NODO;
 
     map.removeLayer(NodosLayer);
+    map.removeLayer(NodosSur);
+    map.removeLayer(NodosCentro);
+    map.removeLayer(NodosCaribe);
 
     // Capa de DEPARTAMENTOS
     DptosLayer = L.geoJson(undefined, {
@@ -105,8 +104,26 @@ function zoomToFeatureNodos(e) {
 
     })
 
+    if (NodoSeleccionado == 'Sur') {
+        NodosSurPutumayo = renderMarkers(NodoSurPutumayo);
+        NodosSurNarino = renderMarkers(NodoSurNarino);
+        NodosSurValleCauca = renderMarkers(NodoSurValleCauca);
+        NodosSurCauca = renderMarkers(NodoSurCauca);
+
+        map.addLayer(NodosSurPutumayo);
+        map.addLayer(NodosSurNarino);
+        map.addLayer(NodosSurValleCauca);
+        map.addLayer(NodosSurCauca);
+    }
+
     DptosLayer.addData(Dptos);
     map.addLayer(DptosLayer);
+}
+
+// Quitar Resaltado DEPARTAMENTOS
+function resetHighlightDptos(e) {
+    DptosLayer.resetStyle(e.target);
+    DptosLayer.setStyle(styleNodos);
 }
 
 // Zoom al elemento
@@ -115,17 +132,151 @@ function zoomToFeatureDptos(e) {
 
     map.fitBounds(e.target.getBounds());
 
-    //NodoSeleccionado = layer.feature.properties.NODO;
+    DptoSeleccionado = layer.feature.properties.DEPTO;
 
-    //map.removeLayer(NodosLayer);
+    map.removeLayer(DptosLayer);
+
+    map.removeLayer(NodosSurPutumayo);
+    map.removeLayer(NodosSurNarino);
+    map.removeLayer(NodosSurCauca);
+    map.removeLayer(NodosSurValleCauca);
+
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.DEPTO === DptoSeleccionado)
+        },
+        style: styleNodos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeature);
+            layer.on('mouseout', resetHighlightMpios);
+            layer.on('click', zoomToFeatureMpios);
+        }
+
+    })
+
+    switch(DptoSeleccionado){
+        case 'PUTUMAYO':
+            NodosSurPutumayo = renderMarkers(NodoSurPutumayo, 10);
+            map.addLayer(NodosSurPutumayo);
+            break;
+    }
+
+    MpiosLayer.addData(Mpios);
+    map.addLayer(MpiosLayer);
+}
+
+// Quitar Resaltado DEPARTAMENTOS
+function resetHighlightMpios(e) {
+    DptosLayer.resetStyle(e.target);
+    DptosLayer.setStyle(styleNodos);
+}
+
+// Zoom al elemento
+function zoomToFeatureMpios(e) {
+    var layer = e.target;
+
+    map.fitBounds(e.target.getBounds());
+
+    MpioSeleccionado = layer.feature.properties.COD_DANE;
+
+    map.removeLayer(MpiosLayer);
+
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.COD_DANE === MpioSeleccionado)
+        },
+        style: styleNodos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: true,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeature);
+            layer.on('mouseout', resetHighlightMpios);
+            layer.on('click', zoomToFeatureMpios);
+        }
+
+    })
+
+    MpiosLayer.addData(Mpios);
+    map.addLayer(MpiosLayer);
 }
 
 NodosLayer.addData(Nodos);
-
 NodosLayer.addTo(map);
 
+NodosSur = renderMarkers(NodoSur);
+NodosCentro = renderMarkers(NodoCentro);
+NodosCaribe = renderMarkers(NodoCaribe);
+
+map.addLayer(NodosSur);
+map.addLayer(NodosCentro);
+map.addLayer(NodosCaribe);
+//markerLayer.ProcessView();
+
+// OBSERVATORIOS
+function renderMarkers(data, distancia = 1500) {
+    var markerLayer = new PruneClusterForLeaflet(distancia);
+    for (var i = 0; i < data.features.length; i++) {
+        var marker = new PruneCluster.Marker(data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0]);
+        markerLayer.RegisterMarker(marker);
+    }
+    return markerLayer;
+
+}
+
+// ZOOM
+map.on('zoomend', function () {
+    if (map.getZoom() == 6) // && map.hasLayer(NodosLayer))
+    {
+        map.hasLayer(MpiosLayer) === true && map.removeLayer(MpiosLayer);
+        map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
+
+        map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
+        map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
+        map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
+        map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
+
+        map.hasLayer(NodosLayer) === false && map.addLayer(NodosLayer);
+
+        map.hasLayer(NodosSur) === false && map.addLayer(NodosSur);
+        map.hasLayer(NodosCentro) === false && map.addLayer(NodosCentro);
+        map.hasLayer(NodosCaribe) === false && map.addLayer(NodosCaribe);
+    }
+});
 
 /* ------------------- CONTROLES ------------------*/
 L.control.defaultExtent().addTo(map);
+
+var legend = L.control({
+    position: 'topright'
+});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ['Caribe', 'Centro', 'Sur'],
+        labels = ['<strong> observaDHores <br /> </strong>'],
+        from, to;
+
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+
+        labels.push(
+            '<i style="background:' + getColorNodos(from) + '"></i> Nodo ' +
+            from + '<br />');
+    }
+    div.innerHTML = labels.join('<br>');
+    return div;
+
+};
+
+legend.addTo(map);
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');

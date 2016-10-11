@@ -1,0 +1,90 @@
+var NodoCentroMeta =
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6132385,4.1518526 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":129,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META",
+    "MUNICIPIO":"VILLAVICENCIO",
+    "OBSERVATORIO":"JUECES DE PAZ VILLAVICENCIO (JUEZ SEPTIMO DE PAZ VILLAVICENCIO)",
+    "CONTACTO":"JUAN PABLO HERNANDEZ PEREZ",
+    "SECTOR":"Sociedad Civil",
+    "FECHA_INICIO":"2/1/2016",
+    "DIRECCION":"calle 14B No 41-24 ",
+    "NUEVA_NOMENCLATURA":"NO",
+    "HORARIO":"10:00AM A 02:00 PM",
+    "TELEFONO":"3208700408;3208700408",
+    "CORREO":"hernandezperezjuanpablo@gmail.com;juzgado7depazvillavicencio@gmail.com",
+    "SITIO_WEB":"http://juzgado7depaz.wixsite.com/bienvenidos",
+    "TWITER":"@juanp_hernandez",
+    "FACEBOOK":"JUAN PABLO HERNANDEZ",
+    "PRODUCTOS":"",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 1 a 2 personas",
+    "TIEMPO_DEDICADO":"Menos de 10 horas semanales",
+    "PRESUPUESTO":"Ninguno",
+    "ALIADOS":"",
+    "COMENTARIOS":"Estudiante de Derecho de la Universidad Coperativa de Colombia, Técnico en Administración Pública y Gobierno, Personero  Estudiantil Colegio John F. Kennedy durante el año 2013. Actual Juez de Paz de la Comuna 7 de Villavicencio y funcionario de la Gobernación del Meta.   Formación Académica:   Diplomado en Gestión Publica, ciudadanía juvenil y liderazgo en Salud Sexual y Reproductiva –SSR-: Departamento del Meta, UNFPA  y el Programa Presidencial Colombia Joven. Curso en Conciliación y Arbitraje de Derechos de Autor: DNDA. Seminario en Derechos Humanos: Universidad Coperativa de Colombia Diplomado «Paz a Tiempo»: Universidad Santo Tomás. Diplomado en Control Social y Participación Ciudadana: Universidad Coperativa de Colombia, Contraloría Departamental del Meta y Contraloría Municipal de Villavicencio.",
+    "TEMATICA":"['Construcción de paz y postconflicto','Convivencia y seguridad ciudadana','Derechos de la infancia y adolescencia','Otro','Temas rurales y de tierras','RECONSTRUCCION DE TEJIDO SOCIAL- APLICACION DE LEY 497 DE 1999']",
+    "NIVEL_TERRITORIAL":"['Localidad']",
+    "TIPO_INORMACION":"['Bases de datos','Documentación de casos','Informes']",
+    "FRECUENCIA":"['Diaria']",
+    "PUBLICO":"['Comunidades y organizaciones de base']",
+    "FUENTE_INFO":"['Académicas','Gubernamentales','Internacionales']",
+    "FUENTE_CUALITATIVA":"['Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "FUENTE_CUANTITAIVA":"['Bases de datos','Informes','Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "HERRAMIENTA":"['Excel']",
+    "GEOGRAFICO":"['Aplicativo o herramienta propia']"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -73.6358072,4.1556788 ]
+    },
+    "properties": {
+    "IDENTIFICADOR":195,
+    "NODO":"Centro",
+    "DEPARTAMENTO":"META",
+    "MUNICIPIO":"VILLAVICENCIO",
+    "OBSERVATORIO":"OBSERVATORIO DEL TERRITORIO: CONFLICTO, DESARROLLO, PAZ Y DERECHOS HUMANOS",
+    "CONTACTO":"CRISTOBAL LUGO LOPEZ",
+    "SECTOR":"Academia",
+    "FECHA_INICIO":"9/2/2008",
+    "DIRECCION":"CALLE 40A n° 28-32 PRIMER PISO BARRIO EMPORIO",
+    "NUEVA_NOMENCLATURA":"NO",
+    "HORARIO":"L-V  9AM A 5PM",
+    "TELEFONO":"3005636667",
+    "CORREO":"observatoriodelterritorio@unillanos.edu.co",
+    "SITIO_WEB":"http://observatorio.unillanos.edu.co/portal/",
+    "TWITER":"@ObservatorioTer",
+    "FACEBOOK":"OBSERVATORIO DEL TERRITORIO",
+    "PRODUCTOS":"LA SISTEMATIZACION DE LAS PRACTICAS SOCIALES-VIOLACIONES A LOS DERECHOS HUMANOS E INFRACCIONES AL DIH- EVALUACION DE TIERRAS EN ALTILLANURA- MAPA DE RIESGOS ELECTORALES 2010- PROPIEDAD DE LA TIERRA Y DESPLAZAMIENTO FORZADO EN SEIS MNPIOS DEL META",
+    "RECONOCIMIENTOS":"",
+    "RRHH":"De 6 a 20 personas",
+    "TIEMPO_DEDICADO":"De 20 a 10 horas semanales",
+    "PRESUPUESTO":"Entre 50 y 200 millones",
+    "ALIADOS":"MESA TECNICA CADENA MINEROENERGETICA- RED DE OBSERVATORIOS DE LA REDPRODEPAZ",
+    "COMENTARIOS":"",
+    "TEMATICA":"['Conflicto armado','Construcción de paz y postconflicto','Convivencia y seguridad ciudadana','Democracia y gobernabilidad','Derechos de la infancia y adolescencia','Derechos Sociales, Culturales y Ambientales (por ejemplo acceso a vivienda, la alimentación, el agua, la atención de salud, participación en la vida cultural y la educación)','Graves violaciones a los DDHH (ejecuciones, desaparición, tortura, violaciones masivas y sistemáticas)','Migraciones y desplazamiento','Temas rurales y de tierras','Víctimas']",
+    "NIVEL_TERRITORIAL":"['REGIONAL','Otro']",
+    "TIPO_INORMACION":"['Bases de datos','Boletines','Informes','Investigaciones']",
+    "FRECUENCIA":"['Por coyuntura','Mensual','Semestral','Anual']",
+    "PUBLICO":"['Ámbito académico e intelectual','Comunidades y organizaciones de base','Medios de comunicación y opinión pública','Organismos internacionales']",
+    "FUENTE_INFO":"['Académicas','Gubernamentales','No gubernamentales','Internacionales']",
+    "FUENTE_CUALITATIVA":"['Bases de datos','Encuestas','Sistemas de información','Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "FUENTE_CUANTITAIVA":"['Bases de datos','Encuestas','Informes','Sistemas de información','Trabajo de campo (por grupos focales, visitas a terreno, entrevistas)']",
+    "HERRAMIENTA":"['Excel','SPSS','Aplicativo']",
+    "GEOGRAFICO":"['Arc/Info','QGIS']"
+    }
+  }
+]
+}

@@ -1,40 +1,19 @@
+function getColorNodos(d) {
+    return d === 'Caribe' ? '#b2df8a' :
+        d === 'Centro' ? '#fdcb7b' :
+        d === 'Sur' ? '#a5bfdd' :
+        '#f1f4c7';
+}
 
 function styleNodos(feature) {
-    switch (feature.properties.NODO) {
-        case 'Caribe':
-            return {
-                //dashArray: '3',
-                weight: 2,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: 0.8,
-                fillColor: '#b2df8a'
-            };
-        case 'Centro':
-            return {
-                weight: 2,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: 0.8,
-                fillColor: '#fdcb7b'
-            };
-        case 'Sur':
-            return {
-                weight: 2,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: 0.8,
-                fillColor: '#a5bfdd'
-            };
-        default:
-            return {
-                weight: 2,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: 0.5,
-                fillColor: '#f1f4c7'
-            };
-        }
+    return {
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.8,
+        fillColor: getColorNodos(feature.properties.NODO)
+    };
 }
 
 // -----------------------------------------------------
