@@ -3,6 +3,17 @@ var DptosLayer, MpiosLayer;
 
 var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
 var NodosSur, NodosCentro, NodosCaribe;
+
+/* Overlay Layers */
+var highlight = L.geoJson(null);
+var highlightStyle = {
+  stroke: false,
+  fillColor: "#00FFFF",
+  fillOpacity: 0.7,
+  radius: 10
+};
+
+
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
     maxZoom: 18,
@@ -105,10 +116,10 @@ function zoomToFeatureNodos(e) {
     })
 
     if (NodoSeleccionado == 'Sur') {
-        NodosSurPutumayo = renderMarkers(NodoSurPutumayo);
-        NodosSurNarino = renderMarkers(NodoSurNarino);
-        NodosSurValleCauca = renderMarkers(NodoSurValleCauca);
-        NodosSurCauca = renderMarkers(NodoSurCauca);
+        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
+        NodosSurNarino = renderMarkersData(NodoSurNarino);
+        NodosSurValleCauca = renderMarkersData(NodoSurValleCauca);
+        NodosSurCauca = renderMarkersData(NodoSurCauca);
 
         map.addLayer(NodosSurPutumayo);
         map.addLayer(NodosSurNarino);
@@ -161,7 +172,7 @@ function zoomToFeatureDptos(e) {
 
     switch (DptoSeleccionado) {
     case 'PUTUMAYO':
-        NodosSurPutumayo = renderMarkers(NodoSurPutumayo, 10);
+        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 10);
         map.addLayer(NodosSurPutumayo);
         break;
     }
@@ -206,16 +217,14 @@ function zoomToFeatureMpios(e) {
 
     MpiosLayer.addData(Mpios);
     map.addLayer(MpiosLayer);
-
-    $("#tabs").tabs();
 }
 
 NodosLayer.addData(Nodos);
 NodosLayer.addTo(map);
 
-NodosSur = renderMarkers(NodoSur);
-NodosCentro = renderMarkers(NodoCentro);
-NodosCaribe = renderMarkers(NodoCaribe);
+NodosSur = renderMarkersBase(NodoSur);
+NodosCentro = renderMarkersBase(NodoCentro);
+NodosCaribe = renderMarkersBase(NodoCaribe);
 
 map.addLayer(NodosSur);
 map.addLayer(NodosCentro);
@@ -223,7 +232,20 @@ map.addLayer(NodosCaribe);
 //markerLayer.ProcessView();
 
 // OBSERVATORIOS
-function renderMarkers(data, distancia = 1500) {
+function renderMarkersBase(data, distancia = 1500) {
+    var cluster = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: distancia
+    });
+
+    var layer = L.geoJson(data);
+    cluster.addLayer(layer);
+
+    return cluster;
+}
+
+// OBSERVATORIOS
+function renderMarkersData(data, distancia = 100) {
     var cluster = L.markerClusterGroup({
         showCoverageOnHover: false,
         maxClusterRadius: distancia
@@ -233,10 +255,10 @@ function renderMarkers(data, distancia = 1500) {
         onEachFeature: function (feature, layer) {
 
             if (feature.properties) {
-                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre</th><td>" + feature.properties.IDENTIFICADOR + "</td></tr>" + "<tr><th>Phone</th><td>" + feature.properties.IDENTIFICADOR + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.IDENTIFICADOR + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.IDENTIFICADOR + "' target='_blank'>" + feature.properties.IDENTIFICADOR + "</a></td></tr>" + "<table>";
+                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<table>";
                 layer.on({
                     click: function (e) {
-                        $("#feature-title").html(feature.properties.IDENTIFICADOR);
+                        $("#feature-title").html(feature.properties.OBSERVATORIO);
                         $("#feature-info").html(content);
                         $("#featureModal").modal("show");
                         highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
