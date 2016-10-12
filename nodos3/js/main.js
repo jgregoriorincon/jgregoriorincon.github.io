@@ -314,7 +314,7 @@ function zoomToFeatureMpios(e) {
         // Capa de MUNICIPIOS
         MpiosLayer = L.geoJson(undefined, {
             filter: function (feature) {
-                return (feature.properties.COD_DANE === MpioSeleccionado)
+                return (feature.properties.COD_DANE == MpioSeleccionado)
             },
             style: styleNodos,
             onEachFeature: function (feature, layer) {
