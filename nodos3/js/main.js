@@ -122,7 +122,7 @@ function zoomToFeatureNodos(e) {
         NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
         NodosSurNarino = renderMarkersData(NodoSurNarino);
         NodosSurValleCauca = renderMarkersData(NodoSurValleCauca);
-        NodosSurCauca = renderMarkersData(NodoSurCauca);
+        NodosSurCauca = renderMarkersData(NodoSurCauca,300);
 
         map.addLayer(NodosSurPutumayo);
         map.addLayer(NodosSurNarino);
