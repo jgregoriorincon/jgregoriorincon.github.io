@@ -1,7 +1,7 @@
 function getColorNodos(d) {
-    return d === 'Caribe' ? '#b2df8a' :
-        d === 'Centro' ? '#fdcb7b' :
-        d === 'Sur' ? '#a5bfdd' :
+    return d == 'Caribe' ? '#b2df8a' :
+        d == 'Centro' ? '#fdcb7b' :
+        d == 'Sur' ? '#a5bfdd' :
         '#f1f4c7';
 }
 

@@ -8,12 +8,12 @@ var NodosSur, NodosCentro, NodosCaribe;
 
 /* Overlay Layers */
 var highlight = L.geoJson(null);
-var highlightStyle = {
+/*var highlightStyle = {
     stroke: false,
     fillColor: "#00FFFF",
     fillOpacity: 0.7,
     radius: 10
-};
+};*/
 
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
@@ -81,6 +81,28 @@ function highlightFeature(e) {
     info.update(layer.feature.properties);
 }
 
+// Resaltado
+function highlightFeatureMpios(e) {
+
+    var layer = e.target;
+/*    
+    if (layer.feature.properties.TIENE == 'SI') {
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+        
+        info.update(layer.feature.properties);
+    }
+*/  
+}
+
 // Quitar Resaltado NODOS
 function resetHighlightNodos(e) {
     NodosLayer.resetStyle(e.target);
@@ -94,16 +116,16 @@ function zoomToFeatureNodos(e) {
     map.fitBounds(e.target.getBounds());
 
     NodoSeleccionado = layer.feature.properties.NODO;
-
-    map.removeLayer(NodosLayer);
-    map.removeLayer(NodosSur);
-    map.removeLayer(NodosCentro);
-    map.removeLayer(NodosCaribe);
+    
+    map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
+    map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
+    map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
+    map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
 
     // Capa de DEPARTAMENTOS
     DptosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.NODO === NodoSeleccionado)
+            return (feature.properties.NODO == NodoSeleccionado)
         },
         style: styleNodos,
         onEachFeature: function (feature, layer) {
@@ -112,6 +134,7 @@ function zoomToFeatureNodos(e) {
                 permanent: false,
                 direction: "auto"
             });
+            
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightDptos);
             layer.on('click', zoomToFeatureDptos);
@@ -120,7 +143,9 @@ function zoomToFeatureNodos(e) {
     })
 
     map.hasLayer(positronLabels) === true && map.removeLayer(positronLabels);
-
+    DptosLayer.addData(Dptos);
+    map.addLayer(DptosLayer);
+    
     if (NodoSeleccionado == 'Sur') {
         NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
         NodosSurNarino = renderMarkersData(NodoSurNarino);
@@ -148,16 +173,13 @@ function zoomToFeatureNodos(e) {
         NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico);
         NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena);
         NodosCaribeSucre = renderMarkersData(NodoCaribeSucre);
-        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 500);
+        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 1500);
 
         map.addLayer(NodosCaribeAtlantico);
         map.addLayer(NodosCaribeMagdalena);
         map.addLayer(NodosCaribeSucre);
         map.addLayer(NodosCaribeBolivar);
     }
-
-    DptosLayer.addData(Dptos);
-    map.addLayer(DptosLayer);
 }
 
 // Quitar Resaltado DEPARTAMENTOS
@@ -174,8 +196,8 @@ function zoomToFeatureDptos(e) {
 
     DptoSeleccionado = layer.feature.properties.DEPTO;
 
-    map.removeLayer(DptosLayer);
-
+    map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
+    
     map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
     map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
     map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
@@ -195,7 +217,7 @@ function zoomToFeatureDptos(e) {
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.DEPTO === DptoSeleccionado)
+            return (feature.properties.DEPTO == DptoSeleccionado)
         },
         style: styleMpios,
         onEachFeature: function (feature, layer) {
@@ -203,75 +225,73 @@ function zoomToFeatureDptos(e) {
                 permanent: false,
                 direction: "auto"
             });
-            layer.on('mouseover', highlightFeature);
-            layer.on('mouseout', resetHighlightMpios);
+            //layer.on('mouseover', highlightFeatureMpios);
+            //layer.on('mouseout', resetHighlightMpios);
             layer.on('click', zoomToFeatureMpios);
         }
-
     })
-
-    switch (DptoSeleccionado) {
-    case 'PUTUMAYO':
-        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 5);
-        map.addLayer(NodosSurPutumayo);
-        break;
-    case 'NARIÑO':
-        NodosSurNarino = renderMarkersData(NodoSurNarino, 5);
-        map.addLayer(NodosSurNarino);
-        break;
-    case 'CAUCA':
-        NodosSurCauca = renderMarkersData(NodoSurCauca, 5);
-        map.addLayer(NodosSurCauca);
-        break;
-    case 'VALLE DEL CAUCA':
-        NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 5);
-        map.addLayer(NodosSurValleCauca);
-        break;
-    case 'META':
-        NodosCentroMeta = renderMarkersData(NodoCentroMeta, 5);
-        map.addLayer(NodosCentroMeta);
-        break;
-    case 'SANTANDER':
-        NodosCentroSantander = renderMarkersData(NodoCentroSantander, 5);
-        map.addLayer(NodosCentroSantander);
-        break;
-    case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 15);
-        map.addLayer(NodosCentroNteSantander);
-        break;
-    case 'BOYACÁ':
-        NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
-        map.addLayer(NodosCentroBoyaca);
-        break;
-    case 'BOGOTA':
-        NodosCentroBogota = renderMarkersData(NodoCentroBogota, 5);
-        map.addLayer(NodosCentroBogota);
-        break;
-    case 'CUNDINAMARCA':
-        NodosCentroCundinamarca = renderMarkersData(NodoCentroCundinamarca, 5);
-        map.addLayer(NodosCentroCundinamarca);
-        break;
-    case 'ATLÁNTICO':
-        NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico, 5);
-        map.addLayer(NodosCaribeAtlantico);
-        break;
-    case 'MAGDALENA':
-        NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena, 5);
-        map.addLayer(NodosCaribeMagdalena);
-        break;
-    case 'SUCRE':
-        NodosCaribeSucre = renderMarkersData(NodoCaribeSucre, 5);
-        map.addLayer(NodosCaribeSucre);
-        break;
-    case 'BOLÍVAR':
-        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 15);
-        map.addLayer(NodosCaribeBolivar);
-        break;
-
-    }
 
     MpiosLayer.addData(Mpios);
     map.addLayer(MpiosLayer);
+    
+    switch (DptoSeleccionado) {
+        case 'PUTUMAYO':
+            NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 5);
+            map.addLayer(NodosSurPutumayo);
+            break;
+        case 'NARIÑO':
+            NodosSurNarino = renderMarkersData(NodoSurNarino, 5);
+            map.addLayer(NodosSurNarino);
+            break;
+        case 'CAUCA':
+            NodosSurCauca = renderMarkersData(NodoSurCauca, 5);
+            map.addLayer(NodosSurCauca);
+            break;
+        case 'VALLE DEL CAUCA':
+            NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 5);
+            map.addLayer(NodosSurValleCauca);
+            break;
+        case 'META':
+            NodosCentroMeta = renderMarkersData(NodoCentroMeta, 5);
+            map.addLayer(NodosCentroMeta);
+            break;
+        case 'SANTANDER':
+            NodosCentroSantander = renderMarkersData(NodoCentroSantander, 5);
+            map.addLayer(NodosCentroSantander);
+            break;
+        case 'NORTE DE SANTANDER':
+            NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 15);
+            map.addLayer(NodosCentroNteSantander);
+            break;
+        case 'BOYACÁ':
+            NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
+            map.addLayer(NodosCentroBoyaca);
+            break;
+        case 'BOGOTA':
+            NodosCentroBogota = renderMarkersData(NodoCentroBogota, 5);
+            map.addLayer(NodosCentroBogota);
+            break;
+        case 'CUNDINAMARCA':
+            NodosCentroCundinamarca = renderMarkersData(NodoCentroCundinamarca, 5);
+            map.addLayer(NodosCentroCundinamarca);
+            break;
+        case 'ATLÁNTICO':
+            NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico, 5);
+            map.addLayer(NodosCaribeAtlantico);
+            break;
+        case 'MAGDALENA':
+            NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena, 5);
+            map.addLayer(NodosCaribeMagdalena);
+            break;
+        case 'SUCRE':
+            NodosCaribeSucre = renderMarkersData(NodoCaribeSucre, 5);
+            map.addLayer(NodosCaribeSucre);
+            break;
+        case 'BOLÍVAR':
+            NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 15);
+            map.addLayer(NodosCaribeBolivar);
+            break;
+    }
 }
 
 // Quitar Resaltado MUNIcipios
@@ -283,33 +303,35 @@ function resetHighlightMpios(e) {
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
     var layer = e.target;
+    
+    if (layer.feature.properties.TIENE == 'SI') {
+        map.fitBounds(e.target.getBounds());
 
-    map.fitBounds(e.target.getBounds());
+        MpioSeleccionado = layer.feature.properties.COD_DANE;
 
-    MpioSeleccionado = layer.feature.properties.COD_DANE;
+        map.removeLayer(MpiosLayer);
 
-    map.removeLayer(MpiosLayer);
+        // Capa de MUNICIPIOS
+        MpiosLayer = L.geoJson(undefined, {
+            filter: function (feature) {
+                return (feature.properties.COD_DANE === MpioSeleccionado)
+            },
+            style: styleNodos,
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.NOMBRE, {
+                    permanent: true,
+                    direction: "auto"
+                });
+                //layer.on('mouseover', highlightFeatureMpios);
+                //layer.on('mouseout', resetHighlightMpios);
+                layer.on('click', zoomToFeatureMpios);
+            }
 
-    // Capa de MUNICIPIOS
-    MpiosLayer = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.COD_DANE === MpioSeleccionado)
-        },
-        style: styleNodos,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.NOMBRE, {
-                permanent: true,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeature);
-            layer.on('mouseout', resetHighlightMpios);
-            layer.on('click', zoomToFeatureMpios);
-        }
+        })
 
-    })
-
-    MpiosLayer.addData(Mpios);
-    map.addLayer(MpiosLayer);
+        MpiosLayer.addData(Mpios);
+        map.addLayer(MpiosLayer);
+    }
 }
 
 NodosLayer.addData(Nodos);
@@ -349,16 +371,17 @@ function renderMarkersData(data, distancia = 100) {
         onEachFeature: function (feature, layer) {
 
             if (feature.properties) {
+                
+                //var logo = "images/000.png";
+                var logo = "<img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'>";
 
-                var logo = "<img src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='width:150px;height:50px;' onerror='this.onerror=null;this.src=''images/000.png'';'>";
-
-                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr>" + logo + "</tr>" + "<table>";
+                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr>" + logo + "</tr>" + "<table>";
                 layer.on({
                     click: function (e) {
-                        $("#feature-title").html(feature.properties.OBSERVATORIO);
+                        $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
                         $("#feature-info").html(content);
                         $("#featureModal").modal("show");
-                        highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+                        /*highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));*/
                     }
                 });
             }
@@ -446,7 +469,7 @@ info.onAdd = function (map) {
 
 info.update = function (props) {
     this._div.innerHTML = (props ?
-        '<p align="right"><b>' + (props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total Observatorios: ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
+        '<p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO :   props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total Observatorios: ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
 };
 
 info.addTo(map);
