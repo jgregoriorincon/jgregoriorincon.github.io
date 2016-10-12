@@ -349,7 +349,10 @@ function renderMarkersData(data, distancia = 100) {
         onEachFeature: function (feature, layer) {
 
             if (feature.properties) {
-                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><img src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + " style='width:150px;height:50px;'></tr>" + "<table>";
+
+                var logo = "<img src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='width:150px;height:50px;' onerror='this.onerror=null;this.src=''images/000.png'';'>";
+
+                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nombre Contacto</th><td>" + feature.properties.CONTACTO + "</td></tr>" + "<tr><th>Telefono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Direccion</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr>" + logo + "</tr>" + "<table>";
                 layer.on({
                     click: function (e) {
                         $("#feature-title").html(feature.properties.OBSERVATORIO);
@@ -443,7 +446,7 @@ info.onAdd = function (map) {
 
 info.update = function (props) {
     this._div.innerHTML = (props ?
-        '<p align="right"><b>' + props.NODO + '<br />Localidad ' + props.NODO + ' - Codigo ' + props.NODO + '</b><br />' + '<b></b><br />' + 'Observatorios Academicos: ' + props.ACADEMIA + '<br />' + 'Observatorios Convivencia: ' + props.GOBIERNO + '<br />' + 'Observatorios Fenomenos: ' + props.PRIVADO + '<br />' + 'Observatorios Institucional: ' + props.SOCIEDAD + '<br />' + 'Observatorios Institucional: ' + props.OTRO + '<br />' + '<b>Total Observatorios: ' + props.TOTAL + '</p></b>' : 'Pase el cursor sobre un elemento');
+        '<p align="right"><b>' + (props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total Observatorios: ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
 };
 
 info.addTo(map);
