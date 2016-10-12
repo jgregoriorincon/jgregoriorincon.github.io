@@ -18,14 +18,15 @@ function styleNodos(feature) {
 
 // -----------------------------------------------------
 
-function styleMpiosCaribe(feature) {
+function styleMpios(feature) {
+    var transparencia = feature.properties.TIENE == 'SI' ? 0.8 : 0.4;
     return {
         weight: 1,
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.8,
-        fillColor: '#b2df8a'
+        fillOpacity: transparencia,
+        fillColor: getColorNodos(feature.properties.NODO)
     };
 }
 

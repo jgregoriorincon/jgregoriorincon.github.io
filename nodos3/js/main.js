@@ -15,7 +15,6 @@ var highlightStyle = {
     radius: 10
 };
 
-
 /* ------------------- MAPA ------------------*/
 var map = L.map('map', {
     maxZoom: 18,
@@ -78,6 +77,8 @@ function highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
+
+    info.update(layer.feature.properties);
 }
 
 // Quitar Resaltado NODOS
@@ -106,11 +107,11 @@ function zoomToFeatureNodos(e) {
         },
         style: styleNodos,
         onEachFeature: function (feature, layer) {
-/*
+
             layer.bindTooltip(feature.properties.DEPTO, {
-                permanent: true,
+                permanent: false,
                 direction: "auto"
-            });*/
+            });
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightDptos);
             layer.on('click', zoomToFeatureDptos);
@@ -118,11 +119,13 @@ function zoomToFeatureNodos(e) {
 
     })
 
+    map.hasLayer(positronLabels) === true && map.removeLayer(positronLabels);
+
     if (NodoSeleccionado == 'Sur') {
         NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
         NodosSurNarino = renderMarkersData(NodoSurNarino);
         NodosSurValleCauca = renderMarkersData(NodoSurValleCauca);
-        NodosSurCauca = renderMarkersData(NodoSurCauca,300);
+        NodosSurCauca = renderMarkersData(NodoSurCauca, 300);
 
         map.addLayer(NodosSurPutumayo);
         map.addLayer(NodosSurNarino);
@@ -194,7 +197,7 @@ function zoomToFeatureDptos(e) {
         filter: function (feature) {
             return (feature.properties.DEPTO === DptoSeleccionado)
         },
-        style: styleNodos,
+        style: styleMpios,
         onEachFeature: function (feature, layer) {
             layer.bindTooltip(feature.properties.NOMBRE, {
                 permanent: false,
@@ -216,11 +219,11 @@ function zoomToFeatureDptos(e) {
         NodosSurNarino = renderMarkersData(NodoSurNarino, 5);
         map.addLayer(NodosSurNarino);
         break;
-     case 'CAUCA':
+    case 'CAUCA':
         NodosSurCauca = renderMarkersData(NodoSurCauca, 5);
         map.addLayer(NodosSurCauca);
         break;
-     case 'VALLE DEL CAUCA':
+    case 'VALLE DEL CAUCA':
         NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 5);
         map.addLayer(NodosSurValleCauca);
         break;
@@ -271,10 +274,10 @@ function zoomToFeatureDptos(e) {
     map.addLayer(MpiosLayer);
 }
 
-// Quitar Resaltado DEPARTAMENTOS
+// Quitar Resaltado MUNIcipios
 function resetHighlightMpios(e) {
     DptosLayer.resetStyle(e.target);
-    DptosLayer.setStyle(styleNodos);
+    DptosLayer.setStyle(styleMpios);
 }
 
 // Zoom al elemento
@@ -394,6 +397,8 @@ map.on('zoomend', function () {
         map.hasLayer(NodosSur) === false && map.addLayer(NodosSur);
         map.hasLayer(NodosCentro) === false && map.addLayer(NodosCentro);
         map.hasLayer(NodosCaribe) === false && map.addLayer(NodosCaribe);
+
+        map.hasLayer(positronLabels) === false && map.addLayer(positronLabels);
     }
 });
 
@@ -426,3 +431,19 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
+
+// control that shows state info on hover
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
+
+info.update = function (props) {
+    this._div.innerHTML = (props ?
+        '<p align="right"><b>' + props.NODO + '<br />Localidad ' + props.NODO + ' - Codigo ' + props.NODO + '</b><br />' + '<b></b><br />' + 'Observatorios Academicos: ' + props.ACADEMIA + '<br />' + 'Observatorios Convivencia: ' + props.GOBIERNO + '<br />' + 'Observatorios Fenomenos: ' + props.PRIVADO + '<br />' + 'Observatorios Institucional: ' + props.SOCIEDAD + '<br />' + 'Observatorios Institucional: ' + props.OTRO + '<br />' + '<b>Total Observatorios: ' + props.TOTAL + '</p></b>' : 'Pase el cursor sobre un elemento');
+};
+
+info.addTo(map);
