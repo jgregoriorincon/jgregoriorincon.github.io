@@ -87,6 +87,8 @@ function highlightFeature(e) {
 function highlightFeatureMpios(e) {
 
     var layer = e.target;
+    info.update(layer.feature.properties);
+
     /*
         if (layer.feature.properties.TIENE == 'SI') {
             layer.setStyle({
@@ -100,7 +102,7 @@ function highlightFeatureMpios(e) {
                 layer.bringToFront();
             }
 
-            info.update(layer.feature.properties);
+
         }
     */
 }
@@ -231,7 +233,7 @@ function zoomToFeatureDptos(e) {
                 permanent: false,
                 direction: "auto"
             });
-            //layer.on('mouseover', highlightFeatureMpios);
+            layer.on('mouseover', highlightFeatureMpios);
             //layer.on('mouseout', resetHighlightMpios);
             layer.on('click', zoomToFeatureMpios);
         }
@@ -332,7 +334,7 @@ function zoomToFeatureMpios(e) {
                     permanent: true,
                     direction: "auto"
                 });
-                //layer.on('mouseover', highlightFeatureMpios);
+                layer.on('mouseover', highlightFeatureMpios);
                 //layer.on('mouseout', resetHighlightMpios);
                 //layer.on('click', zoomToFeatureMpios);
             }
