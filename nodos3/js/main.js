@@ -482,7 +482,7 @@ legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
         grades = ['Caribe', 'Centro', 'Sur'],
-        labels = ['<strong> observaDHores <br /> </strong>'],
+        labels = [],
         from, to;
 
     for (var i = 0; i < grades.length; i++) {
