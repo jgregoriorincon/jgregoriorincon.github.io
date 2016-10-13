@@ -6,6 +6,8 @@ var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander,
 var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
 var NodosSur, NodosCentro, NodosCaribe;
 
+var ObservatoriosLayer;
+
 /* Overlay Layers */
 var highlight = L.geoJson(null);
 /*var highlightStyle = {
@@ -19,7 +21,7 @@ var highlight = L.geoJson(null);
 var map = L.map('map', {
     maxZoom: 18,
     minZoom: 5,
-    zoomControl: false,
+    zoomControl: true,
     scrollWheelZoom: false
 });
 
@@ -311,7 +313,11 @@ function zoomToFeatureMpios(e) {
 
         MpioSeleccionado = layer.feature.properties.COD_DANE;
 
-        map.removeLayer(MpiosLayer);
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+
+        map.addLayer(positron);
 
         // Capa de MUNICIPIOS
         MpiosLayer = L.geoJson(undefined, {
@@ -326,13 +332,22 @@ function zoomToFeatureMpios(e) {
                 });
                 //layer.on('mouseover', highlightFeatureMpios);
                 //layer.on('mouseout', resetHighlightMpios);
-                layer.on('click', zoomToFeatureMpios);
+                //layer.on('click', zoomToFeatureMpios);
             }
 
         })
 
         MpiosLayer.addData(Mpios);
         map.addLayer(MpiosLayer);
+
+        var ObservatoriosData = JSON.parse(JSON.stringify(Observatorios));
+
+        ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
+            return a.properties.CODDANE == MpioSeleccionado;
+        });
+
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 50);
+        map.addLayer(ObservatoriosLayer);
     }
 }
 
@@ -403,6 +418,7 @@ map.on('zoomend', function () {
     {
         map.hasLayer(MpiosLayer) === true && map.removeLayer(MpiosLayer);
         map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
+        map.hasLayer(ObservatoriosLayer) === true && map.removeLayer(ObservatoriosLayer);
 
         map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
         map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
