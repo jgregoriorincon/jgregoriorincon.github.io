@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!--    <link rel="stylesheet" href="/resources/demos/style.css">-->
 
     <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/ZoomBox.css" />
+<!--    <link rel="stylesheet" href="css/ZoomBox.css" />-->
     <link rel="stylesheet" href="css/MarkerCluster.css" />
     <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-
+    <link rel="stylesheet" href="css/leaflet-search.min.css" />
+    
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
     <div id="map"> </div>
-
+    <div id="mapFull" class="logo" title="Regresar al mapa"></div>
+    
     <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -43,7 +44,7 @@
                         <div class="tab-pane fade" id="tematicas"></div>
                         <div class="tab-pane fade" id="territorial"></div>
                         <div class="tab-pane fade" id="tipoinformacion"></div>
-                        <div class="tab-pane fade" id="productos"></div>                       
+                        <div class="tab-pane fade" id="productos"></div>
                     </div>
                 </div>
                 <!--                <div class="modal-body" id="feature-info"></div>-->
@@ -61,12 +62,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script src="js/leaflet.js"></script>
-    <script src="js/leaflet.defaultextent.js"></script>
     <script src="js/leaflet.markercluster.js"></script>
-    <script src="js/ZoomBox.js"></script>
+<!--    <script src="js/ZoomBox.js"></script>-->
     <script src="js/leyenda.js"></script>
     <script src="js/basemaps.js"></script>
 
+    <script src="js/leaflet-search.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fuse.js/1.2.2/fuse.min.js"></script>
+    
     <!-- DATOS -->
     <script src="data/Nodos.json"></script>
     <script src="data/Dptos.json"></script>
