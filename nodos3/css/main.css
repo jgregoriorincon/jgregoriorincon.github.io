@@ -23,7 +23,37 @@ body,
     font-size: 10px;
 }
 
+body .modal-dialog {
+    /* new custom width */
+    width: 800px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    /*margin-left: -375px;*/
+}
 
+.nav-tabs li.active{
+    width: 12%;
+}
+.nav-tabs li.tab2{
+    width: 10%;
+}
+.nav-tabs li.tab3{
+    width: 10%;
+}
+.nav-tabs li.tab4{
+    width: 15%;
+}
+.nav-tabs li.tab5{
+    width: 10%;
+}
+.nav-tabs li.tab6{
+    width: 5%;
+}
+.nav-tabs li.tab7{
+    width: 5%;
+}
+.nav>li>a {
+    padding: 10px 3px;
+}
 /*
     INFORMACION
 */
@@ -139,4 +169,8 @@ div.logo {
 */
 .imgLogo {
     max-width: 500px;
+}
+
+#aboutTabsContent {
+    padding-top: 10px;
 }
