@@ -21,7 +21,7 @@ var highlight = L.geoJson(null);
 var map = L.map('map', {
     maxZoom: 18,
     minZoom: 5,
-    zoomControl: true,
+    zoomControl: false,
     scrollWheelZoom: false
 });
 
@@ -498,6 +498,11 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
+
+var control = L.control.zoomBox({
+    modal: true
+});
+map.addControl(control);
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
