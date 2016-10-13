@@ -85,28 +85,30 @@ function highlightFeature(e) {
 function highlightFeatureMpios(e) {
 
     var layer = e.target;
-/*    
-    if (layer.feature.properties.TIENE == 'SI') {
-        layer.setStyle({
-            weight: 5,
-            color: '#666',
-            dashArray: '',
-            fillOpacity: 0.7
-        });
+    /*
+        if (layer.feature.properties.TIENE == 'SI') {
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
 
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+
+            info.update(layer.feature.properties);
         }
-        
-        info.update(layer.feature.properties);
-    }
-*/  
+    */
 }
 
 // Quitar Resaltado NODOS
 function resetHighlightNodos(e) {
     NodosLayer.resetStyle(e.target);
     NodosLayer.setStyle(styleNodos);
+
+    info.update();
 }
 
 // Zoom al elemento
@@ -116,7 +118,7 @@ function zoomToFeatureNodos(e) {
     map.fitBounds(e.target.getBounds());
 
     NodoSeleccionado = layer.feature.properties.NODO;
-    
+
     map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
     map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
@@ -134,7 +136,7 @@ function zoomToFeatureNodos(e) {
                 permanent: false,
                 direction: "auto"
             });
-            
+
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightDptos);
             layer.on('click', zoomToFeatureDptos);
@@ -145,7 +147,7 @@ function zoomToFeatureNodos(e) {
     map.hasLayer(positronLabels) === true && map.removeLayer(positronLabels);
     DptosLayer.addData(Dptos);
     map.addLayer(DptosLayer);
-    
+
     if (NodoSeleccionado == 'Sur') {
         NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
         NodosSurNarino = renderMarkersData(NodoSurNarino);
@@ -197,7 +199,7 @@ function zoomToFeatureDptos(e) {
     DptoSeleccionado = layer.feature.properties.DEPTO;
 
     map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
-    
+
     map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
     map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
     map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
@@ -233,64 +235,64 @@ function zoomToFeatureDptos(e) {
 
     MpiosLayer.addData(Mpios);
     map.addLayer(MpiosLayer);
-    
+
     switch (DptoSeleccionado) {
-        case 'PUTUMAYO':
-            NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 5);
-            map.addLayer(NodosSurPutumayo);
-            break;
-        case 'NARIÑO':
-            NodosSurNarino = renderMarkersData(NodoSurNarino, 5);
-            map.addLayer(NodosSurNarino);
-            break;
-        case 'CAUCA':
-            NodosSurCauca = renderMarkersData(NodoSurCauca, 5);
-            map.addLayer(NodosSurCauca);
-            break;
-        case 'VALLE DEL CAUCA':
-            NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 5);
-            map.addLayer(NodosSurValleCauca);
-            break;
-        case 'META':
-            NodosCentroMeta = renderMarkersData(NodoCentroMeta, 5);
-            map.addLayer(NodosCentroMeta);
-            break;
-        case 'SANTANDER':
-            NodosCentroSantander = renderMarkersData(NodoCentroSantander, 5);
-            map.addLayer(NodosCentroSantander);
-            break;
-        case 'NORTE DE SANTANDER':
-            NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 15);
-            map.addLayer(NodosCentroNteSantander);
-            break;
-        case 'BOYACÁ':
-            NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
-            map.addLayer(NodosCentroBoyaca);
-            break;
-        case 'BOGOTA':
-            NodosCentroBogota = renderMarkersData(NodoCentroBogota, 5);
-            map.addLayer(NodosCentroBogota);
-            break;
-        case 'CUNDINAMARCA':
+    case 'PUTUMAYO':
+        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo, 5);
+        map.addLayer(NodosSurPutumayo);
+        break;
+    case 'NARIÑO':
+        NodosSurNarino = renderMarkersData(NodoSurNarino, 20);
+        map.addLayer(NodosSurNarino);
+        break;
+    case 'CAUCA':
+        NodosSurCauca = renderMarkersData(NodoSurCauca, 15);
+        map.addLayer(NodosSurCauca);
+        break;
+    case 'VALLE DEL CAUCA':
+        NodosSurValleCauca = renderMarkersData(NodoSurValleCauca, 50);
+        map.addLayer(NodosSurValleCauca);
+        break;
+    case 'META':
+        NodosCentroMeta = renderMarkersData(NodoCentroMeta, 5);
+        map.addLayer(NodosCentroMeta);
+        break;
+    case 'SANTANDER':
+        NodosCentroSantander = renderMarkersData(NodoCentroSantander, 5);
+        map.addLayer(NodosCentroSantander);
+        break;
+    case 'NORTE DE SANTANDER':
+        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander, 15);
+        map.addLayer(NodosCentroNteSantander);
+        break;
+    case 'BOYACÁ':
+        NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca, 5);
+        map.addLayer(NodosCentroBoyaca);
+        break;
+    case 'BOGOTÁ D.C.':
+        NodosCentroBogota = renderMarkersData(NodoCentroBogota, 25);
+        map.addLayer(NodosCentroBogota);
+        break;
+        /*case 'CUNDINAMARCA':
             NodosCentroCundinamarca = renderMarkersData(NodoCentroCundinamarca, 5);
             map.addLayer(NodosCentroCundinamarca);
-            break;
-        case 'ATLÁNTICO':
-            NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico, 5);
-            map.addLayer(NodosCaribeAtlantico);
-            break;
-        case 'MAGDALENA':
-            NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena, 5);
-            map.addLayer(NodosCaribeMagdalena);
-            break;
-        case 'SUCRE':
-            NodosCaribeSucre = renderMarkersData(NodoCaribeSucre, 5);
-            map.addLayer(NodosCaribeSucre);
-            break;
-        case 'BOLÍVAR':
-            NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 15);
-            map.addLayer(NodosCaribeBolivar);
-            break;
+            break;*/
+    case 'ATLANTICO':
+        NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico, 5);
+        map.addLayer(NodosCaribeAtlantico);
+        break;
+    case 'MAGDALENA':
+        NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena, 5);
+        map.addLayer(NodosCaribeMagdalena);
+        break;
+    case 'SUCRE':
+        NodosCaribeSucre = renderMarkersData(NodoCaribeSucre, 5);
+        map.addLayer(NodosCaribeSucre);
+        break;
+    case 'BOLÍVAR':
+        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 15);
+        map.addLayer(NodosCaribeBolivar);
+        break;
     }
 }
 
@@ -303,7 +305,7 @@ function resetHighlightMpios(e) {
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
     var layer = e.target;
-    
+
     if (layer.feature.properties.TIENE == 'SI') {
         map.fitBounds(e.target.getBounds());
 
@@ -371,9 +373,9 @@ function renderMarkersData(data, distancia = 100) {
         onEachFeature: function (feature, layer) {
 
             if (feature.properties) {
-                
+
                 //var logo = "images/000.png";
-                var logo = "<img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'>";
+                var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
 
                 var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr>" + logo + "</tr>" + "<table>";
                 layer.on({
@@ -469,7 +471,7 @@ info.onAdd = function (map) {
 
 info.update = function (props) {
     this._div.innerHTML = (props ?
-        '<p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO :   props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total Observatorios: ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
+        '<p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total Observatorios: ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
 };
 
 info.addTo(map);
