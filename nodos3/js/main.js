@@ -462,18 +462,16 @@ map.on('zoomend', function () {
         map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
 
         map.hasLayer(NodosLayer) === false && map.addLayer(NodosLayer);
-
+        
         map.hasLayer(NodosSur) === false && map.addLayer(NodosSur);
         map.hasLayer(NodosCentro) === false && map.addLayer(NodosCentro);
         map.hasLayer(NodosCaribe) === false && map.addLayer(NodosCaribe);
-
+        
         map.hasLayer(positronLabels) === false && map.addLayer(positronLabels);
     }
 });
 
 /* ------------------- CONTROLES ------------------*/
-L.control.defaultExtent().addTo(map);
-
 var legend = L.control({
     position: 'topright'
 });
@@ -499,10 +497,16 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
+$('#mapFull').click(function(){
+    map.setView(new L.LatLng(4.5, -73.0), 6);
+});
+
+/*
 var control = L.control.zoomBox({
     modal: true
 });
 map.addControl(control);
+*/
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
