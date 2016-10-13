@@ -151,6 +151,7 @@ function zoomToFeatureNodos(e) {
     map.addLayer(DptosLayer);
 
     if (NodoSeleccionado == 'Sur') {
+
         NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
         NodosSurNarino = renderMarkersData(NodoSurNarino);
         NodosSurValleCauca = renderMarkersData(NodoSurValleCauca);
@@ -160,6 +161,7 @@ function zoomToFeatureNodos(e) {
         map.addLayer(NodosSurNarino);
         map.addLayer(NodosSurValleCauca);
         map.addLayer(NodosSurCauca);
+
     } else if (NodoSeleccionado == 'Centro') {
         NodosCentroBogota = renderMarkersData(NodoCentroBogota);
         NodosCentroMeta = renderMarkersData(NodoCentroMeta);
@@ -391,19 +393,33 @@ function renderMarkersData(data, distancia = 100) {
 
                 //var logo = "images/000.png";
                 var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-/*
-                var telefonos = feature.properties.TELEFONO;
-                telefonos = telefonos.includes(";") ? telefonos.replace(/;/g, '<br>') : telefonos;
-*/
-                var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr>";
 
-                content = content.replace(/;/g, '<br>');
-                content = content + logo + "</tr>" + "<table>";
+                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<tr>";
+
+                infobasica = infobasica.replace(/;/g, '<br>');
+                infobasica = infobasica + logo + "</tr>" + "<table>";
+
+                var tematicas = feature.properties.TEMATICA;
+                tematicas = tematicas.replace(/;/g, '<br>');
+
+                var territorial = feature.properties.NIVEL_TERRITORIAL;
+                territorial = territorial.replace(/;/g, '<br>');
+
+                var tipoinformacion = feature.properties.TIPO_INFORMACION;
+                tipoinformacion = tipoinformacion.replace(/;/g, '<br>');
+
+                var productos = feature.properties.PRODUCTOS;
+                productos = productos.replace(/;/g, '<br>');
 
                 layer.on({
                     click: function (e) {
                         $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
-                        $("#feature-info").html(content);
+                        $("#feature-info").html(infobasica);
+                        $("#tematicas").html(tematicas);
+                        $("#territorial").html(territorial);
+                        $("#tipoinformacion").html(tipoinformacion);
+                        $("#productos").html(productos);
+
                         $("#featureModal").modal("show");
                         /*highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));*/
                     }
