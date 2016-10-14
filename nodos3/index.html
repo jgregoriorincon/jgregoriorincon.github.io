@@ -94,17 +94,18 @@
                                 <th data-field="FECHA_INICIO" data-visible="false" data-sortable="false" data-switchable="true" >Fecha de Creación</th>
                                 
                                 <th data-field="TEMATICA" data-visible="false" data-sortable="false" data-switchable="true" data-formatter="romperFilas" >Temáticas</th>
-                                <th data-field="NIVEL_TERRITORIAL" data-visible="false" data-sortable="false" data-switchable="true" >Territorio</th>
-                                <th data-field="PUBLICO" data-visible="false" data-sortable="false" data-switchable="true" >Público</th>
-                                <th data-field="CORREO" data-visible="false"data-sortable="false" data-switchable="true" >Correo Electrónico</th>
-                                <th data-field="TELEFONO" data-visible="false"data-sortable="false" data-switchable="true" >Teléfono</th>
+                                <th data-field="NIVEL_TERRITORIAL" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true" >Territorio</th>
+                                <th data-field="PUBLICO" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true" >Público</th>
+                                <th data-field="CORREO" data-visible="false"data-sortable="false" data-formatter="romperFilas" data-switchable="true" >Correo Electrónico</th>
+                                <th data-field="TELEFONO" data-visible="false"data-sortable="false" data-formatter="romperFilas" data-switchable="true" >Teléfono</th>
                                 
                             </tr>
                             </thead>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button id="button" class="btn btn-default fa fa-globe">  Mapear Seleccionados</button>
+                        <button type="button" class="btn btn-default fa fa-times" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
