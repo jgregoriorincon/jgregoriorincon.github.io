@@ -397,7 +397,7 @@ function renderMarkersData(data, distancia = 100) {
                 //var logo = "images/000.png";
                 var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
 
-                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<tr>";
+                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' +feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<tr>";
 
                 infobasica = infobasica.replace(/;/g, '<br>');
                 infobasica = infobasica + logo + "</tr>" + "<table>";
@@ -438,41 +438,6 @@ function renderMarkersData(data, distancia = 100) {
     return cluster;
 }
 
-// ZOOM
-/*
-map.on('zoomend', function () {
-    if (map.getZoom() == 6) // && map.hasLayer(NodosLayer))
-    {
-        map.hasLayer(MpiosLayer) === true && map.removeLayer(MpiosLayer);
-        map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
-        map.hasLayer(ObservatoriosLayer) === true && map.removeLayer(ObservatoriosLayer);
-
-        map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
-        map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
-        map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
-        map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
-
-        map.hasLayer(NodosCentroBogota) === true && map.removeLayer(NodosCentroBogota);
-        map.hasLayer(NodosCentroBoyaca) === true && map.removeLayer(NodosCentroBoyaca);
-        map.hasLayer(NodosCentroMeta) === true && map.removeLayer(NodosCentroMeta);
-        map.hasLayer(NodosCentroSantander) === true && map.removeLayer(NodosCentroSantander);
-        map.hasLayer(NodosCentroNteSantander) === true && map.removeLayer(NodosCentroNteSantander);
-
-        map.hasLayer(NodosCaribeAtlantico) === true && map.removeLayer(NodosCaribeAtlantico);
-        map.hasLayer(NodosCaribeBolivar) === true && map.removeLayer(NodosCaribeBolivar);
-        map.hasLayer(NodosCaribeMagdalena) === true && map.removeLayer(NodosCaribeMagdalena);
-        map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
-
-        map.hasLayer(NodosLayer) === false && map.addLayer(NodosLayer);
-
-        map.hasLayer(NodosSur) === false && map.addLayer(NodosSur);
-        map.hasLayer(NodosCentro) === false && map.addLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === false && map.addLayer(NodosCaribe);
-
-        map.hasLayer(positronLabels) === false && map.addLayer(positronLabels);
-    }
-});
-*/
 /* ------------------- CONTROLES ------------------*/
 var legend = L.control({
     position: 'topright'
@@ -521,6 +486,7 @@ var $table = $('#table'),
 
 $(function () {
     $('#modalTable').on('shown.bs.modal', function () {
+        $table.bootstrapTable('refresh');
         $table.bootstrapTable('resetView');
     });
 });
@@ -571,17 +537,19 @@ $(function () {
 
             map.fitBounds(ObservatorioSeleccionadosLayer.getBounds());
 
+            $('#modalTable').modal('hide');
+
         }
 
     });
 });
 
-/*
+
 var control = L.control.zoomBox({
     modal: true
 });
 map.addControl(control);
-*/
+
 
 map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
