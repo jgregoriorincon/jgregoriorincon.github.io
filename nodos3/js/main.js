@@ -462,11 +462,11 @@ map.on('zoomend', function () {
         map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
 
         map.hasLayer(NodosLayer) === false && map.addLayer(NodosLayer);
-        
+
         map.hasLayer(NodosSur) === false && map.addLayer(NodosSur);
         map.hasLayer(NodosCentro) === false && map.addLayer(NodosCentro);
         map.hasLayer(NodosCaribe) === false && map.addLayer(NodosCaribe);
-        
+
         map.hasLayer(positronLabels) === false && map.addLayer(positronLabels);
     }
 });
@@ -520,8 +520,8 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
-    this._div.innerHTML = (props ?
-        '<h3><center>ObservaDHores</center></h3><p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : 'Pase el cursor sobre un elemento');
+    this._div.innerHTML = (props ? props.TOTAL ?
+        '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : 'Pase el cursor sobre un elemento');
 };
 
 info.addTo(map);
