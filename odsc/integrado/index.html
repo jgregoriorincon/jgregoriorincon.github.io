@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mapa Base Barrios Santa Marta</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/ZoomBox.css" />    
+    
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+    <div id="mapBase"></div>
+    <div id="mapHeat"></div>
+    <div id="datos">
+        <div id="dataBarrio"></div>
+        <div id="Ejecucion">
+            <button onclick="borrarDatos()">Borrar Informacion</button><br />
+            <button onclick="recargarDatos()">Recargar Informacion</button>
+        </div>
+    </div>
+    
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet-heat.js"></script>
+    <script src="js/geojson.min.js"></script>
+    
+    <script src="js/basemaps.js"></script>
+
+    <script src="js/leaflet.defaultextent.js"></script>
+    <script src="js/ZoomBox.js"></script>
+    <script src="js/twoFingerZoom.js"></script>
+
+    <script src="data/barriosSM.js"></script>
+    <script src="data/eventosSM.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
