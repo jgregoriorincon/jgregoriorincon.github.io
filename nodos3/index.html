@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.css" />
 
     <link rel="stylesheet" href="css/leaflet.css" />
     <!--    <link rel="stylesheet" href="css/ZoomBox.css" />-->
@@ -24,94 +24,50 @@
 <body>
     <div id="map"> </div>
     <div id="mapFull" class="logo" data-toggle="tooltip" data-placement="right" title="De clic para regresar al mapa principal"></div>
-    <!--
-    <div class="modal fade" id="tableModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-primary" id="feature-title"></h4>
-                </div>
-                <div class="modal-body">
-					<table id="table">
-						<thead>
-						<tr>
-							<th data-field="IDENTIFICADOR" data-checkbox="true"></th>
-							<th data-field="OBSERVATORIO">Name</th>
-							<th data-field="MUNICIPIO">Stars</th>
-							<th data-field="TEMATICA">Forks</th>
-						</tr>
-						</thead>
-					</table>
-				</div>
-				<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-		</div>
-	</div>
-	-->
-	<div class="container">
+
+    <div class="container">
         <!-- Button trigger modal -->
-        <button id="btnBusqueda" type="button" class="fa fa-search fa-3x" data-toggle="modal" data-target="#modalTable">        </button>
-        
+        <button id="btnBusqueda" type="button" class="fa fa-search fa-3x" data-toggle="modal" data-target="#modalTable"> </button>
+
         <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <!--<div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Observatorios</h4>
-                    </div>-->
                     <div class="modal-body">
-                        <table id="table"
-                               data-toggle="table"
-                               data-height="599"
-                               data-url="data/ObservatoriosData.json"
-                            	data-show-columns="true"
-               					data-id-field="id"
-               					data-click-to-select="true"
-               					data-show-refresh="true"
-               					data-show-toggle="true"
-               					data-pagination="true"
-               					data-search="true"
-               					data-page-size="10"
-           						data-page-list="[5,10,15]"
-           						data-pagination-first-text="Primera"
-           						data-pagination-pre-text="Anterior"
-           						data-pagination-next-text="Siguiente"
-           						data-pagination-last-text="Ultima"
-           						data-striped="true"
-           					>
+                        <table id="table" data-toggle="table" data-height="599" data-url="data/ObservatoriosData.json" data-show-columns="true" data-id-field="id" data-click-to-select="true" data-show-refresh="true" data-show-toggle="true" data-pagination="true" data-search="true" data-page-size="10" data-page-list="[5,10,15]" data-pagination-first-text="Primera" data-pagination-pre-text="Anterior" data-pagination-next-text="Siguiente" data-pagination-last-text="Ultima" data-striped="true">
                             <thead>
-                            <tr>
-                                <th data-field="IDENTIFICADOR" data-checkbox="true">ID</th>
-                                <th data-field="OBSERVATORIO" data-sortable="true" data-switchable="false" >Observatorio</th>
-                                <th data-field="NODO" data-sortable="true" data-switchable="false" >Nodo</th>
-                                <th data-field="DEPARTAMENTO" data-sortable="true" data-switchable="false" >Departamento</th>
-                                <th data-field="MUNICIPIO" data-sortable="true" data-switchable="false" >Municipio</th>
-                                <th data-field="SECTOR" data-sortable="true" data-switchable="false" >Tipo Observatorio</th>
-                                <th data-field="FECHA_INICIO" data-visible="false" data-sortable="false" data-switchable="true" >Fecha de Creación</th>
-                                
-                                <th data-field="TEMATICA" data-visible="false" data-sortable="false" data-switchable="true" data-formatter="romperFilas" >Temáticas</th>
-                                <th data-field="NIVEL_TERRITORIAL" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true" >Territorio</th>
-                                <th data-field="PUBLICO" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true" >Público</th>
-                                <th data-field="CORREO" data-visible="false"data-sortable="false" data-formatter="romperFilas" data-switchable="true" >Correo Electrónico</th>
-                                <th data-field="TELEFONO" data-visible="false"data-sortable="false" data-formatter="romperFilas" data-switchable="true" >Teléfono</th>
-                                
-                            </tr>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true"></th>
+                                    <th data-field="IDENTIFICADOR" data-visible="false">ID</th>
+
+                                    <th data-field="OBSERVATORIO" data-sortable="true" data-switchable="false">Observatorio</th>
+                                    <th data-field="NODO" data-sortable="true" data-switchable="false">Nodo</th>
+                                    <th data-field="DEPARTAMENTO" data-sortable="true" data-switchable="false">Departamento</th>
+                                    <th data-field="MUNICIPIO" data-sortable="true" data-switchable="false">Municipio</th>
+                                    <th data-field="SECTOR" data-sortable="true" data-switchable="false">Tipo Observatorio</th>
+                                    <th data-field="FECHA_INICIO" data-visible="false" data-sortable="false" data-switchable="true">Fecha de Creación</th>
+
+                                    <th data-field="TEMATICA" data-visible="false" data-sortable="false" data-switchable="true" data-formatter="romperFilas">Temáticas</th>
+                                    <th data-field="NIVEL_TERRITORIAL" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true">Territorio</th>
+                                    <th data-field="PUBLICO" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true">Público</th>
+                                    <th data-field="CORREO" data-visible="false" data-sortable="false" data-formatter="romperFilas" data-switchable="true">Correo Electrónico</th>
+                                    <th data-field="TELEFONO" data-visible="false" data-sortable="false" data-formatter="romperFilas" data-switchable="true">Teléfono</th>
+
+                                </tr>
                             </thead>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button id="button" class="btn btn-default fa fa-globe">  Mapear Seleccionados</button>
+                        <button id="btnMapearSeleccionador" class="btn btn-default fa fa-globe"> Mapear Seleccionados</button>
                         <button type="button" class="btn btn-default fa fa-times" data-dismiss="modal">Cerrar</button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
     </div>
-        
+
     <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -148,8 +104,8 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-es-ES.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-es-ES.min.js"></script>
 
     <script src="js/leaflet.js"></script>
     <script src="js/leaflet.markercluster.js"></script>

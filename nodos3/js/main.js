@@ -7,6 +7,7 @@ var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlan
 var NodosSur, NodosCentro, NodosCaribe;
 
 var ObservatoriosLayer;
+var ObservatorioSeleccionadosLayer;
 
 /* Overlay Layers */
 var highlight = L.geoJson(null);
@@ -438,6 +439,7 @@ function renderMarkersData(data, distancia = 100) {
 }
 
 // ZOOM
+/*
 map.on('zoomend', function () {
     if (map.getZoom() == 6) // && map.hasLayer(NodosLayer))
     {
@@ -470,7 +472,7 @@ map.on('zoomend', function () {
         map.hasLayer(positronLabels) === false && map.addLayer(positronLabels);
     }
 });
-
+*/
 /* ------------------- CONTROLES ------------------*/
 var legend = L.control({
     position: 'topright'
@@ -497,23 +499,83 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
-$('#mapFull').click(function(){
+$('#mapFull').click(function () {
     map.setView(new L.LatLng(4.5, -73.0), 6);
+
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
+    map.addLayer(positron);
+    map.addLayer(positronLabels);
+
+    map.addLayer(NodosLayer);
+
+    map.addLayer(NodosSur);
+    map.addLayer(NodosCentro);
+    map.addLayer(NodosCaribe);
 });
 
-var $table = $('#table');
-    $(function () {
-        $('#modalTable').on('shown.bs.modal', function () {
-            $table.bootstrapTable('resetView');
-        });
+var $table = $('#table'),
+    $button = $('#btnMapearSeleccionador');
+
+$(function () {
+    $('#modalTable').on('shown.bs.modal', function () {
+        $table.bootstrapTable('resetView');
     });
-  
+});
+
 function romperFilas(value, row, index) {
-	
-	return value = value.replace(/;/g, '<br>');
+
+    return value = value.replace(/;/g, '<br>');
 
 }
-      
+
+$(function () {
+    $button.click(function () {
+
+        var seleccionados = $table.bootstrapTable('getSelections');
+
+        if (seleccionados.length < 1) {
+            alert('No se seleccionaron elementos');
+            return;
+        } else {
+
+            map.eachLayer(function (layer) {
+                map.removeLayer(layer);
+            });
+
+            var arraySeleccionados = [];
+            for (var i = 0; i < seleccionados.length; i++) {
+                arraySeleccionados.push(seleccionados[i].IDENTIFICADOR);
+            }
+
+            var ObservatoriosSeleccionados = [];
+
+            for (var i = 0; i < arraySeleccionados.length; i++) {
+                var tempo = JSON.parse(JSON.stringify(Observatorios));
+
+                tempo.features = tempo.features.filter(function (a) {
+                    return a.properties.IDENTIFICADOR == arraySeleccionados[i];
+                });
+                ObservatoriosSeleccionados.push(tempo);
+            }
+
+            map.addLayer(positron);
+            map.addLayer(positronLabels);
+
+            map.addLayer(NodosLayer);
+
+            ObservatorioSeleccionadosLayer = renderMarkersData(ObservatoriosSeleccionados, 0.01);
+            map.addLayer(ObservatorioSeleccionadosLayer);
+
+            map.fitBounds(ObservatorioSeleccionadosLayer.getBounds());
+
+        }
+
+    });
+});
+
 /*
 var control = L.control.zoomBox({
     modal: true
@@ -540,4 +602,3 @@ info.update = function (props) {
 info.addTo(map);
 
 $('[data-toggle="tooltip"]').tooltip();
-
