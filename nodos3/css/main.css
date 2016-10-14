@@ -7,7 +7,6 @@ body,
     margin: 0;
 }
 
-
 /*
     MAPA
 */
@@ -15,7 +14,6 @@ body,
 #map {
     width: auto;
     height: 100vh;
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
 }
 
 .leaflet-tooltip {
@@ -83,6 +81,13 @@ div.logo {
     border:1px solid black;
     border-radius: 25px;
     cursor: w-resize;
+}
+
+#btnBusqueda {
+	position: absolute;
+	bottom: 160px;
+	left: 60px;
+	z-index: 999;
 }
 
 #infobox {

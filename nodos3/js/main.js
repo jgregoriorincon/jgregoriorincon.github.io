@@ -501,6 +501,13 @@ $('#mapFull').click(function(){
     map.setView(new L.LatLng(4.5, -73.0), 6);
 });
 
+var $table = $('#table');
+    $(function () {
+        $('#modalTable').on('shown.bs.modal', function () {
+            $table.bootstrapTable('resetView');
+        });
+    });
+    
 /*
 var control = L.control.zoomBox({
     modal: true
@@ -527,3 +534,4 @@ info.update = function (props) {
 info.addTo(map);
 
 $('[data-toggle="tooltip"]').tooltip();
+
