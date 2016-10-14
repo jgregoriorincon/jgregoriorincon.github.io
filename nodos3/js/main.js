@@ -525,3 +525,5 @@ info.update = function (props) {
 };
 
 info.addTo(map);
+
+$('[data-toggle="tooltip"]').tooltip();
