@@ -507,7 +507,13 @@ var $table = $('#table');
             $table.bootstrapTable('resetView');
         });
     });
-    
+  
+function romperFilas(value, row, index) {
+	
+	return value = value.replace(/;/g, '<br>');
+
+}
+      
 /*
 var control = L.control.zoomBox({
     modal: true

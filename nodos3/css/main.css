@@ -23,11 +23,11 @@ body,
 
 body .modal-dialog {
     /* new custom width */
-    width: 600px;
+    width: 80%;
     /* must be half of the width, minus scrollbar on the left (30px) */
     /*margin-left: -375px;*/
 }
-
+/*
 .nav-tabs li.active{
     width: 15%;
 }
@@ -43,7 +43,7 @@ body .modal-dialog {
 .nav-tabs li.tab5{
     width: 15%;
 }
-
+*/
 .nav>li>a {
     padding: 10px 3px;
 }
