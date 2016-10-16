@@ -24,7 +24,7 @@ body,
 
 body .modal-dialog {
     /* new custom width */
-    width: 80%;
+    width: 60%;
     /* must be half of the width, minus scrollbar on the left (30px) */
     /*margin-left: -375px;*/
 }
@@ -76,6 +76,32 @@ body .modal-dialog {
     EXTENT
 */
 
+.image {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 130px;
+    height: 130px;
+    z-index: 999;
+    /*text-indent: -9999px;*/
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: w-resize;
+}
+
+.mapfull{
+    border-radius: 15px;
+}
+
+h5 {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+
+/*
 div.logo {
     content: url("images/003.png");
     position: absolute;
@@ -89,11 +115,12 @@ div.logo {
     border-radius: 25px;
     cursor: w-resize;
 }
+*/
 
 #btnBusqueda {
     position: absolute;
     bottom: 160px;
-    left: 60px;
+    right: 60px;
     z-index: 999;
 }
 
