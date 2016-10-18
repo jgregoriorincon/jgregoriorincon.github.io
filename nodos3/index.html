@@ -4,50 +4,60 @@
 <head>
     <title>observaDHores</title>
     <meta charset="utf-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.css" />
-
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/ZoomBox.css" />
     <link rel="stylesheet" href="css/MarkerCluster.css" />
     <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-
-    <link rel="stylesheet" href="css/main.css" />
-</head>
+    <link rel="stylesheet" href="css/main.css" /> </head>
 
 <body>
     <div class="container col-md-12 no-padding">
         <div class="sidebar col-md-3">
             <h2 class="title">observaDHores</h2>
             <div>
-                <h4 class='col-md-6'>Observatorios (<span id="total_places">0</span>)</h4>
-            </div>
-            <div>
+                <h4 class='col-md-6'>Observatorios (<span id="total_places">0</span>)</h4> </div>
+            <!--<div>
                 <label class="sr-only" for="searchbox">Buscar</label>
-                <input type="text" class="form-control" id="searchbox" placeholder="Buscar por palabra clave &hellip;">
-                <span class="glyphicon glyphicon-search search-icon"></span>
-            </div>
-            <br/>
+                <input type="text" class="form-control" id="searchbox" placeholder="Buscar por palabra clave &hellip;"> <span class="glyphicon glyphicon-search search-icon"></span> </div>
+            
             <div class="well">
                 <fieldset>
                     <legend>Tematicas</legend>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="All" id="all_categories" checked>
-                            <span>Todas</span>
-                        </label>
+                            <input type="checkbox" value="All" id="all_categories" checked> <span>Todas</span> </label>
                     </div>
                     <div id="categories_criteria"></div>
                 </fieldset>
+            </div>-->
+            <br/>
+            <div class="well">
+                <select class="selecciones" id="selDepartamento"></select>
+            </div>
+            <br />
+            <div class="well">
+                <select class="selecciones" id="selMunicipio"></select>
+            </div>
+            <br />
+            <div class="well">
+                <select class="selecciones" id="selSector"></select>
+            </div>
+            <br />
+            <div class="well">
+                <select class="selecciones" id="selTematica"></select>
+            </div>
+            <br />
+            <div class="well">
+                <select class="selecciones" id="selTerritorial"></select>
             </div>
         </div>
+        <br />
         <div class="col-md-8">
             <div id="map">
                 <button id="btnBusqueda" type="button" class="fa fa-search fa-3x" data-toggle="modal" data-target="#modalTable"> </button>
@@ -55,12 +65,8 @@
             </div>
         </div>
     </div>
-
-
     <!--    <div class="container">-->
     <!-- Button trigger modal -->
-
-
     <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,20 +76,17 @@
                             <tr>
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="IDENTIFICADOR" data-visible="false">ID</th>
-
                                 <th data-field="OBSERVATORIO" data-sortable="true" data-switchable="false">Observatorio</th>
                                 <th data-field="NODO" data-sortable="true" data-switchable="false">Nodo</th>
                                 <th data-field="DEPARTAMENTO" data-sortable="true" data-switchable="false">Departamento</th>
                                 <th data-field="MUNICIPIO" data-sortable="true" data-switchable="false">Municipio</th>
                                 <th data-field="SECTOR" data-sortable="true" data-switchable="false">Tipo Observatorio</th>
                                 <th data-field="FECHA_INICIO" data-visible="false" data-sortable="false" data-switchable="true">Fecha de Creación</th>
-
                                 <th data-field="TEMATICA" data-visible="false" data-sortable="false" data-switchable="true" data-formatter="romperFilas">Temáticas</th>
                                 <th data-field="NIVEL_TERRITORIAL" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true">Territorio</th>
                                 <th data-field="PUBLICO" data-formatter="romperFilas" data-visible="false" data-sortable="false" data-switchable="true">Público</th>
                                 <th data-field="CORREO" data-visible="false" data-sortable="false" data-formatter="romperFilas" data-switchable="true">Correo Electrónico</th>
                                 <th data-field="TELEFONO" data-visible="false" data-sortable="false" data-formatter="romperFilas" data-switchable="true">Teléfono</th>
-
                             </tr>
                         </thead>
                     </table>
@@ -99,15 +102,13 @@
     </div>
     <!-- /.modal -->
     <!--    </div>-->
-
     <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title text-primary" id="logoObservatorio"></h4>
-                    <h4 class="modal-title text-primary" id="feature-title"></h4>
-                </div>
+                    <h4 class="modal-title text-primary" id="feature-title"></h4> </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs nav-justified" id="aboutTabs">
                         <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Información Básica</a></li>
@@ -134,33 +135,26 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-es-ES.min.js"></script>
-
     <script src="js/leaflet.js"></script>
     <script src="js/leaflet.markercluster.js"></script>
     <script src="js/ZoomBox.js"></script>
     <script src="js/leyenda.js"></script>
     <script src="js/basemaps.js"></script>
-
     <!-- DATOS -->
     <script src="data/Nodos.json"></script>
     <script src="data/Dptos.json"></script>
     <script src="data/Mpios.json"></script>
-
     <script src="data/NodoCaribe.json"></script>
     <script src="data/NodoCentro.json"></script>
     <script src="data/NodoSur.json"></script>
-
     <script src="data/Observatorios.json"></script>
     <script src="data/ObservatoriosData.json"></script>
     <script src="js/filtros.js"></script>
-
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
