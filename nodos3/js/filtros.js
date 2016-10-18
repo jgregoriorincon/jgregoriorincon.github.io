@@ -1,3 +1,5 @@
+Observatorios = GeoJSON.parse(Observatorios, {Point: ['LAT', 'LONG']});
+
 // OBSERVATORIOS SUR //
 var NodoSurPutumayo = JSON.parse(JSON.stringify(Observatorios));
 NodoSurPutumayo.features = NodoSurPutumayo.features.filter(function (a) {

@@ -35,11 +35,11 @@ var Sector = [
 
 var Departamentos = [
   "ATLANTICO",
-  "BOGOTA D.C",
+  "BOGOTÁ D.C.",
   "BOLÍVAR",
-  "BOYACA",
+  "BOYACÁ",
   "CAUCA",
-  "HUILA",
+  "CUNDINAMARCA",
   "MAGDALENA",
   "META",
   "NARIÑO",
@@ -49,3 +49,19 @@ var Departamentos = [
   "SUCRE",
   "VALLE DEL CAUCA"
 ];
+
+var Municipios = {
+    'ATLANTICO': ['BARRANQUILLA'],
+    'BOGOTÁ D.C.': ['BOGOTA'],
+    'BOLÍVAR': ['CARTAGENA', 'EL CARMEN DE BOLIVAR', 'SAN PABLO'],
+    'BOYACÁ': ['TUNJA'],
+    'CAUCA': ['GUAPI', 'POPAYAN'],
+    'MAGDALENA': ['SANTA MARTA'],
+    'META': ['VILLAVICENCIO'],
+    'NARIÑO': ['PASTO'],
+    'NORTE DE SANTANDER': ['CUCUTA', 'OCAÑA', 'VILLA DEL ROSARIO'],
+    'PUTUMAYO': ['MOCOA'],
+    'SANTANDER': ['BARRANCABERMEJA', 'BUCARAMANGA', 'FLORIDABLANCA'],
+    'SUCRE': ['SINCELEJO'],
+    'VALLE DEL CAUCA': ['CALI']
+}

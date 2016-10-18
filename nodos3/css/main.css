@@ -13,6 +13,10 @@ body,
     margin: 0;
 }
 
+body .well {
+    padding: 10px;
+    margin: 0px;
+}
 
 /*
     MAPA
