@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>observaDHores</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link href="assets/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="assets/css/jquery-ui-1.10.2.custom.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="assets/css/stream.css" media="screen" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="assets/css/leaflet.css" />
+    <link rel="stylesheet" href="assets/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="assets/css/MarkerCluster.Default.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script src="assets/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+    <script src="assets/js/filter.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/leaflet.js"></script>
+    <script type="text/javascript" src="assets/js/leaflet.markercluster.js"></script>
+    
+    <!-- DATOS -->
+    <script type="text/javascript" src="data/Nodos.js"></script>
+    <script type="text/javascript" src="data/Dptos.js"></script>
+    <script type="text/javascript" src="data/Mpios.js"></script>
+    <script type="text/javascript" src="data/listados.js"></script>
+    <script type="text/javascript" src="data/Observatorios.js"></script>
+    
+    <script src="js/leyenda.js"></script>
+    <script src="js/basemaps.js"></script>
+    <script src="js/filtros.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+      <div class="sidebar col-md-3">
+        <h1 class="title">observaDHores</h1>
+        <div>
+          <h4 class='col-md-6'>Observatorios (<span id="total_places">0</span>)</h4>
+        </div>
+        <div>
+          <label class="sr-only" for="searchbox">Buscar</label>
+          <input type="text" class="form-control" id="searchbox" placeholder="Buscar por palabra clave &hellip;">
+          <span class="glyphicon glyphicon-search search-icon"></span>
+        </div>
+        </br>
+        <div class="well">
+          <fieldset>
+            <legend>Tematicas</legend>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="All" id="all_categories" checked>
+                <span>Todas</span>
+              </label>
+            </div>
+            <div id="categories_criteria"></div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div id="map" class="map no-padding"></div>
+        <div class="places content row" id="places"> </div>
+      </div>
+    </div>
+
+    <script id="place-template" type="text/html">
+      <div class="col-md-4 movie">
+        <div class="thumbnail">
+          <span class="label label-success rating"><%= IDENTIFICADOR %>
+            <i class="glyphicon glyphicon-star"></i>
+          </span>
+          <div class="caption">
+            <h4><%= OBSERVATORIO %></h4>
+            <div class="outline">
+              <%= DEPARTAMENTO %>
+            </div>
+            <div class="detail">
+              <dl>
+                <dt>Categories</dt>
+                <dd><%= Tematicas.join(', ') %></dd>
+                <% if(TELEFONO){ %>
+                  <dt>Phone</dt>
+                  <dd><%= TELEFONO %></dt>
+                  <% } %>
+                <dt>Address</dt>
+                <dd><%= DIRECCION %></dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="category-template" type="text/html">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="<%= value %>">
+          <span><%= name %></span>
+        </label>
+      </div>
+    </script>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 html,
 body,
 #container {
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     overflow: hidden;
     height: 100vh;
@@ -24,29 +25,15 @@ body,
 
 body .modal-dialog {
     /* new custom width */
-    width: 60%;
+    width: 600px;
     /* must be half of the width, minus scrollbar on the left (30px) */
     /*margin-left: -375px;*/
 }
 
 
-/*
-.nav-tabs li.active{
-    width: 15%;
+.disabled{
+    pointer-events: none;
 }
-.nav-tabs li.tab2{
-    width: 15%;
-}
-.nav-tabs li.tab3{
-    width: 15%;
-}
-.nav-tabs li.tab4{
-    width: 15%;
-}
-.nav-tabs li.tab5{
-    width: 15%;
-}
-*/
 
 .nav>li>a {
     padding: 10px 3px;

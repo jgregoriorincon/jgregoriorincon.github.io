@@ -1,0 +1,41 @@
+<div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por palabra...">
+                <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+            </div>
+            <!-- /input-group -->
+
+            <!-- /.col-lg-6 -->
+
+            <br />
+            <div><select class="selecciones" id="selDepartamento"></select></div>
+            <br />
+            <div><select class="selecciones" id="selMunicipio"></select></div>
+            <br />
+            <div><select class="selecciones" id="selSector"></select></div>
+            <br />
+            <div><select class="selecciones" id="selTematica"></select></div>
+            <br />
+            <div><select class="selecciones" id="selTerritorial"></select></div>
+            <br />
+            <div id="resultados">
+                <center> XXX resultados <i class="fa fa-times" aria-hidden="true"></i></center>
+            </div>
+            <br />
+            <div class="col-lg-6">
+                <button class="btn btn-default" type="button" id="verTabla"><i class="fa fa-table" aria-hidden="true"></i> Tabla</button>
+                <button class="btn btn-default" type="button" id="verMapa"><i class="fa fa-globe" aria-hidden="true"></i> Mapear</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="map">
+        <span style="font-size:30px;cursor:pointer;padding-left:10 px;" onclick="openNav()">Buscar</span></div>
+    </div>

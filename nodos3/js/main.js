@@ -419,13 +419,46 @@ function renderMarkersData(data, distancia = 100) {
                         $("#logoObservatorio").html(logo);
 
                         $("#feature-info").html(infobasica);
-                        $("#tematicas").html(tematicas);
-                        $("#territorial").html(territorial);
-                        $("#tipoinformacion").html(tipoinformacion);
-                        $("#productos").html(productos);
 
+                        $("#tematicas").html(tematicas);
+                        tematicas == '' || tematicas == '<br>' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
+
+                        $('#tematicasTab').click(function (event) {
+                            if ($(this).hasClass('disabled')) {
+                                return false;
+                            }
+                        });
+
+                        $("#territorial").html(territorial);
+                        territorial == '' || territorial == '<br>' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
+
+                        $('#territorialTab').click(function (event) {
+                            if ($(this).hasClass('disabled')) {
+                                return false;
+                            }
+                        });
+
+                        $("#tipoinformacion").html(tipoinformacion);
+                        tipoinformacion == '' || tipoinformacion == '<br>' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
+
+                        $('#tipoinformacionTab').click(function (event) {
+                            if ($(this).hasClass('disabled')) {
+                                return false;
+                            }
+                        });
+
+                        $("#productos").html(productos);
+                        productos == '' || productos == '<br>' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
+
+                        $('#productosTab').click(function (event) {
+                            if ($(this).hasClass('disabled')) {
+                                return false;
+                            }
+                        });
+
+                        //$('#feature-info').tab('show');
+                        $('.nav-tabs a[href="#feature-info"]').tab('show');
                         $("#featureModal").modal("show");
-                        /*highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));*/
                     }
                 });
             }

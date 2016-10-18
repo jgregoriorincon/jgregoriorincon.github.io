@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>observaDHores</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link href="assets/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="assets/css/jquery-ui-1.10.2.custom.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="assets/css/stream.css" media="screen" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="assets/css/leaflet.css" />
+    <link rel="stylesheet" href="assets/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="assets/css/MarkerCluster.Default.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/filter.js"></script>
+    <script type="text/javascript" src="assets/js/leaflet.js"></script>
+    <script type="text/javascript" src="assets/js/leaflet.markercluster.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+
+    <!-- DATOS -->
+    <script type="text/javascript" src="data/Nodos.js"></script>
+    <script type="text/javascript" src="data/Dptos.js"></script>
+    <script type="text/javascript" src="data/Mpios.js"></script>
+    <script type="text/javascript" src="data/listados.js"></script>
+    <script type="text/javascript" src="data/ObservatoriosData.js"></script>
+
+    <script>
+        var products = [
+   {
+      "id":1,
+      "title":"Item 1",
+      "description":"Description1",
+      "category":"internal",
+      "area":"north"
+   },
+   {
+      "id":2,
+      "title":"Item 2",
+      "description":"Description2",
+      "category":"internal",
+      "area":"north"
+   },
+   {
+      "id":3,
+      "title":"Item 3",
+      "description":"Description3",
+      "category":"external",
+      "area":"south"
+   },
+   {
+      "id":4,
+      "title":"Item 4",
+      "description":"description4",
+      "category":"external",
+      "area":"south"
+   }
+];
+
+var ProductFilter = function(data){
+    
+    var template = $.trim($("#template").html());
+    Mustache.parse(template);
+
+    var view = function(product){
+        return Mustache.render(template, {product: product});
+    };
+/*
+    var template = Mustache.compile($.trim($("#template").html()));
+    Mustache.parse(template);
+
+    var view = function(product){
+      return template(product);
+    };
+    */
+    var withAllFilter = function(ele_value, val){
+        console.log(ele_value);
+         return (ele_value == "" || ele_value == val) ? true : false;  
+    };
+    
+    options = {
+      filter_criteria: {
+        //category:  ['#category_filter .TYPE.with_all', 'category'],
+        area:  ['#area_filter ', 'area']
+      },
+      and_filter_on: false,
+      filter_on_init: false,
+      search: {input: '#searchbox'}//,
+      //filter_types: { with_all: withAllFilter }  
+    }
+    
+    return FilterJS(data, "#results", view, options);
+    
+  }
+
+$(document).ready(function($) {
+    var pf = ProductFilter(products);
+});
+
+    </script>
+</head>
+
+<body>
+    <select id="category_filter">
+    <option value="">Category</option>
+    <option value="internal">Internal</option>
+    <option value="external">External</option>
+</select>
+    <select id="area_filter">
+    <option value="">Area</option>
+    <option value="north">North</option>
+    <option value="south">South</option>
+</select>
+    <input type="text" id="searchbox" />
+    <ul id="results"></ul>
+    <script id="template" type="text/html">
+<li>
+  <p>{{title}}</p>
+  <p>{{description}}</p>
+  <p>{{category}}: {{area}}</p>
+</li>
+</script>
+
+</body>
+
+</html>
