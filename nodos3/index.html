@@ -23,12 +23,43 @@
 </head>
 
 <body>
-    <div id="map"> </div>
-    <div id="mapFull" class="logo" data-toggle="tooltip" data-placement="right" title="De clic para regresar al mapa principal"></div>
+    <div class="container col-md-12 no-padding">
+        <div class="sidebar col-md-3">
+            <h2 class="title">observaDHores</h2>
+            <div>
+                <h4 class='col-md-6'>Observatorios (<span id="total_places">0</span>)</h4>
+            </div>
+            <div>
+                <label class="sr-only" for="searchbox">Buscar</label>
+                <input type="text" class="form-control" id="searchbox" placeholder="Buscar por palabra clave &hellip;">
+                <span class="glyphicon glyphicon-search search-icon"></span>
+            </div>
+            <br/>
+            <div class="well">
+                <fieldset>
+                    <legend>Tematicas</legend>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="All" id="all_categories" checked>
+                            <span>Todas</span>
+                        </label>
+                    </div>
+                    <div id="categories_criteria"></div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="map">
+                <button id="btnBusqueda" type="button" class="fa fa-search fa-3x" data-toggle="modal" data-target="#modalTable"> </button>
+                <div id="mapFull" class="logo" data-toggle="tooltip" data-placement="right" title="De clic para regresar al mapa principal"></div>
+            </div>
+        </div>
+    </div>
+
 
     <!--    <div class="container">-->
     <!-- Button trigger modal -->
-    <button id="btnBusqueda" type="button" class="fa fa-search fa-3x" data-toggle="modal" data-target="#modalTable"> </button>
+
 
     <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

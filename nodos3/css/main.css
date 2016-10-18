@@ -1,3 +1,8 @@
+.no-padding {
+    padding: 0;
+    margin: 0;
+}
+
 html,
 body,
 #container {
@@ -30,8 +35,7 @@ body .modal-dialog {
     /*margin-left: -375px;*/
 }
 
-
-.disabled{
+.disabled {
     pointer-events: none;
 }
 
@@ -76,7 +80,7 @@ body .modal-dialog {
     cursor: w-resize;
 }
 
-.mapfull{
+.mapfull {
     border-radius: 15px;
 }
 
