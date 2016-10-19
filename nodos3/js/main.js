@@ -345,7 +345,7 @@ function renderMarkersData(data, distancia = 100) {
         onEachFeature: function (feature, layer) {
             if (feature.properties) {
                 
-                var Telefono = feature.properties.TEMATICA;                
+                var Telefono = feature.properties.TELEFONO;                
                 var TelefonoStr = '';
                 if (Telefono.length > 0) {
                     Telefono.forEach(function(entry) {
