@@ -461,8 +461,6 @@ $(function () {
     loadTerritorial();
     loadDepartamentos();
 
-    filtroData = JSON.parse(JSON.stringify(Observatorios));
-
     $button.click(function () {
         var seleccionados = $table.bootstrapTable('getSelections');
         if (seleccionados.length < 1) {
@@ -619,10 +617,9 @@ function filtrarTodo() {
             filtroLayer = renderMarkersData(filtroData, 15);
             map.addLayer(filtroLayer);
             map.fitBounds(filtroLayer.getBounds());
-
-
-            $("#total_places").text(filtroData.features.length);
         }
+
+        $("#total_places").text(filtroData.features.length);
     }
 
 }
