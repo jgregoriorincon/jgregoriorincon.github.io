@@ -580,6 +580,7 @@ function filtrarDepartamento(){
                 return '<option value="' + Mpio + '">' + Mpio + '</option>'
             }).join('');
             $("#selMunicipio").html(html);
+            $("#total_places").text(filtroData.features.length);
         }
     }
 }
@@ -605,6 +606,7 @@ function filtrarMunicipio(){
 
         map.addLayer(filtroLayer);
         map.fitBounds(filtroLayer.getBounds());
+        $("#total_places").text(filtroData.features.length);
         }
     }
 }
@@ -630,6 +632,7 @@ function filtrarSector(){
 
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
+        $("#total_places").text(filtroData.features.length);
     }
     }
 }
@@ -663,6 +666,7 @@ function filtrarTematica(){
 
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
+        $("#total_places").text(filtroData.features.length);
     }
     }
 }
@@ -696,6 +700,7 @@ function filtrarTerritorial(){
 
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
+        $("#total_places").text(filtroData.features.length);
     }
     }
 }
@@ -720,4 +725,6 @@ function limpiarSeleccion(){
     document.getElementById('selTerritorial').value = 'all';
 
     filtroData = JSON.parse(JSON.stringify(Observatorios));
+    $("#total_places").text(0);
+
 }
