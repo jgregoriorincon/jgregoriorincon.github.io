@@ -1,4 +1,4 @@
-.no-padding {
+body .no-padding {
     padding: 0;
     margin: 0;
 }
@@ -47,6 +47,9 @@ body .modal-dialog {
     padding: 10px 3px;
 }
 
+body legend {
+    font-size: 13px;
+}
 
 /*
     INFORMACION
@@ -118,7 +121,7 @@ div.logo {
     right: 60px;
     z-index: 999;
 }
-
+/*
 #infobox {
     padding: 10px;
     position: absolute;
@@ -144,7 +147,7 @@ div.logo {
     z-index: 600;
 }
 
-
+*/
 /*
     TIPOS DE LEYENDAS
 */

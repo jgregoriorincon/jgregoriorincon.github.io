@@ -23,7 +23,7 @@ var map = L.map('map', {
     maxZoom: 18
     , minZoom: 5
     , zoomControl: false
-    , scrollWheelZoom: false
+    //, scrollWheelZoom: false
 });
 map.setView([4.5, -73.0], 6);
 map.createPane('labels');
@@ -301,9 +301,27 @@ function zoomToFeatureMpios(e) {
 }
 NodosLayer.addData(Nodos);
 NodosLayer.addTo(map);
+
+/// OJO
+NodoSur = JSON.parse(JSON.stringify(Observatorios));
+NodoSur.features = NodoSur.features.filter(function (a) {
+        return a.properties.NODO == 'Sur';
+    });
 NodosSur = renderMarkersBase(NodoSur);
+//NodosSur = renderMarkersData(NodoSur, 0.01);
+
+NodoCentro = JSON.parse(JSON.stringify(Observatorios));
+NodoCentro.features = NodoCentro.features.filter(function (a) {
+        return a.properties.NODO == 'Centro';
+    });
 NodosCentro = renderMarkersBase(NodoCentro);
+
+NodoCaribe = JSON.parse(JSON.stringify(Observatorios));
+NodoCaribe.features = NodoCaribe.features.filter(function (a) {
+        return a.properties.NODO == 'Caribe';
+    });
 NodosCaribe = renderMarkersBase(NodoCaribe);
+
 map.addLayer(NodosSur);
 map.addLayer(NodosCentro);
 map.addLayer(NodosCaribe);
@@ -332,23 +350,23 @@ function renderMarkersData(data, distancia = 100) {
                 var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
                 var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<table>";
                 infobasica = infobasica.replace(/;/g, '<br>');
-                
-                var tematicas = feature.properties.TEMATICA;                
+
+                var tematicas = feature.properties.TEMATICA;
                 var tematicasStr = '';
                 if (tematicas.length > 0) {
                 tematicas.forEach(function(entry) {
                     tematicasStr += entry + '<br />';
                 });
                 }
-                
-                var territorial = feature.properties.NIVEL_TERRITORIAL;                
+
+                var territorial = feature.properties.NIVEL_TERRITORIAL;
                 var territorialStr = '';
                 if (territorial.length > 0) {
                 territorial.forEach(function(entry) {
                     territorialStr += entry + '<br />';
                 });
                 }
-                
+
                 var tipoinformacion = feature.properties.TIPO_INFORMACION;
                 var tipoinformacionStr = '';
                 if (tipoinformacion.length > 0) {
@@ -356,10 +374,10 @@ function renderMarkersData(data, distancia = 100) {
                     tipoinformacionStr += entry + '<br />';
                 });
                 }
-                
+
                 var productos = feature.properties.PRODUCTOS;
                 var productosStr = productos;
-                
+
                 layer.on({
                     click: function (e) {
                         $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
@@ -444,9 +462,9 @@ $(function () {
     loadSector();
     loadTerritorial();
     loadDepartamentos();
-    
+
     filtroData = JSON.parse(JSON.stringify(Observatorios));
-    
+
     $button.click(function () {
         var seleccionados = $table.bootstrapTable('getSelections');
         if (seleccionados.length < 1) {
@@ -487,13 +505,14 @@ map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pare
 // control that shows state info on hover
 var info = L.control();
 info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info');
+    this._div = L.DomUtil.create('div', 'info popup');
     this.update();
     return this._div;
 };
 info.update = function (props) {
     this._div.innerHTML = (props ? props.TOTAL ? '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : 'Pase el cursor sobre un elemento');
 };
+
 info.addTo(map);
 $('[data-toggle="tooltip"]').tooltip();
 
@@ -533,8 +552,8 @@ function loadTerritorial() {
     $("#selTerritorial").html(lista);
 }
 
-function filtrarDepartamento(){    
-    
+function filtrarDepartamento(){
+
   var myselect = document.getElementById("selDepartamento");
   var DPTO = myselect.options[myselect.selectedIndex].value;
 
@@ -544,18 +563,18 @@ function filtrarDepartamento(){
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
     map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
     map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-    
+
     filtroData.features = filtroData.features.filter(function (a) {
         return a.properties.DEPARTAMENTO == DPTO;
     });
-    
+
         if (filtroData.features.length > 0) {
             filtroLayer = renderMarkersData(filtroData, 15);
             map.addLayer(filtroLayer);
             map.fitBounds(filtroLayer.getBounds());
-            
+
             var Mpios = Municipios[DPTO] || [];
-            
+
             var lista = "<option value='all'>Todos</option>";
             var html = lista + $.map(Mpios, function(Mpio){
                 return '<option value="' + Mpio + '">' + Mpio + '</option>'
@@ -565,24 +584,24 @@ function filtrarDepartamento(){
     }
 }
 
-function filtrarMunicipio(){    
-    
+function filtrarMunicipio(){
+
   var myselect = document.getElementById("selMunicipio");
   var Mpio = myselect.options[myselect.selectedIndex].value;
-    
+
     if (Sector != 'all') {
     //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
     map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
     map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
     map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-    
+
     filtroData.features = filtroData.features.filter(function (a) {
         return a.properties.MUNICIPIO == Mpio;
     });
-    
+
     if (filtroData.features.length > 0) {
-        filtroLayer = renderMarkersData(filtroData, 15);    
+        filtroLayer = renderMarkersData(filtroData, 15);
 
         map.addLayer(filtroLayer);
         map.fitBounds(filtroLayer.getBounds());
@@ -590,43 +609,43 @@ function filtrarMunicipio(){
     }
 }
 
-function filtrarSector(){    
-    
+function filtrarSector(){
+
   var myselect = document.getElementById("selSector");
   var Sector = myselect.options[myselect.selectedIndex].value;
-    
+
     if (Sector != 'all') {
     //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
     map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
     map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
     map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-    
+
     filtroData.features = filtroData.features.filter(function (a) {
         return a.properties.SECTOR == Sector;
     });
-    
+
     if (filtroData.features.length > 0) {
-    filtroLayer = renderMarkersData(filtroData, 15);    
-    
+    filtroLayer = renderMarkersData(filtroData, 15);
+
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
     }
     }
 }
 
-function filtrarTematica(){    
-    
+function filtrarTematica(){
+
   var myselect = document.getElementById("selTematica");
   var Tematica = myselect.options[myselect.selectedIndex].value;
-    
+
     if (Tematica != 'all') {
     //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
     map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
     map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
     map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-    
+
     filtroData.features = filtroData.features.filter(function (a) {
         if (a.properties.TEMATICA.length > 0) {
             for (i = 0; i < a.properties.TEMATICA.length; i++){
@@ -638,28 +657,28 @@ function filtrarTematica(){
         }
         return false;
     });
-    
+
     if (filtroData.features.length > 0) {
-    filtroLayer = renderMarkersData(filtroData, 15);    
-    
+    filtroLayer = renderMarkersData(filtroData, 15);
+
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
     }
     }
 }
 
-function filtrarTerritorial(){    
-    
+function filtrarTerritorial(){
+
   var myselect = document.getElementById("selTerritorial");
   var Territorial = myselect.options[myselect.selectedIndex].value;
-    
+
     if (Territorial != 'all') {
     //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
     map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
     map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
     map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
     map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-    
+
     filtroData.features = filtroData.features.filter(function (a) {
         if (a.properties.NIVEL_TERRITORIAL.length > 0) {
             for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++){
@@ -671,18 +690,18 @@ function filtrarTerritorial(){
         }
         return false;
     });
-    
+
     if (filtroData.features.length > 0) {
-    filtroLayer = renderMarkersData(filtroData, 15);    
-    
+    filtroLayer = renderMarkersData(filtroData, 15);
+
     map.addLayer(filtroLayer);
     map.fitBounds(filtroLayer.getBounds());
     }
     }
 }
 
-function limpiarSeleccion(){    
-    
+function limpiarSeleccion(){
+
     map.setView(new L.LatLng(4.5, -73.0), 6);
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
@@ -692,13 +711,13 @@ function limpiarSeleccion(){
     map.addLayer(NodosLayer);
     map.addLayer(NodosSur);
     map.addLayer(NodosCentro);
-    map.addLayer(NodosCaribe);   
-    
+    map.addLayer(NodosCaribe);
+
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
     document.getElementById('selSector').value = 'all';
     document.getElementById('selTematica').value = 'all';
     document.getElementById('selTerritorial').value = 'all';
-    
+
     filtroData = JSON.parse(JSON.stringify(Observatorios));
 }
