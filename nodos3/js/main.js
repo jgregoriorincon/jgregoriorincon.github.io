@@ -549,155 +549,132 @@ function loadTerritorial() {
     $("#selTerritorial").html(lista);
 }
 
+function filtrarTodo() {
+
+    var DPTO = document.getElementById('selDepartamento').value;
+    var Mpio = document.getElementById('selMunicipio').value;
+    var Sector = document.getElementById('selSector').value;
+    var Tematica = document.getElementById('selTematica').value;
+    var Territorial = document.getElementById('selTerritorial').value;
+
+    if ((DPTO != 'all') || (Mpio != 'all') || (Sector != 'all') || (Tematica != 'all') || (Territorial != 'all')) {
+
+        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
+        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
+        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
+        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
+        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
+
+        filtroData = JSON.parse(JSON.stringify(Observatorios));
+
+        if (DPTO != 'all') {
+            filtroData.features = filtroData.features.filter(function (a) {
+                return a.properties.DEPARTAMENTO == DPTO;
+            });
+        }
+
+        if (Mpio != 'all') {
+
+            filtroData.features = filtroData.features.filter(function (a) {
+                return a.properties.MUNICIPIO == Mpio;
+            });
+        }
+
+        if (Sector != 'all') {
+            filtroData.features = filtroData.features.filter(function (a) {
+                return a.properties.SECTOR == Sector;
+            });
+        }
+
+        if (Tematica != 'all') {
+
+            filtroData.features = filtroData.features.filter(function (a) {
+                if (a.properties.TEMATICA.length > 0) {
+                    for (i = 0; i < a.properties.TEMATICA.length; i++) {
+                        if (a.properties.TEMATICA[i] == Tematica) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            });
+        }
+
+        if (Territorial != 'all') {
+
+            filtroData.features = filtroData.features.filter(function (a) {
+                if (a.properties.NIVEL_TERRITORIAL.length > 0) {
+                    for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
+                        if (a.properties.NIVEL_TERRITORIAL[i] == Territorial) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            });
+
+        }
+
+        if (filtroData.features.length > 0) {
+            filtroLayer = renderMarkersData(filtroData, 15);
+            map.addLayer(filtroLayer);
+            map.fitBounds(filtroLayer.getBounds());
+
+
+            $("#total_places").text(filtroData.features.length);
+        }
+    }
+
+}
+
 function filtrarDepartamento() {
 
     var myselect = document.getElementById("selDepartamento");
     var DPTO = myselect.options[myselect.selectedIndex].value;
 
     if (DPTO != 'all') {
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
 
-        filtroData.features = filtroData.features.filter(function (a) {
-            return a.properties.DEPARTAMENTO == DPTO;
-        });
+        var Mpios = Municipios[DPTO] || [];
 
-        if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
-            map.addLayer(filtroLayer);
-            map.fitBounds(filtroLayer.getBounds());
+        var lista = "<option value='all'>Todos</option>";
+        var html = lista + $.map(Mpios, function (Mpio) {
+            return '<option value="' + Mpio + '">' + Mpio + '</option>'
+        }).join('');
+        $("#selMunicipio").html(html);
 
-            var Mpios = Municipios[DPTO] || [];
+        filtrarTodo();
 
-            var lista = "<option value='all'>Todos</option>";
-            var html = lista + $.map(Mpios, function (Mpio) {
-                return '<option value="' + Mpio + '">' + Mpio + '</option>'
-            }).join('');
-            $("#selMunicipio").html(html);
-            $("#total_places").text(filtroData.features.length);
+    } else {
+        if (document.getElementById('selMunicipio').options.length > 1) {
+            for (var i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
+                document.getElementById('selMunicipio').remove(i);
+            }
         }
     }
+
 }
 
 function filtrarMunicipio() {
 
-    var myselect = document.getElementById("selMunicipio");
-    var Mpio = myselect.options[myselect.selectedIndex].value;
-
-    if (Sector != 'all') {
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-
-        filtroData.features = filtroData.features.filter(function (a) {
-            return a.properties.MUNICIPIO == Mpio;
-        });
-
-        if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
-
-            map.addLayer(filtroLayer);
-            map.fitBounds(filtroLayer.getBounds());
-            $("#total_places").text(filtroData.features.length);
-        }
-    }
+    filtrarTodo();
 }
 
 function filtrarSector() {
 
-    var myselect = document.getElementById("selSector");
-    var Sector = myselect.options[myselect.selectedIndex].value;
+    filtrarTodo();
 
-    if (Sector != 'all') {
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-
-        filtroData.features = filtroData.features.filter(function (a) {
-            return a.properties.SECTOR == Sector;
-        });
-
-        if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
-
-            map.addLayer(filtroLayer);
-            map.fitBounds(filtroLayer.getBounds());
-            $("#total_places").text(filtroData.features.length);
-        }
-    }
 }
 
 function filtrarTematica() {
 
-    var myselect = document.getElementById("selTematica");
-    var Tematica = myselect.options[myselect.selectedIndex].value;
+    filtrarTodo();
 
-    if (Tematica != 'all') {
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-
-        filtroData.features = filtroData.features.filter(function (a) {
-            if (a.properties.TEMATICA.length > 0) {
-                for (i = 0; i < a.properties.TEMATICA.length; i++) {
-                    if (a.properties.TEMATICA[i] == Tematica) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        });
-
-        if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
-
-            map.addLayer(filtroLayer);
-            map.fitBounds(filtroLayer.getBounds());
-            $("#total_places").text(filtroData.features.length);
-        }
-    }
 }
 
 function filtrarTerritorial() {
 
-    var myselect = document.getElementById("selTerritorial");
-    var Territorial = myselect.options[myselect.selectedIndex].value;
+    filtrarTodo();
 
-    if (Territorial != 'all') {
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
-
-        filtroData.features = filtroData.features.filter(function (a) {
-            if (a.properties.NIVEL_TERRITORIAL.length > 0) {
-                for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
-                    if (a.properties.NIVEL_TERRITORIAL[i] == Territorial) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        });
-
-        if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
-
-            map.addLayer(filtroLayer);
-            map.fitBounds(filtroLayer.getBounds());
-            $("#total_places").text(filtroData.features.length);
-        }
-    }
 }
 
 function limpiarSeleccion() {
