@@ -39,7 +39,6 @@ var Departamentos = [
   "BOLÍVAR",
   "BOYACÁ",
   "CAUCA",
-  "CUNDINAMARCA",
   "MAGDALENA",
   "META",
   "NARIÑO",
