@@ -637,6 +637,10 @@ function filtrarTodo() {
 
         $("#total_places").text(filtroData.features.length);
     }
+    else
+    {
+        limpiarSeleccion();
+    }
 
 }
 
