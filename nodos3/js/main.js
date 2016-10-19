@@ -344,10 +344,25 @@ function renderMarkersData(data, distancia = 100) {
     var layer = L.geoJson(data, {
         onEachFeature: function (feature, layer) {
             if (feature.properties) {
-                //var logo = "images/000.png";
+                
+                var Telefono = feature.properties.TEMATICA;                
+                var TelefonoStr = '';
+                if (Telefono.length > 0) {
+                    Telefono.forEach(function(entry) {
+                        TelefonoStr += entry + '<br />';
+                    });
+                }
+                
+                var Correo = feature.properties.CORREO;                
+                var CorreoStr = '';
+                if (Correo.length > 0) {
+                Correo.forEach(function(entry) {
+                    CorreoStr += entry + '<br />';
+                });
+                }
+                
                 var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + "<tr><th>Teléfono</th><td>" + feature.properties.TELEFONO + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + feature.properties.CORREO + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<table>";
-                infobasica = infobasica.replace(/;/g, '<br>');
+                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>" + "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>" + "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>" + "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>" + "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>" + "<table>";
 
                 var tematicas = feature.properties.TEMATICA;
                 var tematicasStr = '';
