@@ -484,7 +484,7 @@ overlays["Labels"] = positronLabels;
 var layersControl = L.control.layers.minimap(baseLayers, overlays, {
     collapsed: false,
     position: 'bottomright'
-}).addTo(map);
+});//.addTo(map);
 
 
 $('#mapFull').click(function () {
