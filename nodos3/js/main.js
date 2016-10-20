@@ -305,8 +305,8 @@ NodoSur = JSON.parse(JSON.stringify(Observatorios));
 NodoSur.features = NodoSur.features.filter(function (a) {
     return a.properties.NODO == 'Sur';
 });
-NodosSur = renderMarkersBase(NodoSur);
-//NodosSur = renderMarkersData(NodoSur, 0.01);
+//NodosSur = renderMarkersBase(NodoSur);
+NodosSur = renderMarkersData(NodoSur, 0.01);
 
 NodoCentro = JSON.parse(JSON.stringify(Observatorios));
 NodoCentro.features = NodoCentro.features.filter(function (a) {
