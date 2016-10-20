@@ -19,7 +19,7 @@ function styleNodos(feature) {
 // -----------------------------------------------------
 
 function styleMpios(feature) {
-    var transparencia = feature.properties.TIENE == 'SI' ? 0.6 : 0.2;
+    var transparencia = feature.properties.TIENE == 'SI' ? 0.5 : 0.2;
     return {
         weight: 1,
         opacity: 1,
