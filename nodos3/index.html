@@ -4,24 +4,26 @@
 <head>
     <title>observaDHores</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.css" />
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/ZoomBox.css" />
     <link rel="stylesheet" href="css/MarkerCluster.css" />
     <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="css/main.css" /> </head>
+    <link rel="stylesheet" href="css/control.layers.minimap.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
 
 <body>
     <div class="container col-md-12 no-padding">
         <div class="sidebar col-md-3">
 
             <div>
-               <!--<h3 class="title">observaDHores</h3>-->
+                <!--<h3 class="title">observaDHores</h3>-->
                 <h4>Observatorios Filtrados (<span id="total_places">0</span>)</h4> </div>
             <br/>
             <div class="well no-padding">
@@ -59,7 +61,7 @@
             <div class="well no-padding">
                 <center>
                     <legend>Volver al Mapa</legend>
-                    <input id="mapFull" type="image" src="css/images/003.png" onclick="limpiarSeleccion">
+                    <input id="mapFull" type="image" src="css/images/003.png" onclick="limpiarSeleccion()">
                 </center>
             </div>
             <br />
@@ -112,7 +114,8 @@
                     <div class="modal-header">
                         <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title text-primary" id="logoObservatorio"></h4>
-                        <h4 class="modal-title text-primary" id="feature-title"></h4> </div>
+                        <h4 class="modal-title text-primary" id="feature-title"></h4>
+                    </div>
                     <div class="modal-body">
                         <ul class="nav nav-tabs nav-justified" id="aboutTabs">
                             <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Información Básica</a></li>
@@ -146,7 +149,7 @@
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet.markercluster.js"></script>
         <script src="js/geojson.min.js"></script>
-
+        <script src="js/L.Control.Layers.Minimap.js"></script>
         <script src="js/ZoomBox.js"></script>
         <script src="js/leyenda.js"></script>
         <script src="js/basemaps.js"></script>
@@ -154,14 +157,11 @@
         <script src="data/Nodos.json"></script>
         <script src="data/Dptos.json"></script>
         <script src="data/Mpios.json"></script>
-        <!--<script src="data/NodoCaribe.json"></script>
-    <script src="data/NodoCentro.json"></script>
-    <script src="data/NodoSur.json"></script>-->
         <script src="data/Observatorios.js"></script>
-        <!--<script src="data/ObservatoriosData.json"></script>-->
         <script src="js/filtros.js"></script>
         <script type="text/javascript" src="data/listados.js"></script>
         <script src="js/main.js"></script>
+    </div>
 </body>
 
 </html>
