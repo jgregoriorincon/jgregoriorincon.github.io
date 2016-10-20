@@ -472,6 +472,7 @@ $('[data-toggle="tooltip"]').tooltip();
 
 
 // add minimap control to the map
+/*
 var baseLayers = {};
 var overlays = {};
 
@@ -484,8 +485,8 @@ overlays["Labels"] = positronLabels;
 var layersControl = L.control.layers.minimap(baseLayers, overlays, {
     collapsed: false,
     position: 'bottomright'
-});//.addTo(map);
-
+}).addTo(map);
+*/
 
 $('#mapFull').click(function () {
     limpiarSeleccion();
