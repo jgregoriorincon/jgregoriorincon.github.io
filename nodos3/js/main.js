@@ -482,7 +482,8 @@ baseLayers["CartoLight Sin Labels"] = positron;
 overlays["Labels"] = positronLabels;
 
 var layersControl = L.control.layers.minimap(baseLayers, overlays, {
-    collapsed: false
+    collapsed: true,
+    position: 'bottomright'
 }).addTo(map);
 
 
