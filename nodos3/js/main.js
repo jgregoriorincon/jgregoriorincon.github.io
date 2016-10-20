@@ -680,7 +680,7 @@ function filtrarTodo() {
 
 $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
     filtrarTodo();
-}
+});
                          
 function filtrarDepartamento() {
 
