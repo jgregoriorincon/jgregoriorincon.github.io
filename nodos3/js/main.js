@@ -31,7 +31,7 @@ map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 // Layers in this pane are non-interactive and do not obscure mouse/touch events
 map.getPane('labels').style.pointerEvents = 'none';
-var cartodbAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+var cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>';
 var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
     attribution: cartodbAttribution
 }).addTo(map);
@@ -482,7 +482,7 @@ baseLayers["CartoLight Sin Labels"] = positron;
 overlays["Labels"] = positronLabels;
 
 var layersControl = L.control.layers.minimap(baseLayers, overlays, {
-    collapsed: true,
+    collapsed: false,
     position: 'bottomright'
 }).addTo(map);
 
