@@ -647,7 +647,15 @@ function filtrarTodo() {
         
         if (FiltroTexto.toUpperCase() != ''){
             filtroData.features = filtroData.features.filter(function (a) {
-                if ((a.properties.DEPARTAMENTO.toUpperCase().includes(FiltroTexto)) || (a.properties.MUNICIPIO.toUpperCase().includes(FiltroTexto)) || (a.properties.OBSERVATORIO.toUpperCase().includes(FiltroTexto)) || (a.properties.NODO.toUpperCase().includes(FiltroTexto)) || (a.properties.ALIADOS.toUpperCase().includes(FiltroTexto)) || (a.properties.PRODUCTOS.toUpperCase().includes(FiltroTexto))) {
+                
+                var k1 = a.properties.DEPARTAMENTO.toUpperCase();
+                var k2 = a.properties.MUNICIPIO.toUpperCase();
+                var k3 = a.properties.OBSERVATORIO.toUpperCase();
+                var k4 = a.properties.NODO.toUpperCase();
+                var k5 = a.properties.ALIADOS.toUpperCase();
+                var k6 = a.properties.PRODUCTOS.toUpperCase();
+                
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto)) || (k6.includes(FiltroTexto))) {
                     return true;
                 }
                 else {
