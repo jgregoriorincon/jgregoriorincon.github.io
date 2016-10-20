@@ -746,6 +746,7 @@ function limpiarSeleccion() {
     document.getElementById('selSector').value = 'all';
     document.getElementById('selTematica').value = 'all';
     document.getElementById('selTerritorial').value = 'all';
+    document.getElementById('buscarPalabra').value = '';
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (var i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
