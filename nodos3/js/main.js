@@ -585,8 +585,9 @@ function filtrarTodo() {
     var Sector = document.getElementById('selSector').value;
     var Tematica = document.getElementById('selTematica').value;
     var Territorial = document.getElementById('selTerritorial').value;
-
-    if ((DPTO != 'all') || (Mpio != 'all') || (Sector != 'all') || (Tematica != 'all') || (Territorial != 'all')) {
+    var FiltroTexto = document.getElementById('buscarPalabra').value;
+    
+    if ((DPTO != 'all') || (Mpio != 'all') || (Sector != 'all') || (Tematica != 'all') || (Territorial != 'all') || (FiltroTexto != '')) {
 
         //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
         map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
@@ -643,7 +644,19 @@ function filtrarTodo() {
             });
 
         }
-
+        
+        if (FiltroTexto != ''){
+            filtroData.features = filtroData.features.filter(function (a) {
+                if ((a.properties.DEPARTAMENTO.includes(FiltroTexto)) || (a.properties.MUNICIPIO.includes(FiltroTexto)) || (a.properties.OBSERVATORIO.includes(FiltroTexto)) || (a.properties.NODO.includes(FiltroTexto)) || (a.properties.ALIADOS.includes(FiltroTexto)) || (a.properties.PRODUCTOS.includes(FiltroTexto))) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        
+        }
+        
         if (filtroData.features.length > 0) {
             filtroLayer = renderMarkersData(filtroData, 15);
             map.addLayer(filtroLayer);
