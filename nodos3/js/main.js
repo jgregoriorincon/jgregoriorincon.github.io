@@ -585,7 +585,7 @@ function filtrarTodo() {
     var Sector = document.getElementById('selSector').value;
     var Tematica = document.getElementById('selTematica').value;
     var Territorial = document.getElementById('selTerritorial').value;
-    var FiltroTexto = document.getElementById('buscarPalabra').value;
+    var FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
     
     if ((DPTO != 'all') || (Mpio != 'all') || (Sector != 'all') || (Tematica != 'all') || (Territorial != 'all') || (FiltroTexto != '')) {
 
@@ -645,9 +645,9 @@ function filtrarTodo() {
 
         }
         
-        if (FiltroTexto != ''){
+        if (FiltroTexto.toUpperCase() != ''){
             filtroData.features = filtroData.features.filter(function (a) {
-                if ((a.properties.DEPARTAMENTO.includes(FiltroTexto)) || (a.properties.MUNICIPIO.includes(FiltroTexto)) || (a.properties.OBSERVATORIO.includes(FiltroTexto)) || (a.properties.NODO.includes(FiltroTexto)) || (a.properties.ALIADOS.includes(FiltroTexto)) || (a.properties.PRODUCTOS.includes(FiltroTexto))) {
+                if ((a.properties.DEPARTAMENTO.toUpperCase().includes(FiltroTexto)) || (a.properties.MUNICIPIO.toUpperCase().includes(FiltroTexto)) || (a.properties.OBSERVATORIO.toUpperCase().includes(FiltroTexto)) || (a.properties.NODO.toUpperCase().includes(FiltroTexto)) || (a.properties.ALIADOS.toUpperCase().includes(FiltroTexto)) || (a.properties.PRODUCTOS.toUpperCase().includes(FiltroTexto))) {
                     return true;
                 }
                 else {
