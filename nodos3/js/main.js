@@ -509,7 +509,11 @@ $(function () {
     loadSector();
     loadTerritorial();
     loadDepartamentos();
-
+    
+    $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
+        filtrarTodo();
+    });
+    
     $button.click(function () {
         var seleccionados = $table.bootstrapTable('getSelections');
         if (seleccionados.length < 1) {
@@ -677,10 +681,6 @@ function filtrarTodo() {
     }
 
 }
-
-$("#buscarPalabra").bind("keypress keyup keydown", function (event) {
-    filtrarTodo();
-});
                          
 function filtrarDepartamento() {
 
