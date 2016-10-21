@@ -31,6 +31,10 @@ $(document).ready(function () {
     loadTerritorial();
     loadDepartamentos();
 
+    $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
+        filtrarTodo();
+    });
+
     //Convierte el dato JSON en GeoJSON
     Observatorios = GeoJSON.parse(Observatorios, {
         Point: ['LAT', 'LONG']
