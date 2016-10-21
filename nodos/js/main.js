@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, loadDepartamentos, filtrarTodo, limpiarSeleccion, styleNodos, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
+/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, loadDepartamentos, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
 /*jslint plusplus: true */
 
 // Variables globales
@@ -49,7 +49,7 @@ $(document).ready(function () {
     map.createPane('labels');
 
     // This pane is above markers but below popups
-    map.getPane('labels').style.zIndex = 650;
+    map.getPane('labels').style.zIndex = 500;
 
     // Layers in this pane are non-interactive and do not obscure mouse/touch events
     map.getPane('labels').style.pointerEvents = 'none';
@@ -95,7 +95,7 @@ $(document).ready(function () {
     };
 
     info.update = function (props) {
-        this._div.innerHTML = (props ? props.TOTAL ? '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? 'Municipio ' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : 'Pase el cursor sobre un elemento');
+        this._div.innerHTML = (props ? props.TOTAL ? '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : 'Pase el cursor sobre un elemento');
     };
 
     info.addTo(map);
@@ -403,6 +403,39 @@ function styleNodos(feature) {
 }
 
 /**
+ * [[Estilo ]]
+ * @param   {object} feature [[Description]]
+ * @returns {object} [[Description]]
+ */
+function styleDptos(feature) {
+    var transparencia = feature.properties.TIENE == 'SI' ? 0.5 : 0.2;
+    return {
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: transparencia,
+        fillColor: getColorNodos(feature.properties.NODO)
+    };
+}
+
+/**
+ * [[Estilo ]]
+ * @param   {object} feature [[Description]]
+ * @returns {object} [[Description]]
+ */
+function styleMpios(feature) {
+    return {
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.2,
+        fillColor: getColorNodos(feature.properties.NODO)
+    };
+}
+
+/**
  * Resalta el elemento
  * @param {object} e Vector sobre el que pasa el mouse
  */
@@ -465,8 +498,8 @@ function zoomToFeatureNodos(e) {
                 direction: "auto"
             });
             layer.on('mouseover', highlightFeature);
-            //layer.on('mouseout', resetHighlightDptos);
-            //layer.on('click', zoomToFeatureDptos);
+            layer.on('mouseout', resetHighlightDptos);
+            layer.on('click', zoomToFeatureDptos);
         }
     });
 
@@ -475,30 +508,30 @@ function zoomToFeatureNodos(e) {
     map.addLayer(DptosLayer);
 
     if (NodoSeleccionado === 'Sur') {
-        NodosSurPutumayo = renderMarkersData(NodoSurPutumayo);
-        NodosSurNarino = renderMarkersData(NodoSurNarino);
-        NodosSurValleCauca = renderMarkersData(NodoSurValleCauca);
-        NodosSurCauca = renderMarkersData(NodoSurCauca, 300);
+        NodosSurPutumayo = renderMarkersData(filtrarDepto('PUTUMAYO'));
+        NodosSurNarino = renderMarkersData(filtrarDepto('NARIÑO'));
+        NodosSurValleCauca = renderMarkersData(filtrarDepto('CAUCA'));
+        NodosSurCauca = renderMarkersData(filtrarDepto('VALLE DEL CAUCA'), 300);
         map.addLayer(NodosSurPutumayo);
         map.addLayer(NodosSurNarino);
         map.addLayer(NodosSurValleCauca);
         map.addLayer(NodosSurCauca);
     } else if (NodoSeleccionado === 'Centro') {
-        NodosCentroBogota = renderMarkersData(NodoCentroBogota);
-        NodosCentroMeta = renderMarkersData(NodoCentroMeta);
-        NodosCentroBoyaca = renderMarkersData(NodoCentroBoyaca);
-        NodosCentroSantander = renderMarkersData(NodoCentroSantander);
-        NodosCentroNteSantander = renderMarkersData(NodoCentroNteSantander);
+        NodosCentroBogota = renderMarkersData(filtrarDepto('BOGOTÁ D.C.'));
+        NodosCentroMeta = renderMarkersData(filtrarDepto('BOYACÁ'));
+        NodosCentroBoyaca = renderMarkersData(filtrarDepto('META'));
+        NodosCentroSantander = renderMarkersData(filtrarDepto('SANTANDER'));
+        NodosCentroNteSantander = renderMarkersData(filtrarDepto('NORTE DE SANTANDER'));
         map.addLayer(NodosCentroBogota);
         map.addLayer(NodosCentroMeta);
         map.addLayer(NodosCentroBoyaca);
         map.addLayer(NodosCentroSantander);
         map.addLayer(NodosCentroNteSantander);
     } else if (NodoSeleccionado === 'Caribe') {
-        NodosCaribeAtlantico = renderMarkersData(NodoCaribeAtlantico);
-        NodosCaribeMagdalena = renderMarkersData(NodoCaribeMagdalena);
-        NodosCaribeSucre = renderMarkersData(NodoCaribeSucre);
-        NodosCaribeBolivar = renderMarkersData(NodoCaribeBolivar, 1500);
+        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLANTICO'));
+        NodosCaribeMagdalena = renderMarkersData(filtrarDepto('MAGDALENA'));
+        NodosCaribeSucre = renderMarkersData(filtrarDepto('SUCRE'));
+        NodosCaribeBolivar = renderMarkersData(filtrarDepto('BOLÍVAR'), 1500);
         map.addLayer(NodosCaribeAtlantico);
         map.addLayer(NodosCaribeMagdalena);
         map.addLayer(NodosCaribeSucre);
@@ -514,6 +547,169 @@ function resetHighlightDptos(e) {
     "use strict";
     DptosLayer.resetStyle(e.target);
     DptosLayer.setStyle(styleNodos);
+}
+
+
+// Zoom al elemento
+/**
+ * [[Zoom al departamento seleccionado]]
+ * @param   {object}   e [[vector seleccionado]]
+ * @returns {[[Type]]} [[Description]]
+ */
+function zoomToFeatureDptos(e) {
+    var layer = e.target;
+    map.fitBounds(e.target.getBounds());
+    DptoSeleccionado = layer.feature.properties.DEPTO;
+
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
+
+    map.addLayer(positron);
+    //map.addLayer(positronLabels);
+    /*
+    map.addLayer(NodosLayer);
+    map.addLayer(NodosSur);
+    map.addLayer(NodosCentro);
+    map.addLayer(NodosCaribe);
+
+    map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
+    map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
+    map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
+    map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
+    map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
+    map.hasLayer(NodosCentroBogota) === true && map.removeLayer(NodosCentroBogota);
+    map.hasLayer(NodosCentroBoyaca) === true && map.removeLayer(NodosCentroBoyaca);
+    map.hasLayer(NodosCentroMeta) === true && map.removeLayer(NodosCentroMeta);
+    map.hasLayer(NodosCentroSantander) === true && map.removeLayer(NodosCentroSantander);
+    map.hasLayer(NodosCentroNteSantander) === true && map.removeLayer(NodosCentroNteSantander);
+    map.hasLayer(NodosCaribeAtlantico) === true && map.removeLayer(NodosCaribeAtlantico);
+    map.hasLayer(NodosCaribeBolivar) === true && map.removeLayer(NodosCaribeBolivar);
+    map.hasLayer(NodosCaribeMagdalena) === true && map.removeLayer(NodosCaribeMagdalena);
+    map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
+    */
+
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.DEPTO == DptoSeleccionado)
+        },
+        style: styleDptos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeatureMpios);
+            //layer.on('mouseout', resetHighlightMpios);
+            layer.on('click', zoomToFeatureMpios);
+        }
+    })
+
+    MpiosLayer.addData(Mpios);
+    map.addLayer(MpiosLayer);
+
+    switch (DptoSeleccionado) {
+    case 'PUTUMAYO':
+        NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosSurPutumayo);
+        break;
+    case 'NARIÑO':
+        NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
+        map.addLayer(NodosSurNarino);
+        break;
+    case 'CAUCA':
+        NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+        map.addLayer(NodosSurCauca);
+        break;
+    case 'VALLE DEL CAUCA':
+        NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
+        map.addLayer(NodosSurValleCauca);
+        break;
+    case 'META':
+        NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCentroMeta);
+        break;
+    case 'SANTANDER':
+        NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCentroSantander);
+        break;
+    case 'NORTE DE SANTANDER':
+        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+        map.addLayer(NodosCentroNteSantander);
+        break;
+    case 'BOYACÁ':
+        NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCentroBoyaca);
+        break;
+    case 'BOGOTÁ D.C.':
+        NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
+        map.addLayer(NodosCentroBogota);
+        break;
+    case 'ATLANTICO':
+        NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCaribeAtlantico);
+        break;
+    case 'MAGDALENA':
+        NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCaribeMagdalena);
+        break;
+    case 'SUCRE':
+        NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        map.addLayer(NodosCaribeSucre);
+        break;
+    case 'BOLÍVAR':
+        NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+        map.addLayer(NodosCaribeBolivar);
+        break;
+    }
+}
+
+// Resaltado
+function highlightFeatureMpios(e) {
+    var layer = e.target;
+    info.update(layer.feature.properties);
+}
+
+// Zoom al elemento
+function zoomToFeatureMpios(e) {
+    var layer = e.target;
+    if (layer.feature.properties.TIENE == 'SI') {
+        map.fitBounds(e.target.getBounds());
+        MpioSeleccionado = layer.feature.properties.COD_DANE;
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+        map.addLayer(positron);
+        // Capa de MUNICIPIOS
+        MpiosLayer = L.geoJson(undefined, {
+            filter: function (feature) {
+                return (feature.properties.COD_DANE == MpioSeleccionado)
+            },
+            style: styleMpios,
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.NOMBRE, {
+                    permanent: true,
+                    direction: "auto"
+                });
+                layer.on('mouseover', highlightFeatureMpios);
+                //layer.on('mouseout', resetHighlightMpios);
+                //layer.on('click', zoomToFeatureMpios);
+            }
+        })
+
+        MpiosLayer.addData(Mpios);
+        map.addLayer(MpiosLayer);
+        map.addLayer(positronLabels);
+
+        var ObservatoriosData = JSON.parse(JSON.stringify(Observatorios));
+        ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
+            return a.properties.CODDANE == MpioSeleccionado;
+        });
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 50);
+        map.addLayer(ObservatoriosLayer);
+    }
 }
 
 /**
@@ -606,7 +802,7 @@ function renderMarkersData(data, distancia = 100) {
                         $("#feature-info").html(infobasica);
 
                         $("#tematicas").html(tematicasStr);
-                        tematicasStr == '' || tematicasStr == '<br>' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
+                        tematicasStr == '' || tematicasStr == '<br />' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
                         $('#tematicasTab').click(function (event) {
                             if ($(this).hasClass('disabled')) {
                                 return false;
@@ -614,7 +810,7 @@ function renderMarkersData(data, distancia = 100) {
                         });
 
                         $("#territorial").html(territorialStr);
-                        territorialStr == '' || territorialStr == '<br>' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
+                        territorialStr == '' || territorialStr == '<br />' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
                         $('#territorialTab').click(function (event) {
                             if ($(this).hasClass('disabled')) {
                                 return false;
@@ -622,7 +818,7 @@ function renderMarkersData(data, distancia = 100) {
                         });
 
                         $("#tipoinformacion").html(tipoinformacionStr);
-                        tipoinformacionStr == '' || tipoinformacionStr == '<br>' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
+                        tipoinformacionStr == '' || tipoinformacionStr == '<br />' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
                         $('#tipoinformacionTab').click(function (event) {
                             if ($(this).hasClass('disabled')) {
                                 return false;
@@ -630,7 +826,7 @@ function renderMarkersData(data, distancia = 100) {
                         });
 
                         $("#productos").html(productosStr);
-                        productosStr == '' || productosStr == '<br>' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
+                        productosStr == '' || productosStr == '<br />' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
                         $('#productosTab').click(function (event) {
                             if ($(this).hasClass('disabled')) {
                                 return false;
@@ -647,4 +843,17 @@ function renderMarkersData(data, distancia = 100) {
     layer.setZIndex(750);
     cluster.addLayer(layer);
     return cluster;
+}
+
+/**
+ * Filtrar Departamento
+ * @param   {[[Type]]} DPTO Nombre del Departamento
+ * @returns {[[Type]]} [[Description]]
+ */
+function filtrarDepto(DPTO) {
+    var Departamento = JSON.parse(JSON.stringify(Observatorios));
+    Departamento.features = Departamento.features.filter(function (a) {
+        return a.properties.DEPARTAMENTO == DPTO;
+    });
+    return Departamento;
 }
