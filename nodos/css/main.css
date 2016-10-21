@@ -197,3 +197,15 @@ div.logo {
 #aboutTabsContent {
     padding-top: 10px;
 }
+
+/* 
+    VOLVER
+*/
+.volver-control {
+    width: 70px;
+    height: 70px;
+    background-size: 64px 64px;
+    background-repeat: no-repeat;
+    background-image: url('back-icon.png');
+    z-index: 800;
+}
