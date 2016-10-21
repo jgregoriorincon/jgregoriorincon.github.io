@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>observaDHores</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="vendor/css/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="vendor/css/leaflet.css" />
+    <link rel="stylesheet" href="vendor/css/ZoomBox.css" />
+    <link rel="stylesheet" href="vendor/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="vendor/css/MarkerCluster.Default.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="container col-md-12 no-padding">
+        <div class="sidebar col-md-3">
+
+            <div>
+                <!--<h3 class="title">observaDHores</h3>-->
+                <h4>Observatorios Filtrados (<span id="total_places">0</span>)</h4> </div>
+            <br/>
+            <div class="well no-padding">
+                <legend>Departamento</legend>
+                <select class="form-control" id="selDepartamento" onchange="filtrarDepartamento()">
+                    <option value='all'>Todos</option>
+                </select>
+            </div>
+            <div class="well no-padding">
+                <legend>Municipio</legend>
+                <select class="form-control" id="selMunicipio" onchange="filtrarMunicipio()">
+                    <option value='all'>Todos</option>
+                </select>
+            </div>
+            <div class="well no-padding">
+                <legend>Sector</legend>
+                <select class="form-control" id="selSector" onchange="filtrarSector()">
+                    <option value='all'>Todos</option>
+                </select>
+            </div>
+            <div class="well no-padding">
+                <legend>Áreas de Trabajo</legend>
+                <select class="form-control" id="selTematica" onchange="filtrarTematica()">
+                    <option value='all'>Todos</option>
+                </select>
+            </div>
+            <div class="well no-padding">
+                <legend>Nivel Territorial</legend>
+                <select class="form-control" id="selTerritorial" onchange="filtrarTerritorial()">
+                    <option value='all'>Todos</option>
+                </select>
+            </div>
+            <div class="well no-padding">
+                <legend>Busqueda por palabra clave</legend>
+                <input class="form-control" type="text" id="buscarPalabra" placeholder="Buscar..." onkeypress="filtrarTodo()">
+            </div>
+            <div class="well no-padding">
+                <center>
+                    <button type="button" class="btn btn-default fa fa-times" onclick="limpiarSeleccion()">Limpiar Seleccionados</button>
+                </center>
+            </div>
+
+            <div class="well no-padding">
+                <center>
+                    <legend>Volver al Mapa</legend>
+                    <input id="mapFull" type="image" src="css/fullmap.png" onclick="limpiarSeleccion()">
+                </center>
+            </div>
+            <br />
+        </div>
+        <div class="col-md-8">
+            <div id="map"></div>
+        </div>
+
+        <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-primary" id="logoObservatorio"></h4>
+                        <h4 class="modal-title text-primary" id="feature-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+                            <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Información Básica</a></li>
+                            <li id="tematicasTab"><a href="#tematicas" data-toggle="tab"><i class="fa fa-briefcase"></i>&nbsp;Áreas de Trabajo</a></li>
+                            <li id="territorialTab"><a href="#territorial" data-toggle="tab"><i class="fa fa-globe"></i>&nbsp;Nivel Territorial</a></li>
+                            <li id="tipoinformacionTab"><a href="#tipoinformacion" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;Información Producida</a></li>
+                            <li id="productosTab"><a href="#productos" data-toggle="tab"><i class="fa fa-book"></i>&nbsp;Publicaciones</a></li>
+                        </ul>
+                        <div class="tab-content" id="aboutTabsContent">
+                            <div class="tab-pane fade active in" id="feature-info"></div>
+                            <div class="tab-pane fade" id="tematicas"></div>
+                            <div class="tab-pane fade" id="territorial"></div>
+                            <div class="tab-pane fade" id="tipoinformacion"></div>
+                            <div class="tab-pane fade" id="productos"></div>
+                        </div>
+                    </div>
+                    <!--                <div class="modal-body" id="feature-info"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <script src="vendor/js/jquery-2.1.4.min.js"></script>
+        <script src="vendor/js/bootstrap.min.js"></script>
+
+        <script src="vendor/js/leaflet.js"></script>
+        <script src="vendor/js/leaflet.markercluster.js"></script>
+        <script src="vendor/js/geojson.min.js"></script>
+        <script src="vendor/js/ZoomBox.js"></script>
+
+        <!-- DATOS -->
+        <script src="data/Nodos.js"></script>
+        <script src="data/Dptos.js"></script>
+        <script src="data/Mpios.js"></script>
+        <script src="data/Observatorios.js"></script>
+        <script src="data/listados.js"></script>
+
+        <!--<script src="js/leyenda.js"></script>
+        <script src="js/basemaps.js"></script>
+        <script src="js/filtros.js"></script>-->
+        <script src="js/main.js"></script>
+    </div>
+</body>
+
+</html>
