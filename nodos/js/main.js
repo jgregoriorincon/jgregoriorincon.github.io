@@ -3,9 +3,9 @@
 /*jslint plusplus: true */
 
 // Variables globales
-var map, cartodbAttribution, positron, positronLabels;
+var map, cartodbAttribution;
 // Controles
-var info, legend;
+var info, legend, volver;
 
 // Datos Totales
 var filtroData, filtroLayer;
@@ -19,6 +19,8 @@ var NodosSur, NodosCentro, NodosCaribe;
 var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
 var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
 var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
+
+var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
 
 // Funcion Principal
 $(document).ready(function () {
@@ -40,12 +42,12 @@ $(document).ready(function () {
         Point: ['LAT', 'LONG']
     });
 
-    /* ------------------- MAPA ------------------*/
+    /* ------------------- MAPA ------------------*/    
     map = L.map('map', {
         maxZoom: 18,
         minZoom: 5,
         zoomControl: false,
-        scrollWheelZoom: false
+        scrollWheelZoom: true
     });
 
     map.setView([4.5, -73.0], 6);
@@ -58,17 +60,22 @@ $(document).ready(function () {
     // Layers in this pane are non-interactive and do not obscure mouse/touch events
     map.getPane('labels').style.pointerEvents = 'none';
 
-    cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>';
+    positron.addTo(map);
+    positronLabels.addTo(map);
+    
+    var baseMaps = {
+        "Gris": positron,
+        "OSM": OpenStreetMap_Mapnik,
+        "Calles": Esri_WorldStreetMap
+    };
+    
+	var overlays = {
+		"Nombres": positronLabels
+	};
 
-    positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        attribution: cartodbAttribution
-    }).addTo(map);
-
-    positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
-        attribution: cartodbAttribution,
-        pane: 'labels'
-    }).addTo(map);
-
+	L.control.layers(baseMaps, overlays, {position: 'topleft'}).addTo(map);    
+    
+    
     /* ------------------- CONTROLES ------------------*/
     legend = L.control({
         position: 'topright'
@@ -87,7 +94,44 @@ $(document).ready(function () {
         return div;
     };
     legend.addTo(map);
+    
+    volver = L.Control.extend({
+      options: {
+        position: 'bottomleft'
+      },
 
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'volver-control');
+
+        container.onclick = function(){
+            //console.log(zoomAnterior);
+            console.log(nivelActual);
+            
+            if (nivelActual === 'Mpio') {
+                zoomToFeatureDptos(dptoAnterior);    
+                nivelActual = 'Dpto';
+            }
+            else if (nivelActual === 'Dpto') {
+                //zoomToFeatureDptos(zoomAnterior);                    
+                zoomToFeatureNodos(nodoAnterior);  
+                nivelActual = 'Nodo';
+            }
+            else if (nivelActual === 'Nodo') {
+                limpiarSeleccion();
+                //nivelActual = "Pais";
+            }
+            else {
+                zoomToFeatureDptos(mpioAnterior);   
+                nivelActual = 'Mpio';
+            }
+        }
+
+        return container;
+      }
+    });
+        
+    map.addControl(new volver());
+        
     map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
     // control that shows state info on hover
@@ -478,18 +522,21 @@ function resetHighlightNodos(e) {
  */
 function zoomToFeatureNodos(e) {
     "use strict";
-
+    
+    nodoAnterior = jQuery.extend(true, {}, e);
+    nivelActual = "Nodo";
+    
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
 
     NodoSeleccionado = layer.feature.properties.NODO;
 
-    map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-    map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-    map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-    map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-    map.hasLayer(positronLabels) === true && map.removeLayer(positronLabels);
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
 
+    map.addLayer(positron);
+    
     // Capa de DEPARTAMENTOS
     DptosLayer = L.geoJson(undefined, {
         filter: function (feature) {
@@ -513,8 +560,8 @@ function zoomToFeatureNodos(e) {
 
     if (NodoSeleccionado === 'Sur') {
         NodosSurPutumayo = renderMarkersData(filtrarDepto('PUTUMAYO'));
-        NodosSurNarino = renderMarkersData(filtrarDepto('NARIÑO'));
-        NodosSurValleCauca = renderMarkersData(filtrarDepto('CAUCA'));
+        NodosSurNarino = renderMarkersData(filtrarDepto('NARIÑO'), 500);
+        NodosSurValleCauca = renderMarkersData(filtrarDepto('CAUCA'), 500);
         NodosSurCauca = renderMarkersData(filtrarDepto('VALLE DEL CAUCA'), 300);
         map.addLayer(NodosSurPutumayo);
         map.addLayer(NodosSurNarino);
@@ -532,9 +579,9 @@ function zoomToFeatureNodos(e) {
         map.addLayer(NodosCentroSantander);
         map.addLayer(NodosCentroNteSantander);
     } else if (NodoSeleccionado === 'Caribe') {
-        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLANTICO'));
-        NodosCaribeMagdalena = renderMarkersData(filtrarDepto('MAGDALENA'));
-        NodosCaribeSucre = renderMarkersData(filtrarDepto('SUCRE'));
+        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLANTICO'), 100);
+        NodosCaribeMagdalena = renderMarkersData(filtrarDepto('MAGDALENA'), 100);
+        NodosCaribeSucre = renderMarkersData(filtrarDepto('SUCRE'), 100);
         NodosCaribeBolivar = renderMarkersData(filtrarDepto('BOLÍVAR'), 1500);
         map.addLayer(NodosCaribeAtlantico);
         map.addLayer(NodosCaribeMagdalena);
@@ -561,6 +608,10 @@ function resetHighlightDptos(e) {
  * @returns {[[Type]]} [[Description]]
  */
 function zoomToFeatureDptos(e) {
+    
+    dptoAnterior = jQuery.extend(true, {}, e);
+    nivelActual = "Dpto";
+    
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
     DptoSeleccionado = layer.feature.properties.DEPTO;
@@ -569,30 +620,7 @@ function zoomToFeatureDptos(e) {
         map.removeLayer(layer);
     });
 
-
     map.addLayer(positron);
-    //map.addLayer(positronLabels);
-    /*
-    map.addLayer(NodosLayer);
-    map.addLayer(NodosSur);
-    map.addLayer(NodosCentro);
-    map.addLayer(NodosCaribe);
-
-    map.hasLayer(DptosLayer) === true && map.removeLayer(DptosLayer);
-    map.hasLayer(NodosSurPutumayo) === true && map.removeLayer(NodosSurPutumayo);
-    map.hasLayer(NodosSurValleCauca) === true && map.removeLayer(NodosSurValleCauca);
-    map.hasLayer(NodosSurCauca) === true && map.removeLayer(NodosSurCauca);
-    map.hasLayer(NodosSurNarino) === true && map.removeLayer(NodosSurNarino);
-    map.hasLayer(NodosCentroBogota) === true && map.removeLayer(NodosCentroBogota);
-    map.hasLayer(NodosCentroBoyaca) === true && map.removeLayer(NodosCentroBoyaca);
-    map.hasLayer(NodosCentroMeta) === true && map.removeLayer(NodosCentroMeta);
-    map.hasLayer(NodosCentroSantander) === true && map.removeLayer(NodosCentroSantander);
-    map.hasLayer(NodosCentroNteSantander) === true && map.removeLayer(NodosCentroNteSantander);
-    map.hasLayer(NodosCaribeAtlantico) === true && map.removeLayer(NodosCaribeAtlantico);
-    map.hasLayer(NodosCaribeBolivar) === true && map.removeLayer(NodosCaribeBolivar);
-    map.hasLayer(NodosCaribeMagdalena) === true && map.removeLayer(NodosCaribeMagdalena);
-    map.hasLayer(NodosCaribeSucre) === true && map.removeLayer(NodosCaribeSucre);
-    */
 
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
@@ -632,15 +660,15 @@ function zoomToFeatureDptos(e) {
         map.addLayer(NodosSurValleCauca);
         break;
     case 'META':
-        NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
         map.addLayer(NodosCentroMeta);
         break;
     case 'SANTANDER':
-        NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
         map.addLayer(NodosCentroSantander);
         break;
     case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado),20);
         map.addLayer(NodosCentroNteSantander);
         break;
     case 'BOYACÁ':
@@ -652,19 +680,19 @@ function zoomToFeatureDptos(e) {
         map.addLayer(NodosCentroBogota);
         break;
     case 'ATLANTICO':
-        NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeAtlantico);
         break;
     case 'MAGDALENA':
-        NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeMagdalena);
         break;
     case 'SUCRE':
-        NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+        NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeSucre);
         break;
     case 'BOLÍVAR':
-        NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+        NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeBolivar);
         break;
     }
@@ -678,9 +706,19 @@ function highlightFeatureMpios(e) {
 
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
+    
+    mpioAnterior = jQuery.extend(true, {}, e);
+    nivelActual = "Mpio";
+    
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
+    map.addLayer(positron);
+    
     var layer = e.target;
     if (layer.feature.properties.TIENE == 'SI') {
-        map.fitBounds(e.target.getBounds());
+        //map.fitBounds(e.target.getBounds());
         MpioSeleccionado = layer.feature.properties.COD_DANE;
         map.eachLayer(function (layer) {
             map.removeLayer(layer);
@@ -711,8 +749,9 @@ function zoomToFeatureMpios(e) {
         ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
             return a.properties.CODDANE == MpioSeleccionado;
         });
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 50);
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
         map.addLayer(ObservatoriosLayer);
+        map.fitBounds(ObservatoriosLayer.getBounds());
     }
 }
 
