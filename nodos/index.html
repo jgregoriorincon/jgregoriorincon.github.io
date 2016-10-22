@@ -57,13 +57,17 @@
                     <option value='all'>Todos</option>
                 </select>
             </div>
-            <div class="well no-padding">
+            <div class="input-group margin-bottom-sm">
+                <input class="form-control" type="text" id="buscarPalabra" placeholder="Buscar por palabra clave...">
+                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+            </div>
+            <!--<div class="well no-padding">
                 <legend>Busqueda por palabra clave</legend>
                 <input class="form-control" type="text" id="buscarPalabra" placeholder="Buscar..." onkeypress="filtrarTodo()">
-            </div>
+            </div>-->
             <div class="well no-padding">
                 <center>
-                    <button type="button" class="btn btn-default fa fa-times" onclick="limpiarSeleccion()">Limpiar Seleccionados</button>
+                    <a class="btn btn-danger" onclick="limpiarSeleccion()"><i class="fa fa-trash-o fa-lg"></i> Limpiar la Selección</a>
                 </center>
             </div>
 
@@ -127,7 +131,7 @@
         <script src="data/Mpios.js"></script>
         <script src="data/Observatorios.js"></script>
         <script src="data/listados.js"></script>
-        
+
         <script src="js/basemaps.js"></script>
         <script src="js/main.js"></script>
     </div>
