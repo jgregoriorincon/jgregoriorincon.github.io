@@ -42,7 +42,7 @@ $(document).ready(function () {
         Point: ['LAT', 'LONG']
     });
 
-    /* ------------------- MAPA ------------------*/    
+    /* ------------------- MAPA ------------------*/
     map = L.map('map', {
         maxZoom: 18,
         minZoom: 5,
@@ -62,20 +62,20 @@ $(document).ready(function () {
 
     positron.addTo(map);
     positronLabels.addTo(map);
-    
+
     var baseMaps = {
         "Gris": positron,
         "OSM": OpenStreetMap_Mapnik,
         "Calles": Esri_WorldStreetMap
     };
-    
-	var overlays = {
-		"Nombres": positronLabels
-	};
 
-	L.control.layers(baseMaps, overlays, {position: 'topleft'}).addTo(map);    
-    
-    
+    var overlays = {
+        "Nombres": positronLabels
+    };
+
+    L.control.layers(baseMaps, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
+
+
     /* ------------------- CONTROLES ------------------*/
     legend = L.control({
         position: 'topright'
@@ -94,7 +94,7 @@ $(document).ready(function () {
         return div;
     };
     legend.addTo(map);
-    
+
     volver = L.Control.extend({
       options: {
         position: 'bottomleft'
@@ -103,17 +103,20 @@ $(document).ready(function () {
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'volver-control');
 
+        container.title = 'Volver a la vista anterior';
+        container.style.cursor='pointer';
+
         container.onclick = function(){
             //console.log(zoomAnterior);
             console.log(nivelActual);
-            
+
             if (nivelActual === 'Mpio') {
-                zoomToFeatureDptos(dptoAnterior);    
+                zoomToFeatureDptos(dptoAnterior);
                 nivelActual = 'Dpto';
             }
             else if (nivelActual === 'Dpto') {
-                //zoomToFeatureDptos(zoomAnterior);                    
-                zoomToFeatureNodos(nodoAnterior);  
+                //zoomToFeatureDptos(zoomAnterior);
+                zoomToFeatureNodos(nodoAnterior);
                 nivelActual = 'Nodo';
             }
             else if (nivelActual === 'Nodo') {
@@ -121,7 +124,7 @@ $(document).ready(function () {
                 //nivelActual = "Pais";
             }
             else {
-                zoomToFeatureDptos(mpioAnterior);   
+                zoomToFeatureDptos(mpioAnterior);
                 nivelActual = 'Mpio';
             }
         }
@@ -129,9 +132,9 @@ $(document).ready(function () {
         return container;
       }
     });
-        
+
     map.addControl(new volver());
-        
+
     map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
     // control that shows state info on hover
@@ -522,10 +525,10 @@ function resetHighlightNodos(e) {
  */
 function zoomToFeatureNodos(e) {
     "use strict";
-    
+
     nodoAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Nodo";
-    
+
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
 
@@ -536,7 +539,7 @@ function zoomToFeatureNodos(e) {
     });
 
     map.addLayer(positron);
-    
+
     // Capa de DEPARTAMENTOS
     DptosLayer = L.geoJson(undefined, {
         filter: function (feature) {
@@ -608,10 +611,10 @@ function resetHighlightDptos(e) {
  * @returns {[[Type]]} [[Description]]
  */
 function zoomToFeatureDptos(e) {
-    
+
     dptoAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Dpto";
-    
+
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
     DptoSeleccionado = layer.feature.properties.DEPTO;
@@ -706,16 +709,16 @@ function highlightFeatureMpios(e) {
 
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
-    
+
     mpioAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Mpio";
-    
+
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
     });
 
     map.addLayer(positron);
-    
+
     var layer = e.target;
     if (layer.feature.properties.TIENE == 'SI') {
         //map.fitBounds(e.target.getBounds());
