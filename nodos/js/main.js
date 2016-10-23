@@ -79,7 +79,6 @@ $(document).ready(function () {
         collapsed: false
     }).addTo(map);
 
-
     /* ------------------- CONTROLES ------------------*/
     legend = L.control({
         position: 'topright'
@@ -754,7 +753,7 @@ function zoomToFeatureMpios(e) {
             return a.properties.CODDANE == MpioSeleccionado;
         });
 
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0);
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.00);
         map.addLayer(ObservatoriosLayer);
         map.fitBounds(ObservatoriosLayer.getBounds());
     }
@@ -770,7 +769,9 @@ function renderMarkersBase(data, distancia = 1500) {
 
     var cluster = L.markerClusterGroup({
         showCoverageOnHover: false,
-        maxClusterRadius: distancia
+        maxClusterRadius: distancia,
+        spiderfyOnMaxZoom: true,
+        disableClusteringAtZoom: 17
     });
 
     var layer = L.geoJson(data);
@@ -813,14 +814,18 @@ function renderMarkersData(data, distancia = 100) {
     if (distancia > 0) {
         var cluster = L.markerClusterGroup({
             showCoverageOnHover: false,
-            maxClusterRadius: distancia
+            maxClusterRadius: distancia,
+            spiderfyOnMaxZoom: true,
+            disableClusteringAtZoom: 19
         });
 
         cluster.addLayer(layer);
+
         return cluster;
     } else {
         return layer;
     }
+
 }
 
 /**
