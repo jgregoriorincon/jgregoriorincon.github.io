@@ -793,8 +793,21 @@ function renderMarkersData(data, distancia = 100) {
             if (feature.properties) {
                 popupObservatorio(feature, layer);
             }
+        },
+
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: 8,
+                fillColor: "#FD327A",
+                color: "#FD327A",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.6
+            });
+
         }
     });
+
     layer.setZIndex(750);
 
     if (distancia > 0) {
