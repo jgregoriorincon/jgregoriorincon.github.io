@@ -10,6 +10,7 @@ var info, legend, volver;
 // Datos Totales
 var filtroData, filtroLayer;
 var NodosLayer, DptosLayer, MpiosLayer;
+var ObservatoriosLayer;
 
 // Seleccion
 var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
@@ -73,7 +74,10 @@ $(document).ready(function () {
         "Nombres": positronLabels
     };
 
-    L.control.layers(baseMaps, overlays, {position: 'bottomright', collapsed: false}).addTo(map);
+    L.control.layers(baseMaps, overlays, {
+        position: 'bottomright',
+        collapsed: false
+    }).addTo(map);
 
 
     /* ------------------- CONTROLES ------------------*/
@@ -96,41 +100,38 @@ $(document).ready(function () {
     legend.addTo(map);
 
     volver = L.Control.extend({
-      options: {
-        position: 'bottomleft'
-      },
+        options: {
+            position: 'bottomleft'
+        },
 
-      onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'volver-control');
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'volver-control');
 
-        container.title = 'Volver a la vista anterior';
-        container.style.cursor='pointer';
+            container.title = 'Volver a la vista anterior';
+            container.style.cursor = 'pointer';
 
-        container.onclick = function(){
-            //console.log(zoomAnterior);
-            console.log(nivelActual);
+            container.onclick = function () {
+                //console.log(zoomAnterior);
+                console.log(nivelActual);
 
-            if (nivelActual === 'Mpio') {
-                zoomToFeatureDptos(dptoAnterior);
-                nivelActual = 'Dpto';
+                if (nivelActual === 'Mpio') {
+                    zoomToFeatureDptos(dptoAnterior);
+                    nivelActual = 'Dpto';
+                } else if (nivelActual === 'Dpto') {
+                    //zoomToFeatureDptos(zoomAnterior);
+                    zoomToFeatureNodos(nodoAnterior);
+                    nivelActual = 'Nodo';
+                } else if (nivelActual === 'Nodo') {
+                    limpiarSeleccion();
+                    //nivelActual = "Pais";
+                } else {
+                    zoomToFeatureDptos(mpioAnterior);
+                    nivelActual = 'Mpio';
+                }
             }
-            else if (nivelActual === 'Dpto') {
-                //zoomToFeatureDptos(zoomAnterior);
-                zoomToFeatureNodos(nodoAnterior);
-                nivelActual = 'Nodo';
-            }
-            else if (nivelActual === 'Nodo') {
-                limpiarSeleccion();
-                //nivelActual = "Pais";
-            }
-            else {
-                zoomToFeatureDptos(mpioAnterior);
-                nivelActual = 'Mpio';
-            }
+
+            return container;
         }
-
-        return container;
-      }
     });
 
     map.addControl(new volver());
@@ -372,7 +373,7 @@ function filtrarTodo() {
         }
 
         if (filtroData.features.length > 0) {
-            filtroLayer = renderMarkersData(filtroData, 15);
+            filtroLayer = renderMarkersData(filtroData, 0);
             map.addLayer(filtroLayer);
             map.fitBounds(filtroLayer.getBounds());
         }
@@ -603,7 +604,6 @@ function resetHighlightDptos(e) {
     DptosLayer.setStyle(styleNodos);
 }
 
-
 // Zoom al elemento
 /**
  * [[Zoom al departamento seleccionado]]
@@ -611,7 +611,7 @@ function resetHighlightDptos(e) {
  * @returns {[[Type]]} [[Description]]
  */
 function zoomToFeatureDptos(e) {
-
+    "use strict";
     dptoAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Dpto";
 
@@ -671,7 +671,7 @@ function zoomToFeatureDptos(e) {
         map.addLayer(NodosCentroSantander);
         break;
     case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado),20);
+        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
         map.addLayer(NodosCentroNteSantander);
         break;
     case 'BOYACÁ':
@@ -709,6 +709,7 @@ function highlightFeatureMpios(e) {
 
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
+    "use strict";
 
     mpioAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Mpio";
@@ -752,7 +753,8 @@ function zoomToFeatureMpios(e) {
         ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
             return a.properties.CODDANE == MpioSeleccionado;
         });
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
+
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0);
         map.addLayer(ObservatoriosLayer);
         map.fitBounds(ObservatoriosLayer.getBounds());
     }
@@ -785,111 +787,129 @@ function renderMarkersBase(data, distancia = 1500) {
  * @returns {boolean}  [[Description]]
  */
 function renderMarkersData(data, distancia = 100) {
-    var cluster = L.markerClusterGroup({
-        showCoverageOnHover: false,
-        maxClusterRadius: distancia
-    });
 
     var layer = L.geoJson(data, {
         onEachFeature: function (feature, layer) {
             if (feature.properties) {
-
-                var Telefono = feature.properties.TELEFONO;
-                var TelefonoStr = '';
-                if (Telefono.length > 0) {
-                    Telefono.forEach(function (entry) {
-                        TelefonoStr += entry + '<br />';
-                    });
-                }
-
-                var Correo = feature.properties.CORREO;
-                var CorreoStr = '';
-                if (Correo.length > 0) {
-                    Correo.forEach(function (entry) {
-                        CorreoStr += entry + '<br />';
-                    });
-                }
-
-                var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-                var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-                var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + (TelefonoStr == '' ? '' : "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>") + (CorreoStr == '' ? '' : "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>") + (feature.properties.SITIO_WEB == '' ? '' : "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>") + (feature.properties.FACEBOOK == '' ? '' : "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>") + (feature.properties.TWITER == '' ? '' : "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>") + "<table>";
-
-                var tematicas = feature.properties.TEMATICA;
-                var tematicasStr = '';
-                if (tematicas.length > 0) {
-                    tematicas.forEach(function (entry) {
-                        tematicasStr += entry + '<br />';
-                    });
-                }
-
-                var territorial = feature.properties.NIVEL_TERRITORIAL;
-                var territorialStr = '';
-                if (territorial.length > 0) {
-                    territorial.forEach(function (entry) {
-                        territorialStr += entry + '<br />';
-                    });
-                }
-
-                var tipoinformacion = feature.properties.TIPO_INFORMACION;
-                var tipoinformacionStr = '';
-                if (tipoinformacion.length > 0) {
-                    tipoinformacion.forEach(function (entry) {
-                        tipoinformacionStr += entry + '<br />';
-                    });
-                }
-
-                var productos = feature.properties.PRODUCTOS;
-                var productosStr = productos;
-
-                layer.on({
-                    click: function (e) {
-                        $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
-                        $("#logoObservatorio").html(logo);
-                        $("#feature-info").html(infobasica);
-
-                        $("#tematicas").html(tematicasStr);
-                        tematicasStr == '' || tematicasStr == '<br />' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
-                        $('#tematicasTab').click(function (event) {
-                            if ($(this).hasClass('disabled')) {
-                                return false;
-                            }
-                        });
-
-                        $("#territorial").html(territorialStr);
-                        territorialStr == '' || territorialStr == '<br />' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
-                        $('#territorialTab').click(function (event) {
-                            if ($(this).hasClass('disabled')) {
-                                return false;
-                            }
-                        });
-
-                        $("#tipoinformacion").html(tipoinformacionStr);
-                        tipoinformacionStr == '' || tipoinformacionStr == '<br />' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
-                        $('#tipoinformacionTab').click(function (event) {
-                            if ($(this).hasClass('disabled')) {
-                                return false;
-                            }
-                        });
-
-                        $("#productos").html(productosStr);
-                        productosStr == '' || productosStr == '<br />' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
-                        $('#productosTab').click(function (event) {
-                            if ($(this).hasClass('disabled')) {
-                                return false;
-                            }
-                        });
-
-                        $('.nav-tabs a[href="#feature-info"]').tab('show');
-                        $("#featureModal").modal("show");
-                    }
-                });
+                popupObservatorio(feature, layer);
             }
         }
     });
     layer.setZIndex(750);
-    cluster.addLayer(layer);
-    return cluster;
+
+    if (distancia > 0) {
+        var cluster = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            maxClusterRadius: distancia
+        });
+
+        cluster.addLayer(layer);
+        return cluster;
+    } else {
+        return layer;
+    }
 }
+
+/**
+ * [[Ventana de información]]
+ * @param   {object}   feature [[Description]]
+ * @param   {[[Type]]} layer   [[Description]]
+ * @returns {boolean}  [[Description]]
+ */
+function popupObservatorio(feature, layer) {
+    "use strict";
+
+    var Telefono = feature.properties.TELEFONO;
+    var TelefonoStr = '';
+    if (Telefono.length > 0) {
+        Telefono.forEach(function (entry) {
+            TelefonoStr += entry + '<br />';
+        });
+    }
+
+    var Correo = feature.properties.CORREO;
+    var CorreoStr = '';
+    if (Correo.length > 0) {
+        Correo.forEach(function (entry) {
+            CorreoStr += entry + '<br />';
+        });
+    }
+
+    var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
+    var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + (TelefonoStr == '' ? '' : "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>") + (CorreoStr == '' ? '' : "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>") + (feature.properties.SITIO_WEB == '' ? '' : "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>") + (feature.properties.FACEBOOK == '' ? '' : "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>") + (feature.properties.TWITER == '' ? '' : "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>") + "<table>";
+
+    var tematicas = feature.properties.TEMATICA;
+    var tematicasStr = '';
+    if (tematicas.length > 0) {
+        tematicas.forEach(function (entry) {
+            tematicasStr += entry + '<br />';
+        });
+    }
+
+    var territorial = feature.properties.NIVEL_TERRITORIAL;
+    var territorialStr = '';
+    if (territorial.length > 0) {
+        territorial.forEach(function (entry) {
+            territorialStr += entry + '<br />';
+        });
+    }
+
+    var tipoinformacion = feature.properties.TIPO_INFORMACION;
+    var tipoinformacionStr = '';
+    if (tipoinformacion.length > 0) {
+        tipoinformacion.forEach(function (entry) {
+            tipoinformacionStr += entry + '<br />';
+        });
+    }
+
+    var productos = feature.properties.PRODUCTOS;
+    var productosStr = productos;
+
+    layer.on({
+        click: function (e) {
+            $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
+            $("#logoObservatorio").html(logo);
+            $("#feature-info").html(infobasica);
+
+            $("#tematicas").html(tematicasStr);
+            tematicasStr == '' || tematicasStr == '<br />' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
+            $('#tematicasTab').click(function (event) {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $("#territorial").html(territorialStr);
+            territorialStr == '' || territorialStr == '<br />' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
+            $('#territorialTab').click(function (event) {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $("#tipoinformacion").html(tipoinformacionStr);
+            tipoinformacionStr == '' || tipoinformacionStr == '<br />' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
+            $('#tipoinformacionTab').click(function (event) {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $("#productos").html(productosStr);
+            productosStr == '' || productosStr == '<br />' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
+            $('#productosTab').click(function (event) {
+                if ($(this).hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $('.nav-tabs a[href="#feature-info"]').tab('show');
+            $("#featureModal").modal("show");
+        }
+    });
+}
+
 
 /**
  * Filtrar Departamento
@@ -897,6 +917,8 @@ function renderMarkersData(data, distancia = 100) {
  * @returns {[[Type]]} [[Description]]
  */
 function filtrarDepto(DPTO) {
+    "use strict";
+
     var Departamento = JSON.parse(JSON.stringify(Observatorios));
     Departamento.features = Departamento.features.filter(function (a) {
         return a.properties.DEPARTAMENTO == DPTO;
