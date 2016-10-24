@@ -112,8 +112,7 @@ $(document).ready(function () {
 
         onAdd: function (map) {
             var container = L.DomUtil.create('div', 'volver-control');
-
-            container.title = 'Volver a la vista anterior';
+            container.innerHTML = '<form><img src="css/back-icon.png" alt="VOLVER" style="width:64px;height:64px;"><p>Ir a Vista Anterior</p></form>';
             container.style.cursor = 'pointer';
 
             container.onclick = function () {
