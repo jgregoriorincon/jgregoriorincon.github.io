@@ -65,13 +65,13 @@ $(document).ready(function () {
     positronLabels.addTo(map);
 
     var baseMaps = {
-        "Gris": positron,
-        "OSM": OpenStreetMap_Mapnik,
-        "Calles": Esri_WorldStreetMap
+        "Base Gris": positron,
+        "Base OSM": OpenStreetMap_Mapnik,
+        "Base Calles": Esri_WorldStreetMap
     };
 
     var overlays = {
-        "Nombres": positronLabels
+        "Etiquetas": positronLabels
     };
 
     L.control.layers(baseMaps, overlays, {
@@ -670,7 +670,7 @@ function zoomToFeatureDptos(e) {
         map.addLayer(NodosCentroSantander);
         break;
     case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
+        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
         map.addLayer(NodosCentroNteSantander);
         break;
     case 'BOYACÁ':
@@ -753,7 +753,7 @@ function zoomToFeatureMpios(e) {
             return a.properties.CODDANE == MpioSeleccionado;
         });
 
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.00);
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.0);
         map.addLayer(ObservatoriosLayer);
         map.fitBounds(ObservatoriosLayer.getBounds());
     }
@@ -855,7 +855,7 @@ function popupObservatorio(feature, layer) {
 
     var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
     var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + ', ' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + (TelefonoStr == '' ? '' : "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>") + (CorreoStr == '' ? '' : "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>") + (feature.properties.SITIO_WEB == '' ? '' : "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>") + (feature.properties.FACEBOOK == '' ? '' : "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>") + (feature.properties.TWITER == '' ? '' : "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>") + "<table>";
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + '<br/>' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + (TelefonoStr == '' ? '' : "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>") + (CorreoStr == '' ? '' : "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>") + (feature.properties.SITIO_WEB == '' ? '' : "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>") + (feature.properties.FACEBOOK == '' ? '' : "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>") + (feature.properties.TWITER == '' ? '' : "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>") + "<table>";
 
     var tematicas = feature.properties.TEMATICA;
     var tematicasStr = '';
