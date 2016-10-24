@@ -372,7 +372,7 @@ function filtrarTodo() {
         }
 
         if (filtroData.features.length > 0) {
-            if (map.getZoom() > 14 {
+            if (map.getZoom() > 13) {
                 map.eachLayer(function (layer) {
                     map.removeLayer(layer);
                 });
