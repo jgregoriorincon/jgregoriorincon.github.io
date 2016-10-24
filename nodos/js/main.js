@@ -799,11 +799,11 @@ function renderMarkersData(data, distancia = 100) {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, {
                 radius: 8,
-                fillColor: "#FD327A",
-                color: "#FD327A",
+                fillColor: "#FF7FAC",
+                color: "#FF7FAC",
                 weight: 1,
                 opacity: 1,
-                fillOpacity: 0.6
+                fillOpacity: 0.5
             });
 
         }
