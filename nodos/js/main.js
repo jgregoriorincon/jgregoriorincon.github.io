@@ -276,6 +276,19 @@ function filtrarDepartamento() {
                 document.getElementById('selMunicipio').remove(i);
             }
         }
+
+        var DPTO = document.getElementById('selDepartamento').value,
+            Mpio = document.getElementById('selMunicipio').value,
+            Sector = document.getElementById('selSector').value,
+            Tematica = document.getElementById('selTematica').value,
+            Territorial = document.getElementById('selTerritorial').value,
+            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
+
+        if ((DPTO !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+            // No hace nada
+        } else {
+            limpiarSeleccion();
+        }
     }
 
 }
@@ -372,22 +385,25 @@ function filtrarTodo() {
         }
 
         if (filtroData.features.length > 0) {
-            console.log(map.getZoom());
-            
+
             map.eachLayer(function (layer) {
                 map.removeLayer(layer);
             });
-            
-            if (map.getZoom() < 9) {
-                map.addLayer(NodosLayer);
-            }
-            
+
             map.addLayer(positron);
             map.addLayer(positronLabels);
 
             filtroLayer = renderMarkersData(filtroData, 0);
-            map.addLayer(filtroLayer);
             map.fitBounds(filtroLayer.getBounds());
+
+            console.log(map.getZoom());
+
+            if (map.getZoom() < 9) {
+                map.addLayer(NodosLayer);
+            }
+
+            map.addLayer(filtroLayer);
+            filtroLayer.bringToFront();
         }
 
         $("#total_places").text(filtroData.features.length);
