@@ -753,7 +753,7 @@ function zoomToFeatureMpios(e) {
             return a.properties.CODDANE == MpioSeleccionado;
         });
 
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.0);
+        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
         map.addLayer(ObservatoriosLayer);
         map.fitBounds(ObservatoriosLayer.getBounds());
     }
