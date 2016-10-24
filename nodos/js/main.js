@@ -374,15 +374,17 @@ function filtrarTodo() {
         if (filtroData.features.length > 0) {
             console.log(map.getZoom());
             
-            if (map.getZoom() > 9) {
-                map.eachLayer(function (layer) {
-                    map.removeLayer(layer);
-                });
-
-                map.addLayer(positron);
-                map.addLayer(positronLabels);
+            map.eachLayer(function (layer) {
+                map.removeLayer(layer);
+            });
+            
+            if (map.getZoom() < 9) {
+                map.addLayer(NodosLayer);
             }
-        
+            
+            map.addLayer(positron);
+            map.addLayer(positronLabels);
+
             filtroLayer = renderMarkersData(filtroData, 0);
             map.addLayer(filtroLayer);
             map.fitBounds(filtroLayer.getBounds());
