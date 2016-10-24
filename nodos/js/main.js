@@ -372,6 +372,8 @@ function filtrarTodo() {
         }
 
         if (filtroData.features.length > 0) {
+            console.log(map.getZoom());
+            
             if (map.getZoom() > 13) {
                 map.eachLayer(function (layer) {
                     map.removeLayer(layer);
