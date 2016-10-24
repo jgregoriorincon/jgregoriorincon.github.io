@@ -771,7 +771,7 @@ function renderMarkersBase(data, distancia = 1500) {
         showCoverageOnHover: false,
         maxClusterRadius: distancia,
         spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 17
+        disableClusteringAtZoom: 19
     });
 
     var layer = L.geoJson(data);
