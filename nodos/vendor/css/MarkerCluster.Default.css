@@ -1,23 +1,23 @@
 .marker-cluster-small {
     background-color: rgba(255, 127, 172, 0.6);
-    }
+}
 .marker-cluster-small div {
-    background-color: rgba(253, 50, 122, 0.4);
-    }
+    background-color: rgba(255, 127, 172, 0.4);
+}
 
 .marker-cluster-medium {
     background-color: rgba(255, 127, 172, 0.6);
-    }
+}
 .marker-cluster-medium div {
-    background-color: rgba(253, 50, 122, 0.4);
-    }
+    background-color: rgba(255, 127, 172, 0.4);
+}
 
 .marker-cluster-large {
     background-color: rgba(255, 127, 172, 0.6);
-    }
+}
 .marker-cluster-large div {
-    background-color: rgba(253, 50, 122, 0.4);
-    }
+    background-color: rgba(255, 127, 172, 0.4);
+}
 
     /* IE 6-8 fallback colors */
 .leaflet-oldie .marker-cluster-small {
