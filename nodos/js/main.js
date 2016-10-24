@@ -112,7 +112,7 @@ $(document).ready(function () {
 
         onAdd: function (map) {
             var container = L.DomUtil.create('div', 'volver-control');
-            container.innerHTML = '<form><img src="css/back-icon.png" alt="VOLVER" style="width:64px;height:64px;"><p>Ir a Vista Anterior</p></form>';
+            container.innerHTML = '<form><img src="css/back-icon.png" alt="VOLVER" style="width:64px;height:64px;"><br />Ir a Vista Anterior</form>';
             container.style.cursor = 'pointer';
 
             container.onclick = function () {
@@ -151,8 +151,10 @@ $(document).ready(function () {
         return this._div;
     };
 
+    var strInstrucciones = 'Pase el cursor sobre un<br />elemento para obtener información<br /><br />Al dar clic en un nodo <br /><br />Al dar clic en un departamento<br /><br /><br />Al dar clic en un Municipio<br /><br />Al dar clic en el icono de un observatorio';
+    
     info.update = function (props) {
-        this._div.innerHTML = (props ? props.TOTAL ? '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : 'Pase el cursor sobre un elemento');
+        this._div.innerHTML = (props ? props.TOTAL ? '<h4><center>ObservaDHores</center></h4><p align="right"><b>' + (props.NOMBRE ? props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : strInstrucciones );
     };
 
     info.addTo(map);

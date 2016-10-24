@@ -22,7 +22,6 @@ body .well {
 /*
     MAPA
 */
-
 #map {
     width: auto;
     height: 100vh;
@@ -52,14 +51,13 @@ body legend {
     font-size: 15px;
 }
 
-
 /*
     INFORMACION
 */
-
 .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
+    text-align: right;
     background: white;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -71,11 +69,9 @@ body legend {
     color: #777;
 }
 
-
 /*
     EXTENT
 */
-
 .image {
     position: absolute;
     bottom: 20px;
@@ -100,60 +96,6 @@ h5 {
     width: 100%;
 }
 
-
-/*
-div.logo {
-    content: url("images/003.png");
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 128px;
-    height: 128px;
-    z-index: 999;
-    text-indent: -9999px;
-    border: 1px solid black;
-    border-radius: 25px;
-    cursor: w-resize;
-}
-*/
-
-#btnBusqueda {
-    position: absolute;
-    bottom: 160px;
-    right: 60px;
-    z-index: 999;
-}
-
-
-/*
-#infobox {
-    padding: 10px;
-    position: absolute;
-    width: 150px;
-    height: 100px;
-    background: rgba(255, 255, 255, 1);
-    -ms-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#B2000000, endColorstr=#B2000000);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#B2000000, endColorstr=#B2000000);
-    zoom: 1;
-    font-family: "Fontin Sans", "Lucida Grande", "Arial", "Helvetica", "Verdana", "Gill Sans", sans-serif;
-    font-size: 0.990em;
-    color: #000;
-    right: 15px;
-    font-size: .8em;
-    top: 50px;
-    overflow: visible;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px #000;
-    -moz-box-shadow: 2px 2px 5px #000;
-    -webkit-box-shadow: 2px 2px 5px #000;
-    z-index: 600;
-}
-
-*/
-
-
 /*
     TIPOS DE LEYENDAS
 */
@@ -171,7 +113,6 @@ div.logo {
 #selLeyenda {
     margin-bottom: 5px;
 }
-
 
 /*
     LEYENDA
@@ -191,7 +132,6 @@ div.logo {
     opacity: 0.7;
 }
 
-
 /*
     LOGOS OBSERVATORIOS
 */
@@ -204,14 +144,15 @@ div.logo {
     padding-top: 10px;
 }
 
-
 /*
     VOLVER
 */
 
 .volver-control {
-    width: 100px;
-    height: 80px;
+    width: 80px;
+    height: 100px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    text-align: center;
     /*background-size: 64px 64px;
     background-repeat: no-repeat;
     background-image: url('back-icon.png');*/

@@ -76,60 +76,16 @@
                             <input id="buscarPalabra" name="buscarPalabra" type="search" placeholder="Buscar por palabra clave..." class="form-control input-md" onkeypress="filtrarTodo()">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <center>
+                    <div class="form-group text-center">
                             <a class="btn btn-info" onclick="limpiarSeleccion()"><i class="fa fa-trash-o fa-lg"></i> Limpiar la busqueda</a>
-                        </center>
                     </div>
-                    <div class="form-group">
-                        <center>
-                            <input id="mapFull" type="image" src="css/fullmap.png" onclick="limpiarSeleccion()">
-                            <legend>Ir al Mapa Completo</legend>
-                        </center>
+                    <div class="form-group text-center">
+                           <div class="mapFull"></div>
+                            <input id="mapFull" type="image" src="css/fullmap.png" alt="Ir al Mapa Completo" onclick="limpiarSeleccion()">
+                            <h4>Ir al Mapa Completo</h4>
                     </div>
                 </fieldset>
             </form>
-            <!--
-            <div class="well no-padding">
-                <legend>Departamento</legend>
-                <select class="form-control" id="selDepartamento" onchange="filtrarDepartamento()">
-                    <option value='all'>Todos</option>
-                </select>
-            </div>
-            <div class="well no-padding">
-                <legend>Municipio</legend>
-                <select class="form-control" id="selMunicipio" onchange="filtrarTodo()">
-                    <option value='all'>Todos</option>
-                </select>
-            </div>
-            <div class="well no-padding">
-                <legend>Sector</legend>
-                <select class="form-control" id="selSector" onchange="filtrarTodo()">
-                    <option value='all'>Todos</option>
-                </select>
-            </div>
-            <div class="well no-padding">
-                <legend>Áreas de Trabajo</legend>
-                <select class="form-control" id="selTematica" onchange="filtrarTodo()">
-                    <option value='all'>Todos</option>
-                </select>
-            </div>
-            <div class="well no-padding">
-                <legend>Nivel Territorial</legend>
-                <select class="form-control" id="selTerritorial" onchange="filtrarTodo()">
-                    <option value='all'>Todos</option>
-                </select>
-            </div>
-            <div class="input-group margin-bottom-sm">
-                <input class="form-control" type="text" id="buscarPalabra" placeholder="Buscar por palabra clave...">
-                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-            </div>
-            <!--<div class="well no-padding">
-                <legend>Busqueda por palabra clave</legend>
-                <input class="form-control" type="text" id="buscarPalabra" placeholder="Buscar..." onkeypress="filtrarTodo()">
-            </div>-->
-
-
 
             <br />
         </div>
