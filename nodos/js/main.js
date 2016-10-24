@@ -23,6 +23,13 @@ var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlan
 
 var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
 
+var observatorioIcon = L.icon({
+    iconUrl: 'css/Map-Marker.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
+
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
@@ -393,7 +400,7 @@ function filtrarTodo() {
             map.addLayer(positron);
             map.addLayer(positronLabels);
 
-            filtroLayer = renderMarkersData(filtroData, 0);
+            filtroLayer = renderMarkersData(filtroData, 0.01);
             map.fitBounds(filtroLayer.getBounds());
 
             console.log(map.getZoom());
@@ -826,15 +833,17 @@ function renderMarkersData(data, distancia = 100) {
         },
 
         pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, {
-                radius: 8,
-                fillColor: "#FF7FAC",
-                color: "#FF7FAC",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.5
+            /*            return L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: "#FF7FAC",
+                            color: "#FF7FAC",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.5
+                        });*/
+            return L.marker(latlng, {
+                icon: observatorioIcon
             });
-
         }
     });
 
@@ -956,7 +965,6 @@ function popupObservatorio(feature, layer) {
         }
     });
 }
-
 
 /**
  * Filtrar Departamento
