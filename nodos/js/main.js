@@ -786,7 +786,7 @@ function renderMarkersBase(data, distancia = 1500) {
     });
 
     var layer = L.geoJson(data);
-    layer.setZIndex(700);
+    layer.setZIndex(1002);
     cluster.addLayer(layer);
     return cluster;
 }
@@ -820,7 +820,7 @@ function renderMarkersData(data, distancia = 100) {
         }
     });
 
-    layer.setZIndex(750);
+    layer.setZIndex(1002);
 
     if (distancia > 0) {
         var cluster = L.markerClusterGroup({
