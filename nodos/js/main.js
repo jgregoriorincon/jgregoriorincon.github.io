@@ -157,7 +157,15 @@ $(document).ready(function () {
 
         var strEncabezado = '<div class="panel-heading text-center"><h3 class="panel-title">ObservaDHores</h3></div><div class="panel-body text-right divinfo">';
 
-        this._div.innerHTML = strEncabezado + (props ? props.TOTAL ? (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? 'Departamento ' + props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</b><br /><br />' + (props.ACADEMIA ? 'Académicos: ' + props.ACADEMIA + '<br />' : '') + (props.GOBIERNO ? 'Gubernamentales: ' + props.GOBIERNO + '<br />' : '') + (props.PRIVADO ? 'Privados: ' + props.PRIVADO + '<br />' : '') + (props.SOCIEDAD ? 'Sociedad Civil: ' + props.SOCIEDAD + '<br />' : '') + (props.OTRO ? 'Otros: ' + props.OTRO + '<br />' : '') + (props.TOTAL ? '<br /><b>Total ' + props.TOTAL + '</p></b>' : '') : '' : strInstrucciones) + '</div>';
+        var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '' ;
+        var strAcademia = props ? props.ACADEMIA ? '<tr><th>Académicos</th><td>' + props.ACADEMIA + '</td></tr>' : '' : '';
+        var strOtro = props ? props.OTRO ? '<tr><th>Otros</th><td>' + props.OTRO + '</td></tr>' : '' : '';
+        var strPrivado = props ? props.PRIVADO ? '<tr><th>Privados</th><td>' + props.PRIVADO + '</td></tr>' : '' : '' ;
+        var strGobierno = props ? props.GOBIERNO ? '<tr><th>Gubernamentales</th><td>' + props.GOBIERNO + '</td></tr>' : '' : '';
+        var strSociedad = props ? props.SOCIEDAD ? '<tr><th>Sociedad Civil</th><td>' + props.SOCIEDAD + '</td></tr>' : '' : '';
+        var strTotal = props ? props.TOTAL ? '<tr>' +  '<th>Total</th><th>' + props.TOTAL + '</th   ></tr>' : '' : '';
+
+        this._div.innerHTML = strEncabezado + (props ? props.TOTAL ? '<table class="table table-striped">' + strTitulo + '</b><br /><br />' + strAcademia + strGobierno + strPrivado + strSociedad + strOtro + strTotal + '</table>' : '' : strInstrucciones) + '</div>';
     };
 
     info.addTo(map);

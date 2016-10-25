@@ -74,6 +74,7 @@ body legend {
 
 .divinfo{
     max-width: 250px;
+    min-width: 200px;
 }
 
 .info h4 {
