@@ -1,0 +1,53 @@
+html,
+body,
+#container {
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+}
+
+
+/*
+    MAPA
+*/
+
+#mapHeat {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
+}
+
+#borrarDatos {
+    position: absolute;
+    left: 50px;
+    bottom: 100px;
+    z-index: 1000;
+    height: 30px;
+    width: 150px;
+}
+
+#recargarDatos {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    z-index: 1000;
+    height: 30px;
+    width: 150px;
+}
+
+/*
+  HOME
+*/
+
+.leaflet-control-defaultextent-toggle {
+    text-indent: -9999px;
+    white-space: nowrap;
+    background-image: url('images/leaflet.defaultextent.png');
+    width: 26px;
+    height: 26px;
+    display: block;
+}

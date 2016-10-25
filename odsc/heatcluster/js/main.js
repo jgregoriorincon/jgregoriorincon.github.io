@@ -1,27 +1,6 @@
 var Localidad, Nombre, Codigo;
 var barriosSMLayer;
 
-/* ------------------- MAPA BASE ------------------*/
-var mapBase = L.map('mapBase').setView([11.17, -74.20], 12);
-
-Esri_WorldStreetMap.addTo(mapBase);
-
-// Controles
-L.control.defaultExtent().addTo(mapBase);
-
-var control = L.control.zoomBox({
-    modal: true
-});
-mapBase.addControl(control);
-
-mapBase.attributionControl.addAttribution('Observatorio Distrital de Seguridad y Convivencia &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
-
-/* --------------------------------------------------------------- */
-
-
-/* ---------------------------------------------------------------
-                    MAPA CALOR
-   --------------------------------------------------------------- */
 var densidadLayer;
 // Variable del Cluster
 var clusterHechos = L.markerClusterGroup();
@@ -67,74 +46,6 @@ document.onreadystatechange = () => {
         }).addTo(mapHeat);
     }
 };
-
-// Informacion
-var info = L.control();
-
-info.onAdd = function (mapBase) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
-
-info.update = function (props) {
-    this._div.innerHTML = '<h3>Barrios de Santa Marta</h3>' + (props ?
-        '<p align="right"><b>' + props.NOMBRE + '<br />Localidad ' + props.LOCALIDAD + '<br /> Codigo ' + props.CODIGO + '</b><br />' + '</p></b>' : 'Pase el cursor sobre un barrio');
-};
-
-info.addTo(mapBase);
-
-// Carga de la informacion
-barriosSMLayer = L.geoJson(barriosSM, {
-    onEachFeature: onEachFeature
-}).addTo(mapBase);
-
-function onEachFeature(feature, layer) {
-    feature.layer = layer;
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-    });
-}
-
-function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
-
-    info.update(layer.feature.properties);
-}
-
-function resetHighlight(e) {
-
-    barriosSMLayer.resetStyle(e.target);
-
-    info.update();
-}
-
-function zoomToFeature(e) {
-    var layer = e.target;
-
-    // Daniel
-    // Almaceno los valores para usarlos 
-    Localidad = layer.feature.properties.LOCALIDAD;
-    Codigo = layer.feature.properties.CODIGO;
-    Nombre = layer.feature.properties.NOMBRE;
-
-    document.getElementById("dataBarrio").innerHTML = "LOCALIDAD: " + Localidad + '<br />' + "CODIGO: " + Codigo + '<br />' + "NOMBRE: " + Nombre + '<br /><br />';
-
-    mapBase.fitBounds(e.target.getBounds());
-}
 
 function cargarHeat() {
     // Se parsean los datos de InfoMapaV2 en un GeoJSON
@@ -185,9 +96,6 @@ function cargarCluster() {
 
     // Adicionar los hechos al cluster
     clusterHechos.addLayer(hechos);
-
-    // Se adiciona el mapa de calor como un Layer
-    //mapHeat.addLayer(clusterHechos);
 }
 
 // Funcion que convierte el GeoJSON en geodatos

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/ZoomBox.css" />    
+    <link rel="stylesheet" href="css/ZoomBox.css" />
     <link rel="stylesheet" href="css/MarkerCluster.css" />
     <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -16,22 +16,18 @@
 
 <body>
 
-    <div id="mapBase"></div>
     <div id="mapHeat"></div>
     <div id="datos">
-        <div id="dataBarrio"></div>
-        <div id="Ejecucion">
-            <button onclick="borrarDatos()">Borrar Informacion</button><br />
-            <button onclick="recargarDatos()">Recargar Informacion</button>
-        </div>
+        <button id="borrarDatos" onclick="borrarDatos()">Borrar Información</button><br />
+        <button id="recargarDatos" onclick="recargarDatos()">Recargar Información</button>
     </div>
-    
+
     <script src="js/leaflet.js"></script>
     <script src="js/leaflet-heat.js"></script>
     <script src="js/leaflet.markercluster.js"></script>
 
     <script src="js/geojson.min.js"></script>
-    
+
     <script src="js/basemaps.js"></script>
 
     <script src="js/leaflet.defaultextent.js"></script>
