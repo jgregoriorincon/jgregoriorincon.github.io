@@ -44,3 +44,5 @@ odsc/heat/css/Icon
 odsc/cluster/js/Icon
 
 odsc/cluster/images/Icon
+
+*.zip
