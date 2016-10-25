@@ -22,7 +22,7 @@ $(document).ready(function () {
     map = L.map('map', {
         maxZoom: 18,
         minZoom: 5,
-        zoomControl: false,
+        zoomControl: true,
         scrollWheelZoom: true
     });
 
