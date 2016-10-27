@@ -40,7 +40,8 @@ $(document).ready(function () {
     loadSector();
     loadTerritorial();
     loadDepartamentos();
-
+    loadNodos();
+    
     $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();
     });
@@ -216,6 +217,19 @@ $(document).ready(function () {
 });
 
 /**
+ * Carga la lista de Nodos
+ */
+function loadNodos() {
+    "use strict";
+
+    var i, lista = "<option value='all'>Todos</option>";
+    for (i = 0; i < Nodos.length; i++) {
+        lista += "<option value='" + Nodos[i] + "'>" + Nodos[i] + "</option>";
+    }
+    $("#selNodo").html(lista);
+}
+
+/**
  * Carga la lista de departamentales
  */
 function loadDepartamentos() {
@@ -267,6 +281,21 @@ function loadTerritorial() {
 
 function filtrarNodo(){
 
+}
+
+/**
+ * Filtrar Departamento
+ * @param   {[[Type]]} DPTO Nombre del Departamento
+ * @returns {[[Type]]} [[Description]]
+ */
+function filtrarDepto(DPTO) {
+    "use strict";
+
+    var Departamento = JSON.parse(JSON.stringify(Observatorios));
+    Departamento.features = Departamento.features.filter(function (a) {
+        return a.properties.DEPARTAMENTO == DPTO;
+    });
+    return Departamento;
 }
 
 /**
@@ -981,19 +1010,4 @@ function popupObservatorio(feature, layer) {
             $("#featureModal").modal("show");
         }
     });
-}
-
-/**
- * Filtrar Departamento
- * @param   {[[Type]]} DPTO Nombre del Departamento
- * @returns {[[Type]]} [[Description]]
- */
-function filtrarDepto(DPTO) {
-    "use strict";
-
-    var Departamento = JSON.parse(JSON.stringify(Observatorios));
-    Departamento.features = Departamento.features.filter(function (a) {
-        return a.properties.DEPARTAMENTO == DPTO;
-    });
-    return Departamento;
 }
