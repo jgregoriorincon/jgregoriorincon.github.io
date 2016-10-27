@@ -33,21 +33,17 @@ var Sector = [
   "Otro"
 ];
 
-var Departamentos = [
-  "ATLÁNTICO",
-  "BOGOTÁ D.C.",
-  "BOLÍVAR",
-  "BOYACÁ",
-  "CAUCA",
-  "MAGDALENA",
-  "META",
-  "NARIÑO",
-  "NORTE DE SANTANDER",
-  "PUTUMAYO",
-  "SANTANDER",
-  "SUCRE",
-  "VALLE DEL CAUCA"
+var Nodos = [
+  "Caribe",
+  "Centro",
+  "Sur"
 ];
+
+var Departamentos = {
+  'Caribe': ["ATLÁNTICO", "BOLÍVAR", "MAGDALENA", "SUCRE"],
+  'Centro': ["BOGOTÁ D.C.", "BOYACÁ", "META", "NORTE DE SANTANDER", "SANTANDER"],
+  'Sur': ["CAUCA", "NARIÑO", "PUTUMAYO", "VALLE DEL CAUCA"]
+};
 
 var Municipios = {
     'ATLÁNTICO': ['BARRANQUILLA'],
