@@ -416,13 +416,15 @@ function filtrarTodo() {
             map.fitBounds(filtroLayer.getBounds());
 
             console.log(map.getZoom());
-
+            /*
             if (map.getZoom() < 9) {
                 map.addLayer(NodosLayer);
             }
-
+            */
             map.addLayer(filtroLayer);
             filtroLayer.bringToFront();
+            
+            map.setZoom(map.getZoom()-1);
         }
 
         $("#total_places").text(filtroData.features.length);
