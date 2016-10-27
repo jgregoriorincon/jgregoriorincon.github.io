@@ -1,4 +1,4 @@
-var Tematicas = [
+var listaTematicas = [
   "Conflicto armado",
   "Construcción de paz y postconflicto",
   "Convivencia y seguridad ciudadana",
@@ -16,7 +16,7 @@ var Tematicas = [
   "Violencia y persecución política"
 ];
 
-var NivelTerritorial = [
+var listaNivelTerritorial = [
   "Localidad",
   "Veredal",
   "Corregimiento",
@@ -25,7 +25,7 @@ var NivelTerritorial = [
   "Nacional"
 ];
 
-var Sector = [
+var listaSector = [
   "Academia",
   "Sociedad Civil",
   "Privado",
@@ -33,19 +33,19 @@ var Sector = [
   "Otro"
 ];
 
-var Nodos = [
+var listaNodos = [
   "Caribe",
   "Centro",
   "Sur"
 ];
 
-var Departamentos = {
+var listaDepartamentos = {
   'Caribe': ["ATLÁNTICO", "BOLÍVAR", "MAGDALENA", "SUCRE"],
   'Centro': ["BOGOTÁ D.C.", "BOYACÁ", "META", "NORTE DE SANTANDER", "SANTANDER"],
   'Sur': ["CAUCA", "NARIÑO", "PUTUMAYO", "VALLE DEL CAUCA"]
 };
 
-var Municipios = {
+var listaMunicipios = {
     'ATLÁNTICO': ['BARRANQUILLA'],
     'BOGOTÁ D.C.': ['BOGOTA'],
     'BOLÍVAR': ['CARTAGENA', 'EL CARMEN DE BOLIVAR', 'SAN PABLO', 'TURBACO'],
