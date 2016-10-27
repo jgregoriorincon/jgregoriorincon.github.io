@@ -34,7 +34,7 @@ var Sector = [
 ];
 
 var Departamentos = [
-  "ATLANTICO",
+  "ATLÁNTICO",
   "BOGOTÁ D.C.",
   "BOLÍVAR",
   "BOYACÁ",
@@ -50,7 +50,7 @@ var Departamentos = [
 ];
 
 var Municipios = {
-    'ATLANTICO': ['BARRANQUILLA'],
+    'ATLÁNTICO': ['BARRANQUILLA'],
     'BOGOTÁ D.C.': ['BOGOTA'],
     'BOLÍVAR': ['CARTAGENA', 'EL CARMEN DE BOLIVAR', 'SAN PABLO', 'TURBACO'],
     'BOYACÁ': ['TUNJA'],
