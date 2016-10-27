@@ -280,7 +280,45 @@ function loadTerritorial() {
 }
 
 function filtrarNodo(){
+    "use strict";
 
+    //var myselect = document.getElementById("selDepartamento"),
+    //var DPTO = myselect.options[myselect.selectedIndex].value;
+
+    var i, lista, html, Dpto, Nodo = $('#selNodo').val();
+
+    if (Nodo !== 'all') {
+        Dpto = listaDepartamentos[Nodo] || [];
+        lista = "<option value='all'>Todos</option>";
+        html = lista + $.map(Dpto, function (Dpto) {
+            return '<option value="' + Dpto + '">' + Dpto + '</option>';
+        }).join('');
+
+        $("#selDepartamento").html(html);
+
+        filtrarTodo();
+
+    } else {
+        if (document.getElementById('selDepartamento').options.length > 1) {
+            for (i = document.getElementById('selDepartamento').options.length - 1; i >= 1; i--) {
+                document.getElementById('selDepartamento').remove(i);
+            }
+        }
+
+        var Nodo = document.getElementById('selNodo').value,
+            Dpto = document.getElementById('selDepartamento').value,
+            Mpio = document.getElementById('selMunicipio').value,
+            Sector = document.getElementById('selSector').value,
+            Tematica = document.getElementById('selTematica').value,
+            Territorial = document.getElementById('selTerritorial').value,
+            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
+
+        if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+            // No hace nada
+        } else {
+            limpiarSeleccion();
+        }
+    }
 }
 
 /**
