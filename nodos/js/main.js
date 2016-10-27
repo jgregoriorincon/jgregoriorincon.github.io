@@ -155,7 +155,7 @@ $(document).ready(function () {
         
         var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de observatorios para obtener ma información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
-        var strEncabezado = '<div class="panel-heading text-center"><h3 class="panel-title">ObservaDHores</h3></div><div class="panel-body text-right divinfo">';
+        var strEncabezado = '<div class="panel-body text-right divinfo">';
 
         var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '' ;
         var strAcademia = props ? props.ACADEMIA ? '<tr><th>Académicos</th><td>' + props.ACADEMIA + '</td></tr>' : '' : '';
