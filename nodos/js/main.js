@@ -223,8 +223,8 @@ function loadNodos() {
     "use strict";
 
     var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < Nodos.length; i++) {
-        lista += "<option value='" + Nodos[i] + "'>" + Nodos[i] + "</option>";
+    for (i = 0; i < listaNodos.length; i++) {
+        lista += "<option value='" + listaNodos[i] + "'>" + listaNodos[i] + "</option>";
     }
     $("#selNodo").html(lista);
 }
@@ -236,8 +236,8 @@ function loadDepartamentos() {
     "use strict";
 
     var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < Departamentos.length; i++) {
-        lista += "<option value='" + Departamentos[i] + "'>" + Departamentos[i] + "</option>";
+    for (i = 0; i < listaDepartamentos.length; i++) {
+        lista += "<option value='" + listaDepartamentos[i] + "'>" + listaDepartamentos[i] + "</option>";
     }
     $("#selDepartamento").html(lista);
 }
@@ -249,8 +249,8 @@ function loadDepartamentos() {
 function loadSector() {
     "use strict";
     var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < Sector.length; i++) {
-        lista += "<option value='" + Sector[i] + "'>" + Sector[i] + "</option>";
+    for (i = 0; i < listaSector.length; i++) {
+        lista += "<option value='" + listaSector[i] + "'>" + listaSector[i] + "</option>";
     }
     $("#selSector").html(lista);
 }
@@ -261,8 +261,8 @@ function loadSector() {
 function loadTematica() {
     "use strict";
     var i, lista = "<option value='all'>Todas</option>";
-    for (i = 0; i < Tematicas.length; i++) {
-        lista += "<option value='" + Tematicas[i] + "'>" + Tematicas[i] + "</option>";
+    for (i = 0; i < listaTematicas.length; i++) {
+        lista += "<option value='" + listaTematicas[i] + "'>" + listaTematicas[i] + "</option>";
     }
     $("#selTematica").html(lista);
 }
@@ -273,8 +273,8 @@ function loadTematica() {
 function loadTerritorial() {
     "use strict";
     var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < NivelTerritorial.length; i++) {
-        lista += "<option value='" + NivelTerritorial[i] + "'>" + NivelTerritorial[i] + "</option>";
+    for (i = 0; i < listaNivelTerritorial.length; i++) {
+        lista += "<option value='" + listaNivelTerritorial[i] + "'>" + listaNivelTerritorial[i] + "</option>";
     }
     $("#selTerritorial").html(lista);
 }
@@ -311,7 +311,7 @@ function filtrarDepartamento() {
     var i, Mpios, lista, html, DPTO = $('#selDepartamento').val();
 
     if (DPTO !== 'all') {
-        Mpios = Municipios[DPTO] || [];
+        Mpios = listaMunicipios[DPTO] || [];
         lista = "<option value='all'>Todos</option>";
         html = lista + $.map(Mpios, function (Mpio) {
             return '<option value="' + Mpio + '">' + Mpio + '</option>';
