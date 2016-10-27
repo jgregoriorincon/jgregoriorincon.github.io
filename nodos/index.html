@@ -28,7 +28,13 @@
 
                     <!-- Form Name -->
                     <legend>Buscar Observatorios</legend>
-
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selNodo">Nodo</label>
+                        <div class="col-md-8">
+                            <select id="selNodo" name="selNodo" class="form-control" onchange="filtrarNodo()">
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selDepartamento">Departamento</label>
                         <div class="col-md-8">
