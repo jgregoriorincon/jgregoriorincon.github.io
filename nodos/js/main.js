@@ -265,6 +265,9 @@ function loadTerritorial() {
     $("#selTerritorial").html(lista);
 }
 
+function filtrarNodo(){
+
+}
 
 /**
  * Recupera la seleccion del departamento y carga la lista de municipios asociados
