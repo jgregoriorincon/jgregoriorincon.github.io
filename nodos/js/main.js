@@ -412,7 +412,7 @@ function filtrarTodo() {
             map.addLayer(positron);
             map.addLayer(positronLabels);
 
-            filtroLayer = renderMarkersData(filtroData, 0.01);
+            filtroLayer = renderMarkersData(filtroData, 0.1);
             map.fitBounds(filtroLayer.getBounds());
 
             console.log(map.getZoom());
@@ -632,7 +632,7 @@ function zoomToFeatureNodos(e) {
         map.addLayer(NodosCentroSantander);
         map.addLayer(NodosCentroNteSantander);
     } else if (NodoSeleccionado === 'Caribe') {
-        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLANTICO'), 100);
+        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLÁNTICO'), 100);
         NodosCaribeMagdalena = renderMarkersData(filtrarDepto('MAGDALENA'), 100);
         NodosCaribeSucre = renderMarkersData(filtrarDepto('SUCRE'), 100);
         NodosCaribeBolivar = renderMarkersData(filtrarDepto('BOLÍVAR'), 1500);
@@ -731,7 +731,7 @@ function zoomToFeatureDptos(e) {
         NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
         map.addLayer(NodosCentroBogota);
         break;
-    case 'ATLANTICO':
+    case 'ATLÁNTICO':
         NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeAtlantico);
         break;
