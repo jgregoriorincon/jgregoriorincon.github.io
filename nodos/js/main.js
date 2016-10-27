@@ -351,14 +351,16 @@ function filtrarDepartamento() {
 function filtrarTodo() {
     "use strict";
 
-    var i, DPTO = document.getElementById('selDepartamento').value,
+    var i, 
+        Nodo = document.getElementById('selNodo').value,
+        Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
         Sector = document.getElementById('selSector').value,
         Tematica = document.getElementById('selTematica').value,
         Territorial = document.getElementById('selTerritorial').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-    if ((DPTO !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+    if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
 
         //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
         map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
@@ -368,9 +370,15 @@ function filtrarTodo() {
 
         filtroData = JSON.parse(JSON.stringify(Observatorios));
 
-        if (DPTO !== 'all') {
+        if (Nodo !== 'all') {
             filtroData.features = filtroData.features.filter(function (a) {
-                return a.properties.DEPARTAMENTO === DPTO;
+                return a.properties.NODO === Nodo;
+            });
+        }
+        
+        if (Dpto !== 'all') {
+            filtroData.features = filtroData.features.filter(function (a) {
+                return a.properties.DEPARTAMENTO === Dpto;
             });
         }
 
