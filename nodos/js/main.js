@@ -41,7 +41,7 @@ $(document).ready(function () {
     loadTerritorial();
     loadDepartamentos();
     loadNodos();
-    
+
     $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();
     });
@@ -279,7 +279,7 @@ function loadTerritorial() {
     $("#selTerritorial").html(lista);
 }
 
-function filtrarNodo(){
+function filtrarNodo() {
     "use strict";
 
     //var myselect = document.getElementById("selDepartamento"),
@@ -388,7 +388,7 @@ function filtrarDepartamento() {
 function filtrarTodo() {
     "use strict";
 
-    var i, 
+    var i,
         Nodo = document.getElementById('selNodo').value,
         Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
@@ -412,7 +412,7 @@ function filtrarTodo() {
                 return a.properties.NODO === Nodo;
             });
         }
-        
+
         if (Dpto !== 'all') {
             filtroData.features = filtroData.features.filter(function (a) {
                 return a.properties.DEPARTAMENTO === Dpto;
@@ -500,8 +500,8 @@ function filtrarTodo() {
             */
             map.addLayer(filtroLayer);
             filtroLayer.bringToFront();
-            
-            map.setZoom(map.getZoom()-1);
+
+            map.setZoom(map.getZoom() - 1);
         }
 
         $("#total_places").text(filtroData.features.length);
@@ -774,60 +774,58 @@ function zoomToFeatureDptos(e) {
     map.addLayer(MpiosLayer);
 
     switch (DptoSeleccionado) {
-<<<<<<< Updated upstream
-    case 'PUTUMAYO':
-        NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-        map.addLayer(NodosSurPutumayo);
-        break;
-    case 'NARIÑO':
-        NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
-        map.addLayer(NodosSurNarino);
-        break;
-    case 'CAUCA':
-        NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-        map.addLayer(NodosSurCauca);
-        break;
-    case 'VALLE DEL CAUCA':
-        NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
-        map.addLayer(NodosSurValleCauca);
-        break;
-    case 'META':
-        NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-        map.addLayer(NodosCentroMeta);
-        break;
-    case 'SANTANDER':
-        NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-        map.addLayer(NodosCentroSantander);
-        break;
-    case 'NORTE DE SANTANDER':
-        NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
-        map.addLayer(NodosCentroNteSantander);
-        break;
-    case 'BOYACÁ':
-        NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-        map.addLayer(NodosCentroBoyaca);
-        break;
-    case 'BOGOTÁ D.C.':
-        NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
-        map.addLayer(NodosCentroBogota);
-        break;
-    case 'ATLÁNTICO':
-        NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
-        map.addLayer(NodosCaribeAtlantico);
-        break;
-    case 'MAGDALENA':
-        NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
-        map.addLayer(NodosCaribeMagdalena);
-        break;
-    case 'SUCRE':
-        NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
-        map.addLayer(NodosCaribeSucre);
-        break;
-    case 'BOLÍVAR':
-        NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
-        map.addLayer(NodosCaribeBolivar);
-        break;
-=======
+        case 'PUTUMAYO':
+            NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+            map.addLayer(NodosSurPutumayo);
+            break;
+        case 'NARIÑO':
+            NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
+            map.addLayer(NodosSurNarino);
+            break;
+        case 'CAUCA':
+            NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosSurCauca);
+            break;
+        case 'VALLE DEL CAUCA':
+            NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
+            map.addLayer(NodosSurValleCauca);
+            break;
+        case 'META':
+            NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosCentroMeta);
+            break;
+        case 'SANTANDER':
+            NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosCentroSantander);
+            break;
+        case 'NORTE DE SANTANDER':
+            NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
+            map.addLayer(NodosCentroNteSantander);
+            break;
+        case 'BOYACÁ':
+            NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+            map.addLayer(NodosCentroBoyaca);
+            break;
+        case 'BOGOTÁ D.C.':
+            NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
+            map.addLayer(NodosCentroBogota);
+            break;
+        case 'ATLÁNTICO':
+            NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeAtlantico);
+            break;
+        case 'MAGDALENA':
+            NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeMagdalena);
+            break;
+        case 'SUCRE':
+            NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeSucre);
+            break;
+        case 'BOLÍVAR':
+            NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeBolivar);
+            break;
         case 'PUTUMAYO':
             NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
             map.addLayer(NodosSurPutumayo);
@@ -880,7 +878,6 @@ function zoomToFeatureDptos(e) {
             NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
             map.addLayer(NodosCaribeBolivar);
             break;
->>>>>>> Stashed changes
     }
 }
 
