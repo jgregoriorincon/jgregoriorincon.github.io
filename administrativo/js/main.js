@@ -24,7 +24,7 @@ $(document).ready(function () {
         minZoom: 5,
         zoomControl: true,
         scrollWheelZoom: true,
-        defaultExtentControl: true
+        defaultExtentControl: false
     });
 
     mapColombia.setView([4.5, -73.0], 6);
