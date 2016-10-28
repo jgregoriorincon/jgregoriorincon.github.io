@@ -187,3 +187,9 @@ h5 {
     width: 10%;
     float: right;
 }
+
+.btn-info {
+    background-color: #4797C0;
+    border-color: #4797C0;
+
+}
