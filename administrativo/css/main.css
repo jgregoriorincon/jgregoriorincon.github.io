@@ -3,26 +3,14 @@ body .no-padding {
     margin: 0;
 }
 
-body .margin-5 {
-    padding: 5;
-    margin-bottom : 10;
-}
-
 html,
-body,
-#container {
+body {
     font-family: 'Open Sans', sans-serif;
     width: 100vw;
     overflow: hidden;
     height: 100vh;
     margin: 0;
 }
-
-body .well {
-    padding: 10px;
-    margin: 0px;
-}
-
 
 /*
     MAPA
@@ -36,49 +24,6 @@ body .well {
 .leaflet-tooltip {
     padding: 2px;
     font-size: 10px;
-}
-
-body .modal-dialog {
-    /* new custom width */
-    width: 600px;
-    /* must be half of the width, minus scrollbar on the left (30px) */
-    /*margin-left: -375px;*/
-}
-
-.disabled {
-    pointer-events: none;
-}
-
-.nav>li>a {
-    padding: 10px 3px;
-}
-
-body legend {
-    font-size: 15px;
-}
-
-
-/*
-    INFORMACION
-*/
-
-.info {
-    padding: 6px 8px;
-    font: 16px/18px Arial, Helvetica, sans-serif;
-    text-align: right;
-    background: white;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-.divinfo{
-    max-width: 250px;
-}
-
-.info h4 {
-    margin: 0 0 5px;
-    color: #777;
 }
 
 /*
