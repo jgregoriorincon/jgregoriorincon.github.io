@@ -134,7 +134,7 @@ $(document).ready(function () {
                     zoomToFeatureDptos(mpioAnterior);
                     nivelActual = 'Mpio';
                 }
-            }
+            };
 
             return container;
         }
@@ -153,18 +153,18 @@ $(document).ready(function () {
     };
 
     info.update = function (props) {
-        
+
         var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de observatorios para obtener ma información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
         var strEncabezado = '<div class="panel-body text-right divinfo">';
 
-        var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '' ;
+        var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '';
         var strAcademia = props ? props.ACADEMIA ? '<tr><th>Académicos</th><td>' + props.ACADEMIA + '</td></tr>' : '' : '';
         var strOtro = props ? props.OTRO ? '<tr><th>Otros</th><td>' + props.OTRO + '</td></tr>' : '' : '';
-        var strPrivado = props ? props.PRIVADO ? '<tr><th>Privados</th><td>' + props.PRIVADO + '</td></tr>' : '' : '' ;
+        var strPrivado = props ? props.PRIVADO ? '<tr><th>Privados</th><td>' + props.PRIVADO + '</td></tr>' : '' : '';
         var strGobierno = props ? props.GOBIERNO ? '<tr><th>Gubernamentales</th><td>' + props.GOBIERNO + '</td></tr>' : '' : '';
         var strSociedad = props ? props.SOCIEDAD ? '<tr><th>Sociedad Civil</th><td>' + props.SOCIEDAD + '</td></tr>' : '' : '';
-        var strTotal = props ? props.TOTAL ? '<tr>' +  '<th>Total</th><th>' + props.TOTAL + '</th   ></tr>' : '' : '';
+        var strTotal = props ? props.TOTAL ? '<tr>' + '<th>Total</th><th>' + props.TOTAL + '</th   ></tr>' : '' : '';
 
         this._div.innerHTML = strEncabezado + (props ? props.TOTAL ? '<table class="table table-striped">' + strTitulo + '</b><br /><br />' + strAcademia + strGobierno + strPrivado + strSociedad + strOtro + strTotal + '</table>' : '' : strInstrucciones) + '</div>';
     };
@@ -379,7 +379,6 @@ function filtrarDepartamento() {
             limpiarSeleccion();
         }
     }
-
 }
 
 /**
@@ -587,6 +586,7 @@ function styleNodos(feature) {
  * @returns {object} [[Description]]
  */
 function styleDptos(feature) {
+    'use strict';
     var transparencia = feature.properties.TIENE == 'SI' ? 0.5 : 0.2;
     return {
         weight: 1,
@@ -604,6 +604,7 @@ function styleDptos(feature) {
  * @returns {object} [[Description]]
  */
 function styleMpios(feature) {
+    "use strict";
     return {
         weight: 1,
         opacity: 1,
@@ -767,12 +768,13 @@ function zoomToFeatureDptos(e) {
             //layer.on('mouseout', resetHighlightMpios);
             layer.on('click', zoomToFeatureMpios);
         }
-    })
+    });
 
     MpiosLayer.addData(Mpios);
     map.addLayer(MpiosLayer);
 
     switch (DptoSeleccionado) {
+<<<<<<< Updated upstream
     case 'PUTUMAYO':
         NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
         map.addLayer(NodosSurPutumayo);
@@ -825,6 +827,60 @@ function zoomToFeatureDptos(e) {
         NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
         map.addLayer(NodosCaribeBolivar);
         break;
+=======
+        case 'PUTUMAYO':
+            NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+            map.addLayer(NodosSurPutumayo);
+            break;
+        case 'NARIÑO':
+            NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
+            map.addLayer(NodosSurNarino);
+            break;
+        case 'CAUCA':
+            NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosSurCauca);
+            break;
+        case 'VALLE DEL CAUCA':
+            NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
+            map.addLayer(NodosSurValleCauca);
+            break;
+        case 'META':
+            NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosCentroMeta);
+            break;
+        case 'SANTANDER':
+            NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
+            map.addLayer(NodosCentroSantander);
+            break;
+        case 'NORTE DE SANTANDER':
+            NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
+            map.addLayer(NodosCentroNteSantander);
+            break;
+        case 'BOYACÁ':
+            NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
+            map.addLayer(NodosCentroBoyaca);
+            break;
+        case 'BOGOTÁ D.C.':
+            NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
+            map.addLayer(NodosCentroBogota);
+            break;
+        case 'ATLANTICO':
+            NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeAtlantico);
+            break;
+        case 'MAGDALENA':
+            NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeMagdalena);
+            break;
+        case 'SUCRE':
+            NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeSucre);
+            break;
+        case 'BOLÍVAR':
+            NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
+            map.addLayer(NodosCaribeBolivar);
+            break;
+>>>>>>> Stashed changes
     }
 }
 
