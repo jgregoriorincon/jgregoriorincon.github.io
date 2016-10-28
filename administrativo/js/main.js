@@ -19,7 +19,7 @@ $(document).ready(function () {
     var i;
 
     /* ------------------- MAPA ------------------*/
-    mapColombia = L.mapColombia('mapColombia', {
+    mapColombia = L.map('mapColombia', {
         maxZoom: 18,
         minZoom: 5,
         zoomControl: true,
