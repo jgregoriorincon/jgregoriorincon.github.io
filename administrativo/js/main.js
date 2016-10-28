@@ -3,9 +3,9 @@
 /*jslint plusplus: true */
 
 // Variables globales
-var map, cartodbAttribution;
+var mapColombia, cartodbAttribution;
 // Controles
-var info, legend, volver;
+var volver;
 
 // Datos
 var DptosLayer, MpiosLayer;
@@ -19,25 +19,26 @@ $(document).ready(function () {
     var i;
 
     /* ------------------- MAPA ------------------*/
-    map = L.map('map', {
+    mapColombia = L.mapColombia('mapColombia', {
         maxZoom: 18,
         minZoom: 5,
         zoomControl: true,
-        scrollWheelZoom: true
+        scrollWheelZoom: true,
+        defaultExtentControl: true
     });
 
-    map.setView([4.5, -73.0], 6);
+    mapColombia.setView([4.5, -73.0], 6);
 
-    map.createPane('labels');
+    mapColombia.createPane('labels');
 
     // This pane is above markers but below popups
-    map.getPane('labels').style.zIndex = 500;
+    mapColombia.getPane('labels').style.zIndex = 500;
 
     // Layers in this pane are non-interactive and do not obscure mouse/touch events
-    map.getPane('labels').style.pointerEvents = 'none';
+    mapColombia.getPane('labels').style.pointerEvents = 'none';
 
-    positron.addTo(map);
-    positronLabels.addTo(map);
+    positron.addTo(mapColombia);
+    positronLabels.addTo(mapColombia);
 
     var baseMaps = {
         "Base Gris": positron,
@@ -52,7 +53,7 @@ $(document).ready(function () {
     L.control.layers(baseMaps, overlays, {
         position: 'bottomright',
         collapsed: false
-    }).addTo(map);
+    }).addTo(mapColombia);
 
     /* ------------------- CONTROLES ------------------*/
     volver = L.Control.extend({
@@ -60,7 +61,7 @@ $(document).ready(function () {
             position: 'bottomleft'
         },
 
-        onAdd: function (map) {
+        onAdd: function (mapColombia) {
             var container = L.DomUtil.create('div', 'volver-control');
             container.innerHTML = '<form><img src="css/back-icon.png" alt="VOLVER" style="width:64px;height:64px;"><br />Ir a Vista Anterior</form>';
             container.style.cursor = 'pointer';
@@ -85,9 +86,9 @@ $(document).ready(function () {
         }
     });
 
-    map.addControl(new volver());
+    mapColombia.addControl(new volver());
 
-    map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
+    mapColombia.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
     // Capa de NODOS
     DptosLayer = L.geoJson(undefined, {
@@ -105,8 +106,8 @@ $(document).ready(function () {
     });
 
     // Adiciona las capas
-    DptosLayer.addData(departamentos);
-    DptosLayer.addTo(map);
+    DptosLayer.addData(capaDepartamentos);
+    DptosLayer.addTo(mapColombia);
 
     console.log("Listo!");
 });
@@ -119,13 +120,13 @@ function limpiarSeleccion() {
 
     var i;
 
-    map.setView(new L.LatLng(4.5, -73.0), 6);
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
+    mapColombia.setView(new L.LatLng(4.5, -73.0), 6);
+    mapColombia.eachLayer(function (layer) {
+        mapColombia.removeLayer(layer);
     });
-    map.addLayer(positron);
-    map.addLayer(positronLabels);
-    map.addLayer(DptosLayer);
+    mapColombia.addLayer(positron);
+    mapColombia.addLayer(positronLabels);
+    mapColombia.addLayer(DptosLayer);
 
 }
 
@@ -202,14 +203,14 @@ function zoomToFeatureDptos(e) {
     nivelActual = "Dpto";
 
     var layer = e.target;
-    map.fitBounds(e.target.getBounds());
+    mapColombia.fitBounds(e.target.getBounds());
     DptoSeleccionado = layer.feature.properties.DEPTO;
 
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
+    mapColombia.eachLayer(function (layer) {
+        mapColombia.removeLayer(layer);
     });
 
-    map.addLayer(positron);
+    mapColombia.addLayer(positron);
 
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
@@ -229,8 +230,8 @@ function zoomToFeatureDptos(e) {
         }
     })
 
-    MpiosLayer.addData(municipios);
-    map.addLayer(MpiosLayer);
+    MpiosLayer.addData(capaMunicipios);
+    mapColombia.addLayer(MpiosLayer);
 
 }
 
@@ -241,20 +242,20 @@ function zoomToFeatureMpios(e) {
     mpioAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Mpio";
 
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
+    mapColombia.eachLayer(function (layer) {
+        mapColombia.removeLayer(layer);
     });
 
-    map.addLayer(positron);
+    mapColombia.addLayer(positron);
 
     var layer = e.target;
 
-    map.fitBounds(e.target.getBounds());
+    mapColombia.fitBounds(e.target.getBounds());
     MpioSeleccionado = layer.feature.properties.COD_DANE;
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
+    mapColombia.eachLayer(function (layer) {
+        mapColombia.removeLayer(layer);
     });
-    map.addLayer(positron);
+    mapColombia.addLayer(positron);
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
@@ -272,9 +273,9 @@ function zoomToFeatureMpios(e) {
         }
     })
 
-    MpiosLayer.addData(municipios);
-    map.addLayer(MpiosLayer);
-    map.addLayer(positronLabels);
+    MpiosLayer.addData(capaMunicipios);
+    mapColombia.addLayer(MpiosLayer);
+    mapColombia.addLayer(positronLabels);
 
 }
 

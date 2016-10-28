@@ -28,7 +28,7 @@ body .well {
     MAPA
 */
 
-#map {
+.map {
     width: auto;
     height: 100vh;
 }
