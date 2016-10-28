@@ -487,7 +487,7 @@ function filtrarTodo() {
             NodosLayerFiltro.addData(Nodos);
             NodosLayerFiltro.addTo(map);
 
-            filtroLayer = renderMarkersData(filtroData, 0.1);
+            filtroLayer = renderMarkersData(filtroData, 33);
             map.fitBounds(filtroLayer.getBounds());
 
             console.log(map.getZoom());
