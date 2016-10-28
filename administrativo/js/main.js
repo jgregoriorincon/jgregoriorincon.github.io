@@ -88,7 +88,7 @@ $(document).ready(function () {
 
     mapColombia.addControl(new volver());
 
-    mapColombia.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
+    mapColombia.attributionControl.addAttribution(' <a href="http://pares.com.co/">Fundación Paz y Reconciliación &copy;</a>');
 
     // Capa de NODOS
     DptosLayer = L.geoJson(undefined, {
