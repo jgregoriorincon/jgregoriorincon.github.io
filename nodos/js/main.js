@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, loadDepartamentos, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
+/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
 /*jslint plusplus: true */
 
 // Variables globales
@@ -39,7 +39,6 @@ $(document).ready(function () {
     loadTematica();
     loadSector();
     loadTerritorial();
-    loadDepartamentos();
     loadNodos();
 
     $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
@@ -147,7 +146,7 @@ $(document).ready(function () {
     // control that shows state info on hover
     info = L.control();
     info.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'panel panel-primary'); // 'info popup');
+        this._div = L.DomUtil.create('div', 'panel panel-primary divinfo'); // 'info popup');
         this.update();
         return this._div;
     };
@@ -156,7 +155,7 @@ $(document).ready(function () {
 
         var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de observatorios para obtener ma información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
-        var strEncabezado = '<div class="panel-body text-right divinfo">';
+        var strEncabezado = '<div class="panel-body text-right">';
 
         var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '';
         var strAcademia = props ? props.ACADEMIA ? '<tr><th>Académicos</th><td>' + props.ACADEMIA + '</td></tr>' : '' : '';
@@ -228,20 +227,6 @@ function loadNodos() {
     }
     $("#selNodo").html(lista);
 }
-
-/**
- * Carga la lista de departamentales
- */
-function loadDepartamentos() {
-    "use strict";
-
-    var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaDepartamentos.length; i++) {
-        lista += "<option value='" + listaDepartamentos[i] + "'>" + listaDepartamentos[i] + "</option>";
-    }
-    $("#selDepartamento").html(lista);
-}
-
 
 /**
  * Carga la lista de tipos de Observatorios
@@ -382,7 +367,7 @@ function filtrarDepartamento() {
 }
 
 /**
- * filtra los observatorios por las opciones del sidebar
+ * [[filtra los observatorios por las opciones del sidebar]]
  * @returns {boolean} filtra la capa de observatorios 'filtroData'
  */
 function filtrarTodo() {
@@ -489,19 +474,25 @@ function filtrarTodo() {
             map.addLayer(positron);
             map.addLayer(positronLabels);
 
+            // Capa de NODOS
+            var NodosLayerFiltro = L.geoJson(undefined, {
+                style: styleNodosFiltro
+            });
+
+            // Adiciona las capas
+            NodosLayerFiltro.addData(Nodos);
+            NodosLayerFiltro.addTo(map);
+
             filtroLayer = renderMarkersData(filtroData, 0.1);
             map.fitBounds(filtroLayer.getBounds());
 
             console.log(map.getZoom());
-            /*
-            if (map.getZoom() < 9) {
-                map.addLayer(NodosLayer);
-            }
-            */
+
             map.addLayer(filtroLayer);
             filtroLayer.bringToFront();
 
-            map.setZoom(map.getZoom() - 1);
+            $(".divinfo")[0].hidden = true;
+            //map.setZoom(map.getZoom() - 1);
         }
 
         $("#total_places").text(filtroData.features.length);
@@ -530,12 +521,19 @@ function limpiarSeleccion() {
     map.addLayer(NodosCentro);
     map.addLayer(NodosCaribe);
 
+    document.getElementById('selNodo').value = 'all';
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
     document.getElementById('selSector').value = 'all';
     document.getElementById('selTematica').value = 'all';
     document.getElementById('selTerritorial').value = 'all';
     document.getElementById('buscarPalabra').value = '';
+
+    if (document.getElementById('selDepartamento').options.length > 1) {
+        for (i = document.getElementById('selDepartamento').options.length - 1; i >= 1; i--) {
+            document.getElementById('selDepartamento').remove(i);
+        }
+    }
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
@@ -546,6 +544,8 @@ function limpiarSeleccion() {
     // Recupera el listado inicial
     filtroData = JSON.parse(JSON.stringify(Observatorios));
     $("#total_places").text(0);
+
+    $(".divinfo")[0].hidden = false;
 
 }
 
@@ -576,6 +576,24 @@ function styleNodos(feature) {
         color: 'white',
         dashArray: '3',
         fillOpacity: 0.8,
+        fillColor: getColorNodos(feature.properties.NODO)
+    };
+}
+
+/**
+ * Ajusta la simbologia de los nodos
+ * @param   {object} feature Elemento geográfico
+ * @returns {object} simbologia
+ */
+function styleNodosFiltro(feature) {
+    "use strict";
+
+    return {
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.3,
         fillColor: getColorNodos(feature.properties.NODO)
     };
 }
