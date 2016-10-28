@@ -290,6 +290,12 @@ function filtrarNodo() {
             }
         }
 
+        if (document.getElementById('selMunicipio').options.length > 1) {
+            for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
+                document.getElementById('selMunicipio').remove(i);
+            }
+        }
+
         var Nodo = document.getElementById('selNodo').value,
             Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
@@ -328,13 +334,10 @@ function filtrarDepto(DPTO) {
 function filtrarDepartamento() {
     "use strict";
 
-    //var myselect = document.getElementById("selDepartamento"),
-    //var DPTO = myselect.options[myselect.selectedIndex].value;
+    var i, Mpios, lista, html, Dpto = $('#selDepartamento').val();
 
-    var i, Mpios, lista, html, DPTO = $('#selDepartamento').val();
-
-    if (DPTO !== 'all') {
-        Mpios = listaMunicipios[DPTO] || [];
+    if (Dpto !== 'all') {
+        Mpios = listaMunicipios[Dpto] || [];
         lista = "<option value='all'>Todos</option>";
         html = lista + $.map(Mpios, function (Mpio) {
             return '<option value="' + Mpio + '">' + Mpio + '</option>';
@@ -351,14 +354,15 @@ function filtrarDepartamento() {
             }
         }
 
-        var DPTO = document.getElementById('selDepartamento').value,
+        var Nodo = document.getElementById('selNodo').value,
+            Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
             Sector = document.getElementById('selSector').value,
             Tematica = document.getElementById('selTematica').value,
             Territorial = document.getElementById('selTerritorial').value,
             FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-        if ((DPTO !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+        if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
             // No hace nada
         } else {
             limpiarSeleccion();
