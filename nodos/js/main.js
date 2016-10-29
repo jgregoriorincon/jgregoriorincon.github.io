@@ -2,8 +2,6 @@
 /*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
 /*jslint plusplus: true */
 
-// Variables globales
-var map, cartodbAttribution;
 // Controles
 var info, legend, volver;
 
@@ -35,11 +33,6 @@ $(document).ready(function () {
     "use strict";
 
     var i;
-
-    loadTematica();
-    loadSector();
-    loadTerritorial();
-    loadNodos();
 
     $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();
@@ -214,55 +207,6 @@ $(document).ready(function () {
     map.addLayer(NodosCaribe);
     console.log("Listo!");
 });
-
-/**
- * Carga la lista de Nodos
- */
-function loadNodos() {
-    "use strict";
-
-    var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaNodos.length; i++) {
-        lista += "<option value='" + listaNodos[i] + "'>" + listaNodos[i] + "</option>";
-    }
-    $("#selNodo").html(lista);
-}
-
-/**
- * Carga la lista de tipos de Observatorios
- */
-function loadSector() {
-    "use strict";
-    var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaSector.length; i++) {
-        lista += "<option value='" + listaSector[i] + "'>" + listaSector[i] + "</option>";
-    }
-    $("#selSector").html(lista);
-}
-
-/**
- * Carga la lista de Tematicas
- */
-function loadTematica() {
-    "use strict";
-    var i, lista = "<option value='all'>Todas</option>";
-    for (i = 0; i < listaTematicas.length; i++) {
-        lista += "<option value='" + listaTematicas[i] + "'>" + listaTematicas[i] + "</option>";
-    }
-    $("#selTematica").html(lista);
-}
-
-/**
- * carga la lista de niveles territoriales
- */
-function loadTerritorial() {
-    "use strict";
-    var i, lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaNivelTerritorial.length; i++) {
-        lista += "<option value='" + listaNivelTerritorial[i] + "'>" + listaNivelTerritorial[i] + "</option>";
-    }
-    $("#selTerritorial").html(lista);
-}
 
 function filtrarNodo() {
     "use strict";
