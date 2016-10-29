@@ -1,42 +1,8 @@
-/*jslint browser: true*/
-/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase */
-/*jslint plusplus: true */
 
-// Controles
-var info, legend, volver;
-
-// Datos Totales
-var filtroData, filtroLayer;
-var NodosLayer, DptosLayer, MpiosLayer;
-var ObservatoriosLayer;
-
-// Seleccion
-var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
-var NodoSur, NodoCentro, NodoCaribe;
-var NodosSur, NodosCentro, NodosCaribe;
-
-var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
-var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
-var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
-
-var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
-
-var observatorioIcon = L.icon({
-    iconUrl: 'css/Map-Marker.png',
-    iconSize: [32, 32],
-    iconAnchor: [22, 31],
-    popupAnchor: [-3, -76]
-});
-
-// Funcion Principal
-$(document).ready(function () {
+function loadMap() {
     "use strict";
 
     var i;
-
-    $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
-        filtrarTodo();
-    });
 
     //Convierte el dato JSON en GeoJSON
     Observatorios = GeoJSON.parse(Observatorios, {
@@ -66,7 +32,7 @@ $(document).ready(function () {
         var div = L.DomUtil.create('div', 'info legend'),
             grades = ['Caribe', 'Centro', 'Sur'],
             labels = [],
-            from, to;
+            from;
 
         for (i = 0; i < grades.length; i++) {
             from = grades[i];
@@ -184,9 +150,43 @@ $(document).ready(function () {
     map.addLayer(NodosSur);
     map.addLayer(NodosCentro);
     map.addLayer(NodosCaribe);
-    console.log("Listo!");
-});
 
+}
+
+/**
+ * Asigna colores por el nodo
+ * @param   {[[Type]]} d valor del nodo
+ * @returns {[[Type]]} color asignado al nodo
+ */
+function getColorNodos(d) {
+    "use strict";
+
+    return d === 'Caribe' ? '#b2df8a' :
+        d === 'Centro' ? '#fdcb7b' :
+        d === 'Sur' ? '#a5bfdd' : '#f1f4c7';
+}
+
+/**
+ * Ajusta la simbologia de los nodos
+ * @param   {object} feature Elemento geográfico
+ * @returns {object} simbologia
+ */
+function styleNodos(feature) {
+    "use strict";
+
+    return {
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.8,
+        fillColor: getColorNodos(feature.properties.NODO)
+    };
+}
+
+/**
+ * Filtrar los nodos
+ */
 function filtrarNodo() {
     "use strict";
 
@@ -476,36 +476,7 @@ function limpiarSeleccion() {
 
 }
 
-/**
- * Asigna colores por el nodo
- * @param   {[[Type]]} d valor del nodo
- * @returns {[[Type]]} color asignado al nodo
- */
-function getColorNodos(d) {
-    "use strict";
 
-    return d === 'Caribe' ? '#b2df8a' :
-        d === 'Centro' ? '#fdcb7b' :
-        d === 'Sur' ? '#a5bfdd' : '#f1f4c7';
-}
-
-/**
- * Ajusta la simbologia de los nodos
- * @param   {object} feature Elemento geográfico
- * @returns {object} simbologia
- */
-function styleNodos(feature) {
-    "use strict";
-
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.8,
-        fillColor: getColorNodos(feature.properties.NODO)
-    };
-}
 
 /**
  * Ajusta la simbologia de los nodos

@@ -1,9 +1,35 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase, listaNodos, listaSector, listaTematicas, listaNivelTerritorial, positron, positronLabels */
+/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase, listaNodos, listaSector, listaTematicas, listaNivelTerritorial, positron, positronLabels, OpenStreetMap_Mapnik, Esri_WorldStreetMap, getColorNodos, zoomToFeatureNodos, zoomToFeatureDptos */
 /*jslint plusplus: true */
 
 // Variables globales
 var map, cartodbAttribution;
+// Controles
+var info, legend, volver;
+
+
+// Datos Totales
+var filtroData, filtroLayer;
+var NodosLayer, DptosLayer, MpiosLayer;
+var ObservatoriosLayer;
+
+// Seleccion
+var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
+var NodosSur, NodosCentro, NodosCaribe;
+var NodoSur, NodoCentro, NodoCaribe;
+
+var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
+var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
+var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
+
+var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
+
+var observatorioIcon = L.icon({
+    iconUrl: 'css/Map-Marker.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
 
 // Funcion Principal
 $(document).ready(function () {
@@ -33,6 +59,10 @@ $(document).ready(function () {
     }
     $("#selTerritorial").html(lista);
 
+    $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
+        filtrarTodo();
+    });
+
     /* ------------------- MAPA ------------------*/
     map = L.map('map', {
         maxZoom: 18,
@@ -54,5 +84,11 @@ $(document).ready(function () {
 
     positron.addTo(map);
     positronLabels.addTo(map);
+
+    console.log("Listo Alfa!");
+
+    loadMap();
+
+    console.log("Listo Geo!");
 
 });
