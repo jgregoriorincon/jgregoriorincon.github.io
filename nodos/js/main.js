@@ -43,27 +43,6 @@ $(document).ready(function () {
         Point: ['LAT', 'LONG']
     });
 
-    /* ------------------- MAPA ------------------*/
-    map = L.map('map', {
-        maxZoom: 18,
-        minZoom: 5,
-        zoomControl: false,
-        scrollWheelZoom: true
-    });
-
-    map.setView([4.5, -73.0], 6);
-
-    map.createPane('labels');
-
-    // This pane is above markers but below popups
-    map.getPane('labels').style.zIndex = 500;
-
-    // Layers in this pane are non-interactive and do not obscure mouse/touch events
-    map.getPane('labels').style.pointerEvents = 'none';
-
-    positron.addTo(map);
-    positronLabels.addTo(map);
-
     var baseMaps = {
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,
