@@ -46,3 +46,15 @@ odsc/cluster/js/Icon
 odsc/cluster/images/Icon
 
 *.zip
+
+.vscode/Icon
+
+administrativo/Icon
+
+administrativo/vendor/fonts/Icon
+
+odsc/heatcluster/css/Icon
+
+odsc/heatcluster/js/Icon
+
+odsc/heatcluster/Icon
