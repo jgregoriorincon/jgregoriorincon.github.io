@@ -1,4 +1,3 @@
-
 function loadMap() {
     "use strict";
 
@@ -84,14 +83,14 @@ function loadMap() {
     // control that shows state info on hover
     info = L.control();
     info.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'panel panel-primary divinfo'); // 'info popup');
+        this._div = L.DomUtil.create('div', 'panel panel-primary divinfo text-right'); // 'info popup');
         this.update();
         return this._div;
     };
 
     info.update = function (props) {
 
-        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de observatorios para obtener ma información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
+        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los observatorios para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
         var strEncabezado = '<div class="panel-body text-right">';
 
@@ -103,7 +102,10 @@ function loadMap() {
         var strSociedad = props ? props.SOCIEDAD ? '<tr><th>Sociedad Civil</th><td>' + props.SOCIEDAD + '</td></tr>' : '' : '';
         var strTotal = props ? props.TOTAL ? '<tr>' + '<th>Total</th><th>' + props.TOTAL + '</th   ></tr>' : '' : '';
 
-        this._div.innerHTML = strEncabezado + (props ? props.TOTAL ? '<table class="table table-striped">' + strTitulo + '</b><br /><br />' + strAcademia + strGobierno + strPrivado + strSociedad + strOtro + strTotal + '</table>' : '' : strInstrucciones) + '</div>';
+        var finalHTML = props ? props.TOTAL ? strEncabezado + '<table class="table table-striped">' + strTitulo + '</b>' + strAcademia + strGobierno + strPrivado + strSociedad + strOtro + strTotal + '</table>' : '' : strInstrucciones + '</div>';
+
+        this._div.innerHTML = finalHTML === '' ? '' : finalHTML;
+
     };
 
     info.addTo(map);
@@ -810,14 +812,15 @@ function zoomToFeatureMpios(e) {
     mpioAnterior = jQuery.extend(true, {}, e);
     nivelActual = "Mpio";
 
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-
-    map.addLayer(positron);
-
     var layer = e.target;
     if (layer.feature.properties.TIENE == 'SI') {
+
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+
+        map.addLayer(positron);
+
         //map.fitBounds(e.target.getBounds());
         MpioSeleccionado = layer.feature.properties.COD_DANE;
         map.eachLayer(function (layer) {
