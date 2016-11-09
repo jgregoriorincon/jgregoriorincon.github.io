@@ -107,6 +107,7 @@ body .table-striped {
     height: 80px;
     z-index: 999;
     background-image: url('../images/logo2.png');
+    background-color: rgba(255, 255, 255, 0.4);
     background-size: 226px 80px;
 }
 
