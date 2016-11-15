@@ -5,7 +5,7 @@ var Localidad, Nombre, Codigo;
 /* ------------------- MAPA ------------------*/
 var map = L.map('map').setView([11.17, -74.20], 12);
 
-cartoLight.addTo(map);
+Esri_WorldImagery.addTo(map);
 
 // Informacion
 var info = L.control();
