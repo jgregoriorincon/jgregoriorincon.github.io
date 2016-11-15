@@ -5,7 +5,7 @@ var Localidad, Nombre, Codigo;
 /* ------------------- MAPA ------------------*/
 var map = L.map('map').setView([11.17, -74.20], 12);
 
-HERE_hybridDay.addTo(map);
+cartoLight.addTo(map);
 
 // Informacion
 var info = L.control();
