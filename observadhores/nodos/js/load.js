@@ -13,7 +13,7 @@ var filtroData, filtroLayer;
 var NodosLayer, DptosLayer, MpiosLayer;
 
 // Seleccion
-var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
+var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado, CodDaneSeleccionado;
 /*var NodosSur, NodosCentro, NodosCaribe;
 var NodoSur, NodoCentro, NodoCaribe;
 

@@ -220,6 +220,8 @@ function zoomToFeatureNodos(e) {
 
     NodoSeleccionado = layer.feature.properties.NODO;
 
+    console.log("Nodo: " + NodoSeleccionado);
+
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
     });
@@ -272,7 +274,11 @@ function zoomToFeatureDptos(e) {
 
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
+
     DptoSeleccionado = layer.feature.properties.DEPTO;
+
+    console.log("Nodo: " + NodoSeleccionado);
+    console.log("Dpto: " + DptoSeleccionado);
 
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
@@ -324,7 +330,14 @@ function zoomToFeatureMpios(e) {
         map.addLayer(positron);
 
         //map.fitBounds(e.target.getBounds());
-        MpioSeleccionado = layer.feature.properties.COD_DANE;
+        CodDaneSeleccionado = layer.feature.properties.COD_DANE;
+        MpioSeleccionado = layer.feature.properties.NOMBRE;
+
+        console.log("Nodo: " + NodoSeleccionado);
+        console.log("Dpto: " + DptoSeleccionado);
+        console.log("Mpio: " + MpioSeleccionado);
+        console.log("DANE: " + CodDaneSeleccionado);
+
         map.eachLayer(function (layer) {
             map.removeLayer(layer);
         });
@@ -332,7 +345,7 @@ function zoomToFeatureMpios(e) {
         // Capa de MUNICIPIOS
         MpiosLayer = L.geoJson(undefined, {
             filter: function (feature) {
-                return (feature.properties.COD_DANE == MpioSeleccionado)
+                return (feature.properties.COD_DANE == CodDaneSeleccionado)
             },
             style: styleMpios,
             onEachFeature: function (feature, layer) {
