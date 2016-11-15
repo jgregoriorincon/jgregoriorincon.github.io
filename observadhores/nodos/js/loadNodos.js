@@ -14,12 +14,6 @@ var NodosLayer, DptosLayer, MpiosLayer;
 
 // Seleccion
 var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado, CodDaneSeleccionado;
-/*var NodosSur, NodosCentro, NodosCaribe;
-var NodoSur, NodoCentro, NodoCaribe;
-
-var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
-var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
-var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;*/
 
 var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
 
