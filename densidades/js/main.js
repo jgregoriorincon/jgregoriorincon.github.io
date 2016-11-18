@@ -10,7 +10,7 @@ var volver;
 // Datos
 var DptosLayer, MpiosLayer;
 var dptoAnterior, mpioAnterior, nivelActual;
-var DptoSeleccionado, MpioSeleccionado;
+var DptoSeleccionado, CodDptoSeleccionado, MpioSeleccionado;
 
 // Funcion Principal
 $(document).ready(function () {
@@ -204,7 +204,9 @@ function zoomToFeatureDptos(e) {
 
     var layer = e.target;
     mapColombia.fitBounds(e.target.getBounds());
+
     DptoSeleccionado = layer.feature.properties.DEPTO;
+    CodDptoSeleccionado = layer.feature.properties.COD_DEPTO;
 
     mapColombia.eachLayer(function (layer) {
         mapColombia.removeLayer(layer);
@@ -215,7 +217,7 @@ function zoomToFeatureDptos(e) {
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.DEPTO == DptoSeleccionado)
+            return (feature.properties.COD_DEPTO == CodDptoSeleccionado)
         },
         style: styleMpios,
         onEachFeature: function (feature, layer) {
