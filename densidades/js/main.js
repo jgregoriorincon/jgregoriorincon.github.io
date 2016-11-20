@@ -191,11 +191,10 @@ function resetHighlightDptos(e) {
     DptosLayer.resetStyle(e.target);
 
     if (tieneJoin) {
-        DptosLayer.eachLayer(function(layer) {
-          layer.setStyle(DptoValorStyle(layer));
-        }); 
-    }
-    else {
+        DptosLayer.eachLayer(function (layer) {
+            layer.setStyle(DptoValorStyle(layer));
+        });
+    } else {
         DptosLayer.setStyle(styleDptos);
     }
 }
@@ -301,35 +300,34 @@ function resetHighlightMpios(e) {
 }
 
 function cargarDatos() {
-    var csvfile = "data/Dptos_Valores.csv";
 
-    $.get(csvfile, function (data) {
-        var csvdata = Papa.parse(data, {
-            header: true,
-            dynamicTyping: false,
-            complete: function (results) {
-                data = results;
-            }
-        });
+    /*
+    var max = Math.max.apply(Math,csvdata.data.map(function(o){return o.VALOR;}))
+    var min = Math.min.apply(Math,csvdata.data.map(function(o){return o.VALOR;}))
+    console.log(max - min);
 
-        /*
-        var max = Math.max.apply(Math,csvdata.data.map(function(o){return o.VALOR;}))
-        var min = Math.min.apply(Math,csvdata.data.map(function(o){return o.VALOR;}))
-        console.log(max - min);
-        */
+*/
 
-        DptosLayer.eachLayer(function(layer) {
-          featureJoinByProperty(layer.feature.properties, csvdata.data, "COD_DEPTO");
-        });
-
-        tieneJoin = true;
-
-        //do some styling
-        DptosLayer.eachLayer(function(layer) {
-          layer.setStyle(DptoValorStyle(layer));
-        }); 
-
+    var csvdata = Papa.parse(strDatosDensidad, {
+        header: true,
+        dynamicTyping: false,
+        complete: function (results) {
+            data = results;
+        }
     });
+
+    DptosLayer.eachLayer(function (layer) {
+        featureJoinByProperty(layer.feature.properties, csvdata.data, "COD_DEPTO");
+    });
+
+    tieneJoin = true;
+
+    //do some styling
+    DptosLayer.eachLayer(function (layer) {
+        layer.setStyle(DptoValorStyle(layer));
+    });
+
+
 }
 
 //input arguments:
@@ -337,44 +335,44 @@ function cargarDatos() {
 //dTable: array of objects containing properties to be joined
 //joinKey: property to use to perform the join
 function featureJoinByProperty(fProps, dTable, joinKey) {
-  var keyVal = fProps[joinKey];
-  var match = {};
-  for (var i = 0; i < dTable.length; i++) {
-    if (dTable[i][joinKey] === keyVal) {
-      match = dTable[i];
-      for (key in match) {
-        if (!(key in fProps)) {
-          fProps[key] = match[key];
+    var keyVal = fProps[joinKey];
+    var match = {};
+    for (var i = 0; i < dTable.length; i++) {
+        if (dTable[i][joinKey] === keyVal) {
+            match = dTable[i];
+            for (key in match) {
+                if (!(key in fProps)) {
+                    fProps[key] = match[key];
+                }
+            }
         }
-      }
     }
-  }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //styling functions//
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-function DptoValorStyle (layer) {
+function DptoValorStyle(layer) {
     return {
         fillColor: getValorColor(layer.feature.properties.VALOR),
         color: "#000",
         opacity: 0,
-        fillOpacity: 1
+        fillOpacity: 0.5
     };
 }
 
 function getValorColor(y) {
     return y == 0 ? '000000' :
-           y > 1.0 ? '#FF5100' :
-           y > 0.9 ? '#FF7300' :
-           y > 0.8 ? '#FF9100' :
-           y > 0.7 ? '#FFB300' :
-           y > 0.6 ? '#FFD000' :
-           y > 0.5 ? '#FFF200' :
-           y > 0.4 ? '#E8F000' :
-           y > 0.3 ? '#BDD600' :
-           y > 0.2 ? '#97BD00' :
-           y > 0.1 ? '#70A300' :
-                      '#4D8C00';
+        y > 1.0 ? '#FF5100' :
+        y > 0.9 ? '#FF7300' :
+        y > 0.8 ? '#FF9100' :
+        y > 0.7 ? '#FFB300' :
+        y > 0.6 ? '#FFD000' :
+        y > 0.5 ? '#FFF200' :
+        y > 0.4 ? '#E8F000' :
+        y > 0.3 ? '#BDD600' :
+        y > 0.2 ? '#97BD00' :
+        y > 0.1 ? '#70A300' :
+        '#4D8C00';
 }
