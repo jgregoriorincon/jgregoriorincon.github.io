@@ -128,7 +128,6 @@ function limpiarSeleccion() {
     mapColombia.addLayer(positron);
     mapColombia.addLayer(positronLabels);
     mapColombia.addLayer(DptosLayer);
-
 }
 
 /**
@@ -299,6 +298,18 @@ function resetHighlightMpios(e) {
     MpiosLayer.setStyle(styleMpios);
 }
 
+function borrarDatos() {
+    if (mapColombia.hasLayer(DptosLayer)) {
+       DptosLayer.setStyle(styleDptos);
+    }
+    if (mapColombia.hasLayer(MpiosLayer)) {
+       MpiosLayer.setStyle(styleMpios);
+    }
+
+    tieneJoin = false;
+    console.log("Borrado");
+}
+
 function cargarDatos() {
 
     /*
@@ -327,7 +338,7 @@ function cargarDatos() {
         layer.setStyle(DptoValorStyle(layer));
     });
 
-
+    console.log("Cargado");
 }
 
 //input arguments:
