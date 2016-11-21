@@ -333,12 +333,67 @@ function cargarDatos() {
 
     tieneJoin = true;
 
+    var dataValor = [];
+
+    $.each(csvdata.data, function(i,feature){
+   		dataValor.push(Number(feature.VALOR));
+   	});
+    
+    var statDatos = new geostats(dataValor);
+   	statDatos.setPrecision(6);
+    
+    var a = statDatos.getClassQuantile(5);
+    // getting the color ramp from chroma by passing min, max values and number of classes
+    var color_y = chroma.scale('RdYlBu').domain(dataValor, 5, 'quantiles');
+    var color_x = chroma.scale('RdYlGn').domain([statDatos.min(),statDatos.max()], 5).colors();
+
+    statDatos.setColors(color_x);
+
+    console.log(color_y);
+
     //do some styling
     DptosLayer.eachLayer(function (layer) {
         layer.setStyle(DptoValorStyle(layer));
     });
 
+    console.log(statDatos);
     console.log("Cargado");
+
+    var choroplethLayer = L.choropleth(capaDepartamentos, {
+    valueProperty: 'incidents',
+    scale: ['white', 'red'],
+    steps: 5,
+    mode: 'q',
+    style: {
+      color: '#fff',
+      weight: 2,
+      fillOpacity: 0.8
+    },
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup('District ' + feature.properties.dist_num + '<br>' + feature.properties.incidents.toLocaleString() + ' incidents')
+    }
+  }).addTo(map)
+
+  // Add legend (don't forget to add the CSS from index.html)
+  var legend = L.control({ position: 'bottomright' })
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend')
+    var limits = choroplethLayer.options.limits
+    var colors = choroplethLayer.options.colors
+    var labels = []
+
+    // Add min & max
+    div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> \
+			<div class="max">' + limits[limits.length - 1] + '</div></div>'
+
+    limits.forEach(function (limit, index) {
+      labels.push('<li style="background-color: ' + colors[index] + '"></li>')
+    })
+
+    div.innerHTML += '<ul>' + labels.join('') + '</ul>'
+    return div
+  }
+  legend.addTo(map)
 }
 
 //input arguments:
