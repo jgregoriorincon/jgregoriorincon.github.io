@@ -16,15 +16,8 @@
 <body>
     <div class="map" id="mapColombia">
         <form>
-            <div class="loadData col-xs-1">
-                <div class="btn-group pull-right"> <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" href="#">Método Clasificación<span class="caret"></span></a>
-                    <ul class="dropdown-menu" id="metodo">
-                        <li><a href="#">Límites Naturales</a></li>
-                        <li><a href="#">Intervalos Iguales</a></li>
-                        <li><a href="#">Cuantiles</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group pull-right"> <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" href="#">Número de clases<span class="caret"></span></a>
+            <div class="loadData col-xs-2">
+                <div class="btn-group pull-right"> <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" data-placement="auto" title="Número de Clases" href="#">5<span class="caret"></span></a>
                     <ul class="dropdown-menu" id="clases">
                         <li><a href="#">3</a></li>
                         <li><a href="#">4</a></li>
@@ -34,6 +27,13 @@
                         <li><a href="#">8</a></li>
                         <li><a href="#">9</a></li>
                         <li><a href="#">10</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group pull-right"> <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" data-placement="auto" title="Método de Clasificación"" href="#">Cuantiles<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="metodo">
+                        <li><a href="#">Límites Naturales</a></li>
+                        <li><a href="#">Intervalos Iguales</a></li>
+                        <li><a href="#">Cuantiles</a></li>
                     </ul>
                 </div>
                 <button type="button" class="btn pull-right btn-primary" onclick="cargarDptos()">Cargar Departamentos</button>

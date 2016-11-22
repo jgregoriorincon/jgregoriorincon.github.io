@@ -83,7 +83,7 @@ function cargarDptos() {
 
     borrarDatos();
 
-    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q"; 
+    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
 
     capaDepartamentos.features.forEach(function (item) {
         item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null
@@ -119,15 +119,17 @@ function cargarDptos() {
         var colors = DptosLayer.options.colors
         var labels = []
 
-        // Add min & max
-        div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> \
-			<div class="max">' + limits[limits.length - 1] + '</div></div>'
+        for (var i = 0; i < limits.length; i++) {
+            from = Math.round(limits[i] * 100) / 100;
+            to = (Math.round(limits[i + 1] * 100) - 1) / 100;
 
-        limits.forEach(function (limit, index) {
-            labels.push('<li style="background-color: ' + colors[index] + ';opacity: 0.5;"></li>')
-        })
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                from + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to));
+        }
 
-        div.innerHTML += '<ul>' + labels.join('') + '</ul>'
+        div.innerHTML = labels.join('<br>');
+
         return div
     }
     legend.addTo(mapColombia);
@@ -141,7 +143,7 @@ function cargarMpios() {
 
     borrarDatos();
 
-    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q"; 
+    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
 
     capaMunicipios.features.forEach(function (item) {
         item.properties.VALOR = dataMpiosHash[item.properties.COD_DANE] || null
@@ -175,15 +177,17 @@ function cargarMpios() {
         var colors = MpiosLayer.options.colors
         var labels = []
 
-        // Add min & max
-        div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> \
-			<div class="max">' + limits[limits.length - 1] + '</div></div>'
+        for (var i = 0; i < limits.length; i++) {
+            from = Math.round(limits[i] * 100) / 100;
+            to = (Math.round(limits[i + 1] * 100) - 1) / 100;
 
-        limits.forEach(function (limit, index) {
-            labels.push('<li style="background-color: ' + colors[index] + ';opacity: 0.5;"></li>')
-        })
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                from + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to));
+        }
 
-        div.innerHTML += '<ul>' + labels.join('') + '</ul>'
+        div.innerHTML = labels.join('<br>');
+
         return div
     }
     legend.addTo(mapColombia);
