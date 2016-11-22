@@ -12,6 +12,7 @@ body {
     margin: 0;
 }
 
+
 /*
     MAPA
 */
@@ -26,9 +27,11 @@ body {
     font-size: 10px;
 }
 
+
 /*
     VOLVER
 */
+
 .volver-control {
     width: 80px;
     height: 100px;
@@ -40,14 +43,56 @@ body {
     z-index: 800;
 }
 
+
 /*
     LOAD DATA
 */
+
 .loadData {
     position: absolute;
-    right: 50px ;
+    right: 50px;
     padding: 10px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
-    text-align: center;
     z-index: 5000;
+}
+
+body .btn {
+    margin: 5px;
+}
+
+
+/*
+    LEYENDA
+*/
+
+.legend {
+    color: #555;
+    padding: 6px 8px;
+    font: 12px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.legend ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    clear: both;
+}
+
+.legend li {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+}
+
+.legend .min {
+    float: left;
+    padding-bottom: 5px;
+}
+
+.legend .max {
+    float: right;
 }

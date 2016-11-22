@@ -53,11 +53,11 @@
  },
  {
    "COD_DEPTO": "44",
-   "VALOR": 0.02
+   "VALOR": 0.20
  },
  {
    "COD_DEPTO": "47",
-   "VALOR": 0.05
+   "VALOR": 0.50
  },
  {
    "COD_DEPTO": "50",
@@ -97,7 +97,7 @@
  },
  {
    "COD_DEPTO": "81",
-   "VALOR": 0.02
+   "VALOR": 0.20
  },
  {
    "COD_DEPTO": "85",
@@ -105,7 +105,7 @@
  },
  {
    "COD_DEPTO": "86",
-   "VALOR": 0.02
+   "VALOR": 0.20
  },
  {
    "COD_DEPTO": "88",
