@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     // Add legend (don't forget to add the CSS from index.html)
     legend = L.control({
-        position: 'bottomleft'
+        position: 'topright'
     })
 
     tieneJoin = false;
@@ -78,12 +78,19 @@ $(document).ready(function () {
     console.log("Listo!");
 });
 
-
 function cargarDptos() {
 
     borrarDatos();
 
     var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
+    clases = isNaN(clases) ? 5 : +clases;
+
+    var dataDptosHash = dataDptos.responseJSON.reduce(function (hash, item) {
+        if (item.COD_DEPTO) {
+            hash[item.COD_DEPTO] = isNaN(item.VALOR) ? null : +item.VALOR
+        }
+        return hash
+    }, {});
 
     capaDepartamentos.features.forEach(function (item) {
         item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null
@@ -125,10 +132,10 @@ function cargarDptos() {
 
             labels.push(
                 '<i style="background:' + colors[i] + '"></i> ' +
-                from + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to));
+                from + unidadMapeo + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to + unidadMapeo));
         }
 
-        div.innerHTML = labels.join('<br>');
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
 
         return div
     }
@@ -144,6 +151,14 @@ function cargarMpios() {
     borrarDatos();
 
     var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
+    clases = isNaN(clases) ? 5 : +clases;
+
+    var dataMpiosHash = dataMpios.responseJSON.reduce(function (hash, item) {
+        if (item.COD_DANE) {
+            hash[item.COD_DANE] = isNaN(item.VALOR) ? null : +item.VALOR
+        }
+        return hash
+    }, {})
 
     capaMunicipios.features.forEach(function (item) {
         item.properties.VALOR = dataMpiosHash[item.properties.COD_DANE] || null
@@ -155,8 +170,8 @@ function cargarMpios() {
         steps: clases,
         mode: metodo,
         style: {
-            weight: 1,
-            opacity: 1,
+            weight: 0.8,
+            opacity: 0.8,
             color: 'white',
             dashArray: '3',
             fillOpacity: 0.5
@@ -171,6 +186,8 @@ function cargarMpios() {
     });
     MpiosLayer.addTo(mapColombia);
 
+    console.log(MpiosLayer.options.limits);
+
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend')
         var limits = MpiosLayer.options.limits
@@ -183,10 +200,11 @@ function cargarMpios() {
 
             labels.push(
                 '<i style="background:' + colors[i] + '"></i> ' +
-                from + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to));
+                from + unidadMapeo + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to + unidadMapeo));
         }
 
-        div.innerHTML = labels.join('<br>');
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
 
         return div
     }
