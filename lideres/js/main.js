@@ -32,7 +32,7 @@ var baseMaps = {
 
     L.control.layers(baseMaps, overlays, {
         position: 'bottomright',
-        collapsed: false
+        collapsed: true
     }).addTo(map);
 
     map.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
