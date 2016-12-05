@@ -20,7 +20,7 @@ Stamen_Watercolor.addTo(map);
 positronLabels.addTo(map);
 
 var baseMaps = {
-        "Base Acurela": Stamen_Watercolor,
+        "Acurela": Stamen_Watercolor,
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,
         "Base Calles": Esri_WorldStreetMap
@@ -31,8 +31,8 @@ var baseMaps = {
     };
 
     L.control.layers(baseMaps, overlays, {
-        position: 'bottomright',
-        collapsed: true
+        position: 'bottomright'//,
+        //collapsed: false
     }).addTo(map);
 
     map.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
