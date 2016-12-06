@@ -20,7 +20,7 @@ Stamen_Watercolor.addTo(map);
 positronLabels.addTo(map);
 
 var baseMaps = {
-        "Acurela": Stamen_Watercolor,
+        "Base Acurela": Stamen_Watercolor,
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,
         "Base Calles": Esri_WorldStreetMap
@@ -70,3 +70,13 @@ function styleDptos(feature) {
         fillColor: "#2196F3"
     };
 }
+
+
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
