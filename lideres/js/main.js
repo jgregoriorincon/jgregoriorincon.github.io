@@ -52,7 +52,7 @@ var baseMaps = {
     });
 
 DptosLayer.addData(capaDepartamentos);
-DptosLayer.addTo(map);
+//DptosLayer.addTo(map);
 map.fitBounds(DptosLayer.getBounds());
 
     /**
