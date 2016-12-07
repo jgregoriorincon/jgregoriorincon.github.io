@@ -21,6 +21,8 @@ positronLabels.addTo(map);
 
 var baseMaps = {
         "Base Acurela": Stamen_Watercolor,
+        "Base Topo": Stamen_TerrainBackground,
+        "Base HillShade": Esri_WorldShadedRelief,
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,
         "Base Calles": Esri_WorldStreetMap
