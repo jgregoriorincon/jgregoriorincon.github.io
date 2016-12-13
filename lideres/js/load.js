@@ -48,16 +48,16 @@ $(document).ready(function () {
     $("#selTipoAccion").html(lista);
 
     lista = "<option value='all'>Todas</option>";
-    for (i = 0; i < listaTematicas.length; i++) {
-        lista += "<option value='" + listaTematicas[i] + "'>" + listaTematicas[i] + "</option>";
+    for (i = 0; i < listaTipoLider.length; i++) {
+        lista += "<option value='" + listaTipoLider[i] + "'>" + listaTipoLider[i] + "</option>";
     }
-    $("#selTematica").html(lista);
+    $("#selTipoLider").html(lista);
 
     lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaNivelTerritorial.length; i++) {
-        lista += "<option value='" + listaNivelTerritorial[i] + "'>" + listaNivelTerritorial[i] + "</option>";
+    for (i = 0; i < listaResponsables.length; i++) {
+        lista += "<option value='" + listaResponsables[i] + "'>" + listaResponsables[i] + "</option>";
     }
-    $("#selTerritorial").html(lista);
+    $("#selResponsable").html(lista);
 
     $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();

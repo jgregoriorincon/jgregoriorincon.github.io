@@ -226,8 +226,8 @@ function filtrarNodo() {
             Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
             Sector = document.getElementById('selTipoAccion').value,
-            Tematica = document.getElementById('selTematica').value,
-            Territorial = document.getElementById('selTerritorial').value,
+            Tematica = document.getElementById('selTipoLider').value,
+            Territorial = document.getElementById('selResponsable').value,
             FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
         if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
@@ -284,8 +284,8 @@ function filtrarDepartamento() {
             Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
             Sector = document.getElementById('selTipoAccion').value,
-            Tematica = document.getElementById('selTematica').value,
-            Territorial = document.getElementById('selTerritorial').value,
+            Tematica = document.getElementById('selTipoLider').value,
+            Territorial = document.getElementById('selResponsable').value,
             FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
         if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
@@ -308,8 +308,8 @@ function filtrarTodo() {
         Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
         Sector = document.getElementById('selTipoAccion').value,
-        Tematica = document.getElementById('selTematica').value,
-        Territorial = document.getElementById('selTerritorial').value,
+        Tematica = document.getElementById('selTipoLider').value,
+        Territorial = document.getElementById('selResponsable').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
     if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
@@ -455,8 +455,8 @@ function limpiarSeleccion() {
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
     document.getElementById('selTipoAccion').value = 'all';
-    document.getElementById('selTematica').value = 'all';
-    document.getElementById('selTerritorial').value = 'all';
+    document.getElementById('selTipoLider').value = 'all';
+    document.getElementById('selResponsable').value = 'all';
     document.getElementById('buscarPalabra').value = '';
 
     if (document.getElementById('selDepartamento').options.length > 1) {
