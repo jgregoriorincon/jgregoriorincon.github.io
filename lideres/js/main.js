@@ -25,24 +25,6 @@ function loadMap() {
     }).addTo(map);
 
     /* ------------------- CONTROLES ------------------*/
-    legend = L.control({
-        position: 'topright'
-    });
-    legend.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'info legend'),
-            grades = ['Caribe', 'Centro', 'Sur'],
-            labels = [],
-            from;
-
-        for (i = 0; i < grades.length; i++) {
-            from = grades[i];
-            labels.push('<i style="background:' + getColorNodos(from) + '"></i> Nodo ' + from + '<br />');
-        }
-        div.innerHTML = labels.join('<br>');
-        return div;
-    };
-    legend.addTo(map);
-
     volver = L.Control.extend({
         options: {
             position: 'bottomleft'
@@ -61,10 +43,6 @@ function loadMap() {
                     zoomToFeatureDptos(dptoAnterior);
                     nivelActual = 'Dpto';
                 } else if (nivelActual === 'Dpto') {
-                    //zoomToFeatureDptos(zoomAnterior);
-                    zoomToFeatureNodos(nodoAnterior);
-                    nivelActual = 'Nodo';
-                } else if (nivelActual === 'Nodo') {
                     limpiarSeleccion();
                     //nivelActual = "Pais";
                 } else {
@@ -91,7 +69,7 @@ function loadMap() {
 
     info.update = function (props) {
 
-        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > Pase el cursor sobre un elemento para obtener información </div> <div id="right" ><span class="fa fa-info fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en un Nodo, Departamento o Municipio para acceder a los observatorios </div> <div id="right" ><span class="fa fa-globe fa-2x text-info aria-hidden="true"></span> </div></div><div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los observatorios para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
+        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los observatorios para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
         var strEncabezado = '<div class="panel-body text-right">';
 
@@ -113,60 +91,21 @@ function loadMap() {
     $('[data-toggle="tooltip"]').tooltip();
 
     // Capa de NODOS
-    NodosLayer = L.geoJson(undefined, {
-        style: styleNodos,
+    DptosLayer = L.geoJson(undefined, {
+        style: styleDptos,
         onEachFeature: function (feature, layer) {
-            if (feature.properties.NODO !== "Resto") {
-                layer.on('mouseover', highlightFeature);
-                layer.on('mouseout', resetHighlightNodos);
-                layer.on('click', zoomToFeatureNodos);
-            }
+            layer.bindTooltip(feature.properties.DEPTO, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeature);
+            layer.on('mouseout', resetHighlightDptos);
+            layer.on('click', zoomToFeatureDptos);
         }
     });
 
-    /// Carga de los nodos
-    // Sur
-    NodoSur = JSON.parse(JSON.stringify(Observatorios));
-    NodoSur.features = NodoSur.features.filter(function (a) {
-        return a.properties.NODO === 'Sur';
-    });
-    NodosSur = renderMarkersBase(NodoSur);
-
-    // Centro
-    NodoCentro = JSON.parse(JSON.stringify(Observatorios));
-    NodoCentro.features = NodoCentro.features.filter(function (a) {
-        return a.properties.NODO === 'Centro';
-    });
-    NodosCentro = renderMarkersBase(NodoCentro);
-
-    // Caribe
-    NodoCaribe = JSON.parse(JSON.stringify(Observatorios));
-    NodoCaribe.features = NodoCaribe.features.filter(function (a) {
-        return a.properties.NODO === 'Caribe';
-    });
-    NodosCaribe = renderMarkersBase(NodoCaribe);
-
-    // Adiciona las capas
-    NodosLayer.addData(Nodos);
-    NodosLayer.addTo(map);
-
-    map.addLayer(NodosSur);
-    map.addLayer(NodosCentro);
-    map.addLayer(NodosCaribe);
-
-}
-
-/**
- * Asigna colores por el nodo
- * @param   {[[Type]]} d valor del nodo
- * @returns {[[Type]]} color asignado al nodo
- */
-function getColorNodos(d) {
-    "use strict";
-
-    return d === 'Caribe' ? '#b2df8a' :
-        d === 'Centro' ? '#fdcb7b' :
-        d === 'Sur' ? '#a5bfdd' : '#f1f4c7';
+    DptosLayer.addData(capaDepartamentos);
+    DptosLayer.addTo(map);
 }
 
 /**
@@ -174,83 +113,17 @@ function getColorNodos(d) {
  * @param   {object} feature Elemento geográfico
  * @returns {object} simbologia
  */
-function styleNodos(feature) {
+function styleDptos(feature) {
     "use strict";
 
     return {
-        weight: 1,
+        weight: 2,
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.8,
-        fillColor: getColorNodos(feature.properties.NODO)
+        fillOpacity: 0.3,
+        fillColor: "#fff"
     };
-}
-
-/**
- * Filtrar los nodos
- */
-function filtrarNodo() {
-    "use strict";
-
-    //var myselect = document.getElementById("selDepartamento"),
-    //var DPTO = myselect.options[myselect.selectedIndex].value;
-
-    var i, lista, html, Dpto, Nodo = $('#selNodo').val();
-
-    if (Nodo !== 'all') {
-        Dpto = listaDepartamentos[Nodo] || [];
-        lista = "<option value='all'>Todos</option>";
-        html = lista + $.map(Dpto, function (Dpto) {
-            return '<option value="' + Dpto + '">' + Dpto + '</option>';
-        }).join('');
-
-        $("#selDepartamento").html(html);
-
-        filtrarTodo();
-
-    } else {
-        if (document.getElementById('selDepartamento').options.length > 1) {
-            for (i = document.getElementById('selDepartamento').options.length - 1; i >= 1; i--) {
-                document.getElementById('selDepartamento').remove(i);
-            }
-        }
-
-        if (document.getElementById('selMunicipio').options.length > 1) {
-            for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
-                document.getElementById('selMunicipio').remove(i);
-            }
-        }
-
-        var Nodo = document.getElementById('selNodo').value,
-            Dpto = document.getElementById('selDepartamento').value,
-            Mpio = document.getElementById('selMunicipio').value,
-            Sector = document.getElementById('selTipoAccion').value,
-            Tematica = document.getElementById('selTipoLider').value,
-            Territorial = document.getElementById('selResponsable').value,
-            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
-
-        if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
-            // No hace nada
-        } else {
-            limpiarSeleccion();
-        }
-    }
-}
-
-/**
- * Filtrar Departamento
- * @param   {[[Type]]} DPTO Nombre del Departamento
- * @returns {[[Type]]} [[Description]]
- */
-function filtrarDepto(DPTO) {
-    "use strict";
-
-    var Departamento = JSON.parse(JSON.stringify(Observatorios));
-    Departamento.features = Departamento.features.filter(function (a) {
-        return a.properties.DEPARTAMENTO == DPTO;
-    });
-    return Departamento;
 }
 
 /**
@@ -266,7 +139,7 @@ function filtrarDepartamento() {
         Mpios = listaMunicipios[Dpto] || [];
         lista = "<option value='all'>Todos</option>";
         html = lista + $.map(Mpios, function (Mpio) {
-            return '<option value="' + Mpio + '">' + Mpio + '</option>';
+            return '<option value="' + Mpio.CODIGO + '">' + Mpio.NOMBRE + '</option>';
         }).join('');
 
         $("#selMunicipio").html(html);
@@ -280,15 +153,14 @@ function filtrarDepartamento() {
             }
         }
 
-        var Nodo = document.getElementById('selNodo').value,
-            Dpto = document.getElementById('selDepartamento').value,
+        var Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
             Sector = document.getElementById('selTipoAccion').value,
             Tematica = document.getElementById('selTipoLider').value,
             Territorial = document.getElementById('selResponsable').value,
             FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-        if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+        if ((Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
             // No hace nada
         } else {
             limpiarSeleccion();
@@ -304,7 +176,6 @@ function filtrarTodo() {
     "use strict";
 
     var i,
-        Nodo = document.getElementById('selNodo').value,
         Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
         Sector = document.getElementById('selTipoAccion').value,
@@ -312,7 +183,7 @@ function filtrarTodo() {
         Territorial = document.getElementById('selResponsable').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-    if ((Nodo !== 'all') || (Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+    if ((Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
 
         //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
         map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
@@ -321,12 +192,6 @@ function filtrarTodo() {
         map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
 
         filtroData = JSON.parse(JSON.stringify(Observatorios));
-
-        if (Nodo !== 'all') {
-            filtroData.features = filtroData.features.filter(function (a) {
-                return a.properties.NODO === Nodo;
-            });
-        }
 
         if (Dpto !== 'all') {
             filtroData.features = filtroData.features.filter(function (a) {
@@ -444,26 +309,16 @@ function limpiarSeleccion() {
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
     });
-    map.addLayer(positron);
+    map.addLayer(Stamen_Watercolor);
     map.addLayer(positronLabels);
-    map.addLayer(NodosLayer);
-    map.addLayer(NodosSur);
-    map.addLayer(NodosCentro);
-    map.addLayer(NodosCaribe);
+    map.addLayer(DptosLayer);
 
-    document.getElementById('selNodo').value = 'all';
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
     document.getElementById('selTipoAccion').value = 'all';
     document.getElementById('selTipoLider').value = 'all';
     document.getElementById('selResponsable').value = 'all';
     document.getElementById('buscarPalabra').value = '';
-
-    if (document.getElementById('selDepartamento').options.length > 1) {
-        for (i = document.getElementById('selDepartamento').options.length - 1; i >= 1; i--) {
-            document.getElementById('selDepartamento').remove(i);
-        }
-    }
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
@@ -479,44 +334,6 @@ function limpiarSeleccion() {
 
 }
 
-
-
-/**
- * Ajusta la simbologia de los nodos
- * @param   {object} feature Elemento geográfico
- * @returns {object} simbologia
- */
-function styleNodosFiltro(feature) {
-    "use strict";
-
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.3,
-        fillColor: getColorNodos(feature.properties.NODO)
-    };
-}
-
-/**
- * [[Estilo ]]
- * @param   {object} feature [[Description]]
- * @returns {object} [[Description]]
- */
-function styleDptos(feature) {
-    'use strict';
-    var transparencia = feature.properties.TIENE == 'SI' ? 0.5 : 0.2;
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: transparencia,
-        fillColor: getColorNodos(feature.properties.NODO)
-    };
-}
-
 /**
  * [[Estilo ]]
  * @param   {object} feature [[Description]]
@@ -525,12 +342,12 @@ function styleDptos(feature) {
 function styleMpios(feature) {
     "use strict";
     return {
-        weight: 1,
+        weight: 2,
         opacity: 1,
         color: 'white',
         dashArray: '3',
         fillOpacity: 0.2,
-        fillColor: getColorNodos(feature.properties.NODO)
+        fillColor: "#f0f"
     };
 }
 
@@ -555,100 +372,13 @@ function highlightFeature(e) {
 }
 
 /**
- * Quita el resaltado a los nodos deseleccionados
- * @param {object} e Vector deseleccionado
- */
-function resetHighlightNodos(e) {
-    "use strict";
-
-    NodosLayer.resetStyle(e.target);
-    NodosLayer.setStyle(styleNodos);
-    info.update();
-}
-
-/**
- * Zoom al Nodo
- * @param   {object}   e Vector seleccionado
- * @returns {[[Type]]} [[Description]]
- */
-function zoomToFeatureNodos(e) {
-    "use strict";
-
-    nodoAnterior = jQuery.extend(true, {}, e);
-    nivelActual = "Nodo";
-
-    var layer = e.target;
-    map.fitBounds(e.target.getBounds());
-
-    NodoSeleccionado = layer.feature.properties.NODO;
-
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-
-    map.addLayer(positron);
-
-    // Capa de DEPARTAMENTOS
-    DptosLayer = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.NODO === NodoSeleccionado);
-        },
-        style: styleNodos,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.DEPTO, {
-                permanent: false,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeature);
-            layer.on('mouseout', resetHighlightDptos);
-            layer.on('click', zoomToFeatureDptos);
-        }
-    });
-
-    // Adiciona los Departamentos
-    DptosLayer.addData(capaDepartamentos);
-    map.addLayer(DptosLayer);
-
-    if (NodoSeleccionado === 'Sur') {
-        NodosSurPutumayo = renderMarkersData(filtrarDepto('PUTUMAYO'));
-        NodosSurNarino = renderMarkersData(filtrarDepto('NARIÑO'), 500);
-        NodosSurValleCauca = renderMarkersData(filtrarDepto('CAUCA'), 500);
-        NodosSurCauca = renderMarkersData(filtrarDepto('VALLE DEL CAUCA'), 300);
-        map.addLayer(NodosSurPutumayo);
-        map.addLayer(NodosSurNarino);
-        map.addLayer(NodosSurValleCauca);
-        map.addLayer(NodosSurCauca);
-    } else if (NodoSeleccionado === 'Centro') {
-        NodosCentroBogota = renderMarkersData(filtrarDepto('BOGOTÁ D.C.'));
-        NodosCentroMeta = renderMarkersData(filtrarDepto('BOYACÁ'));
-        NodosCentroBoyaca = renderMarkersData(filtrarDepto('META'));
-        NodosCentroSantander = renderMarkersData(filtrarDepto('SANTANDER'));
-        NodosCentroNteSantander = renderMarkersData(filtrarDepto('NORTE DE SANTANDER'));
-        map.addLayer(NodosCentroBogota);
-        map.addLayer(NodosCentroMeta);
-        map.addLayer(NodosCentroBoyaca);
-        map.addLayer(NodosCentroSantander);
-        map.addLayer(NodosCentroNteSantander);
-    } else if (NodoSeleccionado === 'Caribe') {
-        NodosCaribeAtlantico = renderMarkersData(filtrarDepto('ATLÁNTICO'), 100);
-        NodosCaribeMagdalena = renderMarkersData(filtrarDepto('MAGDALENA'), 100);
-        NodosCaribeSucre = renderMarkersData(filtrarDepto('SUCRE'), 100);
-        NodosCaribeBolivar = renderMarkersData(filtrarDepto('BOLÍVAR'), 1500);
-        map.addLayer(NodosCaribeAtlantico);
-        map.addLayer(NodosCaribeMagdalena);
-        map.addLayer(NodosCaribeSucre);
-        map.addLayer(NodosCaribeBolivar);
-    }
-}
-
-/**
  * Quita resaltado en Departamentos
  * @param {object} e [[Description]]
  */
 function resetHighlightDptos(e) {
     "use strict";
     DptosLayer.resetStyle(e.target);
-    DptosLayer.setStyle(styleNodos);
+    DptosLayer.setStyle(styleDptos);
 }
 
 // Zoom al elemento
@@ -664,18 +394,18 @@ function zoomToFeatureDptos(e) {
 
     var layer = e.target;
     map.fitBounds(e.target.getBounds());
-    DptoSeleccionado = layer.feature.properties.DEPTO;
+    DptoSeleccionado = layer.feature.properties.COD_DEPTO;
 
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
     });
 
-    map.addLayer(positron);
+    map.addLayer(Stamen_Watercolor);
 
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.DEPTO == DptoSeleccionado)
+            return (feature.properties.COD_DEPTO == DptoSeleccionado)
         },
         style: styleDptos,
         onEachFeature: function (feature, layer) {
@@ -689,7 +419,7 @@ function zoomToFeatureDptos(e) {
         }
     });
 
-    MpiosLayer.addData(Mpios);
+    MpiosLayer.addData(capaMunicipios);
     map.addLayer(MpiosLayer);
 
     switch (DptoSeleccionado) {
@@ -814,50 +544,48 @@ function zoomToFeatureMpios(e) {
     nivelActual = "Mpio";
 
     var layer = e.target;
-    if (layer.feature.properties.TIENE == 'SI') {
 
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
 
-        map.addLayer(positron);
+    map.addLayer(positron);
 
-        //map.fitBounds(e.target.getBounds());
-        MpioSeleccionado = layer.feature.properties.COD_DANE;
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
-        map.addLayer(positron);
-        // Capa de MUNICIPIOS
-        MpiosLayer = L.geoJson(undefined, {
-            filter: function (feature) {
-                return (feature.properties.COD_DANE == MpioSeleccionado)
-            },
-            style: styleMpios,
-            onEachFeature: function (feature, layer) {
-                layer.bindTooltip(feature.properties.NOMBRE, {
-                    permanent: true,
-                    direction: "auto"
-                });
-                layer.on('mouseover', highlightFeatureMpios);
-                //layer.on('mouseout', resetHighlightMpios);
-                //layer.on('click', zoomToFeatureMpios);
-            }
-        })
+    //map.fitBounds(e.target.getBounds());
+    MpioSeleccionado = layer.feature.properties.COD_DANE;
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+    map.addLayer(Stamen_Watercolor);
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.COD_DANE == MpioSeleccionado)
+        },
+        style: styleDptos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: true,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeatureMpios);
+            //layer.on('mouseout', resetHighlightMpios);
+            //layer.on('click', zoomToFeatureMpios);
+        }
+    })
 
-        MpiosLayer.addData(Mpios);
-        map.addLayer(MpiosLayer);
-        map.addLayer(positronLabels);
+    MpiosLayer.addData(capaMunicipios);
+    map.addLayer(MpiosLayer);
+    map.addLayer(positronLabels);
 
-        var ObservatoriosData = JSON.parse(JSON.stringify(Observatorios));
-        ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
-            return a.properties.CODDANE == MpioSeleccionado;
-        });
+    var ObservatoriosData = JSON.parse(JSON.stringify(Observatorios));
+    ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
+        return a.properties.CODDANE == MpioSeleccionado;
+    });
 
-        ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
-        map.addLayer(ObservatoriosLayer);
-        map.fitBounds(ObservatoriosLayer.getBounds());
-    }
+    ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
+    map.addLayer(ObservatoriosLayer);
+    map.fitBounds(MpiosLayer.getBounds());
 }
 
 /**
