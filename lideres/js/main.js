@@ -9,6 +9,7 @@ function loadMap() {
     });
 
     var baseMaps = {
+        "Base Acurela": Stamen_Watercolor,
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,
         "Base Calles": Esri_WorldStreetMap
