@@ -10,19 +10,11 @@ var info, legend, volver;
 
 // Datos Totales
 var filtroData, filtroLayer;
-var NodosLayer, DptosLayer, MpiosLayer;
+var DptosLayer, MpiosLayer;
 var ObservatoriosLayer;
 
-// Seleccion
-var NodoSeleccionado, DptoSeleccionado, MpioSeleccionado;
-var NodosSur, NodosCentro, NodosCaribe;
-var NodoSur, NodoCentro, NodoCaribe;
-
-var NodosSurPutumayo, NodosSurNarino, NodosSurValleCauca, NodosSurCauca;
-var NodosCentroBogota, NodosCentroMeta, NodosCentroBoyaca, NodosCentroSantander, NodosCentroNteSantander;
-var NodosCaribeBolivar, NodosCaribeSucre, NodosCaribeMagdalena, NodosCaribeAtlantico;
-
-var nodoAnterior, dptoAnterior, mpioAnterior, nivelActual;
+var dptoAnterior, mpioAnterior, nivelActual;
+var DptoSeleccionado, MpioSeleccionado;
 
 var observatorioIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
