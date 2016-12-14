@@ -21,7 +21,7 @@ var violencia_Dptos_layer, violencia_mpios_layer;
 var violencia_mpios_data;
 
 var fechaInicial, fechaFinal, filtrarFecha;
-var startFecha, endFecha; 
+var startFecha, endFecha;
 
 var observatorioIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
@@ -89,6 +89,7 @@ $(document).ready(function () {
             'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
             'Este Año': [moment().startOf('year'), moment().endOf('year')],
             'Último Año': [moment().subtract(1, 'year').startOf('month'), moment().subtract(1, 'month').endOf('year')],
+            'Todos': [moment('2013-01-01'), moment()]
         }
     }, cb);
 
@@ -100,6 +101,16 @@ $(document).ready(function () {
         filtrarFecha = true;
         filtrarTodo();
 
+    });
+
+    $('#buscarPalabraBtn').on('click', function (event) {
+        filtrarTodo();
+    });
+
+    $('#buscarPalabra').keypress(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
     });
 
     var i, lista = "<option value='all'>Todos</option>";
@@ -126,9 +137,9 @@ $(document).ready(function () {
     }
     $("#selResponsable").html(lista);
 
-    $("#buscarPalabra").bind("keypress keyup keydown", function (event) {
+    /*$("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();
-    });
+    });*/
 
     /* ------------------- MAPA ------------------*/
     map = L.map('map', {
@@ -187,5 +198,5 @@ $(document).ready(function () {
 });
 
 function cb(start, end) {
-        $('#reportrange span').html(start.format('MMM, YYYY') + ' - ' + end.format('MMM, YYYY'));
-    }
+    $('#reportrange span').html(start.format('MMM, YYYY') + ' - ' + end.format('MMM, YYYY'));
+}

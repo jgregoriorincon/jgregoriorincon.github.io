@@ -2078,16 +2078,16 @@ var violencia_dptos = [
    "nombre": "Jose del Carmen Abril",
    "municipio": "Cúcuta",
    "Cod_DANE_Mun": 54001,
-   "departamento": "Nariño",
-   "Cod_DANE_Dep": 52,
+   "departamento": "Norte de Santander",
+   "Cod_DANE_Dep": 54,
    "accion": "Amenaza",
    "tipo_victima": "Defensor de Derechos Humanos",
    "organizacion_politica": "ASCAMCAT, Asociación Campesina del Catatumbo -  Colectivo Luis Carlos Pérez ",
    "reponsable": "Actor no identificado",
    "observaciones": "Dos personas en una motocicleta negra RX 115 Color negra conducida por un hombre que portaba parrillero pasaron a poca velocidad por delante de la sede de las dos organizaciones defensoras de DDHH, arrojando un explosivo contra la reja. El artefacto rebotó, haciendo explosión aproximadamente 3 segundos después de ser activado, mientras los motorizados se alejaban a gran velocidad en dirección a la avenida Guaimaral.",
    "fuente": "https://issuu.com/nocheyniebla/docs/niebla47/154",
-   "latitud": 1.547155,
-   "longitud": -77.805919
+   "latitud": 8.051872,
+   "longitud": -72.820807
  },
  {
    "id_violencia_selectiva": 111,
