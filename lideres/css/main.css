@@ -238,9 +238,3 @@ input#dateInicial {
 input#dateFinal {
     width: 70px;
 }
-
-@media screen and (max-width: 340px) {
-    .button-text {
-        display: none;
-    }
-}
