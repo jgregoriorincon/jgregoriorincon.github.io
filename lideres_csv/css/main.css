@@ -1,0 +1,240 @@
+body .no-padding {
+    padding: 0;
+    margin: 0;
+}
+
+body .margin-5 {
+    padding: 5;
+    margin-bottom : 10;
+}
+
+html,
+body,
+#container {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+}
+
+body .pre-scrollable {
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow-y: scroll;
+}
+
+body .well {
+    padding: 10px;
+    margin: 0px;
+}
+
+/*
+    MAPA
+*/
+
+.map {
+    width: auto;
+    height: 100vh;
+}
+
+.leaflet-tooltip {
+    padding: 2px;
+    font-size: 10px;
+}
+
+body .modal-dialog {
+    /* new custom width */
+    width: 600px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    /*margin-left: -375px;*/
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.nav>li>a {
+    padding: 10px 3px;
+}
+
+body legend {
+    font-size: 15px;
+}
+
+/*
+    INFORMACION
+*/
+
+.info {
+    padding: 6px 8px;
+    font: 16px/18px Arial, Helvetica, sans-serif;
+    text-align: right;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.divinfo{
+    max-width: 200px;
+    min-width: 200px;
+    padding: 0px;
+    margin: 0px;
+    background: white;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+body .panel-body {
+    padding: 5px;
+    background: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body .table-striped {
+    margin: 0px;
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+/*
+    EXTENT
+*/
+
+.image {
+    height: 140px;
+}
+
+.image a {
+    /*position: absolute;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*top: 20px;
+    left: 20px;*/
+    width: 226px;
+    height: 113px;
+    z-index: 999;
+    background-image: url('../images/logo.png');
+    background-color: rgba(255, 255, 255, 0.4);
+    background-size: 226px 113px;
+}
+#reportrange {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mapfull {
+    border-radius: 15px;
+}
+
+h5 {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+/*
+    TIPOS DE LEYENDAS
+*/
+
+#Leyenda-wrapper {
+    position: absolute;
+    bottom: 150px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+#selLeyenda {
+    margin-bottom: 5px;
+}
+
+/*
+    LEYENDA
+*/
+
+.legend {
+    text-align: left;
+    line-height: 18px;
+    color: #555;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 20px;
+    opacity: 0.7;
+}
+
+/*
+    LOGOS OBSERVATORIOS
+*/
+
+.imgLogo {
+    max-width: 500px;
+}
+
+#aboutTabsContent {
+    padding-top: 10px;
+}
+
+/*
+    VOLVER
+*/
+
+.volver-control {
+    width: 80px;
+    height: 100px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    text-align: center;
+    /*background-size: 64px 64px;
+    background-repeat: no-repeat;
+    background-image: url('back-icon.png');*/
+    z-index: 800;
+}
+
+#left {
+    width: 90%;
+    float: left;
+}
+
+#right {
+    width: 10%;
+    float: right;
+}
+
+.btn-info {
+    background-color: #4797C0;
+    border-color: #4797C0;
+}
+
+.alert-info {
+    background: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-width: 0px;
+    color: #000;
+    margin: 0px;
+    padding: 5px;
+    font-size: 1.15em;
+}
+
+input#dateInicial {
+    width: 70px;
+}
+
+input#dateFinal {
+    width: 70px;
+}
