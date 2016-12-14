@@ -16,7 +16,7 @@ function loadMap() {
 
     L.control.layers(baseMaps, overlays, {
         position: 'bottomright',
-        collapsed: false
+        collapsed: true
     }).addTo(map);
 
     /* ------------------- CONTROLES ------------------*/
