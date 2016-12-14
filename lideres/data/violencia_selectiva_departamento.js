@@ -1,4 +1,4 @@
-var violencia_dptos = [
+var violencia_selectiva_departamento = [
  {
    "id_violencia_selectiva": 1,
    "dia": 1,

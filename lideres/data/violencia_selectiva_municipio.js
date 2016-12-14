@@ -1,4 +1,4 @@
-var violencia_mpios = [
+var violencia_selectiva_municipio = [
  {
    "id_violencia_selectiva": 1,
    "dia": 1,

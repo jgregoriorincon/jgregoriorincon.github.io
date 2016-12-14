@@ -91,9 +91,9 @@ function loadMap() {
     DptosLayer.addData(capaDepartamentos);
     DptosLayer.addTo(map);
 
-    violencia_Dptos_layer = renderMarkersData(violencia_dptos_geo, 5);
-    map.addLayer(violencia_Dptos_layer);
-    map.fitBounds(violencia_Dptos_layer.getBounds());
+    violencia_selectiva_departamento_layer = renderMarkersData(violencia_selectiva_departamento_geo, 5);
+    map.addLayer(violencia_selectiva_departamento_layer);
+    map.fitBounds(violencia_selectiva_departamento_layer.getBounds());
 }
 
 /**
@@ -186,13 +186,13 @@ function zoomToFeatureDptos(e) {
     MpiosLayer.addData(capaMunicipios);
     map.addLayer(MpiosLayer);
 
-    violencia_mpios_data = JSON.parse(JSON.stringify(violencia_mpios_geo));
-    violencia_mpios_data.features = violencia_mpios_data.features.filter(function (a) {
+    violencia_selectiva_municipio_data = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
+    violencia_selectiva_municipio_data.features = violencia_selectiva_municipio_data.features.filter(function (a) {
         return a.properties.Cod_DANE_Dep == DptoSeleccionado;
     });
 
-    violencia_mpios_layer = renderMarkersData(violencia_mpios_data, 5);
-    map.addLayer(violencia_mpios_layer);
+    violencia_selectiva_municipio_layer = renderMarkersData(violencia_selectiva_municipio_data, 5);
+    map.addLayer(violencia_selectiva_municipio_layer);
     map.fitBounds(MpiosLayer.getBounds());
 
 }
@@ -292,13 +292,13 @@ function zoomToFeatureMpios(e) {
     map.addLayer(MpiosLayer);
     map.addLayer(positronLabels);
 
-    violencia_mpios_data = JSON.parse(JSON.stringify(violencia_mpios_geo));
-    violencia_mpios_data.features = violencia_mpios_data.features.filter(function (a) {
+    violencia_selectiva_municipio_data = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
+    violencia_selectiva_municipio_data.features = violencia_selectiva_municipio_data.features.filter(function (a) {
         return a.properties.Cod_DANE_Mun == MpioSeleccionado;
     });
 
-    violencia_mpios_layer = renderMarkersData(violencia_mpios_data, 5);
-    map.addLayer(violencia_mpios_layer);
+    violencia_selectiva_municipio_layer = renderMarkersData(violencia_selectiva_municipio_data, 5);
+    map.addLayer(violencia_selectiva_municipio_layer);
     map.fitBounds(MpiosLayer.getBounds());
 }
 
@@ -334,14 +334,14 @@ function limpiarSeleccion() {
     }
 
     // Recupera el listado inicial
-    filtroDataDpto = JSON.parse(JSON.stringify(violencia_dptos));
+    filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento));
     $("#total_places").text(0);
 
     $(".divinfo")[0].hidden = false;
 
-    violencia_Dptos_layer = renderMarkersData(violencia_dptos_geo, 5);
-    map.addLayer(violencia_Dptos_layer);
-    map.fitBounds(violencia_Dptos_layer.getBounds());
+    violencia_selectiva_departamento_layer = renderMarkersData(violencia_selectiva_departamento_geo, 5);
+    map.addLayer(violencia_selectiva_departamento_layer);
+    map.fitBounds(violencia_selectiva_departamento_layer.getBounds());
 }
 
 /**
@@ -403,8 +403,8 @@ function filtrarTodo() {
 
     if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
 
-        filtroDataDpto = JSON.parse(JSON.stringify(violencia_dptos_geo));
-        filtroDataMpio = JSON.parse(JSON.stringify(violencia_mpios_geo));
+        filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
+        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
             var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());

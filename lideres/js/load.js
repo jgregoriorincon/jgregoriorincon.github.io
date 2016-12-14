@@ -15,10 +15,10 @@ var DptosLayer, MpiosLayer;
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
 
-var violencia_dptos, violencia_mpios;
-var violencia_dptos_geo, violencia_mpios_geo;
-var violencia_Dptos_layer, violencia_mpios_layer;
-var violencia_mpios_data;
+//var violencia_selectiva_departamento, violencia_selectiva_municipio;
+var violencia_selectiva_departamento_geo, violencia_selectiva_municipio_geo;
+var violencia_selectiva_departamento_layer, violencia_selectiva_municipio_layer;
+var violencia_selectiva_municipio_data;
 
 var fechaInicial, fechaFinal, filtrarFecha;
 var startFechaTotal, startFecha, endFecha;
@@ -173,7 +173,7 @@ $(document).ready(function () {
             header: true,
             dynamicTyping: true,
             complete: function (results) {
-                violencia_dptos = results;
+                violencia_selectiva_departamento = results;
             }
         });
 
@@ -182,17 +182,17 @@ $(document).ready(function () {
             header: true,
             dynamicTyping: true,
             complete: function (results) {
-                violencia_mpios = results;
+                violencia_selectiva_municipio = results;
             }
         });
     */
     console.log("Listo Alfa!");
 
-    violencia_dptos_geo = GeoJSON.parse(violencia_dptos, {
+    violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento, {
         Point: ["latitud", "longitud"]
     });
 
-    violencia_mpios_geo = GeoJSON.parse(violencia_mpios, {
+    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio, {
         Point: ["latitud", "longitud"]
     });
 
