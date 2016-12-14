@@ -15,7 +15,7 @@ var DptosLayer, MpiosLayer;
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
 
-//var violencia_selectiva_departamento, violencia_selectiva_municipio;
+var violencia_selectiva_departamento, violencia_selectiva_municipio;
 var violencia_selectiva_departamento_geo, violencia_selectiva_municipio_geo;
 var violencia_selectiva_departamento_layer, violencia_selectiva_municipio_layer;
 var violencia_selectiva_municipio_data;
@@ -167,41 +167,36 @@ $(document).ready(function () {
 
     Stamen_Watercolor.addTo(map);
     positronLabels.addTo(map);
-    /*
-        Papa.parse('data/violencia_departamento.csv', {
+    
+        Papa.parse('data/violencia_selectiva_departamento.csv', {
             download: true,
             header: true,
             dynamicTyping: true,
             complete: function (results) {
                 violencia_selectiva_departamento = results;
+                violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento.data, {
+                    Point: ["latitud", "longitud"]
+                });
+
+                loadMap();
+
+                filtrarTodo();
+
             }
         });
 
-        Papa.parse('data/violencia_municipio.csv', {
+        Papa.parse('data/violencia_selectiva_municipio.csv', {
             download: true,
             header: true,
             dynamicTyping: true,
             complete: function (results) {
                 violencia_selectiva_municipio = results;
+                    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
+                        Point: ["latitud", "longitud"]
+                    });
             }
         });
-    */
-    console.log("Listo Alfa!");
-
-    violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento, {
-        Point: ["latitud", "longitud"]
-    });
-
-    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio, {
-        Point: ["latitud", "longitud"]
-    });
-
-    loadMap();
-
-    filtrarTodo();
-
-    console.log("Listo Geo!");
-
+    
 });
 
 function cb(start, end) {
