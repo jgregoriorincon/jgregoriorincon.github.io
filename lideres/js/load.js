@@ -21,7 +21,7 @@ var violencia_Dptos_layer, violencia_mpios_layer;
 var violencia_mpios_data;
 
 var fechaInicial, fechaFinal, filtrarFecha;
-var startFecha, endFecha;
+var startFechaTotal, startFecha, endFecha;
 
 var eventoIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
@@ -35,8 +35,13 @@ $(document).ready(function () {
     "use strict";
 
     moment.locale('es');
-    startFecha = moment('2013-01-01');
+    startFechaTotal = moment('2013-01-01');
+    startFecha = moment().startOf('year');
     endFecha = moment();
+
+    fechaInicial = startFecha;
+    fechaFinal = endFecha;
+    filtrarFecha = true;
 
     $('#reportrange').daterangepicker({
         "locale": {
@@ -46,7 +51,7 @@ $(document).ready(function () {
             "cancelLabel": "Cancelar",
             "fromLabel": "Desde",
             "toLabel": "Hasta",
-            "customRangeLabel": "Custom",
+            "customRangeLabel": "Personalizar",
             "weekLabel": "W",
             "daysOfWeek": [
                 "Do",
@@ -81,15 +86,15 @@ $(document).ready(function () {
         opens: "center",
         drops: "up",
         ranges: {
-            'Hoy': [moment(), moment()],
-            'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Últimos 7 Días': [moment().subtract(6, 'days'), moment()],
+            //'Hoy': [moment(), moment()],
+            //'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            //'Últimos 7 Días': [moment().subtract(6, 'days'), moment()],
             'Últimos 30 Días': [moment().subtract(29, 'days'), moment()],
             'Este Mes': [moment().startOf('month'), moment().endOf('month')],
             'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
             'Este Año': [moment().startOf('year'), moment().endOf('year')],
             'Último Año': [moment().subtract(1, 'year').startOf('month'), moment().subtract(1, 'month').endOf('year')],
-            'Todos': [moment('2013-01-01'), moment()]
+            'Todos': [startFechaTotal, moment()]
         }
     }, cb);
 
@@ -192,6 +197,8 @@ $(document).ready(function () {
     });
 
     loadMap();
+
+    filtrarTodo();
 
     console.log("Listo Geo!");
 
