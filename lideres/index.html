@@ -6,40 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-
     <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
     <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
     <link rel="stylesheet" href="vendor/css/jquery-ui.min.css">
-
+    <link rel="stylesheet" href="vendor/css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2.1.24/daterangepicker.css" />
     <link rel="stylesheet" href="vendor/css/leaflet.css" />
     <link rel="stylesheet" href="vendor/css/ZoomBox.css" />
     <link rel="stylesheet" href="vendor/css/MarkerCluster.css" />
     <link rel="stylesheet" href="vendor/css/MarkerCluster.Default.css" />
-
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
     <div class="container col-md-12 no-padding">
         <div class="sidebar col-xs-3 col-md-3">
-            <div class="row">
-                <div class="image">
-                        <a href="http://www.pares.com.co"></a>
+            <div class="row text-center">
+                        <div class="image text-center">
+                            <a href="http://www.pares.com.co"></a>
+                        </div>
                     </div>
-            </div>
-                    
             <form class="form-horizontal">
                 <fieldset>
-
-                    <!-- Form Name -->      
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selFecha">Fecha</label>
-                        <div class="col-md-8">
-                            <select id="selFecha" name="selFecha" class="form-control" onchange="">
-                                <option value='all'>Todos</option>
-                            </select>
-                        </div>
-                    </div>              
+                    <!-- Form Name -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selDepartamento">Dpto</label>
                         <div class="col-md-8">
@@ -80,31 +69,37 @@
                     <!-- Search input-->
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input id="buscarPalabra" name="buscarPalabra" type="search" placeholder="Buscar por palabra clave..." class="form-control input-md" onkeypress="filtrarTodo()">
+                            <input id="buscarPalabra" name="buscarPalabra" type="search" placeholder="Buscar por palabra clave..." class="form-control input-md"
+                                onkeypress="filtrarTodo()">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div id="reportrange" class="pull-right col-md-10" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-right: 20px; margin-left: 20px;">
+                            <i class="fa fa-calendar"></i>&nbsp;
+                            <span></span> <b class="caret"></b>
+                        </div>
+                    </div>                    
                     <div class="form-group text-center">
                         <div class="col-md-12">
-                            <h4>Eventos Filtrados (<span id="total_places">0</span>)</h4> 
+                            <h4>Eventos Filtrados (<span id="total_places">0</span>)</h4>
                         </div>
                     </div>
                     <div class="form-group text-center">
-                            <a class="btn btn-info" onclick="limpiarSeleccion()"><i class="fa fa-trash-o fa-lg"></i> Limpiar la busqueda</a>
+                        <a class="btn btn-info" onclick="limpiarSeleccion()"><i class="fa fa-trash-o fa-lg"></i> Limpiar la busqueda</a>
                     </div>
-                    <!--<div class="form-group text-center">
+                    <!--<
+                    <div class="form-group text-center">
                            <div class="mapFull"></div>
                             <input id="mapFull" type="image" src="css/fullmap.png" alt="Ir al Mapa Completo" onclick="limpiarSeleccion()">
                             <h4>Ir al Mapa Completo</h4>
                     </div>-->
                 </fieldset>
             </form>
-
             <br />
         </div>
         <div class="">
             <div class="map" id="map"></div>
         </div>
-
         <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -115,18 +110,12 @@
                     </div>
                     <div class="modal-body">
                         <ul class="nav nav-tabs nav-justified" id="aboutTabs">
-                            <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Información Básica</a></li>
-                            <li id="tematicasTab"><a href="#tematicas" data-toggle="tab"><i class="fa fa-briefcase"></i>&nbsp;Áreas de Trabajo</a></li>
-                            <li id="territorialTab"><a href="#territorial" data-toggle="tab"><i class="fa fa-globe"></i>&nbsp;Nivel Territorial</a></li>
-                            <li id="tipoinformacionTab"><a href="#tipoinformacion" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;Información Producida</a></li>
-                            <li id="productosTab"><a href="#productos" data-toggle="tab"><i class="fa fa-book"></i>&nbsp;Publicaciones</a></li>
+                            <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-users"></i>&nbsp;Datos del Evento</a></li>
+                            <li id="ObservacionesTab"><a href="#Observaciones" data-toggle="tab"><i class="fa fa-info"></i>&nbsp;Observaciones</a></li>
                         </ul>
                         <div class="tab-content" id="aboutTabsContent">
                             <div class="tab-pane fade active in" id="feature-info"></div>
-                            <div class="tab-pane fade" id="tematicas"></div>
-                            <div class="tab-pane fade" id="territorial"></div>
-                            <div class="tab-pane fade" id="tipoinformacion"></div>
-                            <div class="tab-pane fade" id="productos"></div>
+                            <div class="tab-pane fade" id="Observaciones"></div>
                         </div>
                     </div>
                     <!--                <div class="modal-body" id="feature-info"></div>-->
@@ -141,23 +130,23 @@
         <!-- /.modal -->
         <script src="vendor/js/jquery-2.1.4.min.js"></script>
         <script src="vendor/js/bootstrap.min.js"></script>
-
+        <script src="vendor/js/papaparse.min.js"></script>
+        <script src="vendor/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/2.17.1/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2.1.24/daterangepicker.js"></script>
         <script src="vendor/js/leaflet.js"></script>
         <script src="vendor/js/leaflet.markercluster.js"></script>
         <script src="vendor/js/geojson.min.js"></script>
         <script src="vendor/js/ZoomBox.js"></script>
-
         <script src="data/listados.js"></script>
         <script src="data/codigos_dptos.js"></script>
         <script src="data/codigos_mpios.js"></script>
-
+        <script src="data/violencia_dptos.js"></script>
+        <script src="data/violencia_mpios.js"></script>
         <script src="js/basemaps.js"></script>
         <script src="js/load.js"></script>
-
         <script src="data/Dptos.js"></script>
         <script src="data/Mpios.js"></script>
-        <script src="data/Observatorios.js"></script>
-
         <script src="js/main.js"></script>
     </div>
 </body>

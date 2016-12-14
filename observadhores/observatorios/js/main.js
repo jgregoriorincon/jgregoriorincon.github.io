@@ -2,12 +2,12 @@ function loadMap() {
     "use strict";
 
     var i;
-
+	console.log(Observatorios);
     //Convierte el dato JSON en GeoJSON
     Observatorios = GeoJSON.parse(Observatorios, {
         Point: ['LAT', 'LONG']
     });
-
+	console.log(Observatorios);
     var baseMaps = {
         "Base Gris": positron,
         "Base OSM": OpenStreetMap_Mapnik,

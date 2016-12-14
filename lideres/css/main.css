@@ -100,19 +100,27 @@ body .table-striped {
 */
 
 .image {
-    height: 120px;
+    height: 140px;
 }
 
 .image a {
-    position: absolute;
-    top: 10px;
-    left: 20px;
+    /*position: absolute;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*top: 20px;
+    left: 20px;*/
     width: 226px;
     height: 113px;
     z-index: 999;
     background-image: url('../images/logo.png');
     background-color: rgba(255, 255, 255, 0.4);
     background-size: 226px 113px;
+}
+#reportrange {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mapfull {
@@ -213,4 +221,12 @@ h5 {
     margin: 0px;
     padding: 5px;
     font-size: 1.15em;
+}
+
+input#dateInicial {
+    width: 70px;
+}
+
+input#dateFinal {
+    width: 70px;
 }

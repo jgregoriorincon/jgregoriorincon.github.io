@@ -7,14 +7,21 @@ var map, cartodbAttribution;
 // Controles
 var info, legend, volver;
 
-
 // Datos Totales
-var filtroData, filtroLayer;
+var filtroDataDpto, filtroDataDptoLayer;
+var filtroDataMpio, filtroDataMpioLayer;
 var DptosLayer, MpiosLayer;
-var ObservatoriosLayer;
 
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
+
+var violencia_dptos, violencia_mpios;
+var violencia_dptos_geo, violencia_mpios_geo;
+var violencia_Dptos_layer, violencia_mpios_layer;
+var violencia_mpios_data;
+
+var fechaInicial, fechaFinal, filtrarFecha;
+var startFecha, endFecha; 
 
 var observatorioIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
@@ -26,6 +33,74 @@ var observatorioIcon = L.icon({
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
+
+    moment.locale('es');
+    startFecha = moment('2013-01-01');
+    endFecha = moment();
+
+    $('#reportrange').daterangepicker({
+        "locale": {
+            "format": 'MMMM, YYYY',
+            "separator": " - ",
+            "applyLabel": "Aplicar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "Desde",
+            "toLabel": "Hasta",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": [
+                "Do",
+                "Lu",
+                "Ma",
+                "Mi",
+                "Ju",
+                "Vi",
+                "Sa"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "OCtubre",
+                "Noviembre",
+                "Diciembre"
+            ],
+            "firstDay": 1
+        },
+        showDropdowns: true,
+        startDate: startFecha,
+        endDate: endFecha,
+        minDate: startFecha,
+        maxDate: endFecha,
+        opens: "center",
+        drops: "up",
+        ranges: {
+            'Hoy': [moment(), moment()],
+            'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Últimos 7 Días': [moment().subtract(6, 'days'), moment()],
+            'Últimos 30 Días': [moment().subtract(29, 'days'), moment()],
+            'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+            'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+            'Este Año': [moment().startOf('year'), moment().endOf('year')],
+            'Último Año': [moment().subtract(1, 'year').startOf('month'), moment().subtract(1, 'month').endOf('year')],
+        }
+    }, cb);
+
+    cb(startFecha, endFecha);
+
+    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+        fechaInicial = picker.startDate.format('YYYY-M');
+        fechaFinal = picker.endDate.format('YYYY-M');
+        filtrarFecha = true;
+        filtrarTodo();
+
+    });
 
     var i, lista = "<option value='all'>Todos</option>";
     for (i = 0; i < listaDepartamentos.length; i++) {
@@ -76,11 +151,41 @@ $(document).ready(function () {
 
     Stamen_Watercolor.addTo(map);
     positronLabels.addTo(map);
+    /*
+        Papa.parse('data/violencia_departamento.csv', {
+            download: true,
+            header: true,
+            dynamicTyping: true,
+            complete: function (results) {
+                violencia_dptos = results;
+            }
+        });
 
+        Papa.parse('data/violencia_municipio.csv', {
+            download: true,
+            header: true,
+            dynamicTyping: true,
+            complete: function (results) {
+                violencia_mpios = results;
+            }
+        });
+    */
     console.log("Listo Alfa!");
+
+    violencia_dptos_geo = GeoJSON.parse(violencia_dptos, {
+        Point: ["latitud", "longitud"]
+    });
+
+    violencia_mpios_geo = GeoJSON.parse(violencia_mpios, {
+        Point: ["latitud", "longitud"]
+    });
 
     loadMap();
 
     console.log("Listo Geo!");
 
 });
+
+function cb(start, end) {
+        $('#reportrange span').html(start.format('MMM, YYYY') + ' - ' + end.format('MMM, YYYY'));
+    }

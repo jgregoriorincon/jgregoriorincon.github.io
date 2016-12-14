@@ -3,11 +3,6 @@ function loadMap() {
 
     var i;
 
-    //Convierte el dato JSON en GeoJSON
-    Observatorios = GeoJSON.parse(Observatorios, {
-        Point: ['LAT', 'LONG']
-    });
-
     var baseMaps = {
         "Base Acurela": Stamen_Watercolor,
         "Base Gris": positron,
@@ -36,9 +31,6 @@ function loadMap() {
             container.style.cursor = 'pointer';
 
             container.onclick = function () {
-                //console.log(zoomAnterior);
-                console.log(nivelActual);
-
                 if (nivelActual === 'Mpio') {
                     zoomToFeatureDptos(dptoAnterior);
                     nivelActual = 'Dpto';
@@ -57,7 +49,7 @@ function loadMap() {
 
     map.addControl(new volver());
 
-    map.attributionControl.addAttribution('observaDHores &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
+    map.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>&copy;');
 
     // control that shows state info on hover
     info = L.control();
@@ -73,15 +65,7 @@ function loadMap() {
 
         var strEncabezado = '<div class="panel-body text-right">';
 
-        var strTitulo = props ? '<thead><tr><th colspan="2" style="text-align:center">' + (props.NOMBRE ? '' + props.NOMBRE : props.DEPTO ? props.DEPTO : props.NODO ? 'Nodo ' + props.NODO : '') + '</th></tr></thead>' : '';
-        var strAcademia = props ? props.ACADEMIA ? '<tr><th>Académicos</th><td>' + props.ACADEMIA + '</td></tr>' : '' : '';
-        var strOtro = props ? props.OTRO ? '<tr><th>Otros</th><td>' + props.OTRO + '</td></tr>' : '' : '';
-        var strPrivado = props ? props.PRIVADO ? '<tr><th>Privados</th><td>' + props.PRIVADO + '</td></tr>' : '' : '';
-        var strGobierno = props ? props.GOBIERNO ? '<tr><th>Gubernamentales</th><td>' + props.GOBIERNO + '</td></tr>' : '' : '';
-        var strSociedad = props ? props.SOCIEDAD ? '<tr><th>Sociedad Civil</th><td>' + props.SOCIEDAD + '</td></tr>' : '' : '';
-        var strTotal = props ? props.TOTAL ? '<tr>' + '<th>Total</th><th>' + props.TOTAL + '</th   ></tr>' : '' : '';
-
-        var finalHTML = props ? props.TOTAL ? strEncabezado + '<table class="table table-striped">' + strTitulo + '</b>' + strAcademia + strGobierno + strPrivado + strSociedad + strOtro + strTotal + '</table>' : '' : strInstrucciones + '</div>';
+        var finalHTML = strEncabezado + strInstrucciones + '</div>';
 
         this._div.innerHTML = finalHTML === '' ? '' : finalHTML;
 
@@ -90,7 +74,7 @@ function loadMap() {
     info.addTo(map);
     $('[data-toggle="tooltip"]').tooltip();
 
-    // Capa de NODOS
+    // Capa de Departamentos
     DptosLayer = L.geoJson(undefined, {
         style: styleDptos,
         onEachFeature: function (feature, layer) {
@@ -106,10 +90,14 @@ function loadMap() {
 
     DptosLayer.addData(capaDepartamentos);
     DptosLayer.addTo(map);
+
+    violencia_Dptos_layer = renderMarkersData(violencia_dptos_geo, 5);
+    map.addLayer(violencia_Dptos_layer);
+    map.fitBounds(violencia_Dptos_layer.getBounds());
 }
 
 /**
- * Ajusta la simbologia de los nodos
+ * Ajusta la simbologia de los Departamentos
  * @param   {object} feature Elemento geográfico
  * @returns {object} simbologia
  */
@@ -124,6 +112,236 @@ function styleDptos(feature) {
         fillOpacity: 0.3,
         fillColor: "#fff"
     };
+}
+
+/**
+ * Resalta el elemento
+ * @param {object} e Vector sobre el que pasa el mouse
+ */
+function highlightFeature(e) {
+    "use strict";
+
+    var layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+}
+
+/**
+ * Quita resaltado en Departamentos
+ * @param {object} e [[Description]]
+ */
+function resetHighlightDptos(e) {
+    "use strict";
+    DptosLayer.resetStyle(e.target);
+    DptosLayer.setStyle(styleDptos);
+}
+
+// Zoom al elemento
+/**
+ * [[Zoom al departamento seleccionado]]
+ * @param   {object}   e [[vector seleccionado]]
+ * @returns {[[Type]]} [[Description]]
+ */
+function zoomToFeatureDptos(e) {
+    "use strict";
+    dptoAnterior = jQuery.extend(true, {}, e);
+    nivelActual = "Dpto";
+
+    var layer = e.target;
+    map.fitBounds(e.target.getBounds());
+    DptoSeleccionado = layer.feature.properties.COD_DEPTO;
+
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
+    map.addLayer(Stamen_Watercolor);
+
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.COD_DEPTO == DptoSeleccionado)
+        },
+        style: styleDptos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeatureMpios);
+            //layer.on('mouseout', resetHighlightMpios);
+            layer.on('click', zoomToFeatureMpios);
+        }
+    });
+
+    console.log(DptoSeleccionado);
+
+    MpiosLayer.addData(capaMunicipios);
+    map.addLayer(MpiosLayer);
+
+    violencia_mpios_data = JSON.parse(JSON.stringify(violencia_mpios_geo));
+    violencia_mpios_data.features = violencia_mpios_data.features.filter(function (a) {
+        return a.properties.Cod_DANE_Dep == DptoSeleccionado;
+    });
+
+    violencia_mpios_layer = renderMarkersData(violencia_mpios_data, 5);
+    map.addLayer(violencia_mpios_layer);
+    map.fitBounds(MpiosLayer.getBounds());
+
+}
+
+// EVENTOS
+/**
+ * Cluster con Ventana Modal
+ * @param   {[[Type]]} data            Datos a clusterizar
+ * @param   {[[Type]]} distancia = 100 Distancia para unificar
+ * @returns {boolean}  [[Description]]
+ */
+function renderMarkersData(data, distancia = 10) {
+
+    var layer = L.geoJson(data, {
+        onEachFeature: function (feature, layer) {
+            if (feature.properties) {
+                popupEvento(feature, layer);
+            }
+        },
+
+        pointToLayer: function (feature, latlng) {
+            /*            return L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: "#FF7FAC",
+                            color: "#FF7FAC",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.5
+                        });*/
+            return L.marker(latlng, {
+                icon: observatorioIcon
+            });
+        }
+    });
+
+    layer.setZIndex(1002);
+
+    if (distancia > 0) {
+        var cluster = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            maxClusterRadius: distancia,
+            spiderfyOnMaxZoom: true,
+            disableClusteringAtZoom: 19
+        });
+
+        cluster.addLayer(layer);
+
+        return cluster;
+    } else {
+        return layer;
+    }
+
+}
+
+// Resaltado
+function highlightFeatureMpios(e) {
+    var layer = e.target;
+    info.update(layer.feature.properties);
+}
+
+// Zoom al elemento
+function zoomToFeatureMpios(e) {
+    "use strict";
+
+    mpioAnterior = jQuery.extend(true, {}, e);
+    nivelActual = "Mpio";
+
+    var layer = e.target;
+
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
+    MpioSeleccionado = layer.feature.properties.COD_DANE;
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+    map.addLayer(Stamen_Watercolor);
+    // Capa de MUNICIPIOS
+    MpiosLayer = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.COD_DANE == MpioSeleccionado)
+        },
+        style: styleDptos,
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties.NOMBRE, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('mouseover', highlightFeatureMpios);
+            //layer.on('mouseout', resetHighlightMpios);
+            //layer.on('click', zoomToFeatureMpios);
+        }
+    })
+
+    MpiosLayer.addData(capaMunicipios);
+    map.addLayer(MpiosLayer);
+    map.addLayer(positronLabels);
+
+    violencia_mpios_data = JSON.parse(JSON.stringify(violencia_mpios_geo));
+    violencia_mpios_data.features = violencia_mpios_data.features.filter(function (a) {
+        return a.properties.Cod_DANE_Mun == MpioSeleccionado;
+    });
+
+    violencia_mpios_layer = renderMarkersData(violencia_mpios_data, 5);
+    map.addLayer(violencia_mpios_layer);
+    map.fitBounds(MpiosLayer.getBounds());
+}
+
+/**
+ * Limpia la seleccion actual y muestra el mapa vacio
+ */
+function limpiarSeleccion() {
+    "use strict";
+
+    var i;
+
+    map.setView(new L.LatLng(4.5, -73.0), 6);
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+    map.addLayer(Stamen_Watercolor);
+    map.addLayer(positronLabels);
+    map.addLayer(DptosLayer);
+
+    document.getElementById('selDepartamento').value = 'all';
+    document.getElementById('selMunicipio').value = 'all';
+    document.getElementById('selTipoAccion').value = 'all';
+    document.getElementById('selTipoLider').value = 'all';
+    document.getElementById('selResponsable').value = 'all';
+    document.getElementById('buscarPalabra').value = '';
+
+    cb(startFecha, endFecha);
+
+    if (document.getElementById('selMunicipio').options.length > 1) {
+        for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
+            document.getElementById('selMunicipio').remove(i);
+        }
+    }
+
+    // Recupera el listado inicial
+    filtroDataDpto = JSON.parse(JSON.stringify(violencia_dptos));
+    $("#total_places").text(0);
+
+    $(".divinfo")[0].hidden = false;
+
+    violencia_Dptos_layer = renderMarkersData(violencia_dptos_geo, 5);
+    map.addLayer(violencia_Dptos_layer);
+    map.fitBounds(violencia_Dptos_layer.getBounds());
 }
 
 /**
@@ -178,483 +396,207 @@ function filtrarTodo() {
     var i,
         Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
-        Sector = document.getElementById('selTipoAccion').value,
-        Tematica = document.getElementById('selTipoLider').value,
-        Territorial = document.getElementById('selResponsable').value,
+        TipoAccion = document.getElementById('selTipoAccion').value,
+        TipoLider = document.getElementById('selTipoLider').value,
+        Responsable = document.getElementById('selResponsable').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-    if ((Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
+    if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
 
-        //map.hasLayer(NodosLayer) === true && map.removeLayer(NodosLayer);
-        map.hasLayer(NodosSur) === true && map.removeLayer(NodosSur);
-        map.hasLayer(NodosCentro) === true && map.removeLayer(NodosCentro);
-        map.hasLayer(NodosCaribe) === true && map.removeLayer(NodosCaribe);
-        map.hasLayer(filtroLayer) === true && map.removeLayer(filtroLayer);
+        filtroDataDpto = JSON.parse(JSON.stringify(violencia_dptos_geo));
+        filtroDataMpio = JSON.parse(JSON.stringify(violencia_mpios_geo));
 
-        filtroData = JSON.parse(JSON.stringify(Observatorios));
+        if (fechaInicial === undefined) {
+            fechaInicial = startFecha;
+        }
+
+        if (fechaFinal === undefined) {
+            fechaFinal = endFecha;
+        }
+
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+        });
+        filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+        });
 
         if (Dpto !== 'all') {
-            filtroData.features = filtroData.features.filter(function (a) {
-                return a.properties.DEPARTAMENTO === Dpto;
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                return a.properties.Cod_DANE_Dep === parseInt(Dpto);
+            });
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                return a.properties.Cod_DANE_Dep === parseInt(Dpto);
             });
         }
 
         if (Mpio !== 'all') {
-
-            filtroData.features = filtroData.features.filter(function (a) {
-                return a.properties.MUNICIPIO === Mpio;
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                return a.properties.Cod_DANE_Mun === parseInt(Mpio);
+            });
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                return a.properties.Cod_DANE_Mun === parseInt(Mpio);
             });
         }
 
-        if (Sector !== 'all') {
-            filtroData.features = filtroData.features.filter(function (a) {
-                return a.properties.SECTOR === Sector;
+        if (TipoAccion !== 'all') {
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                return a.properties.accion === TipoAccion;
+            });
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                return a.properties.accion === TipoAccion;
             });
         }
 
-        if (Tematica !== 'all') {
+        if (TipoLider !== 'all') {
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                return a.properties.tipo_victima === TipoLider;
+            });
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                return a.properties.tipo_victima === TipoLider;
+            });
+        }
 
-            filtroData.features = filtroData.features.filter(function (a) {
-                if (a.properties.TEMATICA.length > 0) {
-                    for (i = 0; i < a.properties.TEMATICA.length; i++) {
-                        if (a.properties.TEMATICA[i] === Tematica) {
-                            return true;
+        if (Responsable !== 'all') {
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                return a.properties.reponsable === Responsable;
+            });
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                return a.properties.reponsable === Responsable;
+            });
+        }
+
+        /*
+                if (Tematica !== 'all') {
+
+                    filtroData.features = filtroData.features.filter(function (a) {
+                        if (a.properties.TEMATICA.length > 0) {
+                            for (i = 0; i < a.properties.TEMATICA.length; i++) {
+                                if (a.properties.TEMATICA[i] === Tematica) {
+                                    return true;
+                                }
+                            }
                         }
-                    }
+                        return false;
+                    });
                 }
-                return false;
-            });
-        }
 
-        if (Territorial !== 'all') {
+                if (Territorial !== 'all') {
 
-            filtroData.features = filtroData.features.filter(function (a) {
-                if (a.properties.NIVEL_TERRITORIAL.length > 0) {
-                    for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
-                        if (a.properties.NIVEL_TERRITORIAL[i] === Territorial) {
-                            return true;
+                    filtroData.features = filtroData.features.filter(function (a) {
+                        if (a.properties.NIVEL_TERRITORIAL.length > 0) {
+                            for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
+                                if (a.properties.NIVEL_TERRITORIAL[i] === Territorial) {
+                                    return true;
+                                }
+                            }
                         }
-                    }
-                }
-                return false;
-            });
+                        return false;
+                    });
 
-        }
+                }
+*/
 
         if (FiltroTexto.toUpperCase() !== '') {
-            filtroData.features = filtroData.features.filter(function (a) {
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                var k1 = a.properties.nombre.toUpperCase(),
+                    k2 = a.properties.municipio.toUpperCase(),
+                    k3 = a.properties.organizacion_politica.toUpperCase(),
+                    k4 = a.properties.observaciones.toUpperCase();
 
-                var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
-                    k2 = a.properties.MUNICIPIO.toUpperCase(),
-                    k3 = a.properties.OBSERVATORIO.toUpperCase(),
-                    k4 = a.properties.NODO.toUpperCase(),
-                    k5 = a.properties.ALIADOS.toUpperCase(),
-                    k6 = a.properties.PRODUCTOS.toUpperCase();
-
-                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto)) || (k6.includes(FiltroTexto))) {
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
                     return true;
                 } else {
                     return false;
                 }
             });
 
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                var k1 = a.properties.nombre.toUpperCase(),
+                    k2 = a.properties.municipio.toUpperCase(),
+                    k3 = a.properties.organizacion_politica.toUpperCase(),
+                    k4 = a.properties.observaciones.toUpperCase();
+
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
         }
 
-        if (filtroData.features.length > 0) {
+        if (filtroDataDpto.features.length > 0) {
 
             map.eachLayer(function (layer) {
                 map.removeLayer(layer);
             });
 
-            map.addLayer(positron);
+            map.addLayer(Stamen_Watercolor);
             map.addLayer(positronLabels);
 
-            // Capa de NODOS
-            var NodosLayerFiltro = L.geoJson(undefined, {
-                style: styleNodosFiltro
-            });
+            if ((Mpio !== 'all')) {
+                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
+                map.addLayer(filtroDataMpioLayer);
 
-            // Adiciona las capas
-            NodosLayerFiltro.addData(Nodos);
-            NodosLayerFiltro.addTo(map);
+                var MpiosLayerFiltro = L.geoJson(undefined, {
+                    filter: function (feature) {
+                        return (feature.properties.COD_DANE == Mpio)
+                    },
+                    style: styleDptos,
+                    onEachFeature: function (feature, layer) {
+                        layer.bindTooltip(feature.properties.NOMBRE, {
+                            permanent: false,
+                            direction: "auto"
+                        });
+                    }
+                });
+                // Adiciona las capas
+                MpiosLayerFiltro.addData(capaMunicipios);
+                MpiosLayerFiltro.addTo(map);
+                map.fitBounds(MpiosLayerFiltro.getBounds());
 
-            filtroLayer = renderMarkersData(filtroData, 33);
-            map.fitBounds(filtroLayer.getBounds());
+                filtroDataMpioLayer.bringToFront();
+            } else if ((Dpto !== 'all')) {
+                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
+                map.addLayer(filtroDataMpioLayer);
 
-            console.log(map.getZoom());
+                var MpiosLayerFiltro = L.geoJson(undefined, {
+                    filter: function (feature) {
+                        return (feature.properties.COD_DEPTO == Dpto)
+                    },
+                    style: styleDptos,
+                    onEachFeature: function (feature, layer) {
+                        layer.bindTooltip(feature.properties.NOMBRE, {
+                            permanent: false,
+                            direction: "auto"
+                        });
+                    }
+                });
+                // Adiciona las capas
+                MpiosLayerFiltro.addData(capaMunicipios);
+                MpiosLayerFiltro.addTo(map);
+                map.fitBounds(MpiosLayerFiltro.getBounds());
 
-            map.addLayer(filtroLayer);
-            filtroLayer.bringToFront();
+                filtroDataMpioLayer.bringToFront();
+            } else {
 
+                filtroDataDptoLayer = renderMarkersData(filtroDataDpto, 10);
+                map.addLayer(filtroDataDptoLayer);
+                map.fitBounds(filtroDataDptoLayer.getBounds());
+
+                DptosLayer.addTo(map);
+
+                filtroDataDptoLayer.bringToFront();
+            }
             $(".divinfo")[0].hidden = true;
             //map.setZoom(map.getZoom() - 1);
         }
 
-        $("#total_places").text(filtroData.features.length);
+        $("#total_places").text(filtroDataDpto.features.length);
     } else {
         limpiarSeleccion();
-    }
-
-}
-
-/**
- * Limpia la seleccion actual y muestra el mapa vacio
- */
-function limpiarSeleccion() {
-    "use strict";
-
-    var i;
-
-    map.setView(new L.LatLng(4.5, -73.0), 6);
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-    map.addLayer(Stamen_Watercolor);
-    map.addLayer(positronLabels);
-    map.addLayer(DptosLayer);
-
-    document.getElementById('selDepartamento').value = 'all';
-    document.getElementById('selMunicipio').value = 'all';
-    document.getElementById('selTipoAccion').value = 'all';
-    document.getElementById('selTipoLider').value = 'all';
-    document.getElementById('selResponsable').value = 'all';
-    document.getElementById('buscarPalabra').value = '';
-
-    if (document.getElementById('selMunicipio').options.length > 1) {
-        for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
-            document.getElementById('selMunicipio').remove(i);
-        }
-    }
-
-    // Recupera el listado inicial
-    filtroData = JSON.parse(JSON.stringify(Observatorios));
-    $("#total_places").text(0);
-
-    $(".divinfo")[0].hidden = false;
-
-}
-
-/**
- * [[Estilo ]]
- * @param   {object} feature [[Description]]
- * @returns {object} [[Description]]
- */
-function styleMpios(feature) {
-    "use strict";
-    return {
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.2,
-        fillColor: "#f0f"
-    };
-}
-
-/**
- * Resalta el elemento
- * @param {object} e Vector sobre el que pasa el mouse
- */
-function highlightFeature(e) {
-    "use strict";
-
-    var layer = e.target;
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
-    info.update(layer.feature.properties);
-}
-
-/**
- * Quita resaltado en Departamentos
- * @param {object} e [[Description]]
- */
-function resetHighlightDptos(e) {
-    "use strict";
-    DptosLayer.resetStyle(e.target);
-    DptosLayer.setStyle(styleDptos);
-}
-
-// Zoom al elemento
-/**
- * [[Zoom al departamento seleccionado]]
- * @param   {object}   e [[vector seleccionado]]
- * @returns {[[Type]]} [[Description]]
- */
-function zoomToFeatureDptos(e) {
-    "use strict";
-    dptoAnterior = jQuery.extend(true, {}, e);
-    nivelActual = "Dpto";
-
-    var layer = e.target;
-    map.fitBounds(e.target.getBounds());
-    DptoSeleccionado = layer.feature.properties.COD_DEPTO;
-
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-
-    map.addLayer(Stamen_Watercolor);
-
-    // Capa de MUNICIPIOS
-    MpiosLayer = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.COD_DEPTO == DptoSeleccionado)
-        },
-        style: styleDptos,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.NOMBRE, {
-                permanent: false,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeatureMpios);
-            //layer.on('mouseout', resetHighlightMpios);
-            layer.on('click', zoomToFeatureMpios);
-        }
-    });
-
-    MpiosLayer.addData(capaMunicipios);
-    map.addLayer(MpiosLayer);
-
-    switch (DptoSeleccionado) {
-        case 'PUTUMAYO':
-            NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-            map.addLayer(NodosSurPutumayo);
-            break;
-        case 'NARIÑO':
-            NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
-            map.addLayer(NodosSurNarino);
-            break;
-        case 'CAUCA':
-            NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosSurCauca);
-            break;
-        case 'VALLE DEL CAUCA':
-            NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
-            map.addLayer(NodosSurValleCauca);
-            break;
-        case 'META':
-            NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosCentroMeta);
-            break;
-        case 'SANTANDER':
-            NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosCentroSantander);
-            break;
-        case 'NORTE DE SANTANDER':
-            NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
-            map.addLayer(NodosCentroNteSantander);
-            break;
-        case 'BOYACÁ':
-            NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-            map.addLayer(NodosCentroBoyaca);
-            break;
-        case 'BOGOTÁ D.C.':
-            NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
-            map.addLayer(NodosCentroBogota);
-            break;
-        case 'ATLÁNTICO':
-            NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeAtlantico);
-            break;
-        case 'MAGDALENA':
-            NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeMagdalena);
-            break;
-        case 'SUCRE':
-            NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeSucre);
-            break;
-        case 'BOLÍVAR':
-            NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeBolivar);
-            break;
-        case 'PUTUMAYO':
-            NodosSurPutumayo = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-            map.addLayer(NodosSurPutumayo);
-            break;
-        case 'NARIÑO':
-            NodosSurNarino = renderMarkersData(filtrarDepto(DptoSeleccionado), 20);
-            map.addLayer(NodosSurNarino);
-            break;
-        case 'CAUCA':
-            NodosSurCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosSurCauca);
-            break;
-        case 'VALLE DEL CAUCA':
-            NodosSurValleCauca = renderMarkersData(filtrarDepto(DptoSeleccionado), 50);
-            map.addLayer(NodosSurValleCauca);
-            break;
-        case 'META':
-            NodosCentroMeta = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosCentroMeta);
-            break;
-        case 'SANTANDER':
-            NodosCentroSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 15);
-            map.addLayer(NodosCentroSantander);
-            break;
-        case 'NORTE DE SANTANDER':
-            NodosCentroNteSantander = renderMarkersData(filtrarDepto(DptoSeleccionado), 10);
-            map.addLayer(NodosCentroNteSantander);
-            break;
-        case 'BOYACÁ':
-            NodosCentroBoyaca = renderMarkersData(filtrarDepto(DptoSeleccionado), 5);
-            map.addLayer(NodosCentroBoyaca);
-            break;
-        case 'BOGOTÁ D.C.':
-            NodosCentroBogota = renderMarkersData(filtrarDepto(DptoSeleccionado), 25);
-            map.addLayer(NodosCentroBogota);
-            break;
-        case 'ATLANTICO':
-            NodosCaribeAtlantico = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeAtlantico);
-            break;
-        case 'MAGDALENA':
-            NodosCaribeMagdalena = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeMagdalena);
-            break;
-        case 'SUCRE':
-            NodosCaribeSucre = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeSucre);
-            break;
-        case 'BOLÍVAR':
-            NodosCaribeBolivar = renderMarkersData(filtrarDepto(DptoSeleccionado));
-            map.addLayer(NodosCaribeBolivar);
-            break;
-    }
-}
-
-// Resaltado
-function highlightFeatureMpios(e) {
-    var layer = e.target;
-    info.update(layer.feature.properties);
-}
-
-// Zoom al elemento
-function zoomToFeatureMpios(e) {
-    "use strict";
-
-    mpioAnterior = jQuery.extend(true, {}, e);
-    nivelActual = "Mpio";
-
-    var layer = e.target;
-
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-
-    map.addLayer(positron);
-
-    //map.fitBounds(e.target.getBounds());
-    MpioSeleccionado = layer.feature.properties.COD_DANE;
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-    map.addLayer(Stamen_Watercolor);
-    // Capa de MUNICIPIOS
-    MpiosLayer = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.COD_DANE == MpioSeleccionado)
-        },
-        style: styleDptos,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.NOMBRE, {
-                permanent: true,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeatureMpios);
-            //layer.on('mouseout', resetHighlightMpios);
-            //layer.on('click', zoomToFeatureMpios);
-        }
-    })
-
-    MpiosLayer.addData(capaMunicipios);
-    map.addLayer(MpiosLayer);
-    map.addLayer(positronLabels);
-
-    var ObservatoriosData = JSON.parse(JSON.stringify(Observatorios));
-    ObservatoriosData.features = ObservatoriosData.features.filter(function (a) {
-        return a.properties.CODDANE == MpioSeleccionado;
-    });
-
-    ObservatoriosLayer = renderMarkersData(ObservatoriosData, 0.01);
-    map.addLayer(ObservatoriosLayer);
-    map.fitBounds(MpiosLayer.getBounds());
-}
-
-/**
- * Genera Cluster Inicial
- * @param   {[[Type]]} data             Informacion a usar
- * @param   {[[Type]]} distancia = 1500 Distancia para unificar
- * @returns {[[Type]]} [[Description]]
- */
-function renderMarkersBase(data, distancia = 1500) {
-
-    var cluster = L.markerClusterGroup({
-        showCoverageOnHover: false,
-        maxClusterRadius: distancia,
-        spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 19
-    });
-
-    var layer = L.geoJson(data);
-    layer.setZIndex(1002);
-    cluster.addLayer(layer);
-    return cluster;
-}
-
-// OBSERVATORIOS
-/**
- * Cluster con Ventana Modal
- * @param   {[[Type]]} data            Datos a clusterizar
- * @param   {[[Type]]} distancia = 100 Distancia para unificar
- * @returns {boolean}  [[Description]]
- */
-function renderMarkersData(data, distancia = 100) {
-
-    var layer = L.geoJson(data, {
-        onEachFeature: function (feature, layer) {
-            if (feature.properties) {
-                popupObservatorio(feature, layer);
-            }
-        },
-
-        pointToLayer: function (feature, latlng) {
-            /*            return L.circleMarker(latlng, {
-                            radius: 8,
-                            fillColor: "#FF7FAC",
-                            color: "#FF7FAC",
-                            weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.5
-                        });*/
-            return L.marker(latlng, {
-                icon: observatorioIcon
-            });
-        }
-    });
-
-    layer.setZIndex(1002);
-
-    if (distancia > 0) {
-        var cluster = L.markerClusterGroup({
-            showCoverageOnHover: false,
-            maxClusterRadius: distancia,
-            spiderfyOnMaxZoom: true,
-            disableClusteringAtZoom: 19
-        });
-
-        cluster.addLayer(layer);
-
-        return cluster;
-    } else {
-        return layer;
     }
 
 }
@@ -665,93 +607,28 @@ function renderMarkersData(data, distancia = 100) {
  * @param   {[[Type]]} layer   [[Description]]
  * @returns {boolean}  [[Description]]
  */
-function popupObservatorio(feature, layer) {
+function popupEvento(feature, layer) {
     "use strict";
 
-    var Telefono = feature.properties.TELEFONO;
-    var TelefonoStr = '';
-    if (Telefono.length > 0) {
-        Telefono.forEach(function (entry) {
-            TelefonoStr += entry + '<br />';
-        });
-    }
+    var Fecha = feature.properties.dia + "/" + feature.properties.mes + "/" + feature.properties.anno;
+    var Nombre = feature.properties.nombre;
+    var Municipio = feature.properties.municipio;
+    var Departamento = feature.properties.departamento;
+    var TipoAccion = feature.properties.accion;
+    var TipoLider = feature.properties.tipo_victima;
+    var Organizacion = feature.properties.organizacion_politica;
+    var Responsable = feature.properties.reponsable;
+    var Observaciones = feature.properties.observaciones;
+    var Fuente = feature.properties.fuente;
 
-    var Correo = feature.properties.CORREO;
-    var CorreoStr = '';
-    if (Correo.length > 0) {
-        Correo.forEach(function (entry) {
-            CorreoStr += entry + '<br />';
-        });
-    }
-
-    var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-    var logo = "<center><img class='imgLogo' src='images/" + feature.properties.IDENTIFICADOR + ".png' alt='" + feature.properties.OBSERVATORIO + "' style='height:100px;'></center>";
-    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo Observatorio</th><td>" + feature.properties.SECTOR + "</td></tr>" + "<tr><th>Dirección</th><td>" + feature.properties.DIRECCION + '<br/>' + feature.properties.MUNICIPIO + ', ' + feature.properties.DEPARTAMENTO + "</td></tr>" + (TelefonoStr == '' ? '' : "<tr><th>Teléfono</th><td>" + TelefonoStr + "</td></tr>") + (CorreoStr == '' ? '' : "<tr><th>Correo Electrónico</th><td>" + CorreoStr + "</td></tr>") + (feature.properties.SITIO_WEB == '' ? '' : "<tr><th>Web</th><td><a class='url-break' href='" + feature.properties.SITIO_WEB + "' target='_blank'>" + feature.properties.SITIO_WEB + "</a></td></tr>") + (feature.properties.FACEBOOK == '' ? '' : "<tr><th>Facebook</th><td>" + feature.properties.FACEBOOK + "</td></tr>") + (feature.properties.TWITER == '' ? '' : "<tr><th>Twitter</th><td>" + feature.properties.TWITER + "</td></tr>") + "<table>";
-
-    var tematicas = feature.properties.TEMATICA;
-    var tematicasStr = '';
-    if (tematicas.length > 0) {
-        tematicas.forEach(function (entry) {
-            tematicasStr += entry + '<br />';
-        });
-    }
-
-    var territorial = feature.properties.NIVEL_TERRITORIAL;
-    var territorialStr = '';
-    if (territorial.length > 0) {
-        territorial.forEach(function (entry) {
-            territorialStr += entry + '<br />';
-        });
-    }
-
-    var tipoinformacion = feature.properties.TIPO_INFORMACION;
-    var tipoinformacionStr = '';
-    if (tipoinformacion.length > 0) {
-        tipoinformacion.forEach(function (entry) {
-            tipoinformacionStr += entry + '<br />';
-        });
-    }
-
-    var productos = feature.properties.PRODUCTOS;
-    var productosStr = productos;
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Fecha</th><td>" + Fecha + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Acción</th><td>" + TipoAccion + "</td></tr>" + "<tr><th>Tipo Víctima</th><td>" + TipoLider + "</td></tr>" + "<tr><th>Organización Politica</th><td>" + Organizacion + "</td></tr>" + "<tr><th>Responsable</th><td>" + Responsable + "</td></tr>" + "<tr><th>Fuente</th><td><a class='url-break' href='" + Fuente + "' target='_blank'>" + Fuente + "</a></td></tr>" + "<table>";
 
     layer.on({
         click: function (e) {
-            $("#feature-title").html('<center>' + feature.properties.OBSERVATORIO + '</center>');
-            $("#logoObservatorio").html(logo);
+            $("#feature-title").html('<center>' + Nombre + '</center>');
             $("#feature-info").html(infobasica);
 
-            $("#tematicas").html(tematicasStr);
-            tematicasStr == '' || tematicasStr == '<br />' ? $('#tematicasTab').attr('class', 'disabled') : $('#tematicasTab').attr('class', '');
-            $('#tematicasTab').click(function (event) {
-                if ($(this).hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $("#territorial").html(territorialStr);
-            territorialStr == '' || territorialStr == '<br />' ? $('#territorialTab').attr('class', 'disabled') : $('#territorialTab').attr('class', '');
-            $('#territorialTab').click(function (event) {
-                if ($(this).hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $("#tipoinformacion").html(tipoinformacionStr);
-            tipoinformacionStr == '' || tipoinformacionStr == '<br />' ? $('#tipoinformacionTab').attr('class', 'disabled') : $('#tipoinformacionTab').attr('class', '');
-            $('#tipoinformacionTab').click(function (event) {
-                if ($(this).hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $("#productos").html(productosStr);
-            productosStr == '' || productosStr == '<br />' ? $('#productosTab').attr('class', 'disabled') : $('#productosTab').attr('class', '');
-            $('#productosTab').click(function (event) {
-                if ($(this).hasClass('disabled')) {
-                    return false;
-                }
-            });
+            $("#Observaciones").html(Observaciones);
 
             $('.nav-tabs a[href="#feature-info"]').tab('show');
             $("#featureModal").modal("show");
