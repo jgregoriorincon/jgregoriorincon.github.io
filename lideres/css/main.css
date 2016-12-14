@@ -15,7 +15,15 @@ body,
     width: 100%;
     overflow: hidden;
     height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
     margin: 0;
+}
+
+body .pre-scrollable {
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow-y: scroll;
 }
 
 body .well {
@@ -229,4 +237,10 @@ input#dateInicial {
 
 input#dateFinal {
     width: 70px;
+}
+
+@media screen and (max-width: 340px) {
+    .button-text {
+        display: none;
+    }
 }

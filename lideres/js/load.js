@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, console, Observatorios, Nodos, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleNodos, styleDptos, styleMpios, getColorNodos, highlightFeature, resetHighlightNodos, renderMarkersBase, listaDepartamentos, listaSector, listaTematicas, listaNivelTerritorial, Stamen_Watercolor, positron, positronLabels, OpenStreetMap_Mapnik, Esri_WorldStreetMap, getColorNodos, zoomToFeatureNodos, zoomToFeatureDptos */
+/*global $, jQuery, alert, console, Dptos, Mpios, Departamentos, Municipios, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleDptos, styleMpios, highlightFeature, listaDepartamentos, listaSector, listaTematicas, listaNivelTerritorial, Stamen_Watercolor, positron, positronLabels, OpenStreetMap_Mapnik, Esri_WorldStreetMap, zoomToFeatureDptos */
 /*jslint plusplus: true */
 
 // Variables globales
@@ -23,7 +23,7 @@ var violencia_mpios_data;
 var fechaInicial, fechaFinal, filtrarFecha;
 var startFecha, endFecha;
 
-var observatorioIcon = L.icon({
+var eventoIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
     iconSize: [32, 32],
     iconAnchor: [22, 31],

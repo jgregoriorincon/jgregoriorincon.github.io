@@ -61,7 +61,7 @@ function loadMap() {
 
     info.update = function (props) {
 
-        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los observatorios para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
+        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los eventos para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
         var strEncabezado = '<div class="panel-body text-right">';
 
@@ -223,7 +223,7 @@ function renderMarkersData(data, distancia = 10) {
                             fillOpacity: 0.5
                         });*/
             return L.marker(latlng, {
-                icon: observatorioIcon
+                icon: eventoIcon
             });
         }
     });
@@ -387,8 +387,8 @@ function filtrarDepartamento() {
 }
 
 /**
- * [[filtra los observatorios por las opciones del sidebar]]
- * @returns {boolean} filtra la capa de observatorios 'filtroData'
+ * [[filtra los eventos por las opciones del sidebar]]
+ * @returns {boolean} filtra la capa de eventos 'filtroData'
  */
 function filtrarTodo() {
     "use strict";
