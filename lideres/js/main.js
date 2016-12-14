@@ -406,14 +406,6 @@ function filtrarTodo() {
         filtroDataDpto = JSON.parse(JSON.stringify(violencia_dptos_geo));
         filtroDataMpio = JSON.parse(JSON.stringify(violencia_mpios_geo));
 
-        if (fechaInicial === undefined) {
-            fechaInicial = startFecha;
-        }
-
-        if (fechaFinal === undefined) {
-            fechaFinal = endFecha;
-        }
-
         filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
             var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
             return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));

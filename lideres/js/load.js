@@ -81,7 +81,7 @@ $(document).ready(function () {
         showDropdowns: true,
         startDate: startFecha,
         endDate: endFecha,
-        minDate: startFecha,
+        minDate: startFechaTotal,
         maxDate: endFecha,
         opens: "center",
         drops: "up",
