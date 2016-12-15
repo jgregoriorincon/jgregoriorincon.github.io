@@ -325,7 +325,7 @@ function limpiarSeleccion() {
     document.getElementById('selResponsable').value = 'all';
     document.getElementById('buscarPalabra').value = '';
 
-    cb(startFecha, endFecha);
+    cb(startFechaTotal, endFecha);
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
@@ -361,6 +361,8 @@ function filtrarDepartamento() {
         }).join('');
 
         $("#selMunicipio").html(html);
+
+        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         filtrarTodo();
 
@@ -404,60 +406,77 @@ function filtrarTodo() {
     if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
 
         filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
-        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
             var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
             return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
         });
-        filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-        });
+
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                if (a.properties.id_violencia_selectiva === "") {
+                    return false;
+                }
+                else {
+                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+                    return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+                }
+            });
+        }
 
         if (Dpto !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.Cod_DANE_Dep === parseInt(Dpto);
             });
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                return a.properties.Cod_DANE_Dep === parseInt(Dpto);
-            });
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    return a.properties.Cod_DANE_Dep === parseInt(Dpto);
+                });
+            }
         }
 
         if (Mpio !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.Cod_DANE_Mun === parseInt(Mpio);
             });
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                return a.properties.Cod_DANE_Mun === parseInt(Mpio);
-            });
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    return a.properties.Cod_DANE_Mun === parseInt(Mpio);
+                });
+            }
         }
 
         if (TipoAccion !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.accion === TipoAccion;
             });
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                return a.properties.accion === TipoAccion;
-            });
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    return a.properties.accion === TipoAccion;
+                });
+            }
         }
 
         if (TipoLider !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.tipo_victima === TipoLider;
             });
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                return a.properties.tipo_victima === TipoLider;
-            });
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    return a.properties.tipo_victima === TipoLider;
+                });
+            }
         }
 
         if (Responsable !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.reponsable === Responsable;
             });
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                return a.properties.reponsable === Responsable;
-            });
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    return a.properties.reponsable === Responsable;
+                });
+            }
         }
 
         /*
@@ -505,18 +524,20 @@ function filtrarTodo() {
                 }
             });
 
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                var k1 = a.properties.nombre.toUpperCase(),
-                    k2 = a.properties.municipio.toUpperCase(),
-                    k3 = a.properties.organizacion_politica.toUpperCase(),
-                    k4 = a.properties.observaciones.toUpperCase();
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    var k1 = a.properties.nombre.toUpperCase(),
+                        k2 = a.properties.municipio.toUpperCase(),
+                        k3 = a.properties.organizacion_politica.toUpperCase(),
+                        k4 = a.properties.observaciones.toUpperCase();
 
-                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+                    if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
         }
 
         if (filtroDataDpto.features.length > 0) {
