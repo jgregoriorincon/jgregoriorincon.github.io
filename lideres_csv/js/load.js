@@ -182,6 +182,20 @@ $(document).ready(function () {
 
                 filtrarTodo();
 
+                //console.log(data);
+                //console.log(dl.format.table(violencia_selectiva_departamento.data, {limit: 20}));
+                //console.log(dl.format.summary(violencia_selectiva_departamento.data));
+                var total = violencia_selectiva_departamento.data.length;
+                var cantidades = dl.groupby('Cod_DANE_Dep').count().execute(violencia_selectiva_departamento.data);
+                
+                console.log(cantidades);
+
+                cantidades.forEach(function(item) {
+                    item.VALOR = item.count / total;
+                    //delete item.num;//deleting the num from the object
+                });
+                console.log(cantidades); 
+
             }
         });
 
