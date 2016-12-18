@@ -27,6 +27,9 @@ var eventoIcon = L.icon({
     popupAnchor: [-3, -76]
 });
 
+var metodo = "q";
+var clases = 5;
+
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
@@ -69,7 +72,7 @@ $(document).ready(function () {
     map = L.map('map', {
         maxZoom: 18,
         minZoom: 5,
-        zoomControl: false,
+        zoomControl: true,
         scrollWheelZoom: true
     });
 

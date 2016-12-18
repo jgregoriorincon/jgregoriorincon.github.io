@@ -74,9 +74,67 @@ function loadMap() {
     info.addTo(map);
     $('[data-toggle="tooltip"]').tooltip();
 
+    var dataDptos = dl.groupby('COD_DPTO').count().execute(hechos_departamento);
+    //dataDptos = JSON.parse(JSON.stringify(dataDptos));
+
+    console.log(typeof dataDptos);
+
+    var dataDptosHash = dataDptos.reduce(function (hash, item) {
+        if (item.COD_DPTO) {
+            hash[item.COD_DPTO] = isNaN(item.count) ? null : +item.count
+        }
+        return hash
+    }, {});
+
+    capaDepartamentos.features.forEach(function (item) {
+        item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null;
+    })
+
+    console.log(capaDepartamentos);
+
+    DptosLayer = L.choropleth(capaDepartamentos, {
+        filter: function (feature) {
+            return (feature.properties.VALOR != null)
+        },
+        valueProperty: 'VALOR',
+        scale: ['yellow', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip("Dpto: " + feature.properties.DEPTO + "</br>Valor: " + feature.properties.VALOR, {
+                permanent: false,
+                direction: "auto"
+            });
+            /*layer.on('mouseover', highlightFeature);
+            layer.on('mouseout', resetHighlightDptos);*/
+    layer.on('click', zoomToFeatureDptos);
+        }
+    });
+    DptosLayer.addTo(map);
+
+    //return;
+
+
+
+
+
+
+
+
+
     // Capa de Departamentos
-    DptosLayer = L.geoJson(undefined, {
-        style: styleDptos,
+    var DptosLayerBack = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.VALOR == null)
+        },
+        style: styleDptos/*,
         onEachFeature: function (feature, layer) {
             layer.bindTooltip(feature.properties.DEPTO, {
                 permanent: false,
@@ -85,11 +143,11 @@ function loadMap() {
             layer.on('mouseover', highlightFeature);
             layer.on('mouseout', resetHighlightDptos);
             layer.on('click', zoomToFeatureDptos);
-        }
+    }*/
     });
 
-    DptosLayer.addData(capaDepartamentos);
-    DptosLayer.addTo(map);
+    DptosLayerBack.addData(capaDepartamentos);
+    DptosLayerBack.addTo(map);
 
     hechos_departamento_layer = renderMarkersData(hechos_departamento_geo, 5);
     map.addLayer(hechos_departamento_layer);
@@ -182,8 +240,6 @@ function zoomToFeatureDptos(e) {
         }
     });
 
-    console.log(DptoSeleccionado);
-
     MpiosLayer.addData(capaMunicipios);
     map.addLayer(MpiosLayer);
 
@@ -196,6 +252,8 @@ function zoomToFeatureDptos(e) {
     map.addLayer(hechos_municipio_layer);
     map.fitBounds(MpiosLayer.getBounds());
 
+    //document.getElementById('selDepartamento').value = DptoSeleccionado;
+    //filtrarDepartamento();
 }
 
 // EVENTOS
@@ -275,7 +333,7 @@ function zoomToFeatureMpios(e) {
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.COD_DANE == MpioSeleccionado)
+            return (feature.properties.COD_DANE === MpioSeleccionado)
         },
         style: styleDptos,
         onEachFeature: function (feature, layer) {
@@ -293,13 +351,13 @@ function zoomToFeatureMpios(e) {
     map.addLayer(MpiosLayer);
     map.addLayer(positronLabels);
 
-    violencia_selectiva_municipio_data = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
-    violencia_selectiva_municipio_data.features = violencia_selectiva_municipio_data.features.filter(function (a) {
-        return a.properties.COD_MPIO == MpioSeleccionado;
+    hechos_municipio_data = JSON.parse(JSON.stringify(hechos_municipio_geo));
+    hechos_municipio_data.features = hechos_municipio_data.features.filter(function (a) {
+        return a.properties.COD_MPIO === parseInt(MpioSeleccionado);
     });
 
-    violencia_selectiva_municipio_layer = renderMarkersData(violencia_selectiva_municipio_data, 5);
-    map.addLayer(violencia_selectiva_municipio_layer);
+    hechos_municipio_layer = renderMarkersData(hechos_municipio_data, 5);
+    map.addLayer(hechos_municipio_layer);
     map.fitBounds(MpiosLayer.getBounds());
 }
 
@@ -513,21 +571,22 @@ function filtrarTodo() {
                 var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
                     k2 = a.properties.MUNICIPIO.toUpperCase(),
                     k3 = a.properties.TIPOHECHO.toUpperCase(),
-                    k4 = a.properties.GRUPOS.toUpperCase();
+                    k4 = a.properties.GRUPOS.toString().toUpperCase(),
+                    k5 = a.properties.ANNO.toString();
 
-                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto))) {
                     return true;
                 } else {
                     return false;
                 }
             });
-
+/*
             if (filtroDataMpio !== undefined) {
                 filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                     var k1 = a.properties.nombre.toUpperCase(),
                         k2 = a.properties.municipio.toUpperCase(),
                         k3 = a.properties.organizacion_politica.toUpperCase(),
-                        k4 = a.properties.observaciones.toUpperCase();
+                        k4 = a.properties.observaciones.toString().toUpperCase();
 
                     if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
                         return true;
@@ -535,7 +594,7 @@ function filtrarTodo() {
                         return false;
                     }
                 });
-            }
+        }*/
         }
 
         if (filtroDataDpto.features.length > 0) {
@@ -621,24 +680,20 @@ function filtrarTodo() {
 function popupEvento(feature, layer) {
     "use strict";
 
-    var Nombre = feature.properties.nombre;
-    var Municipio = feature.properties.municipio;
-    var Departamento = feature.properties.departamento;
-    var TipoAccion = feature.properties.accion;
-    var TipoLider = feature.properties.tipo_victima;
-    var Organizacion = feature.properties.organizacion_politica;
-    var Responsable = feature.properties.reponsable;
-    var Observaciones = feature.properties.observaciones;
-    var Fuente = feature.properties.fuente;
+    var TipoHecho = feature.properties.TIPOHECHO;
+    var Municipio = feature.properties.MUNICIPIO;
+    var Departamento = feature.properties.DEPARTAMENTO;
+    var Annos = feature.properties.ANNO;
+    var EsAgente = feature.properties.ESAGENTE;
+    var Agente = feature.properties.AGENTE;
+    var Grupo = feature.properties.GRUPOS.toString();
 
-    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Fecha</th><td>" + Nombre + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Acción</th><td>" + TipoAccion + "</td></tr>" + "<tr><th>Tipo Víctima</th><td>" + TipoLider + "</td></tr>" + "<tr><th>Organización Politica</th><td>" + Organizacion + "</td></tr>" + "<tr><th>Responsable</th><td>" + Responsable + "</td></tr>" + "<tr><th>Fuente</th><td><a class='url-break' href='" + Fuente + "' target='_blank'>" + Fuente + "</a></td></tr>" + "<table>";
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo de Hecho</th><td>" + TipoHecho + "</td></tr>" + "<tr><th>Fecha</th><td>" + Annos + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Tipo Grupo</th><td>" + Grupo + "</td></tr>" + "<tr><th>¿ Es Agente Estatal ?</th><td>" + EsAgente + "</td></tr>" + "<tr><th>Tipo de Agente</th><td>" + Agente + "</td></tr>" + "<table>";
 
     layer.on({
         click: function (e) {
-            $("#feature-title").html('<center>' + Nombre + '</center>');
+            $("#feature-title").html('<center>' + TipoHecho + '</center>');
             $("#feature-info").html(infobasica);
-
-            $("#Observaciones").html(Observaciones);
 
             $('.nav-tabs a[href="#feature-info"]').tab('show');
             $("#featureModal").modal("show");

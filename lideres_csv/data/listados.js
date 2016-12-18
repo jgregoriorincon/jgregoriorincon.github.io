@@ -21,6 +21,7 @@ var listaTipoHecho = [
 ];
 
 var listaGrupo = [
+  "Ninguno",
   "Afros",
   "Indígenas",
   "LGBTI",

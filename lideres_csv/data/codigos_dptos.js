@@ -4,6 +4,10 @@ var listaDepartamentos = [
    "NOMBRE": "ANTIOQUIA"
  },
  {
+   "CODIGO": 81,
+   "NOMBRE": "ARAUCA"
+ },
+ {
    "CODIGO": 18,
    "NOMBRE": "CAQUETA"
  },
@@ -30,9 +34,5 @@ var listaDepartamentos = [
  {
    "CODIGO": 73,
    "NOMBRE": "TOLIMA"
- },
- {
-   "CODIGO": 81,
-   "NOMBRE": "ARAUCA"
  }
 ]
