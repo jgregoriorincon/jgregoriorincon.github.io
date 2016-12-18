@@ -17,6 +17,8 @@ var DptoSeleccionado, MpioSeleccionado;
 
 var hechos_departamento, hechos_municipio;
 var hechos_departamento_geo, hechos_departamento_layer;
+var hechos_municipio_geo, hechos_municipio_layer;
+var hechos_municipio_data;
 
 var eventoIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
@@ -63,10 +65,6 @@ $(document).ready(function () {
     }
     $("#selGrupo").html(lista);
 
-    /*$("#buscarPalabra").bind("keypress keyup keydown", function (event) {
-        filtrarTodo();
-    });*/
-
     /* ------------------- MAPA ------------------*/
     map = L.map('map', {
         maxZoom: 18,
@@ -95,8 +93,10 @@ $(document).ready(function () {
     hechos_departamento_geo = GeoJSON.parse(hechos_departamento, {
                     Point: ["LAT_DPTO", "LONG_DPTO"]
                 });
+    hechos_municipio_geo = GeoJSON.parse(hechos_municipio, {
+                    Point: ["LAT_MPIO", "LONG_MPIO"]
+                });
 
     loadMap();
 
-    map.setZoom(map.getZoom()+1);
 });
