@@ -1,75 +1,72 @@
-var listaResponsables = [
-  "Actor no identificado",
-  "Águilas Negras",
-  "Águilas Negras y AUC",
-  "AUC",
-  "Autodefensas de Medellín Unidas",
-  "Autodefensas Gaitanistas de Colombia",
-  "BACRIM",
-  "Clan Úsuga",
-  "Ejército Antirestitucción de Tierras",
-  "Ejército Nacional",
-  "ELN",
-  "EPL",
-  "ESMAD",
-  "FARC",
-  "FARC - ep",
-  "Frente 59 de las FARC",
-  "La Construc",
-  "Los Rastrojos",
-  "Los Urabeños",
-  "Organizaciones criminales",
-  "Paramilitares",
-  "Paramilitares (Clan Úsuga)",
-  "Paramilitares- Los Rastrojos",
-  "Policía Nacional",
-  "Rastrojos",
-  "Reacción antimarxista Colombia Facatativá",
-  "tropas del Batallón Fluvial de Infantería de Marina No. 42 de la Armada Nacional",
-  "Urabeños"
-];
-
-var listaTipoLider = [
-  "Alcalde",
-  "campesinos",
-  "Candidato Político",
-  "Concejal",
-  "Contratista",
-  "Defensor de Derechos Humanos",
-  "Diputado",
-  "Funcionario Público",
-  "Líder afrodescendiente",
-  "Líder campesino",
-  "Líder Comunal",
-  "Líder cultural",
-  "Líder de mujeres",
-  "Líder de restitución de tierras",
-  "Líder de víctimas",
-  "Líder indígena",
-  "Líder juvenil",
-  "Líder LGTBI",
-  "Líder Político",
-  "Líder Religioso",
-  "Líder sindical",
-  "Líder Social ",
-  "Líder víctimas",
-  "Periodista",
-  "Personero",
-  "Profesor",
-  "Registradora ",
-  "Sindicato"
-];
-
-var listaTipoAccion = [
-  "Amenaza",
+var listaTipoHecho = [
+  "Actos de Pillaje",
+  "Amenazas",
   "Atentado",
-  "Desaparición forzada",
-  "Desplazamiento forzado",
-  "Detención ilegal ",
-  "Ejecución extrajudicial",
-  "Extorsión",
+  "Cercos",
+  "Daño u ocupación de Bienes civiles",
+  "Desaparición Forzada",
+  "Desplazamiento Forzado",
+  "Detenciones arbitrarias o ilegales",
   "Homicidio",
-  "Hostigamiento",
+  "Lesiones po excesivo uso de la fuerza",
+  "Lesiones por MAP o MUSE",
+  "Masacre",
+  "Muertes por MAP y MUSE",
+  "Persecución",
+  "Reclutamiento Forzado - Batidas ilegales",
   "Secuestro",
-  "Tortura"
+  "Toma de rehenes",
+  "Tortura",
+  "Violencia Sexual"
+];
+
+var listaGrupo = [
+  "Afros",
+  "Indígenas",
+  "LGBTI",
+  "Líderes Sociales o Defensores de DDHH",
+  "Menor de Edad",
+  "Mujeres"
+];
+
+var listaEsAgente = [
+  "No",
+  "Si"
+];
+
+var listaAgente = {
+   "No": [
+      {
+         "AGENTE": "Grupo Guerrillero"
+      },
+      {
+         "AGENTE": "Grupos Privados de seguridad ilegal"
+      },
+      {
+         "AGENTE": "Indeterminado"
+      }
+   ],
+   "Si": [
+      {
+         "AGENTE": "CTI"
+      },
+      {
+         "AGENTE": "Ejercito"
+      },
+      {
+         "AGENTE": "Otro Agente"
+      },
+      {
+         "AGENTE": "Policia"
+      }
+   ]
+};
+
+var listaAnnos = [
+2010,
+2011,
+2012,
+2013,
+2014,
+2015
 ];

@@ -91,9 +91,10 @@ function loadMap() {
     DptosLayer.addData(capaDepartamentos);
     DptosLayer.addTo(map);
 
-    violencia_selectiva_departamento_layer = renderMarkersData(violencia_selectiva_departamento_geo, 5);
-    map.addLayer(violencia_selectiva_departamento_layer);
-    map.fitBounds(violencia_selectiva_departamento_layer.getBounds());
+    hechos_departamento_layer = renderMarkersData(hechos_departamento_geo, 5);
+    map.addLayer(hechos_departamento_layer);
+    map.fitBounds(DptosLayer.getBounds());
+    //map.setZoom(map.getZoom()+1);
 }
 
 /**
@@ -320,12 +321,10 @@ function limpiarSeleccion() {
 
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
-    document.getElementById('selTipoAccion').value = 'all';
-    document.getElementById('selTipoLider').value = 'all';
-    document.getElementById('selResponsable').value = 'all';
+    document.getElementById('selAnnos').value = 'all';
+    document.getElementById('selTipoHecho').value = 'all';
+    document.getElementById('selGrupo').value = 'all';
     document.getElementById('buscarPalabra').value = '';
-
-    cb(startFechaTotal, endFecha);
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
@@ -375,9 +374,9 @@ function filtrarDepartamento() {
 
         var Dpto = document.getElementById('selDepartamento').value,
             Mpio = document.getElementById('selMunicipio').value,
-            Sector = document.getElementById('selTipoAccion').value,
-            Tematica = document.getElementById('selTipoLider').value,
-            Territorial = document.getElementById('selResponsable').value,
+            Sector = document.getElementById('selAnnos').value,
+            Tematica = document.getElementById('selTipoHecho').value,
+            Territorial = document.getElementById('selGrupo').value,
             FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
         if ((Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (Tematica !== 'all') || (Territorial !== 'all') || (FiltroTexto !== '')) {
@@ -398,31 +397,15 @@ function filtrarTodo() {
     var i,
         Dpto = document.getElementById('selDepartamento').value,
         Mpio = document.getElementById('selMunicipio').value,
-        TipoAccion = document.getElementById('selTipoAccion').value,
-        TipoLider = document.getElementById('selTipoLider').value,
-        Responsable = document.getElementById('selResponsable').value,
+        TipoAccion = document.getElementById('selAnnos').value,
+        TipoLider = document.getElementById('selTipoHecho').value,
+        Responsable = document.getElementById('selGrupo').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-    if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
+    if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '')) {
 
         filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
-
-        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
-            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-        });
-
-        if (filtroDataMpio !== undefined) {
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                if (a.properties.id_violencia_selectiva === "") {
-                    return false;
-                }
-                else {
-                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-                    return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-                }
-            });
-        }
+        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         if (Dpto !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
@@ -623,7 +606,6 @@ function filtrarTodo() {
 function popupEvento(feature, layer) {
     "use strict";
 
-    var Fecha = feature.properties.dia + "/" + feature.properties.mes + "/" + feature.properties.anno;
     var Nombre = feature.properties.nombre;
     var Municipio = feature.properties.municipio;
     var Departamento = feature.properties.departamento;
@@ -634,7 +616,7 @@ function popupEvento(feature, layer) {
     var Observaciones = feature.properties.observaciones;
     var Fuente = feature.properties.fuente;
 
-    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Fecha</th><td>" + Fecha + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Acción</th><td>" + TipoAccion + "</td></tr>" + "<tr><th>Tipo Víctima</th><td>" + TipoLider + "</td></tr>" + "<tr><th>Organización Politica</th><td>" + Organizacion + "</td></tr>" + "<tr><th>Responsable</th><td>" + Responsable + "</td></tr>" + "<tr><th>Fuente</th><td><a class='url-break' href='" + Fuente + "' target='_blank'>" + Fuente + "</a></td></tr>" + "<table>";
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Fecha</th><td>" + Nombre + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Acción</th><td>" + TipoAccion + "</td></tr>" + "<tr><th>Tipo Víctima</th><td>" + TipoLider + "</td></tr>" + "<tr><th>Organización Politica</th><td>" + Organizacion + "</td></tr>" + "<tr><th>Responsable</th><td>" + Responsable + "</td></tr>" + "<tr><th>Fuente</th><td><a class='url-break' href='" + Fuente + "' target='_blank'>" + Fuente + "</a></td></tr>" + "<table>";
 
     layer.on({
         click: function (e) {

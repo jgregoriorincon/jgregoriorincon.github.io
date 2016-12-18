@@ -15,13 +15,8 @@ var DptosLayer, MpiosLayer;
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
 
-var violencia_selectiva_departamento, violencia_selectiva_municipio;
-var violencia_selectiva_departamento_geo, violencia_selectiva_municipio_geo;
-var violencia_selectiva_departamento_layer, violencia_selectiva_municipio_layer;
-var violencia_selectiva_municipio_data;
-
-var fechaInicial, fechaFinal, filtrarFecha;
-var startFechaTotal, startFecha, endFecha;
+var hechos_departamento, hechos_municipio;
+var hechos_departamento_geo, hechos_departamento_layer;
 
 var eventoIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
@@ -33,80 +28,6 @@ var eventoIcon = L.icon({
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
-
-    moment.locale('es');
-    startFechaTotal = moment('2013-01-01');
-    startFecha = moment().startOf('year');
-    endFecha = moment();
-
-    fechaInicial = startFecha;
-    fechaFinal = endFecha;
-    filtrarFecha = true;
-
-    $('#reportrange').daterangepicker({
-        "locale": {
-            "format": 'MMMM, YYYY',
-            "separator": " - ",
-            "applyLabel": "Aplicar",
-            "cancelLabel": "Cancelar",
-            "fromLabel": "Desde",
-            "toLabel": "Hasta",
-            "customRangeLabel": "Personalizar",
-            "weekLabel": "W",
-            "daysOfWeek": [
-                "Do",
-                "Lu",
-                "Ma",
-                "Mi",
-                "Ju",
-                "Vi",
-                "Sa"
-            ],
-            "monthNames": [
-                "Enero",
-                "Febrero",
-                "Marzo",
-                "Abril",
-                "Mayo",
-                "Junio",
-                "Julio",
-                "Agosto",
-                "Septiembre",
-                "OCtubre",
-                "Noviembre",
-                "Diciembre"
-            ],
-            "firstDay": 1
-        },
-        showDropdowns: true,
-        startDate: startFecha,
-        endDate: endFecha,
-        minDate: startFechaTotal,
-        maxDate: endFecha,
-        opens: "center",
-        drops: "up",
-        ranges: {
-            //'Hoy': [moment(), moment()],
-            //'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            //'Últimos 7 Días': [moment().subtract(6, 'days'), moment()],
-            'Últimos 30 Días': [moment().subtract(29, 'days'), moment()],
-            'Este Mes': [moment().startOf('month'), moment().endOf('month')],
-            'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-            'Este Año': [moment().startOf('year'), moment().endOf('year')],
-            'Último Año': [moment().subtract(1, 'year').startOf('month'), moment().subtract(1, 'month').endOf('year')],
-            'Todos': [startFechaTotal, moment()]
-        }
-    }, cb);
-
-    cb(startFecha, endFecha);
-
-    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-        fechaInicial = picker.startDate.format('YYYY-M');
-        fechaFinal = picker.endDate.format('YYYY-M');
-        filtrarFecha = true;
-        filtrarTodo();
-
-    });
 
     $('#buscarPalabraBtn').on('click', function (event) {
         filtrarTodo();
@@ -125,22 +46,22 @@ $(document).ready(function () {
     $("#selDepartamento").html(lista);
 
     lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaTipoAccion.length; i++) {
-        lista += "<option value='" + listaTipoAccion[i] + "'>" + listaTipoAccion[i] + "</option>";
+    for (i = 0; i < listaAnnos.length; i++) {
+        lista += "<option value='" + listaAnnos[i] + "'>" + listaAnnos[i] + "</option>";
     }
-    $("#selTipoAccion").html(lista);
+    $("#selAnnos").html(lista);
 
     lista = "<option value='all'>Todas</option>";
-    for (i = 0; i < listaTipoLider.length; i++) {
-        lista += "<option value='" + listaTipoLider[i] + "'>" + listaTipoLider[i] + "</option>";
+    for (i = 0; i < listaTipoHecho.length; i++) {
+        lista += "<option value='" + listaTipoHecho[i] + "'>" + listaTipoHecho[i] + "</option>";
     }
-    $("#selTipoLider").html(lista);
+    $("#selTipoHecho").html(lista);
 
     lista = "<option value='all'>Todos</option>";
-    for (i = 0; i < listaResponsables.length; i++) {
-        lista += "<option value='" + listaResponsables[i] + "'>" + listaResponsables[i] + "</option>";
+    for (i = 0; i < listaGrupo.length; i++) {
+        lista += "<option value='" + listaGrupo[i] + "'>" + listaGrupo[i] + "</option>";
     }
-    $("#selResponsable").html(lista);
+    $("#selGrupo").html(lista);
 
     /*$("#buscarPalabra").bind("keypress keyup keydown", function (event) {
         filtrarTodo();
@@ -168,51 +89,14 @@ $(document).ready(function () {
     Stamen_Watercolor.addTo(map);
     positronLabels.addTo(map);
     
-        Papa.parse('data/violencia_selectiva_departamento.csv', {
-            download: true,
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-                violencia_selectiva_departamento = results;
-                violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento.data, {
-                    Point: ["latitud", "longitud"]
+    hechos_departamento = datosHechos;
+    hechos_municipio = datosHechos;
+
+    hechos_departamento_geo = GeoJSON.parse(hechos_departamento, {
+                    Point: ["LAT_DPTO", "LONG_DPTO"]
                 });
 
-                loadMap();
+    loadMap();
 
-                filtrarTodo();
-
-                //console.log(data);
-                //console.log(dl.format.table(violencia_selectiva_departamento.data, {limit: 20}));
-                //console.log(dl.format.summary(violencia_selectiva_departamento.data));
-                var total = violencia_selectiva_departamento.data.length;
-                var cantidades = dl.groupby('Cod_DANE_Dep').count().execute(violencia_selectiva_departamento.data);
-                
-                console.log(cantidades);
-
-                cantidades.forEach(function(item) {
-                    item.VALOR = item.count / total;
-                    //delete item.num;//deleting the num from the object
-                });
-                console.log(cantidades); 
-
-            }
-        });
-
-        Papa.parse('data/violencia_selectiva_municipio.csv', {
-            download: true,
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-                violencia_selectiva_municipio = results;
-                    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
-                        Point: ["latitud", "longitud"]
-                    });
-            }
-        });
-    
+    map.setZoom(map.getZoom()+1);
 });
-
-function cb(start, end) {
-    $('#reportrange span').html(start.format('MMM, YYYY') + ' - ' + end.format('MMM, YYYY'));
-}
