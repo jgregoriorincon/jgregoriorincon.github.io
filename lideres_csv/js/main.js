@@ -459,37 +459,6 @@ function filtrarTodo() {
             }
         }
 
-        /*
-        if (Grupo !== 'all') {
-            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
-                return a.properties.GRUPOS === Grupo;
-            });
-            if (filtroDataMpioPunto !== undefined) {
-                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
-                    return a.properties.GRUPOS === Grupo;
-                });
-            }
-        }
-
-
-                
-
-                if (Territorial !== 'all') {
-
-                    filtroData.features = filtroData.features.filter(function (a) {
-                        if (a.properties.NIVEL_TERRITORIAL.length > 0) {
-                            for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
-                                if (a.properties.NIVEL_TERRITORIAL[i] === Territorial) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    });
-
-                }
-*/
-
         if (FiltroTexto.toUpperCase() !== '') {
             filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
@@ -504,21 +473,48 @@ function filtrarTodo() {
                     return false;
                 }
             });
-            /*
-                        if (filtroDataMpioPunto !== undefined) {
-                            filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
-                                var k1 = a.properties.nombre.toUpperCase(),
-                                    k2 = a.properties.municipio.toUpperCase(),
-                                    k3 = a.properties.organizacion_politica.toUpperCase(),
-                                    k4 = a.properties.observaciones.toString().toUpperCase();
 
-                                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            });
-                    }*/
+            filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
+                var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
+                    k2 = a.properties.MUNICIPIO.toUpperCase(),
+                    k3 = a.properties.TIPOHECHO.toUpperCase(),
+                    k4 = a.properties.GRUPOS.toString().toUpperCase(),
+                    k5 = a.properties.ANNO.toString();
+
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                var k1 = a.DEPARTAMENTO.toUpperCase(),
+                    k2 = a.MUNICIPIO.toUpperCase(),
+                    k3 = a.TIPOHECHO.toUpperCase(),
+                    k4 = a.GRUPOS.toString().toUpperCase(),
+                    k5 = a.ANNO.toString();
+
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                var k1 = a.DEPARTAMENTO.toUpperCase(),
+                    k2 = a.MUNICIPIO.toUpperCase(),
+                    k3 = a.TIPOHECHO.toUpperCase(),
+                    k4 = a.GRUPOS.toString().toUpperCase(),
+                    k5 = a.ANNO.toString();
+
+                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto)) || (k5.includes(FiltroTexto))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
         }
 
         if (filtroDataDptoPunto.features.length > 0) {
@@ -556,26 +552,7 @@ function filtrarTodo() {
                 map.removeControl(legendDpto);
                 map.removeControl(legendMpio);
             } else if ((Dpto !== 'all')) {
-                /*
 
-                                var MpiosLayerFiltro = L.geoJson(undefined, {
-                                    filter: function (feature) {
-                                        return (feature.properties.COD_DPTO == Dpto)
-                                    },
-                                    style: styleDptos,
-                                    onEachFeature: function (feature, layer) {
-                                        layer.bindTooltip(feature.properties.NOMBRE, {
-                                            permanent: false,
-                                            direction: "auto"
-                                        });
-                                    }
-                                });
-
-                                // Adiciona las capas
-                                MpiosLayerFiltro.addData(capaMunicipios);
-                                MpiosLayerFiltro.addTo(map);
-                                map.fitBounds(MpiosLayerFiltro.getBounds());
-                */
                 filtroDataMpioPuntoLayer = renderMarkersData(filtroDataMpioPunto, 10);
                 map.addLayer(filtroDataMpioPuntoLayer);
                 filtroDataMpioPuntoLayer.bringToFront();
@@ -596,9 +573,6 @@ function filtrarTodo() {
                 map.fitBounds(DptosLayerBack.getBounds());
             }
 
-
-            //$(".divinfo")[0].hidden = true;
-            //map.setZoom(map.getZoom() - 1);
         }
 
         $("#total_places").text(filtroDataDptoPunto.features.length);
