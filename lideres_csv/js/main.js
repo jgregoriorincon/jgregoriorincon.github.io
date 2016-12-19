@@ -70,7 +70,7 @@ function loadMap() {
 
     info.update = function (props) {
 
-        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los eventos para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
+        var strInstrucciones = '<div><div class="alert alert-info margin-5" id="left" > De clic en los iconos de los hechos para obtener más información sobre estos. </div> <div id="right" ><span class="fa fa-map-marker fa-2x text-info aria-hidden="true"></span> </div></div>';
 
         var strEncabezado = '<div class="panel-body text-right">';
 
@@ -149,7 +149,7 @@ function zoomToFeatureDptos(e) {
     //filtrarDepartamento();
 }
 
-// EVENTOS
+// HECHOS
 /**
  * Cluster con Ventana Modal
  * @param   {[[Type]]} data            Datos a clusterizar
@@ -161,7 +161,7 @@ function renderMarkersData(data, distancia = 10) {
     var layer = L.geoJson(data, {
         onEachFeature: function (feature, layer) {
             if (feature.properties) {
-                popupEvento(feature, layer);
+                popupHecho(feature, layer);
             }
         },
 
@@ -175,7 +175,7 @@ function renderMarkersData(data, distancia = 10) {
                             fillOpacity: 0.5
                         });*/
             return L.marker(latlng, {
-                icon: eventoIcon
+                icon: hechoIcon
             });
         }
     });
@@ -343,8 +343,8 @@ function filtrarDepartamento() {
 }
 
 /**
- * [[filtra los eventos por las opciones del sidebar]]
- * @returns {boolean} filtra la capa de eventos 'filtroData'
+ * [[filtra los hechos por las opciones del sidebar]]
+ * @returns {boolean} filtra la capa de hechos 'filtroData'
  */
 function filtrarTodo() {
     "use strict";
@@ -640,7 +640,7 @@ function filtrarTodo() {
  * @param   {[[Type]]} layer   [[Description]]
  * @returns {boolean}  [[Description]]
  */
-function popupEvento(feature, layer) {
+function popupHecho(feature, layer) {
     "use strict";
 
     var TipoHecho = feature.properties.TIPOHECHO;
@@ -669,7 +669,7 @@ function AddLegendDpto() {
     map.removeControl(legendMpio);
     map.removeControl(legendDpto);
 
-    var TituloMapa = "Vulneración de Derechos en Colombia" + '</br>' + 'por Departamentos';
+    var TituloMapa = "Vulneración de Derechos Humanos en las 9 regiones" + '</br>' + 'por Departamentos';
     var unidadMapeo = " Hechos";
 
     legendDpto.onAdd = function (map) {
@@ -695,7 +695,7 @@ function AddLegendDpto() {
 }
 
 function AddLegendMpio() {
-    var TituloMapa = "Vulneración de Derechos en Colombia" + '</br>' + 'por Municipios';
+    var TituloMapa = "Vulneración de Derechos Humanos en las 9 regiones" + '</br>' + 'por Municipios';
     var unidadMapeo = " Hechos";
 
     map.removeControl(legendDpto);

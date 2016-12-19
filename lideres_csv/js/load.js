@@ -25,7 +25,7 @@ var hechos_departamento_geo, hechos_departamento_layer;
 var hechos_municipio_geo, hechos_municipio_layer;
 var hechos_municipio_data;
 
-var eventoIcon = L.icon({
+var hechoIcon = L.icon({
     iconUrl: 'css/Map-Marker.png',
     iconSize: [32, 32],
     iconAnchor: [22, 31],
