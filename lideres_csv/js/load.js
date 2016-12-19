@@ -61,7 +61,7 @@ $(document).ready(function () {
     }
     $("#selAnnos").html(lista);
 
-    lista = "<option value='all'>Todas</option>";
+    lista = "<option value='all'>Todos</option>";
     for (i = 0; i < listaTipoHecho.length; i++) {
         lista += "<option value='" + listaTipoHecho[i] + "'>" + listaTipoHecho[i] + "</option>";
     }
@@ -72,6 +72,12 @@ $(document).ready(function () {
         lista += "<option value='" + listaGrupo[i] + "'>" + listaGrupo[i] + "</option>";
     }
     $("#selGrupo").html(lista);
+
+    lista = "<option value='all'>Todos</option>";
+    for (i = 0; i < listaEsAgente.length; i++) {
+        lista += "<option value='" + listaEsAgente[i] + "'>" + listaEsAgente[i] + "</option>";
+    }
+    $("#selEsAgente").html(lista);
 
     /* ------------------- MAPA ------------------*/
     map = L.map('map', {

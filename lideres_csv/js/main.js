@@ -269,11 +269,19 @@ function limpiarSeleccion() {
     document.getElementById('selAnnos').value = 'all';
     document.getElementById('selTipoHecho').value = 'all';
     document.getElementById('selGrupo').value = 'all';
+    document.getElementById('selEsAgente').value = 'all';
+    document.getElementById('selAgente').value = 'all';
     document.getElementById('buscarPalabra').value = '';
 
     if (document.getElementById('selMunicipio').options.length > 1) {
         for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
             document.getElementById('selMunicipio').remove(i);
+        }
+    }
+
+    if (document.getElementById('selAgente').options.length > 1) {
+        for (i = document.getElementById('selAgente').options.length - 1; i >= 1; i--) {
+            document.getElementById('selAgente').remove(i);
         }
     }
 
@@ -322,9 +330,11 @@ function filtrarDepartamento() {
             Annos = document.getElementById('selAnnos').value,
             TipoHecho = document.getElementById('selTipoHecho').value,
             Grupo = document.getElementById('selGrupo').value,
-            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
+            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase(),
+            EsAgente = document.getElementById('selEsAgente').value,
+            Agente = document.getElementById('selAgente').value;
 
-        if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (FiltroTexto !== '')) {
+        if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (EsAgente !== 'all') || (Agente !== 'all') || (FiltroTexto !== '')) {
             filtrarTodo();
         } else {
             limpiarSeleccion();
@@ -345,9 +355,11 @@ function filtrarTodo() {
         Annos = document.getElementById('selAnnos').value,
         TipoHecho = document.getElementById('selTipoHecho').value,
         Grupo = document.getElementById('selGrupo').value,
-        FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
+        FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase(),
+        EsAgente = document.getElementById('selEsAgente').value,
+        Agente = document.getElementById('selAgente').value;
 
-    if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (FiltroTexto !== '')) {
+    if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (EsAgente !== 'all') || (Agente !== 'all') || (FiltroTexto !== '')) {
 
         filtroDataDptoPunto = JSON.parse(JSON.stringify(hechos_departamento_geo));
         filtroDataMpioPunto = JSON.parse(JSON.stringify(hechos_municipio_geo));
@@ -459,6 +471,46 @@ function filtrarTodo() {
             }
         }
 
+        if (EsAgente !== 'all') {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
+                return a.properties.ESAGENTE === EsAgente;
+            });
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
+                    return a.properties.ESAGENTE === EsAgente;
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.ESAGENTE === EsAgente;
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.ESAGENTE === EsAgente;
+                });
+            }
+        }
+
+        if (Agente !== 'all') {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
+                return a.properties.AGENTE === Agente;
+            });
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
+                    return a.properties.AGENTE === Agente;
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.AGENTE === Agente;
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.AGENTE === Agente;
+                });
+            }
+        }
+
         if (FiltroTexto.toUpperCase() !== '') {
             filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
@@ -560,7 +612,7 @@ function filtrarTodo() {
                 AddDatosMpio(filtroDataDptoPoly);
                 AddLegendMpio();
 
-                map.fitBounds(MpiosLayerBack.getBounds());
+                map.fitBounds(MpiosLayer.getBounds());
             } else {
 
                 filtroDataDptoPuntoLayer = renderMarkersData(filtroDataDptoPunto, 10);
@@ -570,7 +622,7 @@ function filtrarTodo() {
                 AddLegendDpto();
 
                 filtroDataDptoPuntoLayer.bringToFront();
-                map.fitBounds(DptosLayerBack.getBounds());
+                map.fitBounds(DptosLayer.getBounds());
             }
 
         }
@@ -777,4 +829,50 @@ function AddDatosMpio(datosUsar) {
     });
 
     MpiosLayer.addTo(map);
+}
+
+/**
+ * Recupera la seleccion del departamento y carga la lista de municipios asociados
+ * @returns {string} la lista de municipios
+ */
+function filtrarAgente() {
+    "use strict";
+
+    var i, selAgente, lista, html, selEsAgente = $('#selEsAgente').val();
+
+    if (selEsAgente !== 'all') {
+        selAgente = listaAgente[selEsAgente] || [];
+        lista = "<option value='all'>Todos</option>";
+        html = lista + $.map(selAgente, function (selAgente) {
+            return '<option value="' + selAgente.AGENTE + '">' + selAgente.AGENTE + '</option>';
+        }).join('');
+
+        $("#selAgente").html(html);
+
+        //filtroDataMpioPunto = JSON.parse(JSON.stringify(hechos_municipio_geo));
+
+        filtrarTodo();
+
+    } else {
+        if (document.getElementById('selAgente').options.length > 1) {
+            for (i = document.getElementById('selAgente').options.length - 1; i >= 1; i--) {
+                document.getElementById('selAgente').remove(i);
+            }
+        }
+
+        var Dpto = document.getElementById('selDepartamento').value,
+            Mpio = document.getElementById('selMunicipio').value,
+            Annos = document.getElementById('selAnnos').value,
+            TipoHecho = document.getElementById('selTipoHecho').value,
+            Grupo = document.getElementById('selGrupo').value,
+            FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase(),
+            EsAgente = document.getElementById('selEsAgente').value,
+            Agente = document.getElementById('selAgente').value;
+
+        if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (EsAgente !== 'all') || (Agente !== 'all') || (FiltroTexto !== '')) {
+            filtrarTodo();
+        } else {
+            limpiarSeleccion();
+        }
+    }
 }
