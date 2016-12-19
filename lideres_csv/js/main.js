@@ -51,6 +51,15 @@ function loadMap() {
 
     map.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>&copy;');
 
+    // Add legend (don't forget to add the CSS from index.html)
+    legendDpto = L.control({
+        position: 'topright'
+    })
+
+    legendMpio = L.control({
+        position: 'topright'
+    })
+
     // control that shows state info on hover
     info = L.control();
     info.onAdd = function (map) {
@@ -71,88 +80,17 @@ function loadMap() {
 
     };
 
-    info.addTo(map);
+    //info.addTo(map);
     $('[data-toggle="tooltip"]').tooltip();
 
-    var dataDptos = dl.groupby('COD_DPTO').count().execute(hechos_departamento);
-    //dataDptos = JSON.parse(JSON.stringify(dataDptos));
+    AddDatosDpto(hechos_departamento);
 
-    console.log(typeof dataDptos);
-
-    var dataDptosHash = dataDptos.reduce(function (hash, item) {
-        if (item.COD_DPTO) {
-            hash[item.COD_DPTO] = isNaN(item.count) ? null : +item.count
-        }
-        return hash
-    }, {});
-
-    capaDepartamentos.features.forEach(function (item) {
-        item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null;
-    })
-
-    console.log(capaDepartamentos);
-
-    DptosLayer = L.choropleth(capaDepartamentos, {
-        filter: function (feature) {
-            return (feature.properties.VALOR != null)
-        },
-        valueProperty: 'VALOR',
-        scale: ['yellow', 'red'],
-        steps: clases,
-        mode: metodo,
-        style: {
-            weight: 1,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.5
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip("Dpto: " + feature.properties.DEPTO + "</br>Valor: " + feature.properties.VALOR, {
-                permanent: false,
-                direction: "auto"
-            });
-            /*layer.on('mouseover', highlightFeature);
-            layer.on('mouseout', resetHighlightDptos);*/
-    layer.on('click', zoomToFeatureDptos);
-        }
-    });
-    DptosLayer.addTo(map);
-
-    //return;
-
-
-
-
-
-
-
-
-
-    // Capa de Departamentos
-    var DptosLayerBack = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.VALOR == null)
-        },
-        style: styleDptos/*,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.DEPTO, {
-                permanent: false,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeature);
-            layer.on('mouseout', resetHighlightDptos);
-            layer.on('click', zoomToFeatureDptos);
-    }*/
-    });
-
-    DptosLayerBack.addData(capaDepartamentos);
-    DptosLayerBack.addTo(map);
+    AddLegendDpto();
 
     hechos_departamento_layer = renderMarkersData(hechos_departamento_geo, 5);
     map.addLayer(hechos_departamento_layer);
     map.fitBounds(DptosLayer.getBounds());
-    //map.setZoom(map.getZoom()+1);
+
 }
 
 /**
@@ -171,35 +109,6 @@ function styleDptos(feature) {
         fillOpacity: 0.3,
         fillColor: "#fff"
     };
-}
-
-/**
- * Resalta el elemento
- * @param {object} e Vector sobre el que pasa el mouse
- */
-function highlightFeature(e) {
-    "use strict";
-
-    var layer = e.target;
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
-}
-
-/**
- * Quita resaltado en Departamentos
- * @param {object} e [[Description]]
- */
-function resetHighlightDptos(e) {
-    "use strict";
-    DptosLayer.resetStyle(e.target);
-    DptosLayer.setStyle(styleDptos);
 }
 
 // Zoom al elemento
@@ -223,25 +132,9 @@ function zoomToFeatureDptos(e) {
 
     map.addLayer(Stamen_Watercolor);
 
-    // Capa de MUNICIPIOS
-    MpiosLayer = L.geoJson(undefined, {
-        filter: function (feature) {
-            return (feature.properties.COD_DEPTO == DptoSeleccionado)
-        },
-        style: styleDptos,
-        onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties.NOMBRE, {
-                permanent: false,
-                direction: "auto"
-            });
-            layer.on('mouseover', highlightFeatureMpios);
-            //layer.on('mouseout', resetHighlightMpios);
-            layer.on('click', zoomToFeatureMpios);
-        }
-    });
+    AddDatosMpio(hechos_municipio);
 
-    MpiosLayer.addData(capaMunicipios);
-    map.addLayer(MpiosLayer);
+    AddLegendMpio();
 
     hechos_municipio_data = JSON.parse(JSON.stringify(hechos_municipio_geo));
     hechos_municipio_data.features = hechos_municipio_data.features.filter(function (a) {
@@ -250,7 +143,7 @@ function zoomToFeatureDptos(e) {
 
     hechos_municipio_layer = renderMarkersData(hechos_municipio_data, 5);
     map.addLayer(hechos_municipio_layer);
-    map.fitBounds(MpiosLayer.getBounds());
+    map.fitBounds(MpiosLayerBack.getBounds());  // + MpiosLayer.getBounds());
 
     //document.getElementById('selDepartamento').value = DptoSeleccionado;
     //filtrarDepartamento();
@@ -306,12 +199,6 @@ function renderMarkersData(data, distancia = 10) {
 
 }
 
-// Resaltado
-function highlightFeatureMpios(e) {
-    var layer = e.target;
-    info.update(layer.feature.properties);
-}
-
 // Zoom al elemento
 function zoomToFeatureMpios(e) {
     "use strict";
@@ -325,15 +212,16 @@ function zoomToFeatureMpios(e) {
         map.removeLayer(layer);
     });
 
-    MpioSeleccionado = layer.feature.properties.COD_DANE;
+    MpioSeleccionado = layer.feature.properties.COD_MPIO;
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
     });
     map.addLayer(Stamen_Watercolor);
+
     // Capa de MUNICIPIOS
     MpiosLayer = L.geoJson(undefined, {
         filter: function (feature) {
-            return (feature.properties.COD_DANE === MpioSeleccionado)
+            return (feature.properties.COD_MPIO === MpioSeleccionado)
         },
         style: styleDptos,
         onEachFeature: function (feature, layer) {
@@ -341,9 +229,6 @@ function zoomToFeatureMpios(e) {
                 permanent: false,
                 direction: "auto"
             });
-            layer.on('mouseover', highlightFeatureMpios);
-            //layer.on('mouseout', resetHighlightMpios);
-            //layer.on('click', zoomToFeatureMpios);
         }
     })
 
@@ -375,7 +260,9 @@ function limpiarSeleccion() {
     });
     map.addLayer(Stamen_Watercolor);
     map.addLayer(positronLabels);
-    map.addLayer(DptosLayer);
+
+    AddDatosDpto(hechos_departamento);
+    AddLegendDpto();
 
     document.getElementById('selDepartamento').value = 'all';
     document.getElementById('selMunicipio').value = 'all';
@@ -391,14 +278,14 @@ function limpiarSeleccion() {
     }
 
     // Recupera el listado inicial
-    filtroDataDpto = JSON.parse(JSON.stringify(hechos_departamento));
+    filtroDataDptoPunto = JSON.parse(JSON.stringify(hechos_departamento));
     $("#total_places").text(0);
 
-    $(".divinfo")[0].hidden = false;
+    //$(".divinfo")[0].hidden = false;
 
     hechos_departamento_layer = renderMarkersData(hechos_departamento_geo, 5);
     map.addLayer(hechos_departamento_layer);
-    map.fitBounds(hechos_departamento_layer.getBounds());
+
 }
 
 /**
@@ -419,7 +306,7 @@ function filtrarDepartamento() {
 
         $("#selMunicipio").html(html);
 
-        filtroDataMpio = JSON.parse(JSON.stringify(hechos_municipio_geo));
+        filtroDataMpioPunto = JSON.parse(JSON.stringify(hechos_municipio_geo));
 
         filtrarTodo();
 
@@ -462,86 +349,123 @@ function filtrarTodo() {
 
     if ((Dpto !== 'all') || (Mpio !== 'all') || (Annos !== 'all') || (TipoHecho !== 'all') || (Grupo !== 'all') || (FiltroTexto !== '')) {
 
-        filtroDataDpto = JSON.parse(JSON.stringify(hechos_departamento_geo));
-        filtroDataMpio = JSON.parse(JSON.stringify(hechos_municipio_geo));
+        filtroDataDptoPunto = JSON.parse(JSON.stringify(hechos_departamento_geo));
+        filtroDataMpioPunto = JSON.parse(JSON.stringify(hechos_municipio_geo));
+
+        filtroDataDptoPoly = JSON.parse(JSON.stringify(hechos_departamento));
+        filtroDataMpioPoly = JSON.parse(JSON.stringify(hechos_municipio));
 
         if (Dpto !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            DptoSeleccionado = parseInt(Dpto);
+
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 return a.properties.COD_DPTO === parseInt(Dpto);
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
                     return a.properties.COD_DPTO === parseInt(Dpto);
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.COD_DPTO === parseInt(Dpto);
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.COD_DPTO === parseInt(Dpto);
                 });
             }
         }
 
         if (Mpio !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 return a.properties.COD_MPIO === parseInt(Mpio);
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
                     return a.properties.COD_MPIO === parseInt(Mpio);
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.COD_MPIO === parseInt(Mpio);
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.COD_MPIO === parseInt(Mpio);
                 });
             }
         }
 
         if (Annos !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 return a.properties.ANNO === parseInt(Annos);
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
                     return a.properties.ANNO === parseInt(Annos);
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.ANNO === parseInt(Annos);
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.ANNO === parseInt(Annos);
                 });
             }
         }
 
         if (TipoHecho !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 return a.properties.TIPOHECHO === TipoHecho;
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
                     return a.properties.TIPOHECHO === TipoHecho;
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.TIPOHECHO === TipoHecho;
+            });
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.TIPOHECHO === TipoHecho;
                 });
             }
         }
 
         if (Grupo !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
-                if (a.properties.GRUPOS.length > 0) {
-                    for (i = 0; i < a.properties.GRUPOS.length; i++) {
-                        if (a.properties.GRUPOS[i] === Grupo) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
+                return a.properties.GRUPOS.toString().includes(Grupo);
             });
 
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    if (a.properties.GRUPOS.length > 0) {
-                        for (i = 0; i < a.properties.GRUPOS.length; i++) {
-                            if (a.properties.GRUPOS[i] === Grupo) {
-                                return true;
-                            }
-                        }
-                    }
-                    return false;
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
+                    return a.properties.GRUPOS.toString().includes(Grupo);
+                });
+            }
+
+            filtroDataDptoPoly = filtroDataDptoPoly.filter(function (a) {
+                return a.GRUPOS.toString().includes(Grupo);
+            });
+
+            if (filtroDataMpioPoly !== undefined) {
+                filtroDataMpioPoly = filtroDataMpioPoly.filter(function (a) {
+                    return a.GRUPOS.toString().includes(Grupo);
                 });
             }
         }
 
         /*
         if (Grupo !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 return a.properties.GRUPOS === Grupo;
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+            if (filtroDataMpioPunto !== undefined) {
+                filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
                     return a.properties.GRUPOS === Grupo;
                 });
             }
@@ -567,7 +491,7 @@ function filtrarTodo() {
 */
 
         if (FiltroTexto.toUpperCase() !== '') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
                 var k1 = a.properties.DEPARTAMENTO.toUpperCase(),
                     k2 = a.properties.MUNICIPIO.toUpperCase(),
                     k3 = a.properties.TIPOHECHO.toUpperCase(),
@@ -580,24 +504,24 @@ function filtrarTodo() {
                     return false;
                 }
             });
-/*
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    var k1 = a.properties.nombre.toUpperCase(),
-                        k2 = a.properties.municipio.toUpperCase(),
-                        k3 = a.properties.organizacion_politica.toUpperCase(),
-                        k4 = a.properties.observaciones.toString().toUpperCase();
+            /*
+                        if (filtroDataMpioPunto !== undefined) {
+                            filtroDataMpioPunto.features = filtroDataMpioPunto.features.filter(function (a) {
+                                var k1 = a.properties.nombre.toUpperCase(),
+                                    k2 = a.properties.municipio.toUpperCase(),
+                                    k3 = a.properties.organizacion_politica.toUpperCase(),
+                                    k4 = a.properties.observaciones.toString().toUpperCase();
 
-                    if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
-        }*/
+                                if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            });
+                    }*/
         }
 
-        if (filtroDataDpto.features.length > 0) {
+        if (filtroDataDptoPunto.features.length > 0) {
 
             map.eachLayer(function (layer) {
                 map.removeLayer(layer);
@@ -607,12 +531,12 @@ function filtrarTodo() {
             map.addLayer(positronLabels);
 
             if ((Mpio !== 'all')) {
-                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
-                map.addLayer(filtroDataMpioLayer);
+                filtroDataMpioPuntoLayer = renderMarkersData(filtroDataMpioPunto, 10);
+                map.addLayer(filtroDataMpioPuntoLayer);
 
                 var MpiosLayerFiltro = L.geoJson(undefined, {
                     filter: function (feature) {
-                        return (feature.properties.COD_DANE == Mpio)
+                        return (feature.properties.COD_MPIO == Mpio)
                     },
                     style: styleDptos,
                     onEachFeature: function (feature, layer) {
@@ -627,44 +551,57 @@ function filtrarTodo() {
                 MpiosLayerFiltro.addTo(map);
                 map.fitBounds(MpiosLayerFiltro.getBounds());
 
-                filtroDataMpioLayer.bringToFront();
+                filtroDataMpioPuntoLayer.bringToFront();
+
+                map.removeControl(legendDpto);
+                map.removeControl(legendMpio);
             } else if ((Dpto !== 'all')) {
-                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
-                map.addLayer(filtroDataMpioLayer);
+                /*
 
-                var MpiosLayerFiltro = L.geoJson(undefined, {
-                    filter: function (feature) {
-                        return (feature.properties.COD_DEPTO == Dpto)
-                    },
-                    style: styleDptos,
-                    onEachFeature: function (feature, layer) {
-                        layer.bindTooltip(feature.properties.NOMBRE, {
-                            permanent: false,
-                            direction: "auto"
-                        });
-                    }
-                });
-                // Adiciona las capas
-                MpiosLayerFiltro.addData(capaMunicipios);
-                MpiosLayerFiltro.addTo(map);
-                map.fitBounds(MpiosLayerFiltro.getBounds());
+                                var MpiosLayerFiltro = L.geoJson(undefined, {
+                                    filter: function (feature) {
+                                        return (feature.properties.COD_DPTO == Dpto)
+                                    },
+                                    style: styleDptos,
+                                    onEachFeature: function (feature, layer) {
+                                        layer.bindTooltip(feature.properties.NOMBRE, {
+                                            permanent: false,
+                                            direction: "auto"
+                                        });
+                                    }
+                                });
 
-                filtroDataMpioLayer.bringToFront();
+                                // Adiciona las capas
+                                MpiosLayerFiltro.addData(capaMunicipios);
+                                MpiosLayerFiltro.addTo(map);
+                                map.fitBounds(MpiosLayerFiltro.getBounds());
+                */
+                filtroDataMpioPuntoLayer = renderMarkersData(filtroDataMpioPunto, 10);
+                map.addLayer(filtroDataMpioPuntoLayer);
+                filtroDataMpioPuntoLayer.bringToFront();
+
+                AddDatosMpio(filtroDataDptoPoly);
+                AddLegendMpio();
+
+                map.fitBounds(MpiosLayerBack.getBounds());
             } else {
 
-                filtroDataDptoLayer = renderMarkersData(filtroDataDpto, 10);
-                map.addLayer(filtroDataDptoLayer);
-                map.fitBounds(filtroDataDptoLayer.getBounds());
+                filtroDataDptoPuntoLayer = renderMarkersData(filtroDataDptoPunto, 10);
+                map.addLayer(filtroDataDptoPuntoLayer);
 
-                DptosLayer.addTo(map);
+                AddDatosDpto(filtroDataDptoPoly);
+                AddLegendDpto();
 
-                filtroDataDptoLayer.bringToFront();
+                filtroDataDptoPuntoLayer.bringToFront();
+                map.fitBounds(DptosLayerBack.getBounds());
             }
-            $(".divinfo")[0].hidden = true;
+
+
+            //$(".divinfo")[0].hidden = true;
             //map.setZoom(map.getZoom() - 1);
         }
 
-        $("#total_places").text(filtroDataDpto.features.length);
+        $("#total_places").text(filtroDataDptoPunto.features.length);
     } else {
         limpiarSeleccion();
     }
@@ -699,4 +636,171 @@ function popupEvento(feature, layer) {
             $("#featureModal").modal("show");
         }
     });
+}
+
+function AddLegendDpto() {
+
+    map.removeControl(legendMpio);
+    map.removeControl(legendDpto);
+
+    var TituloMapa = "Vulneración de Derechos en Colombia" + '</br>' + 'por Departamentos';
+    var unidadMapeo = " Hechos";
+
+    legendDpto.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend')
+        var limits = DptosLayer.options.limits
+        var colors = DptosLayer.options.colors
+        var labels = []
+
+        for (var i = 0; i < limits.length; i++) {
+            var from = Math.round(limits[i]);
+            var to = Math.round(limits[i + 1]);
+
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                (to === undefined || isNaN(to) ? ' > ' + from : from) + (to === undefined || isNaN(to) ? unidadMapeo : ' &ndash; ' + to + unidadMapeo));
+        }
+
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
+        return div
+    }
+    legendDpto.addTo(map);
+}
+
+function AddLegendMpio() {
+    var TituloMapa = "Vulneración de Derechos en Colombia" + '</br>' + 'por Municipios';
+    var unidadMapeo = " Hechos";
+
+    map.removeControl(legendDpto);
+    map.removeControl(legendMpio);
+
+    legendMpio.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend');
+        var limits = MpiosLayer.options.limits;
+        var colors = MpiosLayer.options.colors;
+        var labels = [];
+
+        for (var i = 0; i < limits.length; i++) {
+            var from = Math.round(limits[i]);
+            var to = Math.round(limits[i + 1]);
+
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                (to === undefined || isNaN(to) ? ' > ' + from : from) + (to === undefined || isNaN(to) ? unidadMapeo : ' &ndash; ' + to + unidadMapeo));
+        }
+
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
+        return div
+    }
+    legendMpio.addTo(map);
+}
+
+function AddDatosDpto(datosUsar) {
+    // Calcular los valores
+    var dataDptos = dl.groupby('COD_DPTO').count().execute(datosUsar);
+
+    var dataDptosHash = dataDptos.reduce(function (hash, item) {
+        if (item.COD_DPTO) {
+            hash[item.COD_DPTO] = isNaN(item.count) ? null : +item.count
+        }
+        return hash
+    }, {});
+
+    capaDepartamentos.features.forEach(function (item) {
+        item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null;
+    })
+
+    // Capa de Departamentos Base
+    DptosLayerBack = L.geoJson(undefined, {
+        filter: function (feature) {
+            return (feature.properties.VALOR == null)
+        },
+        style: styleDptos
+    });
+
+    DptosLayerBack.addData(capaDepartamentos);
+    DptosLayerBack.addTo(map);
+
+    //console.log(capaDepartamentos);
+    // Capa de Departamentos por Densidades
+    DptosLayer = L.choropleth(capaDepartamentos, {
+        filter: function (feature) {
+            return (feature.properties.VALOR !== null)
+        },
+        valueProperty: 'VALOR',
+        scale: ['yellow', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+            layer.on('click', zoomToFeatureDptos);
+        }
+    });
+    DptosLayer.addTo(map);
+    map.fitBounds(DptosLayer.getBounds());
+}
+
+function AddDatosMpio(datosUsar) {
+    // Calcular los valores
+    var dataMpios = dl.groupby('COD_MPIO').count().execute(datosUsar);
+
+    var dataMpiosHash = dataMpios.reduce(function (hash, item) {
+        if (item.COD_MPIO) {
+            hash[item.COD_MPIO] = isNaN(item.count) ? null : +item.count
+        }
+        return hash
+    }, {});
+
+    var capaMunicipiosFiltrada = jQuery.extend(true, {}, capaMunicipios);
+
+
+    capaMunicipiosFiltrada.features = capaMunicipiosFiltrada.features.filter(function (a) {
+        return a.properties.COD_DPTO === DptoSeleccionado.toString();
+    });
+
+    capaMunicipiosFiltrada.features.forEach(function (item) {
+        item.properties.VALOR = dataMpiosHash[item.properties.COD_MPIO] || null;
+    })
+
+    // Capa de Municipios Base
+    MpiosLayerBack = L.geoJson(undefined, {
+        filter: function (feature) {
+            return feature.properties.VALOR === null
+        },
+        style: styleDptos
+    });
+
+    MpiosLayerBack.addData(capaMunicipiosFiltrada);
+    MpiosLayerBack.addTo(map);
+
+    // Capa de Municipios por Densidades
+    MpiosLayer = L.choropleth(capaMunicipiosFiltrada, {
+        filter: function (feature) {
+            return (feature.properties.VALOR !== null);
+        },
+        valueProperty: 'VALOR',
+        scale: ['yellow', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+            layer.on('click', zoomToFeatureMpios);
+        }
+    });
+
+    MpiosLayer.addTo(map);
 }

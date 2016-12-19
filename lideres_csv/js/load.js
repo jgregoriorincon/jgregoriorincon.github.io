@@ -5,12 +5,17 @@
 // Variables globales
 var map, cartodbAttribution;
 // Controles
-var info, legend, volver;
+var info, legendDpto, legendMpio, volver;
 
 // Datos Totales
-var filtroDataDpto, filtroDataDptoLayer;
-var filtroDataMpio, filtroDataMpioLayer;
+var filtroDataDptoPunto, filtroDataDptoPuntoLayer;
+var filtroDataMpioPunto, filtroDataMpioPuntoLayer;
+
+var filtroDataDptoPoly, filtroDataDptoPolyLayer;
+var filtroDataMpioPoly, filtroDataMpioPolyLayer;
+
 var DptosLayer, MpiosLayer;
+var DptosLayerBack,MpiosLayerBack;
 
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
@@ -27,7 +32,7 @@ var eventoIcon = L.icon({
     popupAnchor: [-3, -76]
 });
 
-var metodo = "q";
+var metodo = "k";
 var clases = 5;
 
 // Funcion Principal

@@ -1,19 +1,19 @@
 .marker-cluster-small {
-    background-color: rgba(255, 127, 172, 0.4);
+    background-color: rgba(0, 131, 231, 0.4);
 }
 .marker-cluster-small div {
     background-color: rgba(255, 127, 172, 0.2);
 }
 
 .marker-cluster-medium {
-    background-color: rgba(255, 127, 172, 0.4);
+    background-color: rgba(0, 131, 231, 0.4);
 }
 .marker-cluster-medium div {
     background-color: rgba(255, 127, 172, 0.2);
 }
 
 .marker-cluster-large {
-    background-color: rgba(255, 127, 172, 0.4);
+    background-color: rgba(0, 131, 231, 0.4);
 }
 .marker-cluster-large div {
     background-color: rgba(255, 127, 172, 0.2);
