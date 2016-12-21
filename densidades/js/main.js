@@ -97,7 +97,7 @@ function cargarDptos() {
     })
 
     DptosLayer = L.choropleth(capaDepartamentos, {
-        valueProperty: 'VALOR',
+        valueProperty: 'CODIGO',
         scale: ['yellow', 'red'],
         steps: clases,
         mode: metodo,

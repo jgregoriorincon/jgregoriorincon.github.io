@@ -1,100 +1,90 @@
-'use strict';
+/*jslint browser: true*/
+/*global $, jQuery, positronLabels*/
 
 var Localidad, Nombre, Codigo;
+var mapDensidadSM, info;
+var BarriosLayer, legendDatos;
 
-/* ------------------- MAPA ------------------*/
-var map = L.map('map').setView([11.17, -74.20], 12);
+$(document).ready(function () {
+    'use strict';
 
-cartoLight.addTo(map);
+    /* ------------------- MAPA ------------------*/
+    mapDensidadSM = L.map('map').setView([11.17, -74.20], 12);
 
-// Informacion
-var info = L.control();
+    mapDensidadSM.createPane('labels');
 
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
+    // This pane is above markers but below popups
+    mapDensidadSM.getPane('labels').style.zIndex = 500;
 
-info.update = function (props) {
-    this._div.innerHTML = '<h3>Barrios de Santa Marta</h3>' + (props ?
-        '<p align="right"><b>' + props.NOMBRE + '<br />Localidad ' + props.LOCALIDAD + '<br /> Codigo ' + props.CODIGO + '</b><br />' + '</p></b>' : 'Pase el cursor sobre un barrio');
-};
+    // Layers in this pane are non-interactive and do not obscure mouse/touch events
+    mapDensidadSM.getPane('labels').style.pointerEvents = 'none';
 
-info.addTo(map);
+    Stamen_Watercolor.addTo(mapDensidadSM);
+    positronLabels.addTo(mapDensidadSM);
 
-function zoomToFeature(e) {
-    var layer = e.target;
+    // Basemaps
+    var baseMaps = {
+        "Base Acurela": Stamen_Watercolor,
+        "Base Gris": positron,
+        "Base OSM": OpenStreetMap_Mapnik,
+        "Base Calles": Esri_WorldStreetMap
+    };
 
-	// Daniel
-	// Almaceno los valores para usarlos 
-	Localidad =layer.feature.properties.LOCALIDAD;
-	Codigo = layer.feature.properties.CODIGO;
-	Nombre = layer.feature.properties.NOMBRE;
-    
-    console.log(Localidad);
-    console.log(Codigo);
-    console.log(Nombre);
-    
-    map.fitBounds(e.target.getBounds());
-}
+    var overlays = {
+        "Etiquetas": positronLabels
+    };
 
-// Controles
-L.control.defaultExtent().addTo(map);
+    L.control.layers(baseMaps, overlays, {
+        position: 'bottomright',
+        collapsed: true
+    }).addTo(mapDensidadSM);
 
-var control = L.control.zoomBox({
-    modal: true
-});
-map.addControl(control);
+    // Informacion
+    info = L.control();
 
+    info.onAdd = function (mapDensidadSM) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    };
 
-map.attributionControl.addAttribution('Observatorio Distrital de Seguridad y Convivencia &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
+    info.update = function (props) {
+        this._div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">Barrios de Santa Marta</h5>' + (props ?
+            '<p align="right"><b>' + props.NOMBRE + '<br />Localidad ' + props.LOCALIDAD + '<br /> Codigo ' + props.CODIGO + '</br><br /> Indice: ' + (props.VALOR ? props.VALOR : ' - ') + '<br />' + '</p></b>' : 'Pase el cursor sobre un barrio');
+    };
 
+    info.addTo(mapDensidadSM);
 
-function highlightFeature(e) {
-    var layer = e.target;
+    // Controles
+    L.control.defaultExtent().addTo(mapDensidadSM);
 
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
+    var control = L.control.zoomBox({
+        modal: true
     });
+    mapDensidadSM.addControl(control);
 
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
+    legendDatos = L.control({
+        position: 'topright'
+    })
 
-    info.update(layer.feature.properties);
-}
+    mapDensidadSM.attributionControl.addAttribution('Observatorio Distrital de Seguridad y Convivencia &copy; <a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>');
 
-//var geojson;
-var localidad_01;
-var localidad_02;
-var localidad_03;
+});
 
 function resetHighlight(e) {
-    localidad_01.resetStyle(e.target);
-    localidad_02.resetStyle(e.target);
-    localidad_03.resetStyle(e.target);
-
     info.update();
 }
 
 function zoomToFeature(e) {
     var layer = e.target;
-    
+
     // Daniel
-	// Almaceno los valores para usarlos 
-	Localidad =layer.feature.properties.LOCALIDAD;
-	Codigo = layer.feature.properties.CODIGO;
-	Nombre = layer.feature.properties.NOMBRE;
-    
-    console.log(Localidad);
-    console.log(Codigo);
-    console.log(Nombre);
-    
-    map.fitBounds(e.target.getBounds());
+    // Almaceno los valores para usarlos 
+    Localidad = layer.feature.properties.LOCALIDAD;
+    Codigo = layer.feature.properties.CODIGO;
+    Nombre = layer.feature.properties.NOMBRE;
+
+    mapDensidadSM.fitBounds(e.target.getBounds());
 }
 
 function onEachFeature(feature, layer) {
@@ -106,35 +96,87 @@ function onEachFeature(feature, layer) {
     });
 }
 
-localidad_01 = L.geoJson(Barrios, {
-    filter: function (feature, layer) {
-        return (feature.properties.LOCALIDAD == "01");
-    },
-    onEachFeature: onEachFeature
-}).addTo(map);
+function highlightFeature(e) {
+    var layer = e.target;
 
-localidad_02 = L.geoJson(Barrios, {
-    filter: function (feature, layer) {
-        return (feature.properties.LOCALIDAD == "02");
-    },
-    onEachFeature: onEachFeature
-}).addTo(map);
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
 
-localidad_03 = L.geoJson(Barrios, {
-    filter: function (feature, layer) {
-        return (feature.properties.LOCALIDAD == "03");
-    },
-    onEachFeature: onEachFeature
-}).addTo(map);
+    info.update(layer.feature.properties);
+}
 
-//add layer controls/legend
-var overlayMaps = {
-    'Localidad 01': localidad_01,
-    'Localidad 02': localidad_02,
-    'Localidad 03': localidad_03
-};
+function cargarBarrios() {
 
-var layerbox = L.control.layers(null, overlayMaps, {
-    collapsed: false,
-    position: 'bottomleft'
-}).addTo(map);
+    borrarDatos();
+
+    var metodo = 'k',
+        clases = 5;
+
+    var datosSMHash = datosSM.responseJSON.reduce(function (hash, item) {
+        if (item.CODIGO) {
+            hash[item.CODIGO] = isNaN(item.VALOR) ? null : +item.VALOR
+        }
+        return hash
+    }, {});
+
+    Barrios.features.forEach(function (item) {
+        item.properties.VALOR = datosSMHash[item.properties.CODIGO] || null
+    })
+
+    BarriosLayer = L.choropleth(Barrios, {
+        valueProperty: 'VALOR',
+        scale: ['yellow', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: onEachFeature
+    });
+    BarriosLayer.addTo(mapDensidadSM);
+
+    AddLegendDatos();
+}
+
+function borrarDatos() {
+    if (mapDensidadSM.hasLayer(BarriosLayer)) {
+        mapDensidadSM.removeLayer(BarriosLayer);
+    }
+
+    //mapDensidadSM.removeControl(legend);
+
+    //tieneJoin = false;
+
+    console.log("Borrados los datos");
+}
+
+function AddLegendDatos() {
+
+    mapDensidadSM.removeControl(legendDatos);
+
+    legendDatos.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend')
+        var limits = BarriosLayer.options.limits
+        var colors = BarriosLayer.options.colors
+        var labels = []
+
+        for (var i = 0; i < limits.length; i++) {
+            var from = Math.round(limits[i]);
+            var to = Math.round(limits[i + 1]);
+
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                (to === undefined || isNaN(to) ? ' > ' + from : from) + (to === undefined || isNaN(to) ? unidadMapeo : ' &ndash; ' + to + unidadMapeo));
+        }
+
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
+        return div
+    }
+    legendDatos.addTo(mapDensidadSM);
+}
