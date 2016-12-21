@@ -55,33 +55,3 @@ body,
     margin-right: 8px;
     opacity: 0.7;
 }
-
-
-/*
-  HOME
-*/
-
-.leaflet-control-defaultextent-toggle {
-    text-indent: -9999px;
-    white-space: nowrap;
-    background-image: url('images/leaflet.defaultextent.png');
-    width: 26px;
-    height: 26px;
-    display: block;
-}
-
-
-/*
-    LOGO
-*/
-
-div.logo {
-    content: url("../images/Logo_observaDHores.jpg");
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 150px;
-    height: 56px;
-    z-index: 100
-}
-
