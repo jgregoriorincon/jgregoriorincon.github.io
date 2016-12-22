@@ -1,14 +1,10 @@
-var datosSM = $.getJSON("data/valores.json", function () {})
+var datos = $.getJSON("data/valores.json", function () {})
     .done(function () {
         console.log("Cargados Datos ");
-        cargarBarrios();
+        with(datos.responseJSON) {
+            cargarBarrios(datosSM, TituloMapa, unidadMapeo, primerColor, segundoColor, transparencia);
+        }
     })
     .fail(function () {
         console.log("Error Datos");
     });
-
-var TituloMapa = "Indice de Seguridad de la Ciudad de Santa Marta</br>Año 2016";
-var unidadMapeo = "";
-var primerColor = "green";
-var segundoColor = "red";
-var transparencia = 0.4;

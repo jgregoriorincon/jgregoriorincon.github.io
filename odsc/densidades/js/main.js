@@ -106,14 +106,14 @@ function highlightFeature(e) {
     info.update(layer.feature.properties);
 }
 
-function cargarBarrios() {
+function cargarBarrios(datosSM, TituloMapa, unidadMapeo, primerColor, segundoColor, transparencia ) {
 
     borrarDatos();
 
     var metodo = 'k',
         clases = 5;
 
-    var datosSMHash = datosSM.responseJSON.reduce(function (hash, item) {
+    var datosSMHash = datosSM.reduce(function (hash, item) {
         if (item.CODIGO) {
             hash[item.CODIGO] = isNaN(item.VALOR) ? null : +item.VALOR
         }
@@ -140,7 +140,7 @@ function cargarBarrios() {
     });
     BarriosLayer.addTo(mapDensidadSM);
 
-    AddLegendDatos();
+    AddLegendDatos(TituloMapa, unidadMapeo);
 }
 
 function borrarDatos() {
@@ -155,7 +155,7 @@ function borrarDatos() {
     console.log("Borrados los datos");
 }
 
-function AddLegendDatos() {
+function AddLegendDatos(TituloMapa, unidadMapeo) {
 
     mapDensidadSM.removeControl(legendDatos);
 

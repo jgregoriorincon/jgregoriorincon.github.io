@@ -1,1018 +1,770 @@
-[
- {
-   "CODIGO": 1001,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1002,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1003,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1004,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1005,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1006,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1007,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1008,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1009,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1010,
-   "VALOR": 0.7
- },
- {
-   "CODIGO": 1011,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1012,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1013,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1014,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1015,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1016,
-   "VALOR": 4.5
- },
- {
-   "CODIGO": 1017,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 1018,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1019,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1020,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1021,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1022,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1023,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1024,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1025,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1026,
-   "VALOR": 6.6
- },
- {
-   "CODIGO": 1027,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1028,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1029,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1030,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1031,
-   "VALOR": 1.8
- },
- {
-   "CODIGO": 1032,
-   "VALOR": 1.2
- },
- {
-   "CODIGO": 1033,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1034,
-   "VALOR": 3.3
- },
- {
-   "CODIGO": 1035,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1036,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1037,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1038,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1039,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1040,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1041,
-   "VALOR": 2.9
- },
- {
-   "CODIGO": 1042,
-   "VALOR": 3.1
- },
- {
-   "CODIGO": 1043,
-   "VALOR": 8.5
- },
- {
-   "CODIGO": 1044,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1045,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1046,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1047,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1048,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1049,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1050,
-   "VALOR": 1.3
- },
- {
-   "CODIGO": 1051,
-   "VALOR": 4.2
- },
- {
-   "CODIGO": 1052,
-   "VALOR": 0.5
- },
- {
-   "CODIGO": 1053,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1054,
-   "VALOR": 5.1
- },
- {
-   "CODIGO": 1055,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1056,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1057,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1058,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1059,
-   "VALOR": 4
- },
- {
-   "CODIGO": 1060,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1061,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 1062,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1063,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1064,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1065,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1066,
-   "VALOR": 4.4
- },
- {
-   "CODIGO": 1067,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1068,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1069,
-   "VALOR": 1.9
- },
- {
-   "CODIGO": 1070,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1071,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1072,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1073,
-   "VALOR": 0.7
- },
- {
-   "CODIGO": 1074,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1075,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1076,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1077,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 1078,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1079,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 1080,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1081,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1082,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 1083,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1084,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1085,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1086,
-   "VALOR": 1
- },
- {
-   "CODIGO": 1087,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1088,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1089,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1090,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1091,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1092,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1093,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1094,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1095,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1096,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1097,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1098,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1099,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1100,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1101,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1102,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1103,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1104,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1105,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1106,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1107,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1108,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1109,
-   "VALOR": 0
- },
- {
-   "CODIGO": 1110,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2001,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2002,
-   "VALOR": 1
- },
- {
-   "CODIGO": 2003,
-   "VALOR": 3.6
- },
- {
-   "CODIGO": 2004,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2005,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2006,
-   "VALOR": 2.7
- },
- {
-   "CODIGO": 2007,
-   "VALOR": -0.2
- },
- {
-   "CODIGO": 2008,
-   "VALOR": 2.2
- },
- {
-   "CODIGO": 2009,
-   "VALOR": 1
- },
- {
-   "CODIGO": 2010,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2011,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2012,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2013,
-   "VALOR": 5
- },
- {
-   "CODIGO": 2014,
-   "VALOR": 2
- },
- {
-   "CODIGO": 2015,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2016,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2017,
-   "VALOR": 1
- },
- {
-   "CODIGO": 2018,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2019,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2020,
-   "VALOR": 2.3
- },
- {
-   "CODIGO": 2021,
-   "VALOR": 8.2
- },
- {
-   "CODIGO": 2022,
-   "VALOR": 2
- },
- {
-   "CODIGO": 2023,
-   "VALOR": 1.9
- },
- {
-   "CODIGO": 2024,
-   "VALOR": 1.7
- },
- {
-   "CODIGO": 2025,
-   "VALOR": 2.7
- },
- {
-   "CODIGO": 2026,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2027,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 2028,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2029,
-   "VALOR": 1
- },
- {
-   "CODIGO": 2030,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2031,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2032,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2033,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2034,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2035,
-   "VALOR": 1.1
- },
- {
-   "CODIGO": 2036,
-   "VALOR": 2.4
- },
- {
-   "CODIGO": 2037,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2038,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2039,
-   "VALOR": 2
- },
- {
-   "CODIGO": 2040,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2041,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2042,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2043,
-   "VALOR": 0.4
- },
- {
-   "CODIGO": 2044,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 2045,
-   "VALOR": 4.4
- },
- {
-   "CODIGO": 2046,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2047,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2048,
-   "VALOR": 0.7
- },
- {
-   "CODIGO": 2049,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2050,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2051,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2052,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2053,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2054,
-   "VALOR": 3.2
- },
- {
-   "CODIGO": 2055,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2056,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2057,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 2058,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2059,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 2060,
-   "VALOR": -0.5
- },
- {
-   "CODIGO": 2061,
-   "VALOR": 0.5
- },
- {
-   "CODIGO": 2062,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2063,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2064,
-   "VALOR": 7.9
- },
- {
-   "CODIGO": 2065,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2066,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2067,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2068,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2069,
-   "VALOR": 1.2
- },
- {
-   "CODIGO": 2070,
-   "VALOR": 4.2
- },
- {
-   "CODIGO": 2071,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2072,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2073,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2074,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2075,
-   "VALOR": 0.3
- },
- {
-   "CODIGO": 2076,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2077,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2078,
-   "VALOR": 0.3
- },
- {
-   "CODIGO": 2079,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2080,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2081,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2082,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2083,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2084,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2085,
-   "VALOR": 0.3
- },
- {
-   "CODIGO": 2086,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2087,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2088,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2089,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2090,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2091,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2092,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2093,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2094,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2095,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2096,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2097,
-   "VALOR": 4.6
- },
- {
-   "CODIGO": 2098,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2099,
-   "VALOR": 0
- },
- {
-   "CODIGO": 2100,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3001,
-   "VALOR": 1
- },
- {
-   "CODIGO": 3002,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3003,
-   "VALOR": 5.2
- },
- {
-   "CODIGO": 3004,
-   "VALOR": 0.5
- },
- {
-   "CODIGO": 3005,
-   "VALOR": 3
- },
- {
-   "CODIGO": 3006,
-   "VALOR": 3
- },
- {
-   "CODIGO": 3007,
-   "VALOR": 1
- },
- {
-   "CODIGO": 3008,
-   "VALOR": 1.5
- },
- {
-   "CODIGO": 3009,
-   "VALOR": 6.5
- },
- {
-   "CODIGO": 3010,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3011,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3012,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3013,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3014,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3015,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3016,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3017,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3018,
-   "VALOR": 4.6
- },
- {
-   "CODIGO": 3019,
-   "VALOR": 2
- },
- {
-   "CODIGO": 3020,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3021,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3022,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3023,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3024,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3025,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3026,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3027,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3028,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3029,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3030,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3031,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3032,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3033,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3034,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3035,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3036,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3037,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3038,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3039,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3040,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3041,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3042,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3043,
-   "VALOR": 0
- },
- {
-   "CODIGO": 3044,
-   "VALOR": 0
- }
-]
+{
+	"datosSM": [{
+		"CODIGO": 1001,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1002,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1003,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1004,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1005,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1006,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1007,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1008,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1009,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1010,
+		"VALOR": 0.7
+	}, {
+		"CODIGO": 1011,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1012,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1013,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1014,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1015,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1016,
+		"VALOR": 4.5
+	}, {
+		"CODIGO": 1017,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 1018,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1019,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1020,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1021,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1022,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1023,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1024,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1025,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1026,
+		"VALOR": 6.6
+	}, {
+		"CODIGO": 1027,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1028,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1029,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1030,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1031,
+		"VALOR": 1.8
+	}, {
+		"CODIGO": 1032,
+		"VALOR": 1.2
+	}, {
+		"CODIGO": 1033,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1034,
+		"VALOR": 3.3
+	}, {
+		"CODIGO": 1035,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1036,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1037,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1038,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1039,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1040,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1041,
+		"VALOR": 2.9
+	}, {
+		"CODIGO": 1042,
+		"VALOR": 3.1
+	}, {
+		"CODIGO": 1043,
+		"VALOR": 8.5
+	}, {
+		"CODIGO": 1044,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1045,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1046,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1047,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1048,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1049,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1050,
+		"VALOR": 1.3
+	}, {
+		"CODIGO": 1051,
+		"VALOR": 4.2
+	}, {
+		"CODIGO": 1052,
+		"VALOR": 0.5
+	}, {
+		"CODIGO": 1053,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1054,
+		"VALOR": 5.1
+	}, {
+		"CODIGO": 1055,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1056,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1057,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1058,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1059,
+		"VALOR": 4
+	}, {
+		"CODIGO": 1060,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1061,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 1062,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1063,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1064,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1065,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1066,
+		"VALOR": 4.4
+	}, {
+		"CODIGO": 1067,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1068,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1069,
+		"VALOR": 1.9
+	}, {
+		"CODIGO": 1070,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1071,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1072,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1073,
+		"VALOR": 0.7
+	}, {
+		"CODIGO": 1074,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1075,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1076,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1077,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 1078,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1079,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 1080,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1081,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1082,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 1083,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1084,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1085,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1086,
+		"VALOR": 1
+	}, {
+		"CODIGO": 1087,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1088,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1089,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1090,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1091,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1092,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1093,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1094,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1095,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1096,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1097,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1098,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1099,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1100,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1101,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1102,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1103,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1104,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1105,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1106,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1107,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1108,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1109,
+		"VALOR": 0
+	}, {
+		"CODIGO": 1110,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2001,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2002,
+		"VALOR": 1
+	}, {
+		"CODIGO": 2003,
+		"VALOR": 3.6
+	}, {
+		"CODIGO": 2004,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2005,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2006,
+		"VALOR": 2.7
+	}, {
+		"CODIGO": 2007,
+		"VALOR": -0.2
+	}, {
+		"CODIGO": 2008,
+		"VALOR": 2.2
+	}, {
+		"CODIGO": 2009,
+		"VALOR": 1
+	}, {
+		"CODIGO": 2010,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2011,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2012,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2013,
+		"VALOR": 5
+	}, {
+		"CODIGO": 2014,
+		"VALOR": 2
+	}, {
+		"CODIGO": 2015,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2016,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2017,
+		"VALOR": 1
+	}, {
+		"CODIGO": 2018,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2019,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2020,
+		"VALOR": 2.3
+	}, {
+		"CODIGO": 2021,
+		"VALOR": 8.2
+	}, {
+		"CODIGO": 2022,
+		"VALOR": 2
+	}, {
+		"CODIGO": 2023,
+		"VALOR": 1.9
+	}, {
+		"CODIGO": 2024,
+		"VALOR": 1.7
+	}, {
+		"CODIGO": 2025,
+		"VALOR": 2.7
+	}, {
+		"CODIGO": 2026,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2027,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 2028,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2029,
+		"VALOR": 1
+	}, {
+		"CODIGO": 2030,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2031,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2032,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2033,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2034,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2035,
+		"VALOR": 1.1
+	}, {
+		"CODIGO": 2036,
+		"VALOR": 2.4
+	}, {
+		"CODIGO": 2037,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2038,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2039,
+		"VALOR": 2
+	}, {
+		"CODIGO": 2040,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2041,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2042,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2043,
+		"VALOR": 0.4
+	}, {
+		"CODIGO": 2044,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 2045,
+		"VALOR": 4.4
+	}, {
+		"CODIGO": 2046,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2047,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2048,
+		"VALOR": 0.7
+	}, {
+		"CODIGO": 2049,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2050,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2051,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2052,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2053,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2054,
+		"VALOR": 3.2
+	}, {
+		"CODIGO": 2055,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2056,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2057,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 2058,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2059,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 2060,
+		"VALOR": -0.5
+	}, {
+		"CODIGO": 2061,
+		"VALOR": 0.5
+	}, {
+		"CODIGO": 2062,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2063,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2064,
+		"VALOR": 7.9
+	}, {
+		"CODIGO": 2065,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2066,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2067,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2068,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2069,
+		"VALOR": 1.2
+	}, {
+		"CODIGO": 2070,
+		"VALOR": 4.2
+	}, {
+		"CODIGO": 2071,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2072,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2073,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2074,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2075,
+		"VALOR": 0.3
+	}, {
+		"CODIGO": 2076,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2077,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2078,
+		"VALOR": 0.3
+	}, {
+		"CODIGO": 2079,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2080,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2081,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2082,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2083,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2084,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2085,
+		"VALOR": 0.3
+	}, {
+		"CODIGO": 2086,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2087,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2088,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2089,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2090,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2091,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2092,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2093,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2094,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2095,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2096,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2097,
+		"VALOR": 4.6
+	}, {
+		"CODIGO": 2098,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2099,
+		"VALOR": 0
+	}, {
+		"CODIGO": 2100,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3001,
+		"VALOR": 1
+	}, {
+		"CODIGO": 3002,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3003,
+		"VALOR": 5.2
+	}, {
+		"CODIGO": 3004,
+		"VALOR": 0.5
+	}, {
+		"CODIGO": 3005,
+		"VALOR": 3
+	}, {
+		"CODIGO": 3006,
+		"VALOR": 3
+	}, {
+		"CODIGO": 3007,
+		"VALOR": 1
+	}, {
+		"CODIGO": 3008,
+		"VALOR": 1.5
+	}, {
+		"CODIGO": 3009,
+		"VALOR": 6.5
+	}, {
+		"CODIGO": 3010,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3011,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3012,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3013,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3014,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3015,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3016,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3017,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3018,
+		"VALOR": 4.6
+	}, {
+		"CODIGO": 3019,
+		"VALOR": 2
+	}, {
+		"CODIGO": 3020,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3021,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3022,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3023,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3024,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3025,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3026,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3027,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3028,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3029,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3030,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3031,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3032,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3033,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3034,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3035,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3036,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3037,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3038,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3039,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3040,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3041,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3042,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3043,
+		"VALOR": 0
+	}, {
+		"CODIGO": 3044,
+		"VALOR": 0
+	}],
+	"TituloMapa": "Indice de Seguridad de la Ciudad de Santa Marta</br>Año 2016",
+	"unidadMapeo": "",
+	"primerColor": "green",
+	"segundoColor": "red",
+	"transparencia": 0.4
+}
