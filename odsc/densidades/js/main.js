@@ -126,7 +126,7 @@ function cargarBarrios() {
 
     BarriosLayer = L.choropleth(Barrios, {
         valueProperty: 'VALOR',
-        scale: ['yellow', 'red'],
+        scale: [primerColor, segundoColor],
         steps: clases,
         mode: metodo,
         style: {
@@ -134,7 +134,7 @@ function cargarBarrios() {
             opacity: 1,
             color: 'white',
             dashArray: '3',
-            fillOpacity: 0.5
+            fillOpacity: transparencia
         },
         onEachFeature: onEachFeature
     });

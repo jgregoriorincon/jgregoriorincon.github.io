@@ -9,3 +9,6 @@ var datosSM = $.getJSON("data/valores.json", function () {})
 
 var TituloMapa = "Indice de Seguridad de la Ciudad de Santa Marta</br>Año 2016";
 var unidadMapeo = "";
+var primerColor = "green";
+var segundoColor = "red";
+var transparencia = 0.4;
