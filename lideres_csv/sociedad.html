@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vulneración de Derechos Humanos en las 9 Regiones</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="vendor/css/jquery-ui.min.css">
+    
+    <link rel="stylesheet" href="vendor/css/leaflet.css" />
+    <link rel="stylesheet" href="vendor/css/ZoomBox.css" />
+    <link rel="stylesheet" href="vendor/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="vendor/css/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="container col-xs-12 col-md-12 no-padding">
+        <div class="sidebar col-xs-3 col-sd-3 pre-scrollable">
+            <div class="row text-center">
+                <div class="image text-center">
+                    <a href="http://www.pares.com.co"></a>
+                </div>
+            </div>
+            <form class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selDepartamento">Dpto</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selDepartamento" name="selDepartamento" class="form-control" onchange="filtrarDepartamento()">
+                                <option value='all'>Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selMunicipio">Municipio</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selMunicipio" name="selMunicipio" class="form-control" onchange="filtrarTodo()">
+                                <option value='all'>Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selAnnos">Año</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selAnnos" name="selAnnos" class="form-control" onchange="filtrarTodo()">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selTipoHecho">Tipo Hecho</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selTipoHecho" name="selTipoHecho" class="form-control" onchange="filtrarTodo()">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selGrupo">Grupo</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selGrupo" name="selGrupo" class="form-control" onchange="filtrarTodo()">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selEsAgente">¿ Es Agente ?</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selEsAgente" name="selEsAgente" class="form-control" onchange="filtrarAgente()">
+                                <option value='all'>Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selAgente">Agente</label>
+                        <div class="col-xs-12 col-md-8">
+                            <select id="selAgente" name="selAgente" class="form-control" onchange="filtrarTodo()">
+                                <option value='all'>Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Search input-->
+                    <div class="form-group">
+                        <div id="custom-search-input">
+                            <div class="input-group col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1">
+                                <input id="buscarPalabra" name="buscarPalabra" type="text" class="form-control input-md" placeholder="Buscar por palabra clave..." />
+                                <span class="input-group-btn">
+                        <button class="btn btn-info btn-md" type="button" id="buscarPalabraBtn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <h4>Hechos Filtrados (<span id="total_places">0</span>)</h4>
+                        </div>
+                    </div>
+                    <div class="form-group text-center col-xs-12 col-md-12">
+                        <a class="btn btn-info" onclick="limpiarSeleccion()"><i class="fa fa-trash-o fa-lg"></i> Limpiar Busqueda</a>
+                    </div>
+                </fieldset>
+            </form>
+            <br />
+        </div>
+        <div class="">
+            <div class="map" id="map"></div>
+        </div>
+        <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title text-primary" id="feature-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+                            <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-users"></i>&nbsp;Datos del Hecho</a></li>
+                        </ul>
+                        <div class="tab-content" id="aboutTabsContent">
+                            <div class="tab-pane fade active in" id="feature-info"></div>
+                        </div>
+                    </div>
+                    <!--                <div class="modal-body" id="feature-info"></div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <script src="vendor/js/jquery-2.1.4.min.js"></script>
+        <script src="vendor/js/bootstrap.min.js"></script>
+
+        <script src="vendor/js/leaflet.js"></script>
+        <script src="vendor/js/leaflet.markercluster.js"></script>
+        <script src="vendor/js/geojson.min.js"></script>
+        <script src="vendor/js/ZoomBox.js"></script>
+        <script src="vendor/js/choropleth.js"></script>
+        <script src="vendor/js/datalib.min.js"></script>
+
+        <script src="data/Dptos.js"></script>
+        <script src="data/Mpios.js"></script>
+
+        <script src="data/listados.js"></script>
+        <script src="data/codigos_dptos.js"></script>
+        <script src="data/codigos_mpios.js"></script>
+        <script src="data/Datos.js"></script>
+
+        <script src="js/basemaps.js"></script>
+        <script src="js/load.js"></script>
+
+        <script src="js/main.js"></script>
+    </div>
+</body>
+
+</html>
