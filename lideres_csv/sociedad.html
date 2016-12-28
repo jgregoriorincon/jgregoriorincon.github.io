@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Vulneración de Derechos Humanos en las 9 Regiones</title>
+    <title>Organizaciones de la Sociedad Civil por Departamento</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
@@ -31,53 +31,29 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-md-4 control-label text-center" for="selDepartamento">Dpto</label>
                         <div class="col-xs-12 col-md-8">
-                            <select id="selDepartamento" name="selDepartamento" class="form-control" onchange="filtrarDepartamento()">
+                            <select id="selDepartamento" name="selDepartamento" class="form-control" onchange="filtrarTodo()">
                                 <option value='all'>Todos</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selMunicipio">Municipio</label>
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selSector">Sector</label>
                         <div class="col-xs-12 col-md-8">
-                            <select id="selMunicipio" name="selMunicipio" class="form-control" onchange="filtrarTodo()">
-                                <option value='all'>Todos</option>
+                            <select id="selSector" name="selSector" class="form-control" onchange="filtrarTodo()">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selAnnos">Año</label>
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selTipoSociedad">Tipo Sociedad</label>
                         <div class="col-xs-12 col-md-8">
-                            <select id="selAnnos" name="selAnnos" class="form-control" onchange="filtrarTodo()">
+                            <select id="selTipoSociedad" name="selTipoSociedad" class="form-control" onchange="filtrarTodo()">
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selTipoHecho">Tipo Hecho</label>
+                        <label class="col-xs-12 col-md-4 control-label text-center" for="selAlcance">Alcance</label>
                         <div class="col-xs-12 col-md-8">
-                            <select id="selTipoHecho" name="selTipoHecho" class="form-control" onchange="filtrarTodo()">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selGrupo">Grupo</label>
-                        <div class="col-xs-12 col-md-8">
-                            <select id="selGrupo" name="selGrupo" class="form-control" onchange="filtrarTodo()">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selEsAgente">¿ Es Agente ?</label>
-                        <div class="col-xs-12 col-md-8">
-                            <select id="selEsAgente" name="selEsAgente" class="form-control" onchange="filtrarAgente()">
-                                <option value='all'>Todos</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-12 col-md-4 control-label text-center" for="selAgente">Agente</label>
-                        <div class="col-xs-12 col-md-8">
-                            <select id="selAgente" name="selAgente" class="form-control" onchange="filtrarTodo()">
-                                <option value='all'>Todos</option>
+                            <select id="selAlcance" name="selAlcance" class="form-control" onchange="filtrarTodo()">
                             </select>
                         </div>
                     </div>
@@ -117,12 +93,7 @@
                         <h4 class="modal-title text-primary" id="feature-title"></h4>
                     </div>
                     <div class="modal-body">
-                        <ul class="nav nav-tabs nav-justified" id="aboutTabs">
-                            <li class="active"><a href="#feature-info" data-toggle="tab"><i class="fa fa-users"></i>&nbsp;Datos del Hecho</a></li>
-                        </ul>
-                        <div class="tab-content" id="aboutTabsContent">
-                            <div class="tab-pane fade active in" id="feature-info"></div>
-                        </div>
+                        <div id="tablaDatos"></div>
                     </div>
                     <!--                <div class="modal-body" id="feature-info"></div>-->
                     <div class="modal-footer">
@@ -145,17 +116,17 @@
         <script src="vendor/js/datalib.min.js"></script>
 
         <script src="data/Dptos.js"></script>
-        <script src="data/Mpios.js"></script>
 
         <script src="data/listados.js"></script>
+        <script src="data/listadosSociedad.js"></script>
+
         <script src="data/codigos_dptos.js"></script>
-        <script src="data/codigos_mpios.js"></script>
-        <script src="data/Datos.js"></script>
+        <script src="data/DatosSociedadCivil.js"></script>
 
         <script src="js/basemaps.js"></script>
-        <script src="js/load.js"></script>
+        <script src="js/loadSociedad.js"></script>
 
-        <script src="js/main.js"></script>
+        <script src="js/mainSociedad.js"></script>
     </div>
 </body>
 
