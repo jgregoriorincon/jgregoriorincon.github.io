@@ -1,9 +1,9 @@
 /*jslint browser: true*/
-/*global $, jQuery, alert, console, Dptos, Departamentos, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleDptos, highlightFeature, listaDepartamentos, listaSector, listaTematicas, listaNivelTerritorial, Stamen_Watercolor, positron, positronLabels, OpenStreetMap_Mapnik, Esri_WorldStreetMap, zoomToFeatureDptos */
+/*global $, jQuery, alert, console, Dptos, Departamentos, Sector, Tematicas, NivelTerritorial, L, GeoJSON, loadTematica, loadSector, loadTerritorial, filtrarTodo, limpiarSeleccion, styleDptos, highlightFeature, listaDepartamentos, listaSector, listaTematicas, listaNivelTerritorial, Stamen_Watercolor, positron, positronLabels, OpenStreetmapSociedad_mapSociedadnik, Esri_WorldStreetmapSociedad, zoomToFeatureDptos */
 /*jslint plusplus: true */
 
 // Variables globales
-var map, cartodbAttribution;
+var mapSociedad, cartodbAttribution;
 // Controles
 var legendDpto;
 
@@ -20,7 +20,7 @@ var sociedad_departamento, sociedad_departamento_geo, sociedad_departamento_laye
 
 
 var SociedadIcon = L.icon({
-    iconUrl: 'css/Map-Marker.png',
+    iconUrl: 'css/map-Marker.png',
     iconSize: [32, 32],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
@@ -67,27 +67,27 @@ $(document).ready(function () {
     }
     $("#selAlcance").html(lista);
 
-    /* ------------------- MAPA ------------------*/
-    map = L.map('map', {
+    /* ------------------- mapSociedadA ------------------*/
+    mapSociedad = L.map('mapSociedad', {
         maxZoom: 18,
         minZoom: 5,
         zoomControl: true,
         scrollWheelZoom: true
     });
 
-    map.setView([4.5, -73.0], 6);
+    mapSociedad.setView([4.5, -73.0], 6);
 
 
-    map.createPane('labels');
+    mapSociedad.createPane('labels');
 
     // This pane is above markers but below popups
-    map.getPane('labels').style.zIndex = 500;
+    mapSociedad.getPane('labels').style.zIndex = 500;
 
     // Layers in this pane are non-interactive and do not obscure mouse/touch events
-    map.getPane('labels').style.pointerEvents = 'none';
+    mapSociedad.getPane('labels').style.pointerEvents = 'none';
 
-    Stamen_Watercolor.addTo(map);
-    positronLabels.addTo(map);
+    Stamen_Watercolor.addTo(mapSociedad);
+    positronLabels.addTo(mapSociedad);
     
     sociedad_departamento = datosSociedadCivil;
 

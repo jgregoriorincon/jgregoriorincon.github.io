@@ -17,10 +17,10 @@ function loadMap() {
     L.control.layers(baseMaps, overlays, {
         position: 'bottomright',
         collapsed: true
-    }).addTo(map);
+    }).addTo(mapSociedad);
 
     /* ------------------- CONTROLES ------------------*/
-    map.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>&copy;');
+    mapSociedad.attributionControl.addAttribution('<a href="http://pares.com.co/">Fundación Paz y Reconciliación</a>&copy;');
 
     // Add legend (don't forget to add the CSS from index.html)
     legendDpto = L.control({
@@ -31,8 +31,8 @@ function loadMap() {
     AddLegendDpto();
 
     sociedad_departamento_layer = renderMarkersData(sociedad_departamento_geo, 5);
-    map.addLayer(sociedad_departamento_layer);
-    map.fitBounds(DptosLayer.getBounds());
+    mapSociedad.addLayer(sociedad_departamento_layer);
+    mapSociedad.fitBounds(DptosLayer.getBounds());
 
 }
 
@@ -104,12 +104,12 @@ function limpiarSeleccion() {
 
     var i;
 
-    map.setView(new L.LatLng(4.5, -73.0), 6);
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
+    mapSociedad.setView(new L.LatLng(4.5, -73.0), 6);
+    mapSociedad.eachLayer(function (layer) {
+        mapSociedad.removeLayer(layer);
     });
-    map.addLayer(Stamen_Watercolor);
-    map.addLayer(positronLabels);
+    mapSociedad.addLayer(Stamen_Watercolor);
+    mapSociedad.addLayer(positronLabels);
 
     AddDatosDpto(sociedad_departamento);
     AddLegendDpto();
@@ -127,7 +127,7 @@ function limpiarSeleccion() {
     //$(".divinfo")[0].hidden = false;
 
     sociedad_departamento_layer = renderMarkersData(sociedad_departamento_geo, 5);
-    map.addLayer(sociedad_departamento_layer);
+    mapSociedad.addLayer(sociedad_departamento_layer);
 
 }
 
@@ -171,7 +171,6 @@ function filtrarTodo() {
             });
 
         }
-
 
         if (TipoSociedad !== 'all') {
             filtroDataDptoPunto.features = filtroDataDptoPunto.features.filter(function (a) {
@@ -229,21 +228,21 @@ function filtrarTodo() {
 
         if (filtroDataDptoPunto.features.length > 0) {
 
-            map.eachLayer(function (layer) {
-                map.removeLayer(layer);
+            mapSociedad.eachLayer(function (layer) {
+                mapSociedad.removeLayer(layer);
             });
 
-            map.addLayer(Stamen_Watercolor);
-            map.addLayer(positronLabels);
+            mapSociedad.addLayer(Stamen_Watercolor);
+            mapSociedad.addLayer(positronLabels);
 
             filtroDataDptoPuntoLayer = renderMarkersData(filtroDataDptoPunto, 10);
-            map.addLayer(filtroDataDptoPuntoLayer);
+            mapSociedad.addLayer(filtroDataDptoPuntoLayer);
 
             AddDatosDpto(filtroDataDptoPoly);
             AddLegendDpto();
 
             filtroDataDptoPuntoLayer.bringToFront();
-            map.fitBounds(DptosLayer.getBounds());
+            mapSociedad.fitBounds(DptosLayer.getBounds());
 
         }
 
@@ -310,7 +309,7 @@ function popupHecho(feature, layer) {
 
 function AddLegendDpto() {
 
-    map.removeControl(legendDpto);
+    mapSociedad.removeControl(legendDpto);
 
     var TituloMapa = "Organizaciones de la Sociedad Civil" + '</br>' + 'por Departamentos';
     var unidadMapeo = " Org. Civil";
@@ -334,7 +333,7 @@ function AddLegendDpto() {
 
         return div
     }
-    legendDpto.addTo(map);
+    legendDpto.addTo(mapSociedad);
 }
 
 function AddDatosDpto(datosUsar) {
@@ -361,7 +360,7 @@ function AddDatosDpto(datosUsar) {
     });
 
     DptosLayerBack.addData(capaDepartamentos);
-    DptosLayerBack.addTo(map);
+    DptosLayerBack.addTo(mapSociedad);
 
     //console.log(capaDepartamentos);
     // Capa de Departamentos por Densidades
@@ -381,6 +380,6 @@ function AddDatosDpto(datosUsar) {
             fillOpacity: 0.5
         }
     });
-    DptosLayer.addTo(map);
-    map.fitBounds(DptosLayer.getBounds());
+    DptosLayer.addTo(mapSociedad);
+    mapSociedad.fitBounds(DptosLayer.getBounds());
 }
