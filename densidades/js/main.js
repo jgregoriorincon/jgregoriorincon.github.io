@@ -96,8 +96,10 @@ function cargarDptos() {
         item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null
     })
 
+    //console.log(capaDepartamentos);
+
     DptosLayer = L.choropleth(capaDepartamentos, {
-        valueProperty: 'CODIGO',
+        valueProperty: 'VALOR',
         scale: ['yellow', 'red'],
         steps: clases,
         mode: metodo,
