@@ -1,0 +1,41 @@
+body .no-padding {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    font-family: 'Open Sans', sans-serif;
+    width: 100vw;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+}
+
+/*
+    MAPA
+*/
+
+.map {
+    width: 100vw;
+    height: 100vh;
+}
+
+.leaflet-tooltip {
+    padding: 2px;
+    font-size: 10px;
+}
+
+/*
+    VOLVER
+*/
+.volver-control {
+    width: 80px;
+    height: 100px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    text-align: center;
+    /*background-size: 64px 64px;
+    background-repeat: no-repeat;
+    background-image: url('back-icon.png');*/
+    z-index: 800;
+}
