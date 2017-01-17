@@ -16,6 +16,8 @@ var DptosLayer, MpiosLayer;
 var dptoAnterior, mpioAnterior, nivelActual;
 var DptoSeleccionado, MpioSeleccionado;
 
+var DptosLayerDensidades, MpiosLayerDensidades;
+
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
@@ -151,7 +153,7 @@ $(document).ready(function () {
 /**
  * Limpia la seleccion actual y muestra el mapa vacio
  */
-/*
+
 function limpiarSeleccion() {
     "use strict";
 
@@ -165,7 +167,7 @@ function limpiarSeleccion() {
     mapColombia.addLayer(positronLabels);
     mapColombia.addLayer(DptosLayer);
 
-}*/
+}
 
 /**
  * [[Estilo ]]
@@ -326,14 +328,10 @@ function resetHighlightMpios(e) {
     MpiosLayer.setStyle(styleMpios);
 }
 
-// Datos
-var DptosLayerDensidades, MpiosLayerDensidades;
-//var DptoSeleccionado, CodDptoSeleccionado, MpioSeleccionado;
-
 function cargarDptos() {
 
     borrarDatos();
-/*
+
     var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
     clases = isNaN(clases) ? 5 : +clases;
 
@@ -373,7 +371,7 @@ function cargarDptos() {
     console.log(DptosLayerDensidades.options.limits);
 
     legendDensidades.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'info legendDensidades')
+        var div = L.DomUtil.create('div', 'info legend')
         var limits = DptosLayerDensidades.options.limits
         var colors = DptosLayerDensidades.options.colors
         var labels = []
@@ -395,7 +393,7 @@ function cargarDptos() {
 
     tieneJoin = true;
     console.log("Cargados los Departamentos");
-*/
+
 }
 
 function cargarMpios() {
@@ -441,7 +439,7 @@ function cargarMpios() {
     console.log(MpiosLayerDensidades.options.limits);
 
     legendDensidades.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'info legendDensidades')
+        var div = L.DomUtil.create('div', 'info legend')
         var limits = MpiosLayerDensidades.options.limits
         var colors = MpiosLayerDensidades.options.colors
         var labels = []
@@ -467,14 +465,14 @@ function cargarMpios() {
 }
 
 function borrarDatos() {
-    /*if (mapDensidades.hasLayer(DptosLayerDensidades)) {
+    if (mapDensidades.hasLayer(DptosLayerDensidades)) {
         mapDensidades.removeLayer(DptosLayerDensidades);
     }
     if (mapDensidades.hasLayer(MpiosLayerDensidades)) {
         mapDensidades.removeLayer(MpiosLayerDensidades)
     }
-*/
-    //mapDensidades.removeControl(legendDensidades);
+
+    mapDensidades.removeControl(legendDensidades);
 
     tieneJoin = false;
 
