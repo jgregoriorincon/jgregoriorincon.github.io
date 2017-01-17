@@ -6,31 +6,62 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-
     <link rel="stylesheet" href="vendor/css/bootstrap.min.css" />
     <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
     <link rel="stylesheet" href="vendor/css/jquery-ui.min.css">
     <link rel="stylesheet" href="vendor/css/leaflet.css" />
     <link rel="stylesheet" href="vendor/css/leaflet.defaultextent.css" />
-
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
+    <div id="mapColombia"></div>
+    <div id="mapDensidades">
+        <form>
+            <div class="loadData col-xs-2">
+                <div class="btn-group pull-right">
+                    <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" data-placement="auto" title="Número de Clases"
+                        href="#">5<span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="clases">
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                        </ul>
+                </div>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-warning dropdown-toggle btn-select" data-toggle="dropdown" data-placement="auto" title="Método de Clasificación"
+                         href="# ">Cuantiles<span class="caret "></span></a>
+                    <ul class="dropdown-menu " id="metodo ">
+                        <li><a href="# ">Límites Naturales</a></li>
+                        <li><a href="# ">Intervalos Iguales</a></li>
+                        <li><a href="# ">Cuantiles</a></li>
+                    </ul>
+                </div>
+                <button type="button " class="btn pull-right btn-primary " onclick="cargarDptos() ">Cargar Departamentos</button>
+                <button type="button " class="btn pull-right btn-primary " onclick="cargarMpios() ">Cargar Municipios</button>
+                <button type="button " class="btn pull-right btn-danger " onclick="borrarDatos() ">Borrar Datos</button>
+            </div>
+        </form>
+    </div>
 
-    <div class="map" id="mapColombia"></div>
-
-    <script src="vendor/js/jquery-2.1.4.min.js"></script>
-    <script src="vendor/js/bootstrap.min.js"></script>
-    <script src="vendor/js/leaflet.js"></script>
-    <script src="vendor/js/leaflet.defaultextent.js"></script>
+    <script src="vendor/js/jquery-2.1.4.min.js "></script>
+    <script src="vendor/js/bootstrap.min.js "></script>
+    <script src="vendor/js/leaflet.js "></script>
+    <script src="vendor/js/leaflet.defaultextent.js "></script>
 
     <!-- DATOS -->
-    <script src="data/Dptos.js"></script>
-    <script src="data/Mpios.js"></script>
+    <script src="data/Dptos.js "></script>
+    <script src="data/Mpios.js "></script>
 
-    <script src="js/basemaps.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/basemaps.js "></script>
+    <script src="js/loadData.js "></script>
+    <script src="js/main.js "></script>
+    
     </div>
 </body>
 

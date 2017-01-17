@@ -16,14 +16,31 @@ body {
     MAPA
 */
 
-.map {
-    width: 100vw;
+#mapColombia {
+    position:relative;
+    width: 50vw;
+    height: 100vh;
+}
+
+#mapDensidades {
+    position: absolute;
+    right:0;
+    top:0;
+    width: 50vw;
     height: 100vh;
 }
 
 .leaflet-tooltip {
     padding: 2px;
     font-size: 10px;
+}
+
+.loadData {
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
+    padding: 10px;
+    z-index: 5000;
 }
 
 /*

@@ -3,9 +3,13 @@
 /*jslint plusplus: true */
 
 // Variables globales
-var mapColombia, cartodbAttribution;
+var mapColombia;
 // Controles
 var volver;
+
+var mapDensidades, legendDensidades;
+var tieneJoin;
+var metodoSeleccionado, clases;
 
 // Datos
 var DptosLayer, MpiosLayer;
@@ -39,21 +43,6 @@ $(document).ready(function () {
 
     positron.addTo(mapColombia);
     positronLabels.addTo(mapColombia);
-
-    var baseMaps = {
-        "Base Gris": positron,
-        "Base OSM": OpenStreetMap_Mapnik,
-        "Base Calles": Esri_WorldStreetMap
-    };
-
-    var overlays = {
-        "Etiquetas": positronLabels
-    };
-
-    L.control.layers(baseMaps, overlays, {
-        position: 'bottomright',
-        collapsed: false
-    }).addTo(mapColombia);
 
     /* ------------------- CONTROLES ------------------*/
     volver = L.Control.extend({
@@ -109,12 +98,60 @@ $(document).ready(function () {
     DptosLayer.addData(capaDepartamentos);
     DptosLayer.addTo(mapColombia);
 
-    console.log("Listo!");
+    console.log("Listo Colombia!");
+
+    $("#metodo li a").click(function () {
+        metodoSeleccionado = $(this).text();
+        $(this).parents('.btn-group').find('.dropdown-toggle').html(metodoSeleccionado + ' <span class="caret"></span>');
+    });
+
+    $("#clases li a").click(function () {
+        clases = $(this).text();
+        $(this).parents('.btn-group').find('.dropdown-toggle').html(clases + ' <span class="caret"></span>');
+
+        clases = isNaN(clases) ? 5 : +clases;
+    });
+
+    /* ------------------- MAPA ------------------*/
+    mapDensidades = L.map('mapDensidades', {
+        maxZoom: 18,
+        minZoom: 5,
+        zoomControl: true,
+        scrollWheelZoom: true,
+        defaultExtentControl: false
+    });
+
+    mapDensidades.setView([4.5, -73.0], 6);
+
+    mapDensidades.createPane('labelsDensidades');
+
+    // This pane is above markers but below popups
+    mapDensidades.getPane('labelsDensidades').style.zIndex = 500;
+
+    // Layers in this pane are non-interactive and do not obscure mouse/touch events
+    mapDensidades.getPane('labelsDensidades').style.pointerEvents = 'none';
+
+    Stamen_Watercolor.addTo(mapDensidades);
+    positronLabelsDos.addTo(mapDensidades);
+
+    /* ------------------- CONTROLES ------------------*/
+    mapDensidades.attributionControl.addAttribution(' <a href="http://pares.com.co/">Fundación Paz y Reconciliación &copy;</a>');
+    L.control.defaultExtent().addTo(mapDensidades);
+
+    // Add legendDensidades (don't forget to add the CSS from index.html)
+    legendDensidades = L.control({
+        position: 'topright'
+    })
+
+    tieneJoin = false;
+
+    console.log("Listo Densidades!");
 });
 
 /**
  * Limpia la seleccion actual y muestra el mapa vacio
  */
+/*
 function limpiarSeleccion() {
     "use strict";
 
@@ -128,7 +165,7 @@ function limpiarSeleccion() {
     mapColombia.addLayer(positronLabels);
     mapColombia.addLayer(DptosLayer);
 
-}
+}*/
 
 /**
  * [[Estilo ]]
@@ -287,4 +324,165 @@ function resetHighlightMpios(e) {
     "use strict";
     MpiosLayer.resetStyle(e.target);
     MpiosLayer.setStyle(styleMpios);
+}
+
+// Datos
+var DptosLayerDensidades, MpiosLayerDensidades;
+//var DptoSeleccionado, CodDptoSeleccionado, MpioSeleccionado;
+
+function cargarDptos() {
+
+    borrarDatos();
+/*
+    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
+    clases = isNaN(clases) ? 5 : +clases;
+
+    var dataDptosHash = dataDptos.responseJSON.reduce(function (hash, item) {
+        if (item.COD_DEPTO) {
+            hash[item.COD_DEPTO] = isNaN(item.VALOR) ? null : +item.VALOR
+        }
+        return hash
+    }, {});
+
+    capaDepartamentos.features.forEach(function (item) {
+        item.properties.VALOR = dataDptosHash[item.properties.COD_DEPTO] || null
+    })
+
+    DptosLayerDensidades = L.choropleth(capaDepartamentos, {
+        valueProperty: 'VALOR',
+        scale: ['yellow', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip("Dpto: " + feature.properties.DEPTO + "</br>Valor: " + feature.properties.VALOR, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('click', zoomToFeature);
+        }
+    });
+    DptosLayerDensidades.addTo(mapDensidades);
+
+    console.log(DptosLayerDensidades.options.limits);
+
+    legendDensidades.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legendDensidades')
+        var limits = DptosLayerDensidades.options.limits
+        var colors = DptosLayerDensidades.options.colors
+        var labels = []
+
+        for (var i = 0; i < limits.length; i++) {
+            from = Math.round(limits[i] * 100) / 100;
+            to = (Math.round(limits[i + 1] * 100) - 1) / 100;
+
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                from + unidadMapeo + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to + unidadMapeo));
+        }
+
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
+        return div
+    }
+    legendDensidades.addTo(mapDensidades);
+
+    tieneJoin = true;
+    console.log("Cargados los Departamentos");
+*/
+}
+
+function cargarMpios() {
+
+    borrarDatos();
+
+    var metodo = metodoSeleccionado === "Límites Naturales" ? "k" : metodoSeleccionado === "Intervalos Iguales" ? "e" : "q";
+    clases = isNaN(clases) ? 5 : +clases;
+
+    var dataMpiosHash = dataMpios.responseJSON.reduce(function (hash, item) {
+        if (item.COD_DANE) {
+            hash[item.COD_DANE] = isNaN(item.VALOR) ? null : +item.VALOR
+        }
+        return hash
+    }, {})
+
+    capaMunicipios.features.forEach(function (item) {
+        item.properties.VALOR = dataMpiosHash[item.properties.COD_DANE] || null
+    })
+
+    MpiosLayerDensidades = L.choropleth(capaMunicipios, {
+        valueProperty: 'VALOR',
+        scale: ['green', 'red'],
+        steps: clases,
+        mode: metodo,
+        style: {
+            weight: 0.8,
+            opacity: 0.8,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.5
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindTooltip("Mpio: " + feature.properties.NOMBRE + "</br>Valor: " + feature.properties.VALOR, {
+                permanent: false,
+                direction: "auto"
+            });
+            layer.on('click', zoomToFeature);
+        }
+    });
+    MpiosLayerDensidades.addTo(mapDensidades);
+
+    console.log(MpiosLayerDensidades.options.limits);
+
+    legendDensidades.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legendDensidades')
+        var limits = MpiosLayerDensidades.options.limits
+        var colors = MpiosLayerDensidades.options.colors
+        var labels = []
+
+        for (var i = 0; i < limits.length; i++) {
+            from = Math.round(limits[i] * 100) / 100;
+            to = (Math.round(limits[i + 1] * 100) - 1) / 100;
+
+            labels.push(
+                '<i style="background:' + colors[i] + '"></i> ' +
+                from + unidadMapeo + (to === undefined || isNaN(to) ? ' +' : ' &ndash; ' + to + unidadMapeo));
+        }
+
+        div.innerHTML = '<h5 class="text-center" style="font-weight: bold;">' + TituloMapa + '</h5></br><div class="coloresLeyenda">' + labels.join('<br>') + '</div>';
+
+
+        return div
+    }
+    legendDensidades.addTo(mapDensidades);
+
+    tieneJoin = true;
+    console.log("Cargados los Municipios");
+}
+
+function borrarDatos() {
+    /*if (mapDensidades.hasLayer(DptosLayerDensidades)) {
+        mapDensidades.removeLayer(DptosLayerDensidades);
+    }
+    if (mapDensidades.hasLayer(MpiosLayerDensidades)) {
+        mapDensidades.removeLayer(MpiosLayerDensidades)
+    }
+*/
+    //mapDensidades.removeControl(legendDensidades);
+
+    tieneJoin = false;
+
+    console.log("Borrados los datos");
+}
+
+function zoomToFeature(e) {
+    var layer = e.target;
+
+    mapDensidades.fitBounds(e.target.getBounds());
 }

@@ -1,0 +1,134 @@
+[
+ {
+   "COD_DEPTO": "05",
+   "VALOR": 0.56
+ },
+ {
+   "COD_DEPTO": "08",
+   "VALOR": 0.62
+ },
+ {
+   "COD_DEPTO": "11",
+   "VALOR": 0.52
+ },
+ {
+   "COD_DEPTO": "13",
+   "VALOR": 0.79
+ },
+ {
+   "COD_DEPTO": "15",
+   "VALOR": 0.43
+ },
+ {
+   "COD_DEPTO": "17",
+   "VALOR": 0.56
+ },
+ {
+   "COD_DEPTO": "18",
+   "VALOR": 0.15
+ },
+ {
+   "COD_DEPTO": "19",
+   "VALOR": 0.49
+ },
+ {
+   "COD_DEPTO": "20",
+   "VALOR": 0.2
+ },
+ {
+   "COD_DEPTO": "23",
+   "VALOR": 0.12
+ },
+ {
+   "COD_DEPTO": "25",
+   "VALOR": 0.29
+ },
+ {
+   "COD_DEPTO": "27",
+   "VALOR": 0.77
+ },
+ {
+   "COD_DEPTO": "41",
+   "VALOR": 0.95
+ },
+ {
+   "COD_DEPTO": "44",
+   "VALOR": 0.20
+ },
+ {
+   "COD_DEPTO": "47",
+   "VALOR": 0.50
+ },
+ {
+   "COD_DEPTO": "50",
+   "VALOR": 0.48
+ },
+ {
+   "COD_DEPTO": "52",
+   "VALOR": 0.22
+ },
+ {
+   "COD_DEPTO": "54",
+   "VALOR": 0.52
+ },
+ {
+   "COD_DEPTO": "63",
+   "VALOR": 0.21
+ },
+ {
+   "COD_DEPTO": "66",
+   "VALOR": 0.15
+ },
+ {
+   "COD_DEPTO": "68",
+   "VALOR": 0.76
+ },
+ {
+   "COD_DEPTO": "70",
+   "VALOR": 0.13
+ },
+ {
+   "COD_DEPTO": "73",
+   "VALOR": 0.82
+ },
+ {
+   "COD_DEPTO": "76",
+   "VALOR": 0.27
+ },
+ {
+   "COD_DEPTO": "81",
+   "VALOR": 0.20
+ },
+ {
+   "COD_DEPTO": "85",
+   "VALOR": 0.36
+ },
+ {
+   "COD_DEPTO": "86",
+   "VALOR": 0.20
+ },
+ {
+   "COD_DEPTO": "88",
+   "VALOR": 0.84
+ },
+ {
+   "COD_DEPTO": "91",
+   "VALOR": 0.43
+ },
+ {
+   "COD_DEPTO": "94",
+   "VALOR": 0.19
+ },
+ {
+   "COD_DEPTO": "95",
+   "VALOR": 0.83
+ },
+ {
+   "COD_DEPTO": "97",
+   "VALOR": 0.7
+ },
+ {
+   "COD_DEPTO": "99",
+   "VALOR": 0.85
+ }
+]
