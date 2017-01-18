@@ -352,7 +352,7 @@ function filtrarDepartamento() {
     "use strict";
 
     var i, Mpios, lista, html, Dpto = $('#selDepartamento').val();
-    console.log(Dpto);
+    console.log("DEPARTAMENTO SELECCIONADO: " + Dpto);
     if (Dpto !== 'all') {
         Mpios = listaMunicipios[Dpto] || [];
         lista = "<option value='all'>Todos</option>";
