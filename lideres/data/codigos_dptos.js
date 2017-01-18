@@ -1,134 +1,118 @@
 var listaDepartamentos = [
  {
    "CODIGO": 5,
-   "NOMBRE": "ANTIOQUIA"
+   "NOMBRE": "Antioquia"
  },
  {
    "CODIGO": 8,
-   "NOMBRE": "ATLÁNTICO"
+   "NOMBRE": "Atlántico"
  },
  {
    "CODIGO": 11,
-   "NOMBRE": "BOGOTÁ"
+   "NOMBRE": "Bogotá D.C."
+ },
+ {
+   "CODIGO": 11,
+   "NOMBRE": "No Registra"
  },
  {
    "CODIGO": 13,
-   "NOMBRE": "BOLÍVAR"
+   "NOMBRE": "Bolívar"
  },
  {
    "CODIGO": 15,
-   "NOMBRE": "BOYACÁ"
+   "NOMBRE": "Boyacá"
  },
  {
    "CODIGO": 17,
-   "NOMBRE": "CALDAS"
+   "NOMBRE": "Caldas      "
  },
  {
    "CODIGO": 18,
-   "NOMBRE": "CAQUETÁ"
+   "NOMBRE": "Caquetá"
  },
  {
    "CODIGO": 19,
-   "NOMBRE": "CAUCA"
+   "NOMBRE": "Cauca"
  },
  {
    "CODIGO": 20,
-   "NOMBRE": "CESAR"
+   "NOMBRE": "César"
  },
  {
    "CODIGO": 23,
-   "NOMBRE": "CÓRDOBA"
+   "NOMBRE": "Córdoba"
  },
  {
    "CODIGO": 25,
-   "NOMBRE": "CUNDINAMARCA"
+   "NOMBRE": "Cundinamarca"
  },
  {
    "CODIGO": 27,
-   "NOMBRE": "CHOCÓ"
+   "NOMBRE": "Chocó"
  },
  {
    "CODIGO": 41,
-   "NOMBRE": "HUILA"
+   "NOMBRE": "Huila"
  },
  {
    "CODIGO": 44,
-   "NOMBRE": "LA GUAJIRA"
+   "NOMBRE": "La Guajira"
  },
  {
    "CODIGO": 47,
-   "NOMBRE": "MAGDALENA"
+   "NOMBRE": "Magdalena"
  },
  {
    "CODIGO": 50,
-   "NOMBRE": "META"
+   "NOMBRE": "Meta"
  },
  {
    "CODIGO": 52,
-   "NOMBRE": "NARIÑO"
+   "NOMBRE": "Nariño"
  },
  {
    "CODIGO": 54,
-   "NOMBRE": "NORTE DE SANTANDER"
+   "NOMBRE": "Norte de Santander"
  },
  {
    "CODIGO": 63,
-   "NOMBRE": "QUINDÍO"
+   "NOMBRE": "Quindio      "
  },
  {
    "CODIGO": 66,
-   "NOMBRE": "RISARALDA"
+   "NOMBRE": "Risaralda"
  },
  {
    "CODIGO": 68,
-   "NOMBRE": "SANTANDER"
+   "NOMBRE": "Santander"
  },
  {
    "CODIGO": 70,
-   "NOMBRE": "SUCRE"
+   "NOMBRE": "Sucre"
  },
  {
    "CODIGO": 73,
-   "NOMBRE": "TOLIMA"
+   "NOMBRE": "Tolima"
  },
  {
    "CODIGO": 76,
-   "NOMBRE": "VALLE DEL CAUCA"
+   "NOMBRE": "Valle del Cauca"
  },
  {
    "CODIGO": 81,
-   "NOMBRE": "ARAUCA"
+   "NOMBRE": "Arauca"
  },
  {
    "CODIGO": 85,
-   "NOMBRE": "CASANARE"
+   "NOMBRE": "Casanare"
  },
  {
    "CODIGO": 86,
-   "NOMBRE": "PUTUMAYO"
- },
- {
-   "CODIGO": 88,
-   "NOMBRE": "ARCHIPIÉLAGO DE SAN ANDRÉS"
- },
- {
-   "CODIGO": 91,
-   "NOMBRE": "AMAZONAS"
- },
- {
-   "CODIGO": 94,
-   "NOMBRE": "GUAINÍA"
+   "NOMBRE": "Putumayo"
  },
  {
    "CODIGO": 95,
-   "NOMBRE": "GUAVIARE"
- },
- {
-   "CODIGO": 97,
-   "NOMBRE": "VAUPÉS"
- },
- {
-   "CODIGO": 99,
-   "NOMBRE": "VICHADA"
+   "NOMBRE": "Guaviare"
  }
 ]
