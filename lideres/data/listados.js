@@ -63,6 +63,7 @@ var listaTipoLider = [
 var listaTipoAccion = [
   "Amenaza",
   "Atentado",
+"Desalojo",
   "Desaparición forzada",
   "Desplazamiento forzado",
   "Detención ilegal ",
