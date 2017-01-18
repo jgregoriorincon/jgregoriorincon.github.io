@@ -167,36 +167,38 @@ $(document).ready(function () {
 
     Stamen_Watercolor.addTo(map);
     positronLabels.addTo(map);
-    
-        Papa.parse('data/violencia_selectiva_departamento.csv', {
-            download: true,
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-                violencia_selectiva_departamento = results;
-                violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento.data, {
-                    Point: ["latitud", "longitud"]
-                });
 
-                loadMap();
+    Papa.parse('data/violencia_selectiva_departamento.csv', {
+        download: true,
+        delimiter: ";",
+        header: true,
+        dynamicTyping: true,
+        complete: function (results) {
+            violencia_selectiva_departamento = results;
+            violencia_selectiva_departamento_geo = GeoJSON.parse(violencia_selectiva_departamento.data, {
+                Point: ["latitud", "longitud"]
+            });
 
-                filtrarTodo();
+            loadMap();
 
-            }
-        });
+            filtrarTodo();
 
-        Papa.parse('data/violencia_selectiva_municipio.csv', {
-            download: true,
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-                violencia_selectiva_municipio = results;
-                    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
-                        Point: ["latitud", "longitud"]
-                    });
-            }
-        });
-    
+        }
+    });
+
+    Papa.parse('data/violencia_selectiva_municipio.csv', {
+        download: true,
+        delimiter: ";",
+        header: true,
+        dynamicTyping: true,
+        complete: function (results) {
+            violencia_selectiva_municipio = results;
+            violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
+                Point: ["latitud", "longitud"]
+            });
+        }
+    });
+
 });
 
 function cb(start, end) {
