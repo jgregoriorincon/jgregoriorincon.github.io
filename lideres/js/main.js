@@ -181,8 +181,6 @@ function zoomToFeatureDptos(e) {
         }
     });
 
-    console.log(DptoSeleccionado);
-
     MpiosLayer.addData(capaMunicipios);
     map.addLayer(MpiosLayer);
 
@@ -352,7 +350,7 @@ function filtrarDepartamento() {
     "use strict";
 
     var i, Mpios, lista, html, Dpto = $('#selDepartamento').val();
-    console.log("DEPARTAMENTO SELECCIONADO: " + Dpto);
+
     if (Dpto !== 'all') {
         Mpios = listaMunicipios[Dpto] || [];
         lista = "<option value='all'>Todos</option>";
@@ -362,7 +360,7 @@ function filtrarDepartamento() {
 
         $("#selMunicipio").html(html);
 
-        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
+        //filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         filtrarTodo();
 
@@ -406,6 +404,7 @@ function filtrarTodo() {
     if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
 
         filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
+        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
         filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
             var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
@@ -416,8 +415,7 @@ function filtrarTodo() {
             filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 if (a.properties.id_violencia_selectiva === "") {
                     return false;
-                }
-                else {
+                } else {
                     var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
                     return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
                 }
@@ -425,6 +423,7 @@ function filtrarTodo() {
         }
 
         if (Dpto !== 'all') {
+
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.Cod_DANE_Dep === parseInt(Dpto);
             });
@@ -434,7 +433,10 @@ function filtrarTodo() {
                 });
             }
         }
-
+console.log(fechaInicial);
+console.log(fechaFinal);
+console.log(filtroDataDpto);
+console.log(filtroDataMpio);
         if (Mpio !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.Cod_DANE_Mun === parseInt(Mpio);
@@ -478,37 +480,6 @@ function filtrarTodo() {
                 });
             }
         }
-
-        /*
-                if (Tematica !== 'all') {
-
-                    filtroData.features = filtroData.features.filter(function (a) {
-                        if (a.properties.TEMATICA.length > 0) {
-                            for (i = 0; i < a.properties.TEMATICA.length; i++) {
-                                if (a.properties.TEMATICA[i] === Tematica) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    });
-                }
-
-                if (Territorial !== 'all') {
-
-                    filtroData.features = filtroData.features.filter(function (a) {
-                        if (a.properties.NIVEL_TERRITORIAL.length > 0) {
-                            for (i = 0; i < a.properties.NIVEL_TERRITORIAL.length; i++) {
-                                if (a.properties.NIVEL_TERRITORIAL[i] === Territorial) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    });
-
-                }
-*/
 
         if (FiltroTexto.toUpperCase() !== '') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
@@ -605,11 +576,19 @@ function filtrarTodo() {
             }
             $(".divinfo")[0].hidden = true;
             //map.setZoom(map.getZoom() - 1);
+        } else {
+            map.setView(new L.LatLng(4.5, -73.0), 6);
+            map.eachLayer(function (layer) {
+                map.removeLayer(layer);
+            });
+            map.addLayer(Stamen_Watercolor);
+            map.addLayer(positronLabels);
+            map.addLayer(DptosLayer);
         }
 
         $("#total_places").text(filtroDataDpto.features.length);
     } else {
-        limpiarSeleccion();
+        //limpiarSeleccion();
     }
 
 }

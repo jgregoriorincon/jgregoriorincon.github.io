@@ -105,7 +105,6 @@ $(document).ready(function () {
         fechaFinal = picker.endDate.format('YYYY-M');
         filtrarFecha = true;
         filtrarTodo();
-
     });
 
     $('#buscarPalabraBtn').on('click', function (event) {
@@ -156,7 +155,6 @@ $(document).ready(function () {
 
     map.setView([4.5, -73.0], 6);
 
-
     map.createPane('labels');
 
     // This pane is above markers but below popups
@@ -179,23 +177,23 @@ $(document).ready(function () {
                 Point: ["latitud", "longitud"]
             });
 
-            loadMap();
+            Papa.parse('data/violencia_selectiva_municipio.csv', {
+                download: true,
+                delimiter: ";",
+                header: true,
+                dynamicTyping: true,
+                complete: function (results) {
+                    violencia_selectiva_municipio = results;
+                    violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
+                        Point: ["latitud", "longitud"]
+                    });
 
-            filtrarTodo();
+                    loadMap();
+                    filtrarTodo();
 
-        }
-    });
-
-    Papa.parse('data/violencia_selectiva_municipio.csv', {
-        download: true,
-        delimiter: ";",
-        header: true,
-        dynamicTyping: true,
-        complete: function (results) {
-            violencia_selectiva_municipio = results;
-            violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
-                Point: ["latitud", "longitud"]
+                }
             });
+
         }
     });
 

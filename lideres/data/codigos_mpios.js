@@ -34,7 +34,7 @@ var listaMunicipios = {
       },
       {
          "CODIGO": 5086,
-         "NOMBRE": "Bello"
+         "NOMBRE": "Belmira"
       },
       {
          "CODIGO": 5088,

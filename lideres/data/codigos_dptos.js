@@ -25,7 +25,7 @@ var listaDepartamentos = [
  },
  {
    "CODIGO": 17,
-   "NOMBRE": "Caldas      "
+   "NOMBRE": "Caldas"
  },
  {
    "CODIGO": 18,
@@ -115,4 +115,4 @@ var listaDepartamentos = [
    "CODIGO": 95,
    "NOMBRE": "Guaviare"
  }
-]
+];
