@@ -30,6 +30,34 @@ var eventoIcon = L.icon({
     popupAnchor: [-3, -76]
 });
 
+var AmenazaIcon = L.icon({
+    iconUrl: 'css/Amenaza.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
+
+var AtentadoIcon = L.icon({
+    iconUrl: 'css/Atentado.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
+var DesaparicionIcon = L.icon({
+    iconUrl: 'css/Desaparicion_forzada.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
+
+var DesplazamientoIcon = L.icon({
+    iconUrl: 'css/Desplazamiento_forzado.png',
+    iconSize: [32, 32],
+    iconAnchor: [22, 31],
+    popupAnchor: [-3, -76]
+});
+
+
 // Funcion Principal
 $(document).ready(function () {
     "use strict";
