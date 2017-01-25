@@ -37,7 +37,7 @@ var listaDepartamentos = [
  },
  {
    "CODIGO": 20,
-   "NOMBRE": "César"
+   "NOMBRE": "Cesar"
  },
  {
    "CODIGO": 23,
@@ -77,7 +77,7 @@ var listaDepartamentos = [
  },
  {
    "CODIGO": 63,
-   "NOMBRE": "Quindio      "
+   "NOMBRE": "Quindio"
  },
  {
    "CODIGO": 66,

@@ -6,7 +6,7 @@ var listaMunicipios = {
       },
       {
          "CODIGO": 5001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "No registra"
       },
       {
          "CODIGO": 5031,
@@ -34,7 +34,7 @@ var listaMunicipios = {
       },
       {
          "CODIGO": 5086,
-         "NOMBRE": "Belmira"
+         "NOMBRE": "Bello"
       },
       {
          "CODIGO": 5088,
@@ -69,15 +69,7 @@ var listaMunicipios = {
          "NOMBRE": "Ituango"
       },
       {
-         "CODIGO": 5363,
-         "NOMBRE": "Ituango"
-      },
-      {
          "CODIGO": 5364,
-         "NOMBRE": "Jardín"
-      },
-      {
-         "CODIGO": 5365,
          "NOMBRE": "Jardín"
       },
       {
@@ -209,10 +201,6 @@ var listaMunicipios = {
       {
          "CODIGO": 13838,
          "NOMBRE": "Turbana"
-      },
-      {
-         "CODIGO": 113006,
-         "NOMBRE": "Achí"
       }
    ],
    "15": [
@@ -246,7 +234,7 @@ var listaMunicipios = {
       },
       {
          "CODIGO": 18001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "No registra"
       },
       {
          "CODIGO": 18247,
@@ -264,11 +252,11 @@ var listaMunicipios = {
    "19": [
       {
          "CODIGO": 19001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "Popayán"
       },
       {
          "CODIGO": 19001,
-         "NOMBRE": "Popayán"
+         "NOMBRE": "No registra"
       },
       {
          "CODIGO": 19022,
@@ -378,11 +366,11 @@ var listaMunicipios = {
    "20": [
       {
          "CODIGO": 20001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "Valledupar"
       },
       {
          "CODIGO": 20001,
-         "NOMBRE": "Valledupar"
+         "NOMBRE": "No Registra"
       },
       {
          "CODIGO": 20032,
@@ -456,11 +444,11 @@ var listaMunicipios = {
    "27": [
       {
          "CODIGO": 27001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "Quibdó"
       },
       {
          "CODIGO": 27001,
-         "NOMBRE": "Quibdó"
+         "NOMBRE": "No Registra"
       },
       {
          "CODIGO": 27099,
@@ -744,11 +732,11 @@ var listaMunicipios = {
    "70": [
       {
          "CODIGO": 70001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "Sincelejo"
       },
       {
          "CODIGO": 70001,
-         "NOMBRE": "Sincelejo"
+         "NOMBRE": "No Registra"
       },
       {
          "CODIGO": 70233,
@@ -906,7 +894,7 @@ var listaMunicipios = {
       },
       {
          "CODIGO": 81001,
-         "NOMBRE": "No Registra"
+         "NOMBRE": "No registra"
       },
       {
          "CODIGO": 81065,
@@ -915,10 +903,6 @@ var listaMunicipios = {
       {
          "CODIGO": 81300,
          "NOMBRE": "Fortul"
-      },
-      {
-         "CODIGO": 81726,
-         "NOMBRE": "Saravena"
       },
       {
          "CODIGO": 81736,

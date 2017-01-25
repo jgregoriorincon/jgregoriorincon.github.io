@@ -13,6 +13,8 @@ var listaResponsables = [
 "La Constru ",
 "Los Rastrojos",
 "Los Urabeños",
+"Marco Antonio Manyoma",
+"Neoparamilitares",
 "Organizaciones criminales",
 "Paramilitares",
 "Reacción antimarxista Colombia Facatativá"
@@ -20,6 +22,7 @@ var listaResponsables = [
 
 var listaTipoLider = [
 "Alcalde",
+"campesinos",
 "Candidato a elección popular ",
 "Concejal",
 "Contratista",
@@ -39,9 +42,8 @@ var listaTipoLider = [
 "Líder Político",
 "Líder Religioso",
 "Líder Sindical",
-"Líder Sindical ",
 "Líder Social",
-"Líder Social ",
+"Miembros FARC (en proceso de dejación de armas)",
 "Periodista",
 "Personero",
 "Policía",
