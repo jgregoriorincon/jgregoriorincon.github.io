@@ -323,6 +323,8 @@ function limpiarSeleccion() {
     document.getElementById('selResponsable').value = 'all';
     document.getElementById('buscarPalabra').value = '';
 
+    fechaInicial = startFechaTotal;
+    fechaFinal = endFecha;
     cb(startFechaTotal, endFecha);
 
     if (document.getElementById('selMunicipio').options.length > 1) {
@@ -401,26 +403,10 @@ function filtrarTodo() {
         Responsable = document.getElementById('selResponsable').value,
         FiltroTexto = document.getElementById('buscarPalabra').value.toUpperCase();
 
-    if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '') || filtrarFecha) {
+    //if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '')) {
 
         filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
         filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
-
-        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
-            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-        });
-
-        if (filtroDataMpio !== undefined) {
-            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                if (a.properties.id_violencia_selectiva === "") {
-                    return false;
-                } else {
-                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-                    return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-                }
-            });
-        }
 
         if (Dpto !== 'all') {
 
@@ -433,10 +419,7 @@ function filtrarTodo() {
                 });
             }
         }
-console.log(fechaInicial);
-console.log(fechaFinal);
-console.log(filtroDataDpto);
-console.log(filtroDataMpio);
+
         if (Mpio !== 'all') {
             filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
                 return a.properties.Cod_DANE_Mun === parseInt(Mpio);
@@ -508,6 +491,30 @@ console.log(filtroDataMpio);
                         return false;
                     }
                 });
+            }
+        }
+
+        /*console.log(fechaInicial);
+        console.log(fechaFinal);
+        console.log(filtroDataDpto.features.length);*/
+
+        //Filtro por fecha
+        if (true) {
+            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+                var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+                return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+            });
+
+            if (filtroDataMpio !== undefined) {
+                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                    if (a.properties.id_violencia_selectiva === "") {
+                        return false;
+                    } else {
+                        var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+                        return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+                    }
+                });
+
             }
         }
 
@@ -587,10 +594,6 @@ console.log(filtroDataMpio);
         }
 
         $("#total_places").text(filtroDataDpto.features.length);
-    } else {
-        //limpiarSeleccion();
-    }
-
 }
 
 /**

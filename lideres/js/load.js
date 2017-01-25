@@ -20,7 +20,7 @@ var violencia_selectiva_departamento_geo, violencia_selectiva_municipio_geo;
 var violencia_selectiva_departamento_layer, violencia_selectiva_municipio_layer;
 var violencia_selectiva_municipio_data;
 
-var fechaInicial, fechaFinal, filtrarFecha;
+var fechaInicial, fechaFinal;
 var startFechaTotal, startFecha, endFecha;
 
 var eventoIcon = L.icon({
@@ -41,7 +41,6 @@ $(document).ready(function () {
 
     fechaInicial = startFecha;
     fechaFinal = endFecha;
-    filtrarFecha = true;
 
     $('#reportrange').daterangepicker({
         "locale": {
@@ -97,13 +96,12 @@ $(document).ready(function () {
             'Todos': [startFechaTotal, moment()]
         }
     }, cb);
-
+    
     cb(startFecha, endFecha);
 
     $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
         fechaInicial = picker.startDate.format('YYYY-M');
         fechaFinal = picker.endDate.format('YYYY-M');
-        filtrarFecha = true;
         filtrarTodo();
     });
 
@@ -141,10 +139,6 @@ $(document).ready(function () {
     }
     $("#selResponsable").html(lista);
 
-    /*$("#buscarPalabra").bind("keypress keyup keydown", function (event) {
-        filtrarTodo();
-    });*/
-
     /* ------------------- MAPA ------------------*/
     map = L.map('map', {
         maxZoom: 18,
@@ -168,7 +162,6 @@ $(document).ready(function () {
 
     Papa.parse('data/violencia_selectiva_departamento.csv', {
         download: true,
-        delimiter: ";",
         header: true,
         dynamicTyping: true,
         complete: function (results) {
@@ -179,7 +172,6 @@ $(document).ready(function () {
 
             Papa.parse('data/violencia_selectiva_municipio.csv', {
                 download: true,
-                delimiter: ";",
                 header: true,
                 dynamicTyping: true,
                 complete: function (results) {
@@ -187,7 +179,7 @@ $(document).ready(function () {
                     violencia_selectiva_municipio_geo = GeoJSON.parse(violencia_selectiva_municipio.data, {
                         Point: ["latitud", "longitud"]
                     });
-
+                    
                     loadMap();
                     filtrarTodo();
 

@@ -4,16 +4,16 @@ var listaDepartamentos = [
    "NOMBRE": "Antioquia"
  },
  {
+   "CODIGO": 81,
+   "NOMBRE": "Arauca"
+ },
+ {
    "CODIGO": 8,
    "NOMBRE": "Atlántico"
  },
  {
    "CODIGO": 11,
-   "NOMBRE": "Bogotá D.C."
- },
- {
-   "CODIGO": 11,
-   "NOMBRE": "No Registra"
+   "NOMBRE": "Bogotá D.c."
  },
  {
    "CODIGO": 13,
@@ -32,6 +32,10 @@ var listaDepartamentos = [
    "NOMBRE": "Caquetá"
  },
  {
+   "CODIGO": 85,
+   "NOMBRE": "Casanare"
+ },
+ {
    "CODIGO": 19,
    "NOMBRE": "Cauca"
  },
@@ -40,16 +44,20 @@ var listaDepartamentos = [
    "NOMBRE": "Cesar"
  },
  {
-   "CODIGO": 23,
-   "NOMBRE": "Córdoba"
+   "CODIGO": 27,
+   "NOMBRE": "Chocó"
  },
  {
    "CODIGO": 25,
    "NOMBRE": "Cundinamarca"
  },
  {
-   "CODIGO": 27,
-   "NOMBRE": "Chocó"
+   "CODIGO": 23,
+   "NOMBRE": "Córdoba"
+ },
+ {
+   "CODIGO": 95,
+   "NOMBRE": "Guaviare"
  },
  {
    "CODIGO": 41,
@@ -72,8 +80,16 @@ var listaDepartamentos = [
    "NOMBRE": "Nariño"
  },
  {
+   "CODIGO": 11,
+   "NOMBRE": "No Registra"
+ },
+ {
    "CODIGO": 54,
-   "NOMBRE": "Norte de Santander"
+   "NOMBRE": "Norte De Santander"
+ },
+ {
+   "CODIGO": 86,
+   "NOMBRE": "Putumayo"
  },
  {
    "CODIGO": 63,
@@ -97,22 +113,6 @@ var listaDepartamentos = [
  },
  {
    "CODIGO": 76,
-   "NOMBRE": "Valle del Cauca"
- },
- {
-   "CODIGO": 81,
-   "NOMBRE": "Arauca"
- },
- {
-   "CODIGO": 85,
-   "NOMBRE": "Casanare"
- },
- {
-   "CODIGO": 86,
-   "NOMBRE": "Putumayo"
- },
- {
-   "CODIGO": 95,
-   "NOMBRE": "Guaviare"
+   "NOMBRE": "Valle Del Cauca"
  }
 ];
