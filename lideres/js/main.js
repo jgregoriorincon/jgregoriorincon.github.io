@@ -533,8 +533,8 @@ function filtrarTodo() {
 
     //Filtro por fecha
     if (true) {
-        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
-            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+       filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString(), "YYYY-MM");
             return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
         });
 
@@ -543,7 +543,7 @@ function filtrarTodo() {
                 if (a.properties.id_violencia_selectiva === "") {
                     return false;
                 } else {
-                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString(), "YYYY-MM");
                     return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
                 }
             });
