@@ -212,16 +212,49 @@ function renderMarkersData(data, distancia = 10) {
         },
 
         pointToLayer: function (feature, latlng) {
-            /*            return L.circleMarker(latlng, {
-                            radius: 8,
-                            fillColor: "#FF7FAC",
-                            color: "#FF7FAC",
-                            weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.5
-                        });*/
+
+            var IconoUsar;
+
+            switch (feature.properties.accion) {
+                case "Amenaza":
+                    IconoUsar = AmenazaIcon;
+                    break;
+                case "Atentado":
+                    IconoUsar = AtentadoIcon;
+                    break;
+                case "Desalojo":
+                    IconoUsar = DesalojoIcon;
+                    break;
+                case "Desaparición forzada":
+                    IconoUsar = DesaparicionIcon;
+                    break;
+                case "Desplazamiento forzado":
+                    IconoUsar = DesplazamientoIcon;
+                    break;
+                case "Detención arbitraria":
+                    IconoUsar = DetencionIcon;
+                    break;
+                case "Ejecución extrajudicial":
+                    IconoUsar = EjecucionIcon;
+                    break;
+                case "Homicidio":
+                    IconoUsar = HomicidioIcon;
+                    break;
+                case "Hostigamiento":
+                    IconoUsar = HostigamientoIcon;
+                    break;
+                case "Secuestro":
+                    IconoUsar = SecuestroIcon;
+                    break;
+                case "Tortura":
+                    IconoUsar = TorturaIcon;
+                    break;
+                default:
+                    IconoUsar = eventoIcon;
+            }
+
             return L.marker(latlng, {
-                icon: eventoIcon
+                icon: IconoUsar
             });
         }
     });
@@ -405,67 +438,81 @@ function filtrarTodo() {
 
     //if ((Dpto !== 'all') || (Mpio !== 'all') || (TipoAccion !== 'all') || (TipoLider !== 'all') || (Responsable !== 'all') || (FiltroTexto !== '')) {
 
-        filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
-        filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
+    filtroDataDpto = JSON.parse(JSON.stringify(violencia_selectiva_departamento_geo));
+    filtroDataMpio = JSON.parse(JSON.stringify(violencia_selectiva_municipio_geo));
 
-        if (Dpto !== 'all') {
+    if (Dpto !== 'all') {
 
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            return a.properties.Cod_DANE_Dep === parseInt(Dpto);
+        });
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 return a.properties.Cod_DANE_Dep === parseInt(Dpto);
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    return a.properties.Cod_DANE_Dep === parseInt(Dpto);
-                });
-            }
         }
+    }
 
-        if (Mpio !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+    if (Mpio !== 'all') {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            return a.properties.Cod_DANE_Mun === parseInt(Mpio);
+        });
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 return a.properties.Cod_DANE_Mun === parseInt(Mpio);
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    return a.properties.Cod_DANE_Mun === parseInt(Mpio);
-                });
-            }
         }
+    }
 
-        if (TipoAccion !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+    if (TipoAccion !== 'all') {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            return a.properties.accion === TipoAccion;
+        });
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 return a.properties.accion === TipoAccion;
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    return a.properties.accion === TipoAccion;
-                });
-            }
         }
+    }
 
-        if (TipoLider !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+    if (TipoLider !== 'all') {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            return a.properties.tipo_victima === TipoLider;
+        });
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 return a.properties.tipo_victima === TipoLider;
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    return a.properties.tipo_victima === TipoLider;
-                });
-            }
         }
+    }
 
-        if (Responsable !== 'all') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+    if (Responsable !== 'all') {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            return a.properties.reponsable === Responsable;
+        });
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 return a.properties.reponsable === Responsable;
             });
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    return a.properties.reponsable === Responsable;
-                });
-            }
         }
+    }
 
-        if (FiltroTexto.toUpperCase() !== '') {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+    if (FiltroTexto.toUpperCase() !== '') {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            var k1 = a.properties.nombre.toUpperCase(),
+                k2 = a.properties.municipio.toUpperCase(),
+                k3 = a.properties.organizacion_politica.toUpperCase(),
+                k4 = a.properties.observaciones.toUpperCase();
+
+            if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
                 var k1 = a.properties.nombre.toUpperCase(),
                     k2 = a.properties.municipio.toUpperCase(),
                     k3 = a.properties.organizacion_politica.toUpperCase(),
@@ -477,123 +524,109 @@ function filtrarTodo() {
                     return false;
                 }
             });
-
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    var k1 = a.properties.nombre.toUpperCase(),
-                        k2 = a.properties.municipio.toUpperCase(),
-                        k3 = a.properties.organizacion_politica.toUpperCase(),
-                        k4 = a.properties.observaciones.toUpperCase();
-
-                    if ((k1.includes(FiltroTexto)) || (k2.includes(FiltroTexto)) || (k3.includes(FiltroTexto)) || (k4.includes(FiltroTexto))) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
-            }
         }
+    }
 
-        /*console.log(fechaInicial);
-        console.log(fechaFinal);
-        console.log(filtroDataDpto.features.length);*/
+    /*console.log(fechaInicial);
+    console.log(fechaFinal);
+    console.log(filtroDataDpto.features.length);*/
 
-        //Filtro por fecha
-        if (true) {
-            filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
-                var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-                return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+    //Filtro por fecha
+    if (true) {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+            var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+            return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+        });
+
+        if (filtroDataMpio !== undefined) {
+            filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
+                if (a.properties.id_violencia_selectiva === "") {
+                    return false;
+                } else {
+                    var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
+                    return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
+                }
             });
 
-            if (filtroDataMpio !== undefined) {
-                filtroDataMpio.features = filtroDataMpio.features.filter(function (a) {
-                    if (a.properties.id_violencia_selectiva === "") {
-                        return false;
-                    } else {
-                        var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString());
-                        return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
-                    }
-                });
-
-            }
         }
+    }
 
-        if (filtroDataDpto.features.length > 0) {
+    if (filtroDataDpto.features.length > 0) {
 
-            map.eachLayer(function (layer) {
-                map.removeLayer(layer);
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+
+        map.addLayer(Stamen_Watercolor);
+        map.addLayer(positronLabels);
+
+        if ((Mpio !== 'all')) {
+            filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
+            map.addLayer(filtroDataMpioLayer);
+
+            var MpiosLayerFiltro = L.geoJson(undefined, {
+                filter: function (feature) {
+                    return (feature.properties.COD_DANE == Mpio)
+                },
+                style: styleDptos,
+                onEachFeature: function (feature, layer) {
+                    layer.bindTooltip(feature.properties.NOMBRE, {
+                        permanent: false,
+                        direction: "auto"
+                    });
+                }
             });
+            // Adiciona las capas
+            MpiosLayerFiltro.addData(capaMunicipios);
+            MpiosLayerFiltro.addTo(map);
+            map.fitBounds(MpiosLayerFiltro.getBounds());
 
-            map.addLayer(Stamen_Watercolor);
-            map.addLayer(positronLabels);
+            filtroDataMpioLayer.bringToFront();
+        } else if ((Dpto !== 'all')) {
+            filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
+            map.addLayer(filtroDataMpioLayer);
 
-            if ((Mpio !== 'all')) {
-                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
-                map.addLayer(filtroDataMpioLayer);
+            var MpiosLayerFiltro = L.geoJson(undefined, {
+                filter: function (feature) {
+                    return (feature.properties.COD_DEPTO == Dpto)
+                },
+                style: styleDptos,
+                onEachFeature: function (feature, layer) {
+                    layer.bindTooltip(feature.properties.NOMBRE, {
+                        permanent: false,
+                        direction: "auto"
+                    });
+                }
+            });
+            // Adiciona las capas
+            MpiosLayerFiltro.addData(capaMunicipios);
+            MpiosLayerFiltro.addTo(map);
+            map.fitBounds(MpiosLayerFiltro.getBounds());
 
-                var MpiosLayerFiltro = L.geoJson(undefined, {
-                    filter: function (feature) {
-                        return (feature.properties.COD_DANE == Mpio)
-                    },
-                    style: styleDptos,
-                    onEachFeature: function (feature, layer) {
-                        layer.bindTooltip(feature.properties.NOMBRE, {
-                            permanent: false,
-                            direction: "auto"
-                        });
-                    }
-                });
-                // Adiciona las capas
-                MpiosLayerFiltro.addData(capaMunicipios);
-                MpiosLayerFiltro.addTo(map);
-                map.fitBounds(MpiosLayerFiltro.getBounds());
-
-                filtroDataMpioLayer.bringToFront();
-            } else if ((Dpto !== 'all')) {
-                filtroDataMpioLayer = renderMarkersData(filtroDataMpio, 10);
-                map.addLayer(filtroDataMpioLayer);
-
-                var MpiosLayerFiltro = L.geoJson(undefined, {
-                    filter: function (feature) {
-                        return (feature.properties.COD_DEPTO == Dpto)
-                    },
-                    style: styleDptos,
-                    onEachFeature: function (feature, layer) {
-                        layer.bindTooltip(feature.properties.NOMBRE, {
-                            permanent: false,
-                            direction: "auto"
-                        });
-                    }
-                });
-                // Adiciona las capas
-                MpiosLayerFiltro.addData(capaMunicipios);
-                MpiosLayerFiltro.addTo(map);
-                map.fitBounds(MpiosLayerFiltro.getBounds());
-
-                filtroDataMpioLayer.bringToFront();
-            } else {
-
-                filtroDataDptoLayer = renderMarkersData(filtroDataDpto, 10);
-                map.addLayer(filtroDataDptoLayer);
-                map.fitBounds(filtroDataDptoLayer.getBounds());
-
-                DptosLayer.addTo(map);
-
-                filtroDataDptoLayer.bringToFront();
-            }
-            $(".divinfo")[0].hidden = true;
-            //map.setZoom(map.getZoom() - 1);
+            filtroDataMpioLayer.bringToFront();
         } else {
-            map.setView(new L.LatLng(4.5, -73.0), 6);
-            map.eachLayer(function (layer) {
-                map.removeLayer(layer);
-            });
-            map.addLayer(Stamen_Watercolor);
-            map.addLayer(positronLabels);
-            map.addLayer(DptosLayer);
-        }
 
-        $("#total_places").text(filtroDataDpto.features.length);
+            filtroDataDptoLayer = renderMarkersData(filtroDataDpto, 10);
+            map.addLayer(filtroDataDptoLayer);
+            map.fitBounds(filtroDataDptoLayer.getBounds());
+
+            DptosLayer.addTo(map);
+
+            filtroDataDptoLayer.bringToFront();
+        }
+        $(".divinfo")[0].hidden = true;
+        //map.setZoom(map.getZoom() - 1);
+    } else {
+        map.setView(new L.LatLng(4.5, -73.0), 6);
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+        map.addLayer(Stamen_Watercolor);
+        map.addLayer(positronLabels);
+        map.addLayer(DptosLayer);
+    }
+
+    $("#total_places").text(filtroDataDpto.features.length);
 }
 
 /**
