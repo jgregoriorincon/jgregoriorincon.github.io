@@ -237,7 +237,7 @@ function renderMarkersData(data, distancia = 10) {
                 case "Ejecución extrajudicial":
                     IconoUsar = EjecucionIcon;
                     break;
-                                    case "Extorsión":
+                case "Extorsión":
                     IconoUsar = ExtorsionIcon;
                     break;
                 case "Homicidio":
@@ -536,7 +536,7 @@ function filtrarTodo() {
 
     //Filtro por fecha
     if (true) {
-       filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
+        filtroDataDpto.features = filtroDataDpto.features.filter(function (a) {
             var fechaEvento = moment(a.properties.anno.toString() + '-' + a.properties.mes.toString(), "YYYY-MM");
             return (moment(fechaEvento).isSameOrBefore(fechaFinal, 'month') && moment(fechaEvento).isSameOrAfter(fechaInicial, 'month'));
         });
