@@ -46,70 +46,70 @@ var AtentadoIcon = L.icon({
 
 var DesalojoIcon = L.icon({
     iconUrl: 'css/Desalojo.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var DesaparicionIcon = L.icon({
     iconUrl: 'css/Desaparicion_forzada.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var DesplazamientoIcon = L.icon({
     iconUrl: 'css/Desplazamiento_forzado.png',
-    iconSize: [32, 32],
+    iconSize: [56, 56],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var DetencionIcon = L.icon({
     iconUrl: 'css/Detencion_arbitraria.png',
-    iconSize: [32, 32],
+    iconSize: [56, 56],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var EjecucionIcon = L.icon({
     iconUrl: 'css/Ejecucion_extrajudicial.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var ExtorsionIcon = L.icon({
     iconUrl: 'css/Extorsion.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var HomicidioIcon = L.icon({
     iconUrl: 'css/Homicidio.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var HostigamientoIcon = L.icon({
     iconUrl: 'css/Hostigamiento.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var SecuestroIcon = L.icon({
     iconUrl: 'css/Secuestro.png',
-    iconSize: [32, 32],
+    iconSize: [48, 48],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
 
 var TorturaIcon = L.icon({
     iconUrl: 'css/Tortura.png',
-    iconSize: [32, 32],
+    iconSize: [56, 56],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });

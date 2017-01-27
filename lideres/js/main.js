@@ -237,6 +237,9 @@ function renderMarkersData(data, distancia = 10) {
                 case "Ejecución extrajudicial":
                     IconoUsar = EjecucionIcon;
                     break;
+                                    case "Extorsión":
+                    IconoUsar = ExtorsionIcon;
+                    break;
                 case "Homicidio":
                     IconoUsar = HomicidioIcon;
                     break;
