@@ -32,7 +32,7 @@ var eventoIcon = L.icon({
 
 var AmenazaIcon = L.icon({
     iconUrl: 'css/Amenaza.png',
-    iconSize: [32, 32],
+    iconSize: [48, 56],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
 });
