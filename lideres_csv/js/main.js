@@ -166,14 +166,6 @@ function renderMarkersData(data, distancia = 10) {
         },
 
         pointToLayer: function (feature, latlng) {
-            /*            return L.circleMarker(latlng, {
-                            radius: 8,
-                            fillColor: "#FF7FAC",
-                            color: "#FF7FAC",
-                            weight: 1,
-                            opacity: 1,
-                            fillOpacity: 0.5
-                        });*/
             return L.marker(latlng, {
                 icon: hechoIcon
             });

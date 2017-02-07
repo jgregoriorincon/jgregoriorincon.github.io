@@ -5,22 +5,28 @@
 // Variables globales
 var mapSociedad, cartodbAttribution;
 // Controles
-var legendDpto;
+var info, legendDpto, legendMpio, volver;
 
 // Datos Totales
 var filtroDataDptoPunto, filtroDataDptoPuntoLayer;
+var filtroDataMpioPunto, filtroDataMpioPuntoLayer;
 
 var filtroDataDptoPoly, filtroDataDptoPolyLayer;
+var filtroDataMpioPoly, filtroDataMpioPolyLayer;
 
-var DptosLayer, DptosLayerBack;
+var DptosLayer, MpiosLayer;
+var DptosLayerBack,MpiosLayerBack;
 
-var DptoSeleccionado;
+var dptoAnterior, mpioAnterior, nivelActual;
+var DptoSeleccionado, MpioSeleccionado;
 
-var sociedad_departamento, sociedad_departamento_geo, sociedad_departamento_layer;
-
+var sociedad_departamento, sociedad_municipio;
+var sociedad_departamento_geo, sociedad_departamento_layer;
+var sociedad_municipio_geo, sociedad_municipio_layer;
+var sociedad_municipio_data;
 
 var SociedadIcon = L.icon({
-    iconUrl: 'css/map-Marker.png',
+    iconUrl: 'css/Map-Marker.png',
     iconSize: [32, 32],
     iconAnchor: [22, 31],
     popupAnchor: [-3, -76]
@@ -90,9 +96,13 @@ $(document).ready(function () {
     positronLabels.addTo(mapSociedad);
     
     sociedad_departamento = datosSociedadCivil;
+    sociedad_municipio = datosSociedadCivil;
 
     sociedad_departamento_geo = GeoJSON.parse(sociedad_departamento, {
                     Point: ["LAT_DPTO", "LONG_DPTO"]
+                });
+    sociedad_municipio_geo = GeoJSON.parse(sociedad_municipio, {
+                    Point: ["LAT_MPIO", "LONG_MPIO"]
                 });
 
     loadMap();
