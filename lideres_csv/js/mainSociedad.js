@@ -233,10 +233,17 @@ function limpiarSeleccion() {
     AddLegendDpto();
 
     document.getElementById('selDepartamento').value = 'all';
+    document.getElementById('selMunicipio').value = 'all';
     document.getElementById('selSector').value = 'all';
     document.getElementById('selTipoSociedad').value = 'all';
     document.getElementById('selAlcance').value = 'all';
     document.getElementById('buscarPalabra').value = '';
+
+    if (document.getElementById('selMunicipio').options.length > 1) {
+        for (i = document.getElementById('selMunicipio').options.length - 1; i >= 1; i--) {
+            document.getElementById('selMunicipio').remove(i);
+        }
+    }
 
     // Recupera el listado inicial
     filtroDataDptoPunto = JSON.parse(JSON.stringify(sociedad_departamento));
@@ -310,8 +317,9 @@ function filtrarTodo() {
 
     if ((Dpto !== 'all') || (Mpio !== 'all') || (Sector !== 'all') || (TipoSociedad !== 'all') || (Alcance !== 'all') || (FiltroTexto !== '')) {
 
+
         filtroDataDptoPunto = JSON.parse(JSON.stringify(sociedad_departamento_geo));
-        filtroDataDptoPoly = JSON.parse(JSON.stringify(sociedad_departamento));
+        filtroDataMpioPunto = JSON.parse(JSON.stringify(sociedad_municipio_geo));
 
         filtroDataDptoPoly = JSON.parse(JSON.stringify(sociedad_departamento));
         filtroDataMpioPoly = JSON.parse(JSON.stringify(sociedad_municipio));
@@ -477,6 +485,7 @@ function filtrarTodo() {
             mapSociedad.addLayer(positronLabels);
 
             if ((Mpio !== 'all')) {
+                
                 filtroDataMpioPuntoLayer = renderMarkersData(filtroDataMpioPunto, 10);
                 mapSociedad.addLayer(filtroDataMpioPuntoLayer);
 

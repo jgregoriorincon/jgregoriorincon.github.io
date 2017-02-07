@@ -358,7 +358,7 @@ function filtrarTodo() {
 
         filtroDataDptoPoly = JSON.parse(JSON.stringify(hechos_departamento));
         filtroDataMpioPoly = JSON.parse(JSON.stringify(hechos_municipio));
-
+console.log(filtroDataMpioPunto.features.length);
         if (Dpto !== 'all') {
             DptoSeleccionado = parseInt(Dpto);
 
@@ -571,6 +571,7 @@ function filtrarTodo() {
             map.addLayer(positronLabels);
 
             if ((Mpio !== 'all')) {
+
                 filtroDataMpioPuntoLayer = renderMarkersData(filtroDataMpioPunto, 10);
                 map.addLayer(filtroDataMpioPuntoLayer);
 
@@ -741,7 +742,6 @@ function AddDatosDpto(datosUsar) {
     DptosLayerBack.addData(capaDepartamentos);
     DptosLayerBack.addTo(map);
 
-    //console.log(capaDepartamentos);
     // Capa de Departamentos por Densidades
     DptosLayer = L.choropleth(capaDepartamentos, {
         filter: function (feature) {

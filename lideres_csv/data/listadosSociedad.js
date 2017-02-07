@@ -3,6 +3,10 @@ var listaDepartamentos = [{
         "NOMBRE": "ANTIOQUIA"
     },
     {
+        "CODIGO": 81,
+        "NOMBRE": "ARAUCA"
+    },
+    {
         "CODIGO": 18,
         "NOMBRE": "CAQUETA"
     },
@@ -171,7 +175,21 @@ var listaMunicipios = {
             "CODIGO": 73555,
             "NOMBRE": "PLANADAS"
         }
-    ]
+    ],
+   "81": [
+      {
+         "CODIGO": 81065,
+         "NOMBRE": "ARAUQUITA"
+      },
+      {
+         "CODIGO": 81300,
+         "NOMBRE": "FORTUL"
+      },
+      {
+         "CODIGO": 81794,
+         "NOMBRE": "TAME"
+      }
+   ]
 };
 
 var listaSector = [
