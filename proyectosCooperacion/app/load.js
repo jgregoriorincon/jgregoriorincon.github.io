@@ -389,6 +389,12 @@ function createDataGeo() {
     MpiosLayer.addData(capaMunicipios);
 }
 
+function formatMoneda(n, currency) {
+    console.log(n);
+    return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
+        return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
+    });
+}
 
 /**
  * [[Ventana de información]]
@@ -399,43 +405,41 @@ function createDataGeo() {
 function popupEvento(feature, layer) {
     "use strict";
 
-    var Codigo_Proyecto = feature.properties.Codigo_Proyecto;
-    var Cooperante_Financiador = feature.properties.Cooperante_Financiador;
-    var Cooperante_Operador = feature.properties.Cooperante_Operador;
+    //var Codigo_Proyecto = feature.properties.Codigo_Proyecto;
     var Nombre_del_Proyecto = feature.properties.Nombre_del_Proyecto;
-    var Linea_de_Politica = feature.properties.Linea_de_Politica;
-    var Derecho = feature.properties.Derecho;
-    var Estado = feature.properties.Estado;
     var Municipio = feature.properties.Municipio;
     var Departamento = feature.properties.Departamento;
     var Pais = feature.properties.Pais;
-    var Tipo_de_cooperacion = feature.properties.Tipo_de_cooperacion;
-    var Aporte_cooperante = feature.properties.Aporte_cooperante;
-    var Moneda = feature.properties.Moneda;
-    var Monto_intervencion_USD = feature.properties.Monto_intervencion_USD;
+    var Linea_de_Politica = feature.properties.Linea_de_Politica;
+    var Cooperante_Financiador = feature.properties.Cooperante_Financiador;
+    var Cooperante_Operador = feature.properties.Cooperante_Operador;
+    var Derecho = feature.properties.Derecho;
     var Fecha_inicio = feature.properties.Fecha_inicio;
     var Fecha_finalizacion = feature.properties.Fecha_finalizacion;
+    var Estado = feature.properties.Estado;
+
+    var Tipo_de_cooperacion = feature.properties.Tipo_de_cooperacion;
+    var Aporte_cooperante = formatMoneda(parseFloat(feature.properties.Aporte_cooperante), "$");
+    var Moneda = feature.properties.Moneda;
+    var Monto_intervencion_USD = formatMoneda(parseFloat(feature.properties.Monto_intervencion_USD), "$");
     var Poblacion_Beneficiaria = feature.properties.Poblacion_Beneficiaria;
     var Grupo_Beneficiaria = feature.properties.Grupo_Beneficiaria;
 
-    /*
+    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Ubicación (País, Dpto, Mpio)</th><td>" + Pais + ', ' + Departamento + ', ' + Municipio + "</td></tr>" + "<tr><th>Linea de Política</th><td>" + Linea_de_Politica + "</td></tr>" + "<tr><th>Derecho</th><td>" + Derecho + "</td></tr>" + "<tr><th>Cooperante Financiador</th><td>" + Cooperante_Financiador + "</td></tr>" + "<tr><th>Cooperante Operador</th><td>" + Cooperante_Operador + "</td></tr>" + "<tr><th>Inicio</th><td>" + Fecha_inicio + "</td></tr>" + "<tr><th>Finalización</th><td>" + Fecha_finalizacion + "</td></tr>" + "<tr><th>Estado</th><td>" + Estado + "</table>";
+    
 
-    var infobasica = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Fecha</th><td>" + Fecha + "</td></tr>" + "<tr><th>Ubicación</th><td>" + Municipio + ', ' + Departamento + "</td></tr>" + "<tr><th>Acción</th><td>" + TipoAccion + "</td></tr>" + "<tr><th>Tipo Víctima</th><td>" + TipoLider + "</td></tr>" + "<tr><th>Organización Politica</th><td>" + Organizacion + "</td></tr>" + "<tr><th>Responsable</th><td>" + Responsable + "</td></tr>" + "<tr><th>Fuente</th><td><a class='url-break' href='" + Fuente + "' target='_blank'>" + Fuente + "</a></td></tr>" + "<table>";
-    */
+    var Aportes = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Tipo de Cooperación</th><td>" + Tipo_de_cooperacion + "</td></tr>" + "<tr><th>Aporte Cooperante</th><td>" + Aporte_cooperante + "</td></tr>" + "<tr><th>Moneda</th><td>" + Moneda + "</td></tr>" + "<tr><th>Monto Intervención (USD)</th><td>" + Monto_intervencion_USD + "</td></tr>" + "<tr><th>Población Beneficiaria</th><td>" + Poblacion_Beneficiaria + "</td></tr>" + "<tr><th>Grupo Beneficiaria</th><td>" + Grupo_Beneficiaria + "</td></tr>" + "</table>";
+
     layer.on({
         click: function (e) {
-            console.log(Codigo_Proyecto);
             console.log(Cooperante_Financiador);
             console.log(Pais);
-            var informacionProyecto = "<b>Cooperante Financiador: </b>" + Cooperante_Financiador + "</br>" + "<b>Cooperante Operador: </b>" + Cooperante_Operador + "</br>" + "<b>Linea de Política: </b>" + Linea_de_Politica + "</br>" ; 
-            $("#feature-title").html(Nombre_del_Proyecto.toUpperCase());
-            $("#datosProyectos").html(informacionProyecto);
-            /*
+           
+            $("#feature-title").html("<b>" + Nombre_del_Proyecto.toUpperCase() + "</b>");
             $("#feature-info").html(infobasica);
+            $("#Aportes").html(Aportes);
 
-            $("#Observaciones").html(Observaciones);
-
-            $('.nav-tabs a[href="#feature-info"]').tab('show');*/
+            $('.nav-tabs a[href="#feature-info"]').tab('show');
             $("#modalSplash").modal("show");
         }
     });
