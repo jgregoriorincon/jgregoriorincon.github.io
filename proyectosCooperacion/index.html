@@ -65,6 +65,24 @@
     .leaflet-touch .leaflet-bar {
       border: none;
     }
+
+    #contenidoModal {
+      font-size: 10px;
+      padding: 10px;
+    }
+
+    #cerrarModal {
+      font-size: 14px;
+    }
+
+    #aboutTabs {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    #tablaProyecto {
+        /*margin-bottom: 10px;*/
+    }
   </style>
 
 </head>
@@ -248,9 +266,9 @@
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h5 class="modal-title text-primary" id="logoGestor"></h5>
-          <h5 class="modal-title text-primary" id="feature-title"></h5>
+          <h6 class="modal-title text-primary" id="feature-title"></h6>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="contenidoModal">
           <div class="container-fluid">
             <div class="row">
               <div class="splash-body">
@@ -263,13 +281,11 @@
                     <div class="tab-pane fade active in" id="feature-info"></div>
                     <div class="tab-pane fade" id="Aportes"></div>
                   </div>
-                  <br>
                   <div class="form-inline text-center">
                     <div class="form-group">
-                      <button type="button" class="btn btn-success btn-lg" data-dismiss="modal">Cerrar</a>
+                      <button type="button" class="btn btn-success btn-lg" data-dismiss="modal" id="cerrarModal">Cerrar</a>
                     </div>
                   </div>
-                  <br>
                 </div>
               </div>
             </div>
