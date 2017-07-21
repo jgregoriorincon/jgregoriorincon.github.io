@@ -1,0 +1,18 @@
+.top-nav {
+    background-color: #009fe3 !important;
+}
+
+.top-nav-title,
+.top-nav-link {
+    color: white;
+    display: inline;
+}
+
+.logo {
+    height: 80%;
+    display: inline;
+    float: left;
+    padding-right: 31px;
+    padding-left: 0px;
+    padding-top: 10px;
+}
