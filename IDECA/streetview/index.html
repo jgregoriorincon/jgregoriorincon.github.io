@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Street View side-by-side</title>
+  <link rel="stylesheet" href="vendor/css/leaflet.css" />
+  <link rel="stylesheet" href="vendor/css/L.Icon.Pulse.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-container {
+      margin: 0px;
+    }
+
+
+    .panel-container {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid silver;
+      overflow: hidden;
+
+      /* avoid browser level touch actions */
+      xtouch-action: none;
+    }
+
+    .panel-left {
+      flex: 0 0 auto;
+      /* only manually resize */
+      padding: 0px;
+      width: 300px;
+      min-height: 100vh;
+      min-width: 150px;
+      width: 50%;
+      white-space: nowrap;
+      background: #838383;
+      color: white;
+    }
+
+    .splitter {
+      flex: 0 0 auto;
+      width: 20px;
+      background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+      min-height: 100vh;
+      cursor: col-resize;
+    }
+
+    .panel-right {
+      flex: 1 1 auto;
+      /* resizable */
+      padding: 0px;
+      width: 100%;
+      min-height: 100vh;
+      min-width: 200px;
+      background: #eee;
+    }
+
+    @media (max-width: 769px) {
+      .splitter {
+        width: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div id="pano"></div>
+  <div id="mapIDECA"></div> -->
+
+  <div class="panel-container">
+
+    <div class="panel-left" id="pano">
+      <!-- left panel -->
+    </div>
+
+    <div class="splitter">
+    </div>
+
+    <div class="panel-right" id="mapIDECA">
+      <!-- right panel -->
+    </div>
+  </div>
+
+
+
+  <script src="vendor/js/jquery-2.2.4.min.js"></script>
+  <script src="vendor/js/jquery-resizable.js"></script>
+  <script src="vendor/js/leaflet.js"></script>
+  <script src="vendor/js/esri-leaflet.js"></script>
+  <script src='vendor/js/Leaflet.GoogleMutant.js'></script>
+  <script src='vendor/js/L.Icon.Pulse.js'></script>
+  <script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+  <script src='app/main.js'></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJIkIVxkoynPkFqRCP8mdOa0nIcw-LZ1w&callback=initialize">
+  </script>
+</body>
+
+</html>
