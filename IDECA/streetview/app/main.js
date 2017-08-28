@@ -29,7 +29,7 @@ function initialize() {
     var panoPosLat = panoPos.lat();
     var panoPosLng = panoPos.lng();
     addMarker(panoPosLat, panoPosLng);
-  }); 
+  });
 }
 
 function addMarker(lat, lng) {
@@ -83,7 +83,12 @@ $(document).ready(function () {
     attributionControl: false
   });
 
-  locationPoint = L.control.locate({drawCircle: false, drawMarker: false, onLocationError: onLocationError}).addTo(mapIDECA);
+  locationPoint = L.control.locate({
+    drawCircle: false,
+    drawMarker: false,
+    icon: "fa fa-location-arrow",
+    onLocationError: onLocationError
+  }).addTo(mapIDECA);
 
   mapIDECA.on('locationfound', onLocationFound);
   //mapIDECA.on('locationerror', onLocationError);
@@ -166,11 +171,11 @@ $(document).ready(function () {
   $(".panel-left").resizable({
     handleSelector: ".splitter",
     resizeHeight: false,
-    onDragEnd: function(){
+    onDragEnd: function () {
       google.maps.event.trigger(panorama, 'resize');
       mapIDECA.invalidateSize();
     }
   });
 
-  
+
 });
