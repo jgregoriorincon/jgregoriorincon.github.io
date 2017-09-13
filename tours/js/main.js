@@ -27,7 +27,7 @@ webmap.on('load', function () {
   DptosLayer.bringToFront();
   MpiosLayer.bringToFront();
 
-  webmap._map.setView(new L.LatLng(slideMap[0].latitud, slideMap[0].longitud), slideMap[0].zoom);
+  // webmap._map.setView(new L.LatLng(slideMap[0].latitud, slideMap[0].longitud), slideMap[0].zoom);
 });
 
 function getIdfromUrl() {
@@ -135,8 +135,8 @@ function resetHighlightMpios(e) {
   MpiosLayer.setStyle(styleMpios);
 }
 
-$(document).ready(function () {
+// $(document).ready(function () {
 
-  webmap._map.setView(new L.LatLng(slideMap[0].latitud, slideMap[0].longitud), slideMap[0].zoom);
+//   webmap._map.setView(new L.LatLng(slideMap[0].latitud, slideMap[0].longitud), slideMap[0].zoom);
 
-});
+// });
