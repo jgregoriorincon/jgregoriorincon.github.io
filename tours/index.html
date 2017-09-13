@@ -1,0 +1,313 @@
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>WebMaps y Diapositivas</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+    crossorigin="" />
+  <!-- Add the slick-theme.css if you want default styling -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.css" />
+  <!-- Add the slick-theme.css if you want default styling -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css" />
+  <style>
+    html {
+      font-family: helvetica, arial;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      font: normal 15px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #232525;
+    }
+
+    #container {
+      display: flex;
+      height: 75vh;
+      top: 0;
+      left: 0;
+      right: 0;
+      justify-content: space-between;
+    }
+
+    #abajo {
+      display: flex;
+      height: 15vh;
+      bottom: 0;
+      justify-content: space-between;
+      background-color: #B10F1D;
+      width: 100vw;
+    }
+
+    #arriba {
+      display: flex;
+      height: 10vh;
+      top: 0;
+      justify-content: space-between;
+      background-color: #B10F1D;
+    }
+
+    #diapositivas {
+      width: 65vw;
+      height: 75vh;
+      background-color: #B10F1D;
+    }
+
+    #sliderSecundario {
+      padding-top: 25px;
+      height: 15vh;
+      width: 90vw;
+      left: 50px;
+      right: 50px;
+    }
+
+    #map {
+      width: 35vw;
+      height: 100%;
+    }
+
+    .imgDiapositiva {
+      height: 100%;
+      width: 100%;
+      object-fit: contain
+    }
+
+    .imgSecundaria {
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="arriba"></div>
+  <div id="container">
+    <div id="diapositivas">
+      <div class="slider slider-for" id="sliderPrincipal">
+        <!-- <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=10">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=20">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=30">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=40">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=50">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=60">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=70">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=80">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=90">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=100">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=110">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=120">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=130">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=140">
+        </div>
+        <div>
+          <img class="imgDiapositiva" src="https://unsplash.it/950/600?image=180">
+        </div> -->
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+  <div id="abajo">
+    <div class="slider slider-nav" id="sliderSecundario">
+      <!-- <div>
+        <img src="https://unsplash.it/100/100?image=10">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=20">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=30">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=40">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=50">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=60">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=70">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=80">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=90">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=100">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=110">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=120">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=130">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=140">
+      </div>
+      <div>
+        <img src="https://unsplash.it/100/100?image=180">
+      </div> -->
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js" integrity="sha512-ECQqaYZke9cSdqlFG08zSkudgrdF6I1d8ViSa7I3VIszJyVqw4ng1G8sehEXlumdMnFYfzY0tMgdQa4WCs9IUw=="
+    crossorigin=""></script>
+
+  <script src="https://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+  <script src="https://cdn.rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
+  <script src="https://cdn.jsdelivr.net/leaflet.esri.heatmap-feature-layer/2.0.0-beta.1/esri-leaflet-heatmap-feature-layer.js"></script>
+  <script src="http://cdn.jsdelivr.net/leaflet.esri.renderers/2.0.2/esri-leaflet-renderers.js"></script>
+  <script src="https://muxlab.github.io/Leaflet.VectorIcon/L.VectorIcon.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/leaflet.esri.webmap/0.4.0/esri-leaflet-webmap.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
+
+  <script src="js/geojson.min.js"></script>
+  <script src="data/Dptos.js"></script>
+  <script src="data/Mpios.js"></script>
+
+  <script>
+    var webmapId = 'f3a6ea71dcb84a6a8488dc800d7b83ae'; // Default WebMap ID
+
+    var slideMap = [{
+      "slide": 0,
+      "imagen": "https://unsplash.it/950/600?image=10",
+      "latitud": 8.49,
+      "longitud": -73.01,
+      "zoom": 9
+    }, {
+      "slide": 1,
+      "imagen": "https://unsplash.it/950/600?image=20",
+      "latitud": 7.62,
+      "longitud": -75.87,
+      "zoom": 9
+    }, {
+      "slide": 2,
+      "imagen": "https://unsplash.it/950/600?image=30",
+      "latitud": 1.88,
+      "longitud": -78.16,
+      "zoom": 9
+    }, {
+      "slide": 3,
+      "imagen": "https://unsplash.it/950/600?image=40",
+      "latitud": 2.54,
+      "longitud": -73.40,
+      "zoom": 9
+    }, {
+      "slide": 4,
+      "imagen": "https://unsplash.it/950/600?image=50",
+    }, {
+      "slide": 5,
+      "imagen": "https://unsplash.it/950/600?image=60",
+    }, {
+      "slide": 6,
+      "imagen": "https://unsplash.it/950/600?image=70",
+    }, {
+      "slide": 7,
+      "imagen": "https://unsplash.it/950/600?image=80",
+    }, {
+      "slide": 8,
+      "imagen": "https://unsplash.it/950/600?image=90",
+    }, {
+      "slide": 9,
+      "imagen": "https://unsplash.it/950/600?image=100",
+    }]
+  </script>
+
+  <script>
+    $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      speed: 500,
+      fade: true,
+      centerMode: true,
+      asNavFor: '.slider-nav'
+    });
+
+    $('.slider-nav').slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      speed: 500,
+      asNavFor: '.slider-for',
+      arrows: true,
+      centerMode: false,
+      focusOnSelect: true,
+      infinite: true,
+      slide: 'div'
+    });
+
+    setTimeout(function () {
+      Object.keys(slideMap).forEach(function (key) {
+        var value = slideMap[key];
+        var imagen = value.imagen; // "https://unsplash.it/950/600?image=" + (value.slide * 10).toString();
+
+        $('.slider-for').slick('slickAdd', '<div><img class="imgDiapositiva" src="' + imagen + '"></div>');
+        $('.slider-nav').slick('slickAdd', '<div><img class="imgSecundaria" src="' + imagen + '"/></div>');
+      });
+    }, 500);
+
+    $('.slider-for').on('afterChange', function (event, slick, currentSlide) {
+      var ubicacion = slideMap.filter(function (a) {
+        return a.slide == currentSlide;
+      });
+
+      if (typeof(ubicacion[0].latitud) !== 'undefined' ) {
+        webmap._map.setView(new L.LatLng(ubicacion[0].latitud, ubicacion[0].longitud), ubicacion[0].zoom);
+      } else {
+        webmap._map.setView(new L.LatLng(rand(8, 2), rand(-72, -78)), 10);
+      }
+    });
+
+    function rand(max, min) { //returns random number between m and n, inclusive
+      var highlightedNumber = Math.random() * (max - min) + min;
+      return highlightedNumber
+    }
+  </script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
