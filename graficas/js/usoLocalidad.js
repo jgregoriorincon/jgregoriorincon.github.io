@@ -43,20 +43,66 @@ function graphUso(chooseLocalidad) {
         return dato.Localidad == chooseLocalidad;
     });
 
-    console.table(datosUsoLocalidad);
     var Uso = unpack(datosUsoLocalidad, 'Uso');
     var areaConstruida = unpack(datosUsoLocalidad, 'AreaConstruida');
 
     bubbleSortAscending(areaConstruida, Uso);
 
+    var colorBodega = '#ffdbe3';
+    var colorClinica = '#00c5ff';
+    var colorComercio = '#ff0000';
+    var colorHotel = '#cd6699';
+    var colorIndustria = '#ffa77f';
+    var colorOficina = '#a83800';
+    var colorOtro = '#b2b2b2';
+    var colorResidencial = '#ffffbe';
+    var colorUniversidad = '#0070ff';
+
     var data = [];
     for (var i = 0; i < Uso.length; i++) {
+
+        var colorMarker;
+        switch (Uso[i]) {
+            case "RESIDENCIAL":
+                colorMarker = colorResidencial;
+                break;
+            case "OFICINAS":
+                colorMarker = colorOficina;
+                break;
+            case "COMERCIO":
+                colorMarker = colorComercio;
+                break;
+            case "BODEGAS":
+                colorMarker = colorBodega;
+                break;
+            case "UNIVERSIDADES Y COLEGIOS":
+                colorMarker = colorUniversidad;
+                break;
+            case "OTROS":
+                colorMarker = colorOtro;
+                break;
+            case "CLINICAS, HOSPITALES, CENTROS MÉDICOS":
+                colorMarker = colorClinica;
+                break;
+            case "HOTELES":
+                colorMarker = colorHotel;
+                break;
+            case "INDUSTRIA":
+                colorMarker = colorIndustria;
+                break;
+            default:
+                break;
+        }
+
         var trace1 = {
             y: [chooseLocalidad],
             x: [areaConstruida[i]],
             name: Uso[i],
             type: 'bar',
-            orientation: 'h'
+            orientation: 'h',
+            marker: {
+                color: colorMarker
+            },
         };
         data.push(trace1);
     }
@@ -68,25 +114,27 @@ function graphUso(chooseLocalidad) {
         barmode: 'stack',
         barnorm: '',
         margin: {
-            l: 50,
-            t: 50,
+            l: 150,
+            t: 30,
             b: 50,
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hovermode: 'closest',
         hoverlabel: {
             bgcolor: 'white',
             font: {
-                color: 'black'
+                color: 'black',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
         title: 'Participación del uso predominante del área construida',
-        width: window.innerWidth - 50,
-        height: window.innerHeight / 4,
+        width: window.innerWidth,
+        height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
             type: 'linear',

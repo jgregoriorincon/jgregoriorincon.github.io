@@ -43,7 +43,7 @@ $(document).ready(function () {
                 plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
-                height: window.innerHeight/2.0,
+                height: window.innerHeight / 2.0,
                 margin: {
                     l: 70,
                     t: 70,
@@ -63,7 +63,7 @@ $(document).ready(function () {
                 },
                 showlegend: false,
                 title: 'Número de Predios',
-                // width: sizeWindowWidth,
+                width: window.innerWidth,
                 xaxis: {
                     autorange: true,
                     // title: 'Localidad',
@@ -94,7 +94,7 @@ $(document).ready(function () {
                 plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
-                height: window.innerHeight/2.0,
+                height: window.innerHeight / 2.0,
                 margin: {
                     l: 70,
                     t: 70,
@@ -114,7 +114,7 @@ $(document).ready(function () {
                     }
                 },
                 title: 'Área de Contrucción',
-                // width: sizeWindowWidth,
+                width: window.innerWidth,
                 xaxis: {
                     autorange: true,
                     // title: 'Vigencia 2018',
@@ -153,7 +153,8 @@ $(document).ready(function () {
                 },
                 showlegend: false,
                 font: {
-                    color: '#fff'
+                    color: '#fff',
+                    family: "'Roboto', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
@@ -163,8 +164,8 @@ $(document).ready(function () {
                     }
                 },
                 title: 'Valor Avaluo Catastral (En Miles de Millones)',
-                // width: sizeWindowWidth,
-                    xaxis: {
+                width: window.innerWidth,
+                xaxis: {
                     autorange: true,
                     title: 'Vigencia 2018',
                     type: 'linear'
@@ -175,7 +176,7 @@ $(document).ready(function () {
                     type: 'category'
                 }
             };
-            
+
             Plotly.plot(graphDiv1, [trace1],
                 layout1, {
                     modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],

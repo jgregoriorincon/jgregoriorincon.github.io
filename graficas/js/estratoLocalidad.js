@@ -122,7 +122,7 @@ function graphTipoPredio(chooseLocalidad) {
         },
         showlegend: false,
         title: 'Participación por zonas',
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
@@ -189,7 +189,7 @@ function graphEstrato(chooseLocalidad) {
         },
         showlegend: false,
         title: 'Estrato Socioeconómico',
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
@@ -232,7 +232,7 @@ function graphEstrato(chooseLocalidad) {
             }
         },
         showlegend: false,
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 4,
         xaxis: {
             autorange: true,
@@ -274,7 +274,7 @@ function graphEstrato(chooseLocalidad) {
             }
         },
         showlegend: false,
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
@@ -376,7 +376,7 @@ function graphRegimen(chooseLocalidad) {
         },
         showlegend: false,
         title: 'Predios y áreas según regimen de propiedad',
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
@@ -419,7 +419,7 @@ function graphRegimen(chooseLocalidad) {
             }
         },
         showlegend: false,
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 4,
         xaxis: {
             autorange: true,
@@ -461,7 +461,7 @@ function graphRegimen(chooseLocalidad) {
             }
         },
         showlegend: false,
-        width: sizeWindowWidth,
+        width: window.innerWidth,
         height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
