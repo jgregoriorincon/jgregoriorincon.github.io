@@ -8,13 +8,14 @@ $(document).ready(function () {
         dynamicTyping: true,
         header: true,
         complete: function (parsed) {
-            console.table(parsed.data);
             var Localidad = unpack(parsed.data, 'Localidad');
             var NumeroPredios = unpack(parsed.data, 'NumeroPredios');
             var AreaConstruida = unpack(parsed.data, 'AreaConstruida');
             var ValorAvaluoCatastral = unpack(parsed.data, 'ValorAvaluoCatastral');
 
-            var colores = rangeColors(Localidad.length, '#F1CF6D', '#246D3B');
+            var colores1 = rangeColors(Localidad.length, '#2E5E87', '#A84127');
+            var colores2 = rangeColors(Localidad.length, '#F5C668', '#A84127');
+            var colores3 = rangeColors(Localidad.length, '#F5D16E', '#23723E');
 
             var LocalidadNumeroPredios = Localidad.join(";").split(";");
             var LocalidadAreaConstruida = Localidad.join(";").split(";");
@@ -28,7 +29,7 @@ $(document).ready(function () {
                 y: NumeroPredios,
                 x: LocalidadNumeroPredios,
                 marker: {
-                    color: colores
+                    color: colores1
                 },
                 name: 'Número de Predios',
                 opacity: 1,
@@ -38,29 +39,31 @@ $(document).ready(function () {
             };
             layout1 = {
                 autosize: true,
-                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
-                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                paper_bgcolor: 'rgb(0, 0, 0)',
+                plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight/2.0,
                 margin: {
                     l: 70,
-                    t: 50,
+                    t: 70,
                     b: 100,
                     pad: 4
                 },
                 font: {
-                    color: '#fff'
+                    color: '#fff',
+                    family: "'Roboto', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
-                        color: 'white'
+                        color: 'white',
+                        family: "'Roboto', sans-serif"
                     }
                 },
                 showlegend: false,
                 title: 'Número de Predios',
-                width: sizeWindowWidth,
+                // width: sizeWindowWidth,
                 xaxis: {
                     autorange: true,
                     // title: 'Localidad',
@@ -72,18 +75,12 @@ $(document).ready(function () {
                     type: 'linear'
                 }
             };
-            Plotly.plot(graphDiv1, [trace1],
-                layout1, {
-                    modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],
-                    displaylogo: false
-                }
-            );
 
             trace2 = {
                 y: AreaConstruida,
                 x: LocalidadAreaConstruida,
                 marker: {
-                    color: colores
+                    color: colores2
                 },
                 name: 'Miles de Millones de Pesos',
                 opacity: 1,
@@ -93,29 +90,31 @@ $(document).ready(function () {
             };
             layout2 = {
                 autosize: true,
-                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
-                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                paper_bgcolor: 'rgb(0, 0, 0)',
+                plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight/2.0,
                 margin: {
                     l: 70,
-                    t: 50,
+                    t: 70,
                     b: 100,
                     pad: 4
                 },
                 showlegend: false,
                 font: {
-                    color: '#fff'
+                    color: '#fff',
+                    family: "'Roboto', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
-                        color: 'white'
+                        color: 'white',
+                        family: "'Roboto', sans-serif"
                     }
                 },
                 title: 'Área de Contrucción',
-                width: sizeWindowWidth,
+                // width: sizeWindowWidth,
                 xaxis: {
                     autorange: true,
                     // title: 'Vigencia 2018',
@@ -127,18 +126,12 @@ $(document).ready(function () {
                     type: 'linear'
                 }
             };
-            Plotly.plot(graphDiv2, [trace2],
-                layout2, {
-                    modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],
-                    displaylogo: false
-                }
-            );
 
             trace3 = {
                 x: ValorAvaluoCatastral,
                 y: LocalidadValorAvaluoCatastral,
                 marker: {
-                    color: colores
+                    color: colores3
                 },
                 name: 'Miles de Millones de Pesos',
                 opacity: 1,
@@ -148,8 +141,8 @@ $(document).ready(function () {
             };
             layout3 = {
                 autosize: true,
-                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
-                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                paper_bgcolor: 'rgb(0, 0, 0)',
+                plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight,
@@ -165,12 +158,13 @@ $(document).ready(function () {
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
-                        color: 'white'
+                        color: 'white',
+                        family: "'Roboto', sans-serif"
                     }
                 },
                 title: 'Valor Avaluo Catastral (En Miles de Millones)',
-                width: sizeWindowWidth,
-                xaxis: {
+                // width: sizeWindowWidth,
+                    xaxis: {
                     autorange: true,
                     title: 'Vigencia 2018',
                     type: 'linear'
@@ -181,6 +175,19 @@ $(document).ready(function () {
                     type: 'category'
                 }
             };
+            
+            Plotly.plot(graphDiv1, [trace1],
+                layout1, {
+                    modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+                    displaylogo: false
+                }
+            );
+            Plotly.plot(graphDiv2, [trace2],
+                layout2, {
+                    modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+                    displaylogo: false
+                }
+            );
             Plotly.plot(graphDiv3, [trace3],
                 layout3, {
                     modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],

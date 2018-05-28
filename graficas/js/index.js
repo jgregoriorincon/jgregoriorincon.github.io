@@ -74,10 +74,6 @@ function rangeColors(numColors, primerColor, ultimoColor) {
     return colores;
 }
 
-function getSizeWindow(){
-    if (window.innerWidth < 769) {
-        sizeWindowWidth = window.innerWidth;
-    } else {
-        sizeWindowWidth = window.innerWidth / 2;
-    }
+function getSizeWindow() {
+    sizeWindowWidth = window.innerWidth;
 }

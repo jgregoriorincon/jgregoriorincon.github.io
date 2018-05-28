@@ -104,24 +104,26 @@ function graphTipoPredio(chooseLocalidad) {
         barmode: 'group',
         barnorm: '',
         margin: {
-            l: 170,
-            t: 50,
-            b: 50,
+            l: 150,
+            t: 30,
+            b: 30,
             pad: 4
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
         title: 'Participación por zonas',
-        width: sizeWindowWidth - 50,
-        height: window.innerHeight / 4,
+        width: sizeWindowWidth,
+        height: window.innerHeight / 3,
         xaxis: {
             autorange: true,
             type: 'linear',
@@ -153,7 +155,14 @@ function graphEstrato(chooseLocalidad) {
     var areaConstruida = unpack(datosEstratoLocalidad, 'AreaConstruida');
     var valorAvaluoCatastral = unpack(datosEstratoLocalidad, 'ValorAvaluoCatastral');
 
-    var colores = rangeColors(Estrato.length, '#F47139', '#1267A8');
+    // var colores = rangeColors(Estrato.length, '#F47139', '#1267A8');
+    var colores = ['#f0f9e8',
+    '#ccebc5',
+    '#a8ddb5',
+    '#7bccc4',
+    '#4eb3d3',
+    '#2b8cbe',
+    '#08589e'];
 
     layout1 = {
         autosize: true,
@@ -168,12 +177,14 @@ function graphEstrato(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
@@ -210,12 +221,14 @@ function graphEstrato(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
@@ -250,12 +263,14 @@ function graphEstrato(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
@@ -333,7 +348,8 @@ function graphRegimen(chooseLocalidad) {
     var areaConstruida = unpack(datosRegimenLocalidad, 'AreaConstruida');
     var valorAvaluoCatastral = unpack(datosRegimenLocalidad, 'ValorAvaluoCatastral');
 
-    var colores = rangeColors(Regimen.length, '#48B8C5', '#A3D9B5');
+    // var colores = rangeColors(Regimen.length, '#48B8C5', '#A3D9B5');
+    var colores = ['#3eb4c2', '#9fd8b2'];
 
     layout1 = {
         autosize: true,
@@ -348,12 +364,14 @@ function graphRegimen(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
@@ -390,12 +408,14 @@ function graphRegimen(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
@@ -430,12 +450,14 @@ function graphRegimen(chooseLocalidad) {
             pad: 0
         },
         font: {
-            color: '#fff'
+            color: '#fff',
+            family: "'Roboto', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'white',
+                family: "'Roboto', sans-serif"
             }
         },
         showlegend: false,
