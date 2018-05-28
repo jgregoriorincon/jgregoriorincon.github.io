@@ -38,15 +38,15 @@ $(document).ready(function () {
             };
             layout1 = {
                 autosize: true,
-                paper_bgcolor: '#000',
-                plot_bgcolor: '#000',
+                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight/2.0,
                 margin: {
                     l: 70,
-                    t: 70,
-                    b: 150,
+                    t: 50,
+                    b: 100,
                     pad: 4
                 },
                 font: {
@@ -93,15 +93,15 @@ $(document).ready(function () {
             };
             layout2 = {
                 autosize: true,
-                paper_bgcolor: '#000',
-                plot_bgcolor: '#000',
+                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight/2.0,
                 margin: {
                     l: 70,
-                    t: 70,
-                    b: 150,
+                    t: 50,
+                    b: 100,
                     pad: 4
                 },
                 showlegend: false,
@@ -148,15 +148,14 @@ $(document).ready(function () {
             };
             layout3 = {
                 autosize: true,
-                paper_bgcolor: '#000',
-                plot_bgcolor: '#000',
+                paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
+                plot_bgcolor: 'rgba(0, 0, 0, 0.3)',
                 barmode: 'group',
                 barnorm: '',
                 height: window.innerHeight,
                 margin: {
                     l: 150,
                     t: 70,
-                    r: 50,
                     pad: 4
                 },
                 showlegend: false,

@@ -7,31 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Graficas Story Maps UAECD</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
+    <style>
+        .shadow {
+            -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=135, Color='#000000')";
+        }
+    </style>
 </head>
 
-<body style="background-color: #000">
+<body style="background-color: rgb(26, 26, 26);">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <div id="graph1"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <div id="graph2"></div>
-                    </div>
-                </div>
+            <div class="col-12 col-md-12">
+                <div id="graph1" class="shadow"></div>
             </div>
-            <div class="col-12 col-md-6">
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div id="graph2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12">
                 <div id="graph3"></div>
             </div>
         </div>
     </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
