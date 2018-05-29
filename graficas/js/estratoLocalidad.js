@@ -240,7 +240,7 @@ function graphEstrato(chooseLocalidad) {
         margin: {
             l: 100,
             t: 50,
-            b: 0,
+            b: 5,
             pad: 0
         },
         font: {
@@ -284,7 +284,7 @@ function graphEstrato(chooseLocalidad) {
         margin: {
             l: 100,
             t: 0,
-            b: 0,
+            b: 5,
             pad: 0
         },
         font: {
