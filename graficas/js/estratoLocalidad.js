@@ -30,6 +30,12 @@ $(document).ready(function () {
                 graphTipoPredio($('#localidadSelector').val());
                 graphEstrato($('#localidadSelector').val());
                 graphRegimen($('#localidadSelector').val());
+
+                console.log($('#selFilter').val());
+                console.log(document.querySelector('#selFilter').value);
+                // document.querySelector('#selFilter').value = 'ENGATIVA';
+                // var event123 = new Event('change');
+                // document.querySelector('#selFilter').dispatchEvent(event123);
             });
 
             Papa.parse("data/Data2.csv", {
