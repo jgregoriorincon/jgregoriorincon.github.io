@@ -31,12 +31,27 @@ $(document).ready(function () {
                 graphEstrato($('#localidadSelector').val());
                 graphRegimen($('#localidadSelector').val());
 
+                var x = new ObservableArray(["a", "b", "c", "d"]);
 
-                console.log("ANTES: " + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
-                document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value = $('#localidadSelector').val();
-                console.log("AHORA:" + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
-                var event123 = new Event('change');
-                document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').dispatchEvent(event123);
+                x.addEventListener("itemadded", function (e) {
+                    console.log("Added %o at index %d.", e.item, e.index);
+                });
+
+                x.addEventListener("itemset", function (e) {
+                    console.log("Set index %d to %o.", e.index, e.item);
+                });
+
+                x.addEventListener("itemremoved", function (e) {
+                    console.log("Removed %o at index %d.", e.item, e.index);
+                });
+
+                console.log("setting index 2...");
+                x[2] = "foo";
+                // console.log("ANTES: " + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
+                // document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value = $('#localidadSelector').val();
+                // console.log("AHORA:" + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
+                // var event123 = new Event('change');
+                // document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').dispatchEvent(event123);
             });
 
             Papa.parse("data/Data2.csv", {
