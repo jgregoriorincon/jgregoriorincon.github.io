@@ -39,6 +39,7 @@ $(document).ready(function () {
                 header: true,
                 complete: function (parsed) {
                     datosTipoPredio = parsed.data;
+                    updateTipoPredio();
 
                     Papa.parse("data/Data3.csv", {
                         download: true,
@@ -47,6 +48,7 @@ $(document).ready(function () {
                         header: true,
                         complete: function (parsed) {
                             datosEstrato = parsed.data;
+                            updateEstrato();
 
                             Papa.parse("data/Data4.csv", {
                                 download: true,
@@ -55,7 +57,8 @@ $(document).ready(function () {
                                 header: true,
                                 complete: function (parsed) {
                                     datosRegimen = parsed.data;
-        
+                                    updateRegimen();
+
                                     $("#localidadSelector").val($("#localidadSelector option:first").val()).trigger("change");
                                 }
                             });
@@ -66,6 +69,19 @@ $(document).ready(function () {
         }
     });
 });
+
+function updateTipoPredio() {
+    var allData = [0, 0, 0];
+    for (var index = 0; index < datosTipoPredio.length; index++) {
+        var element = datosTipoPredio[index];
+        allData[0] += parseInt(element.Urbanos);
+        allData[1] += parseInt(element.Rurales);
+        allData[2] += parseInt(element.Mixtos);
+    }
+    datosTipoPredio[0].Urbanos = allData[0];
+    datosTipoPredio[0].Rurales = allData[1];
+    datosTipoPredio[0].Mixtos = allData[2];
+}
 
 function graphTipoPredio(chooseLocalidad) {
     var prediosUrbanos = unpack(datosTipoPredio, 'Urbanos');
@@ -145,6 +161,34 @@ function graphTipoPredio(chooseLocalidad) {
         });
 }
 
+function updateEstrato() {
+    var tipoEstrato = ['Sin Estrato', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6'];
+
+    for (var index1 = 0; index1 < tipoEstrato.length; index1++) {
+        var nombreEstrato = tipoEstrato[index1];
+        var estratoFiltrado = datosEstrato.filter(function (estrato) {
+            return estrato.Estrato == nombreEstrato;
+        });
+
+        var allData = [0, 0, 0];
+        for (var index2 = 0; index2 < estratoFiltrado.length; index2++) {
+            var valores = estratoFiltrado[index2];
+            allData[0] += parseInt(valores.NumeroPredios);
+            allData[1] += parseFloat(valores.AreaConstruida);
+            allData[2] += parseFloat(valores.ValorAvaluoCatastral);
+        }
+
+        for (var index3 = 0; index3 < datosEstrato.length; index3++) {
+            if (datosEstrato[index3].Localidad == 'All' && datosEstrato[index3].Estrato == nombreEstrato) {
+                datosEstrato[index3].NumeroPredios = allData[0];
+                datosEstrato[index3].AreaConstruida = allData[1];
+                datosEstrato[index3].ValorAvaluoCatastral = allData[2];
+                break;
+            }
+        }
+    }
+}
+
 function graphEstrato(chooseLocalidad) {
     var datosEstratoLocalidad = datosEstrato.filter(function (dato) {
         return dato.Localidad == chooseLocalidad;
@@ -157,12 +201,13 @@ function graphEstrato(chooseLocalidad) {
 
     // var colores = rangeColors(Estrato.length, '#F47139', '#1267A8');
     var colores = ['#f0f9e8',
-    '#ccebc5',
-    '#a8ddb5',
-    '#7bccc4',
-    '#4eb3d3',
-    '#2b8cbe',
-    '#08589e'];
+        '#ccebc5',
+        '#a8ddb5',
+        '#7bccc4',
+        '#4eb3d3',
+        '#2b8cbe',
+        '#08589e'
+    ];
 
     layout1 = {
         autosize: true,
@@ -338,11 +383,38 @@ function graphEstrato(chooseLocalidad) {
         });
 }
 
+function updateRegimen() {
+    var tipoRegimen = ['PROPIEDAD HORIZONTAL', 'NO PROPIEDAD HORIZONTAL'];
+
+    for (var index1 = 0; index1 < tipoRegimen.length; index1++) {
+        var nombreRegimen = tipoRegimen[index1];
+        var RegimenFiltrado = datosRegimen.filter(function (Regimen) {
+            return Regimen.Regimen == nombreRegimen;
+        });
+
+        var allData = [0, 0, 0];
+        for (var index2 = 0; index2 < RegimenFiltrado.length; index2++) {
+            var valores = RegimenFiltrado[index2];
+            allData[0] += parseInt(valores.NumeroPredios);
+            allData[1] += parseFloat(valores.AreaConstruida);
+            allData[2] += parseFloat(valores.ValorAvaluoCatastral);
+        }
+
+        for (var index3 = 0; index3 < datosRegimen.length; index3++) {
+            if (datosRegimen[index3].Localidad == 'All' && datosRegimen[index3].Regimen == nombreRegimen) {
+                datosRegimen[index3].NumeroPredios = allData[0];
+                datosRegimen[index3].AreaConstruida = allData[1];
+                datosRegimen[index3].ValorAvaluoCatastral = allData[2];
+                break;
+            }
+        }
+    }
+}
+
 function graphRegimen(chooseLocalidad) {
     var datosRegimenLocalidad = datosRegimen.filter(function (dato) {
         return dato.Localidad == chooseLocalidad;
     });
-
     var Regimen = unpack(datosRegimenLocalidad, 'Regimen');
     var numeroPredios = unpack(datosRegimenLocalidad, 'NumeroPredios');
     var areaConstruida = unpack(datosRegimenLocalidad, 'AreaConstruida');
@@ -524,4 +596,3 @@ function graphRegimen(chooseLocalidad) {
             displaylogo: false
         });
 }
-

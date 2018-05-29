@@ -29,7 +29,7 @@ $(document).ready(function () {
                 header: true,
                 complete: function (parsed) {
                     datosUso = parsed.data;
-
+                    updateUso();
                     $("#localidadSelector").val($("#localidadSelector option:first").val()).trigger("change");
 
                 }
@@ -37,6 +37,34 @@ $(document).ready(function () {
         }
     });
 });
+
+function updateUso() {
+    var tipoUso = ['BODEGAS', 'CLINICAS, HOSPITALES, CENTROS MÉDICOS', 'COMERCIO', 'HOTELES', 'INDUSTRIA', 'OFICINAS', 'UNIVERSIDADES Y COLEGIOS', 'RESIDENCIAL', 'OTROS'];
+
+    for (var index1 = 0; index1 < tipoUso.length; index1++) {
+        var nombreUso = tipoUso[index1];
+        var UsoFiltrado = datosUso.filter(function (Uso) {
+            return Uso.Uso == nombreUso;
+        });
+
+        var allData = [0, 0, 0];
+        for (var index2 = 0; index2 < UsoFiltrado.length; index2++) {
+            var valores = UsoFiltrado[index2];
+            allData[0] += parseInt(valores.NumeroPredios);
+            allData[1] += parseFloat(valores.AreaConstruida);
+            allData[2] += parseFloat(valores.ValorAvaluoCatastral);
+        }
+        
+        for (var index3 = 0; index3 < datosUso.length; index3++) {
+            if (datosUso[index3].Localidad == 'All' && datosUso[index3].Uso == nombreUso) {
+                datosUso[index3].NumeroPredios = allData[0];
+                datosUso[index3].AreaConstruida = allData[1];
+                datosUso[index3].ValorAvaluoCatastral = allData[2];
+                break;
+            }
+        }
+    }
+}
 
 function graphUso(chooseLocalidad) {
     var datosUsoLocalidad = datosUso.filter(function (dato) {
