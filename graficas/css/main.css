@@ -1,8 +1,10 @@
 html, body {
-    background-color: #000000 !important;
-    font-family: 'Roboto', sans-serif !important;
     overflow-x: hidden;
     overflow: scroll;    
+}
+body {
+    background-color: #000000 !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
