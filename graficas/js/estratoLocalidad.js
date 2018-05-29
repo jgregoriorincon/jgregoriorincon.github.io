@@ -31,11 +31,12 @@ $(document).ready(function () {
                 graphEstrato($('#localidadSelector').val());
                 graphRegimen($('#localidadSelector').val());
 
-                console.log($('#selFilter').val());
-                console.log(document.querySelector('#selFilter').value);
-                // document.querySelector('#selFilter').value = 'ENGATIVA';
-                // var event123 = new Event('change');
-                // document.querySelector('#selFilter').dispatchEvent(event123);
+
+                console.log("ANTES: " + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
+                document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value = $('#localidadSelector').val();
+                console.log("AHORA:" + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
+                var event123 = new Event('change');
+                document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').dispatchEvent(event123);
             });
 
             Papa.parse("data/Data2.csv", {
