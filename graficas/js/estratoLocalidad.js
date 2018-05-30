@@ -52,7 +52,7 @@ $(document).ready(function () {
                 // console.log("AHORA:" + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
                 // var event123 = new Event('change');
                 // document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').dispatchEvent(event123);
-                parent.parent.postMessage("hi_from_graficas","*");
+                parent.parent.postMessage($('#localidadSelector').val(),"*");
             });
 
             Papa.parse("data/Data2.csv", {
