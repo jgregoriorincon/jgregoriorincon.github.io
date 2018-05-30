@@ -52,6 +52,8 @@ $(document).ready(function () {
                 // console.log("AHORA:" + document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').value);
                 // var event123 = new Event('change');
                 // document.getElementsByClassName("embedContainer")[0].contentWindow.document.querySelector('#selFilter').dispatchEvent(event123);
+
+                console.log(window.localidadSeleccionada);
             });
 
             Papa.parse("data/Data2.csv", {
