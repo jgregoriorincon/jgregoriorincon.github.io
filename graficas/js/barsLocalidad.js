@@ -15,7 +15,7 @@ $(document).ready(function () {
 
             var colores1 = rangeColors(Localidad.length, '#2E5E87', '#A84127');
             var colores2 = rangeColors(Localidad.length, '#F5C668', '#A84127');
-            var colores3 = rangeColors(Localidad.length, '#F5D16E', '#23723E');
+            var colores3 = rangeColors(Localidad.length, '#23723E', '#F5D16E');
 
             var LocalidadNumeroPredios = Localidad.join(";").split(";");
             var LocalidadAreaConstruida = Localidad.join(";").split(";");
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
             bubbleSortAscending(NumeroPredios, LocalidadNumeroPredios);
             bubbleSortAscending(AreaConstruida, LocalidadAreaConstruida);
-            bubbleSortDescending(ValorAvaluoCatastral, LocalidadValorAvaluoCatastral);
+            bubbleSortAscending(ValorAvaluoCatastral, LocalidadValorAvaluoCatastral);
 
             trace1 = {
                 y: NumeroPredios,
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
-                height: window.innerHeight / 2.0,
+                height: window.innerHeight / 1.5,
                 margin: {
                     l: 70,
                     t: 70,
@@ -94,7 +94,7 @@ $(document).ready(function () {
                 plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
-                height: window.innerHeight / 2.0,
+                height: window.innerHeight / 1.5,
                 margin: {
                     l: 70,
                     t: 70,
@@ -128,14 +128,14 @@ $(document).ready(function () {
             };
 
             trace3 = {
-                x: ValorAvaluoCatastral,
-                y: LocalidadValorAvaluoCatastral,
+                y: ValorAvaluoCatastral,
+                x: LocalidadValorAvaluoCatastral,
                 marker: {
                     color: colores3
                 },
                 name: 'Miles de Millones de Pesos',
                 opacity: 1,
-                orientation: 'h',
+                orientation: 'v',
                 showlegend: false,
                 type: 'bar',
             };
@@ -145,10 +145,11 @@ $(document).ready(function () {
                 plot_bgcolor: 'rgb(0, 0, 0)',
                 barmode: 'group',
                 barnorm: '',
-                height: window.innerHeight,
+                height: window.innerHeight / 1.5,
                 margin: {
-                    l: 150,
+                    l: 70,
                     t: 70,
+                    b: 100,
                     pad: 4
                 },
                 showlegend: false,
@@ -166,14 +167,13 @@ $(document).ready(function () {
                 title: 'Valor Avaluo Catastral (En Miles de Millones)',
                 width: window.innerWidth,
                 xaxis: {
-                    autorange: true,
-                    title: 'Vigencia 2018',
-                    type: 'linear'
+                    autorange: true,                    
+                    type: 'category'
                 },
                 yaxis: {
                     autorange: true,
-                    // title: 'Localidad',
-                    type: 'category'
+                    title: 'Vigencia 2018',
+                    type: 'linear'
                 }
             };
 
