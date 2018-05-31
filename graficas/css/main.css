@@ -1,16 +1,23 @@
-html, body {
+html,
+body {
     overflow-x: hidden;
-    overflow: scroll;    
+    overflow: scroll;
 }
+
 body {
     background-color: #000000 !important;
     font-family: 'Roboto', sans-serif !important;
 }
+
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+    width: 0px;
+    /* remove scrollbar space */
+    background: transparent;
+    /* optional: just make scrollbar invisible */
 }
+
 /* optional: show position indicator in red */
+
 ::-webkit-scrollbar-thumb {
     background: #000000;
 }
@@ -38,4 +45,79 @@ body {
     filter: alpha(opacity=90);
     /* Modern Browsers */
     opacity: 0.9;
+}
+
+/* .center-on-page {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+} */
+
+h1 {
+    text-align: center;
+}
+
+/* Reset Select */
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+}
+
+/* Custom Select */
+
+.select {
+    left: 40%;
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: #fff;
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Arrow */
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background: #34495e;
+    pointer-events: none;
+}
+
+/* Transition */
+
+.select:hover::after {
+    color: #f39c12;
+}
+
+.select::after {
+    transition: .25s all ease;
 }

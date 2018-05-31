@@ -25,7 +25,11 @@ $(document).ready(function () {
             Localidad = unpack(parsed.data, 'Localidad');
 
             $.each(Localidad, function () {
-                $("#localidadSelector").append($("<option />").val(this).text(this));
+                if (this == 'All') {
+                    $("#localidadSelector").append($("<option />").val(this).text('Todas las localidades'));
+                } else {
+                    $("#localidadSelector").append($("<option />").val(this).text(this));
+                }
             });
 
             $('#localidadSelector').on('change', function () {
