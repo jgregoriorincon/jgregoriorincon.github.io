@@ -38,7 +38,7 @@ $(document).ready(function () {
                 graphRegimen($('#localidadSelector').val());
                 graphUso($('#localidadSelector').val());
 
-                parent.postMessage($('#localidadSelector').val(), "IDECA");
+                parent.postMessage($('#localidadSelector').val(), "*");
             });
 
             Papa.parse("data/Data2.csv", {
