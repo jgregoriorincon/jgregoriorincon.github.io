@@ -741,7 +741,7 @@ function graphUso(chooseLocalidad) {
         showlegend: false,
         title: 'Participación del uso predominante del área construida',
         width: window.innerWidth,
-        height: window.innerHeight / 3,
+        height: window.innerHeight / 4,
         xaxis: {
             autorange: true,
             type: 'linear',
