@@ -124,6 +124,7 @@ select::-ms-expand {
 
 .table {
     color: white;
+    font-size: 0.9em;
 }
 
 .table> thead> tr > th {
