@@ -147,13 +147,13 @@ function graphTipoPredio(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -243,13 +243,13 @@ function graphEstrato(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -287,13 +287,13 @@ function graphEstrato(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -329,13 +329,13 @@ function graphEstrato(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -457,13 +457,13 @@ function graphRegimen(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -501,13 +501,13 @@ function graphRegimen(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -543,13 +543,13 @@ function graphRegimen(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hoverlabel: {
             bgcolor: 'black',
             font: {
                 color: 'white',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,
@@ -728,14 +728,14 @@ function graphUso(chooseLocalidad) {
         },
         font: {
             color: '#fff',
-            family: "'Roboto', sans-serif"
+            family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
         },
         hovermode: 'closest',
         hoverlabel: {
             bgcolor: 'white',
             font: {
                 color: 'black',
-                family: "'Roboto', sans-serif"
+                family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
             }
         },
         showlegend: false,

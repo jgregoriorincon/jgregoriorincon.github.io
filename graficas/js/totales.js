@@ -52,13 +52,13 @@ $(document).ready(function () {
                 },
                 font: {
                     color: '#fff',
-                    family: "'Roboto', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
                         color: 'white',
-                        family: "'Roboto', sans-serif"
+                        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                     }
                 },
                 showlegend: false,
@@ -104,13 +104,13 @@ $(document).ready(function () {
                 showlegend: false,
                 font: {
                     color: '#fff',
-                    family: "'Roboto', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
                         color: 'white',
-                        family: "'Roboto', sans-serif"
+                        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                     }
                 },
                 title: 'Área de Contrucción',
@@ -155,13 +155,13 @@ $(document).ready(function () {
                 showlegend: false,
                 font: {
                     color: '#fff',
-                    family: "'Roboto', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                 },
                 hoverlabel: {
                     bgcolor: 'black',
                     font: {
                         color: 'white',
-                        family: "'Roboto', sans-serif"
+                        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
                     }
                 },
                 title: 'Valor Avaluo Catastral (En Miles de Millones)',
