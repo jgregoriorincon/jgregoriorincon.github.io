@@ -6,7 +6,7 @@ body {
 
 body {
     background-color: #000000 !important;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
 }
 
 ::-webkit-scrollbar {
@@ -23,7 +23,7 @@ body {
 }
 
 .control-row {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
     color: #fff !important;
     font-size: 0.8em !important;
 }
