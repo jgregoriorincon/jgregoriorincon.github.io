@@ -121,3 +121,12 @@ select::-ms-expand {
 .select::after {
     transition: .25s all ease;
 }
+
+.table {
+    color: white;
+}
+
+.table> thead> tr > th {
+    text-align:center;
+    vertical-align:middle !important;
+}

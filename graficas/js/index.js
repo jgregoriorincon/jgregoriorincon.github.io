@@ -1,5 +1,15 @@
 var sizeWindowWidth;
 
+var colorBodega = '#ffdbe3';
+var colorClinica = '#00c5ff';
+var colorComercio = '#ff0000';
+var colorHotel = '#cd6699';
+var colorIndustria = '#ffa77f';
+var colorOficina = '#a83800';
+var colorOtro = '#b2b2b2';
+var colorResidencial = '#ffffbe';
+var colorUniversidad = '#0070ff';
+
 function bubbleSortDescending(a, b) {
     var swapped;
     do {
@@ -77,3 +87,44 @@ function rangeColors(numColors, primerColor, ultimoColor) {
 function getSizeWindow() {
     sizeWindowWidth = window.innerWidth;
 }
+
+function json2table(json, classes) {
+    var cols = Object.keys(json[0]);
+    
+    var headerRow = '';
+    var bodyRows = '';
+    
+    classes = classes || '';
+  
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  
+    cols.map(function(col) {
+      headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
+    });
+  
+    json.map(function(row) {
+      bodyRows += '<tr>';
+  
+      cols.map(function(colName) {
+          if (colName == 'Uso Predominante') {
+              bodyRows += '<td>' + row[colName] + '</td>';
+          } else {
+              bodyRows += '<td align="right">' + row[colName] + '</td>';
+          }
+      });
+  
+      bodyRows += '</tr>';
+    });
+  
+    return '<table class="' +
+           classes +
+           '"><thead><tr>' +
+           headerRow +
+           '</tr></thead><tbody>' +
+           bodyRows +
+           '</tbody></table>';
+  }
+  
+  
