@@ -40,8 +40,6 @@ $(document).ready(function () {
                 graphRegimen($('#localidadSelector').val());
                 graphUso($('#localidadSelector').val());
 
-                console.log(datosPorLocalidad);
-
                 var totalNumeroPredios = 0;
                 var totalAreaConstruida = 0;
                 var totalValorAvaluoCatastral = 0;
