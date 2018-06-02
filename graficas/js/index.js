@@ -1,15 +1,5 @@
 var sizeWindowWidth;
 
-var colorBodega = '#ffdbe3';
-var colorClinica = '#00c5ff';
-var colorComercio = '#ff0000';
-var colorHotel = '#cd6699';
-var colorIndustria = '#ffa77f';
-var colorOficina = '#a83800';
-var colorOtro = '#b2b2b2';
-var colorResidencial = '#ffffbe';
-var colorUniversidad = '#0070ff';
-
 function bubbleSortDescending(a, b) {
     var swapped;
     do {
@@ -88,43 +78,54 @@ function getSizeWindow() {
     sizeWindowWidth = window.innerWidth;
 }
 
-function json2table(json, classes) {
-    var cols = Object.keys(json[0]);
-    
+function json2table(datosUsoJSON, classes) {
+
+    var cols = Object.keys(datosUsoJSON[0]);
+
     var headerRow = '';
     var bodyRows = '';
-    
+
     classes = classes || '';
-  
+
     function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
-  
-    cols.map(function(col) {
-      headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
+
+    cols.map(function (col) {
+        if (col == 'Uso') {
+            headerRow += '<th style="font-size: 14px;">' + 'Uso Predominante' + '</th>';
+        } else if (col == 'NumeroPredios') {
+            headerRow += '<th style="font-size: 14px;">' + 'Número de Predios' + '</th>';
+        } else if (col == 'AreaConstruida') {
+            headerRow += '<th style="font-size: 14px;">' + 'Área Construida (m2)' + '</th>';
+        } else if (col == 'ValorAvaluoCatastral') {
+            headerRow += '<th style="font-size: 14px;">' + 'Valor Avalúo Catastral (MM)' + '</th>';
+        }
     });
-  
-    json.map(function(row) {
-      bodyRows += '<tr>';
-  
-      cols.map(function(colName) {
-          if (colName == 'Uso Predominante') {
-              bodyRows += '<td>' + row[colName] + '</td>';
-          } else {
-              bodyRows += '<td align="right">' + row[colName] + '</td>';
-          }
-      });
-  
-      bodyRows += '</tr>';
+
+    datosUsoJSON.map(function (row) {
+        bodyRows += '<tr>';
+
+        cols.map(function (colName) {
+            if (colName == 'Uso') {
+                bodyRows += '<td>' + row[colName] + '</td>';
+            } else if (colName == 'NumeroPredios') {
+                bodyRows += '<td align="right">' + row[colName].toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,').replace(".0", "") + '</td>';
+            } else if (colName == 'AreaConstruida') {
+                bodyRows += '<td align="right">' + row[colName].toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + '</td>';
+            } else if (colName == 'ValorAvaluoCatastral') {
+                bodyRows += '<td align="right">' + row[colName].toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + '</td>';
+            }
+        });
+
+        bodyRows += '</tr>';
     });
-  
+
     return '<table class="' +
-           classes +
-           '"><thead><tr>' +
-           headerRow +
-           '</tr></thead><tbody>' +
-           bodyRows +
-           '</tbody></table>';
-  }
-  
-  
+        classes +
+        '"><thead><tr>' +
+        headerRow +
+        '</tr></thead><tbody>' +
+        bodyRows +
+        '</tbody></table>';
+}

@@ -4,6 +4,8 @@ var datosEstrato = [];
 var datosRegimen = [];
 var datosUso = [];
 
+var datosPorLocalidad = [];
+
 var graphDiv1 = document.getElementById('graph1');
 var graphDiv2 = document.getElementById('graph2');
 var graphDiv3 = document.getElementById('graph3');
@@ -12,7 +14,6 @@ var graphDiv5 = document.getElementById('graph5');
 var graphDiv6 = document.getElementById('graph6');
 var graphDiv7 = document.getElementById('graph7');
 var graphDiv8 = document.getElementById('graph8');
-// var graphDiv9 = document.getElementById('graph9');
 
 $(document).ready(function () {
     getSizeWindow();
@@ -39,7 +40,24 @@ $(document).ready(function () {
                 graphRegimen($('#localidadSelector').val());
                 graphUso($('#localidadSelector').val());
 
-                parent.postMessage($('#localidadSelector').val(), "*");
+                console.log(datosPorLocalidad);
+
+                var totalNumeroPredios = 0;
+                var totalAreaConstruida = 0;
+                var totalValorAvaluoCatastral = 0;
+
+                for (var index = 0; index < datosPorLocalidad.length; index++) {
+                    totalNumeroPredios += datosPorLocalidad[index].NumeroPredios;
+                    totalAreaConstruida += datosPorLocalidad[index].AreaConstruida;
+                    totalValorAvaluoCatastral += datosPorLocalidad[index].ValorAvaluoCatastral;
+                }
+
+                var messageEnviar = $('#localidadSelector').val();
+                messageEnviar += ';' + totalNumeroPredios;
+                messageEnviar += ';' + totalAreaConstruida;
+                messageEnviar += ';' + totalValorAvaluoCatastral;
+
+                parent.postMessage(messageEnviar, "*");
             });
 
             Papa.parse("data/Data2.csv", {
@@ -436,6 +454,11 @@ function graphRegimen(chooseLocalidad) {
     var datosRegimenLocalidad = datosRegimen.filter(function (dato) {
         return dato.Localidad == chooseLocalidad;
     });
+
+    datosPorLocalidad = datosRegimen.filter(function (dato) {
+        return dato.Localidad == chooseLocalidad;
+    });
+
     var Regimen = unpack(datosRegimenLocalidad, 'Regimen');
     var numeroPredios = unpack(datosRegimenLocalidad, 'NumeroPredios');
     var areaConstruida = unpack(datosRegimenLocalidad, 'AreaConstruida');
@@ -651,11 +674,21 @@ function graphUso(chooseLocalidad) {
         return dato.Localidad == chooseLocalidad;
     });
 
+    var colorBodega = '#ffdbe3';
+    var colorClinica = '#00c5ff';
+    var colorComercio = '#ff0000';
+    var colorHotel = '#cd6699';
+    var colorIndustria = '#ffa77f';
+    var colorOficina = '#a83800';
+    var colorOtro = '#b2b2b2';
+    var colorResidencial = '#ffffbe';
+    var colorUniversidad = '#0070ff';
+
     var Uso = unpack(datosUsoLocalidad, 'Uso');
     var areaConstruida = unpack(datosUsoLocalidad, 'AreaConstruida');
 
     bubbleSortAscending(areaConstruida, Uso);
-    
+
     var data = [];
     for (var i = 0; i < Uso.length; i++) {
 
@@ -754,28 +787,6 @@ function graphUso(chooseLocalidad) {
             modeBarButtonsToRemove: ['sendDataToCloud', 'hoverClosestCartesian', 'hoverCompareCartesian'],
             displaylogo: false
         });
-
-    for (var index = 0; index < datosUsoLocalidad.length; index++) {
-
-        datosUsoLocalidad[index].NumeroPredios = datosUsoLocalidad[index].NumeroPredios.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-        datosUsoLocalidad[index].NumeroPredios = datosUsoLocalidad[index].NumeroPredios.substring(0, datosUsoLocalidad[index].NumeroPredios.length-2);
-        
-        datosUsoLocalidad[index].AreaConstruida = datosUsoLocalidad[index].AreaConstruida.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-        datosUsoLocalidad[index].ValorAvaluoCatastral = '$ ' + datosUsoLocalidad[index].ValorAvaluoCatastral.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-
-
-        datosUsoLocalidad[index]["Uso Predominante"] = datosUsoLocalidad[index].Uso;
-        datosUsoLocalidad[index]["Número de Predios"] = datosUsoLocalidad[index].NumeroPredios;
-        datosUsoLocalidad[index]["Área Construida (m2)"] = datosUsoLocalidad[index].AreaConstruida;
-        datosUsoLocalidad[index]["Valor Avalúo Catastral (MM)"] = datosUsoLocalidad[index].ValorAvaluoCatastral;
-
-        delete datosUsoLocalidad[index].Codigo;
-        delete datosUsoLocalidad[index].Localidad;
-        delete datosUsoLocalidad[index].Uso;
-        delete datosUsoLocalidad[index].NumeroPredios;
-        delete datosUsoLocalidad[index].AreaConstruida;
-        delete datosUsoLocalidad[index].ValorAvaluoCatastral;
-    }
 
     document.getElementById('tableUso').innerHTML = json2table(datosUsoLocalidad, 'table');
 }
