@@ -13,6 +13,11 @@ $(document).ready(function () {
             var AreaConstruida = unpack(parsed.data, 'AreaConstruida');
             var ValorAvaluoCatastral = unpack(parsed.data, 'ValorAvaluoCatastral');
 
+            Localidad.shift();
+            NumeroPredios.shift();
+            AreaConstruida.shift();
+            ValorAvaluoCatastral.shift();
+
             var colores1 = rangeColors(Localidad.length, '#2E5E87', '#A84127');
             var colores2 = rangeColors(Localidad.length, '#F5C668', '#A84127');
             var colores3 = rangeColors(Localidad.length, '#23723E', '#F5D16E');

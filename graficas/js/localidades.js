@@ -4,7 +4,7 @@ var datosEstrato = [];
 var datosRegimen = [];
 var datosUso = [];
 
-var datosPorLocalidad = [];
+var datosTotales = [];
 
 var graphDiv1 = document.getElementById('graph1');
 var graphDiv2 = document.getElementById('graph2');
@@ -40,61 +40,67 @@ $(document).ready(function () {
                 graphRegimen($('#localidadSelector').val());
                 graphUso($('#localidadSelector').val());
 
-                var totalNumeroPredios = 0;
-                var totalAreaConstruida = 0;
-                var totalValorAvaluoCatastral = 0;
+                var datosPorLocalidad = datosTotales.filter(function (dato) {
+                    return dato.Localidad == $('#localidadSelector').val();
+                });
 
-                for (var index = 0; index < datosPorLocalidad.length; index++) {
-                    totalNumeroPredios += datosPorLocalidad[index].NumeroPredios;
-                    totalAreaConstruida += datosPorLocalidad[index].AreaConstruida;
-                    totalValorAvaluoCatastral += datosPorLocalidad[index].ValorAvaluoCatastral;
-                }
-
-                var messageEnviar = $('#localidadSelector').val();
-                messageEnviar += ';' + totalNumeroPredios;
-                messageEnviar += ';' + totalAreaConstruida;
-                messageEnviar += ';' + totalValorAvaluoCatastral;
+                var messageEnviar = {
+                    'Localidad': $('#localidadSelector').val(),
+                    'NumeroPredios': datosPorLocalidad[0].NumeroPredios,
+                    'AreaConstruida': datosPorLocalidad[0].AreaConstruida,
+                    'ValorAvaluoCatastral': datosPorLocalidad[0].ValorAvaluoCatastral
+                };
 
                 parent.postMessage(messageEnviar, "*");
             });
 
-            Papa.parse("data/Data2.csv", {
+            Papa.parse("data/Data1.csv", {
                 download: true,
                 skipEmptyLines: true,
                 dynamicTyping: true,
                 header: true,
                 complete: function (parsed) {
-                    datosTipoPredio = parsed.data;
-                    updateTipoPredio();
+                    datosTotales = parsed.data;
 
-                    Papa.parse("data/Data3.csv", {
+                    Papa.parse("data/Data2.csv", {
                         download: true,
                         skipEmptyLines: true,
                         dynamicTyping: true,
                         header: true,
                         complete: function (parsed) {
-                            datosEstrato = parsed.data;
-                            updateEstrato();
+                            datosTipoPredio = parsed.data;
+                            updateTipoPredio();
 
-                            Papa.parse("data/Data4.csv", {
+                            Papa.parse("data/Data3.csv", {
                                 download: true,
                                 skipEmptyLines: true,
                                 dynamicTyping: true,
                                 header: true,
                                 complete: function (parsed) {
-                                    datosRegimen = parsed.data;
-                                    updateRegimen();
+                                    datosEstrato = parsed.data;
+                                    updateEstrato();
 
-                                    Papa.parse("data/Data5.csv", {
+                                    Papa.parse("data/Data4.csv", {
                                         download: true,
                                         skipEmptyLines: true,
                                         dynamicTyping: true,
                                         header: true,
                                         complete: function (parsed) {
-                                            datosUso = parsed.data;
-                                            updateUso();
-                                            $("#localidadSelector").val($("#localidadSelector option:first").val()).trigger("change");
+                                            datosRegimen = parsed.data;
+                                            updateRegimen();
 
+                                            Papa.parse("data/Data5.csv", {
+                                                download: true,
+                                                skipEmptyLines: true,
+                                                dynamicTyping: true,
+                                                header: true,
+                                                complete: function (parsed) {
+                                                    datosUso = parsed.data;
+                                                    updateUso();
+                                                    $("#localidadSelector").val($("#localidadSelector option:first").val()).trigger("change");
+
+                                                }
+                                            });
                                         }
                                     });
                                 }
@@ -450,10 +456,6 @@ function updateRegimen() {
 
 function graphRegimen(chooseLocalidad) {
     var datosRegimenLocalidad = datosRegimen.filter(function (dato) {
-        return dato.Localidad == chooseLocalidad;
-    });
-
-    datosPorLocalidad = datosRegimen.filter(function (dato) {
         return dato.Localidad == chooseLocalidad;
     });
 
