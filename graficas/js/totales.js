@@ -13,6 +13,15 @@ $(document).ready(function () {
             var AreaConstruida = unpack(parsed.data, 'AreaConstruida');
             var ValorAvaluoCatastral = unpack(parsed.data, 'ValorAvaluoCatastral');
 
+            var messageEnviar = {
+                'Localidad': Localidad[0],
+                'NumeroPredios': NumeroPredios[0],
+                'AreaConstruida': AreaConstruida[0],
+                'ValorAvaluoCatastral': ValorAvaluoCatastral[0]
+            };
+
+            parent.postMessage(messageEnviar, "*");
+
             Localidad.shift();
             NumeroPredios.shift();
             AreaConstruida.shift();

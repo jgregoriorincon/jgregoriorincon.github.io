@@ -133,5 +133,5 @@ select::-ms-expand {
 }
 
 #localidadSelector {
-    z-index: 99999 !important;
+    z-index: 999 !important;
 }
