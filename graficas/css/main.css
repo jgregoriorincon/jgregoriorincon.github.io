@@ -75,7 +75,7 @@ select {
 /* Custom Select */
 
 .select {
-    left: 40%;
+    /* left: 40%; */
     position: relative;
     display: block;
     width: 20em;
@@ -134,4 +134,9 @@ select::-ms-expand {
 
 #localidadSelector {
     z-index: 999 !important;
+}
+
+#divYearSelector {
+    z-index: 999 !important;
+    left: 0px;
 }

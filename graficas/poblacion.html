@@ -12,48 +12,30 @@
 
 <body class="opaque">
     <br>
-    <div class="control-row">
-        <div class="center-on-page">
-            <div class="select">
-            <select name="localidadSelector" id="localidadSelector">
-            </select>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
+
     <div>
-        <div class="row">
-            <div class="col-12 col-md-12">
-                <div id="graph1"></div>
+        <div class="row" style="margin: auto; max-width: 300px;"><br>
+            <label for="yearSelector" style="color:#fff;">Población para el año </label>
+            <div class="select" id="divYearSelector">
+                <select name="yearSelector" id="yearSelector">
+                </select>
             </div>
         </div>
-        <br>
         <div class="row">
             <div class="col-12 col-md-12">
-                <div id="graph2"></div>
-                <div id="graph3"></div>
-                <div id="graph4"></div>
+                <div id="plotdiv1"></div>
             </div>
         </div>
-        <br>
+        <div class="row" style="margin: auto; max-width: 300px;"><br>
+            <label for="localidadSelector" style="color:#fff;">Población por años para </label>
+            <div class="select" id="divLocalidadSelector">
+                <select name="localidadSelector" id="localidadSelector">
+                </select>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-md-12">
-                <div id="graph5"></div>
-                <div id="graph6"></div>
-                <div id="graph7"></div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12 col-md-12">
-                <div id="graph8"></div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <div id="tableUso"></div>
+                <div id="plotdiv2"></div>
             </div>
         </div>
     </div>
@@ -62,13 +44,11 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/anomal/RainbowVis-JS/28d34555/rainbowvis.js"></script>
     <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/anomal/RainbowVis-JS/28d34555/rainbowvis.js"></script>
 
     <script src="js/index.js"></script>
-    <script src="js/localidades.js"></script>
-
-
+    <script src="js/poblacion.js"></script>
 </body>
 
 </html>

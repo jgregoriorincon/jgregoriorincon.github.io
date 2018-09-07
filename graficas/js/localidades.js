@@ -674,16 +674,6 @@ function graphUso(chooseLocalidad) {
         return dato.Localidad == chooseLocalidad;
     });
 
-    var colorBodega = '#ffdbe3';
-    var colorClinica = '#00c5ff';
-    var colorComercio = '#ff0000';
-    var colorHotel = '#cd6699';
-    var colorIndustria = '#ffa77f';
-    var colorOficina = '#a83800';
-    var colorOtro = '#b2b2b2';
-    var colorResidencial = '#ffffbe';
-    var colorUniversidad = '#0070ff';
-
     var Uso = unpack(datosUsoLocalidad, 'Uso');
     var areaConstruida = unpack(datosUsoLocalidad, 'AreaConstruida');
 
