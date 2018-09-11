@@ -9,6 +9,7 @@ var colorOficina = '#a83800';
 var colorOtro = '#b2b2b2';
 var colorResidencial = '#ffffbe';
 var colorUniversidad = '#0070ff';
+var colorLote = '#a8ddb5';
 
 function bubbleSortDescending(a, b) {
     var swapped;

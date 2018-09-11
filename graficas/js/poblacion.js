@@ -59,7 +59,7 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
   function setYearPlot(chosenYear) {
     getYearsData(chosenYear);
 
-    var colores = rangeColors(20, '#F0F4FF', '#0D4691');
+    var colores = rangeColors(listofLocalidades.length, '#084594', '#eff3ff');
 
     var trace1 = {
       y: currentPoblacion,
@@ -125,26 +125,28 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
 
     var minRange = minArrayValue(allPoblacion),
       maxRange = maxArrayValue(allPoblacion);
-
     minRange = minRange - (minRange / 100);
+
+    var colores = rangeColors(listofYears.length, '#eff3ff', '#084594');
+
     var trace2 = {
       y: allPoblacion,
       x: allLocalidad,
       type: 'bar',
       marker: {
-        color: 'rgba(13,70,145,1)',
+        color: colores,
         width: 1
       },
     };
-
+    
     var data2 = [trace2];
 
     layout2 = {
-      // autosize: true,
+      autosize: true,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
       barmode: 'group',
-      // barnorm: '',
+      barnorm: '',
       margin: {
         l: 150,
         t: 50,
@@ -166,17 +168,7 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
       // title: 'Crecimiento de la población de Bogotá D.C.',
       width: window.innerWidth,
       height: window.innerHeight / 3,
-      // xaxis: {
-      //   autorange: true,
-      //   type: 'linear',
-      //   hoverformat: '',
-      //   // gridcolor: '#fff',
-      //   zerolinecolor: '#fff',
-      //   linecolor: '#fff',
-      // },
       yaxis: {
-        // autorange: false,
-        // range: [allPoblacion[0]-(allPoblacion[0]/10), allPoblacion[5]],
         range: [minRange, maxRange],
         type: 'linear',
         zerolinecolor: '#fff'

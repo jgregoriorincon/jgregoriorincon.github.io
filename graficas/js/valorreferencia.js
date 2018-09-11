@@ -40,7 +40,8 @@ Plotly.d3.csv('data/ValorReferencia1.csv', function (err, rows) {
     function setBubblePlot(chosenYear) {
       getYearsData(chosenYear);
 
-      var colores = rangeColors(8, '#FFFE8A', '#48569D');
+      // var colores = rangeColors(8, '#FFFE8A', '#48569D');
+      var colores = ['#FFFF80','#AFF553','#5AE622','#3EC948','#34A884','#1F7EA3','#1F438F','#0C1078']; 
       var trace1 = {
         x: currentValor,
         y: currentRango,
@@ -55,7 +56,7 @@ Plotly.d3.csv('data/ValorReferencia1.csv', function (err, rows) {
         y: allValorRef,
         x: allYearsRef,
         type: 'bar',
-        marker: {color: '#48569D'},
+        marker: {color: '#47549e'},
       };
 
       var data1 = [trace1];

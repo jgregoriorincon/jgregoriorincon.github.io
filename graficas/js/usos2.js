@@ -46,14 +46,26 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
     }
   }
 
-  // Default Country Data
-  setBubblePlot('2018');
+  function getLocalidadData(chosenLocalidad) {
+    allLocalidad = [];
+    allPorcNPH = [];
+    allPorcPH = [];
+    for (var i = 0; i < allYears.length; i++) {
+      if (allLocalidades[i] == chosenLocalidad) {
+        allLocalidad.push(allYears[i]);
+        allPorcNPH.push((allPorcNPHs[i] * 100).toFixed(2) + '%');
+        allPorcPH.push((allPorcPHs[i] * 100).toFixed(2) + '%');
+      }
+    }
+  }
 
-  function setBubblePlot(chosenYear) {
+  setYearPlot('2018');
+  setLocalidadPlot('USAQUÉN');
+
+  function setYearPlot(chosenYear) {
     getYearsData(chosenYear);
 
-    var data2 = [],
-      dataBodegas = [],
+    var dataBodegas = [],
       dataClinicas = [],
       dataComercio = [],
       dataHoteles = [],
@@ -66,46 +78,35 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
 
     for (var i = 0; i < currentUso.length; i++) {
 
-      var colorMarker;
       switch (currentUso[i]) {
         case "RESIDENCIAL":
-          colorMarker = colorResidencial;
           dataResidencial.push(currentPorcentaje[i]);
           break;
         case "OFICINAS":
-          colorMarker = colorOficina;
           dataOficinas.push(currentPorcentaje[i]);
           break;
         case "COMERCIO":
-          colorMarker = colorComercio;
           dataComercio.push(currentPorcentaje[i]);
           break;
         case "BODEGAS":
-          colorMarker = colorBodega;
           dataBodegas.push(currentPorcentaje[i]);
           break;
         case "UNIVERSIDADES Y COLEGIOS":
-          colorMarker = colorUniversidad;
           dataUniversidades.push(currentPorcentaje[i]);
           break;
         case "LOTES":
-          colorMarker = colorOtro;
           dataLotes.push(currentPorcentaje[i]);
           break;
         case "OTROS":
-          colorMarker = colorOtro;
           dataOtros.push(currentPorcentaje[i]);
           break;
         case "CLINICAS, HOSPITALES, CENTROS MEDICOS":
-          colorMarker = colorClinica;
           dataClinicas.push(currentPorcentaje[i]);
           break;
         case "HOTELES":
-          colorMarker = colorHotel;
           dataHoteles.push(currentPorcentaje[i]);
           break;
         case "INDUSTRIA":
-          colorMarker = colorIndustria;
           dataIndustria.push(currentPorcentaje[i]);
           break;
         default:
@@ -116,62 +117,112 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
     var traces = [{
         x: listofLocalidades,
         y: dataBodegas,
+        type: 'bar',
         fill: 'tozeroy',
         name: 'Bodegas',
+        marker: {
+          color: colorBodega,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataClinicas,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Clinicas',
+        marker: {
+          color: colorClinica,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataComercio,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Comercio',
+        marker: {
+          color: colorComercio,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataHoteles,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Hoteles',
+        marker: {
+          color: colorHotel,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataIndustria,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Industria',
+        marker: {
+          color: colorIndustria,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataLotes,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Lotes',
+        marker: {
+          color: colorLote,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataOficinas,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Oficinas',
+        marker: {
+          color: colorOficina,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataOtros,
         fill: 'tonexty',
+        type: 'bar',
         name: 'Otros',
+        marker: {
+          color: colorOtro,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataResidencial,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Residencial',
+        marker: {
+          color: colorResidencial,
+          width: 1
+        },
       },
       {
         x: listofLocalidades,
         y: dataUniversidades,
+        type: 'bar',
         fill: 'tonexty',
         name: 'Universidades',
+        marker: {
+          color: colorUniversidad,
+          width: 1
+        },
       }
     ];
 
@@ -188,6 +239,7 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       autosize: true,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
+      barmode: 'stack',
       margin: {
         l: 100,
         t: 30,
@@ -200,7 +252,7 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       },
       showlegend: false,
       width: window.innerWidth,
-      height: window.innerHeight * 0.8,
+      height: window.innerHeight /3,
     };
 
     // stackedArea(traces);
@@ -208,7 +260,70 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
 
   }
 
+  function setLocalidadPlot(chosenLocalidad) {
+    getLocalidadData(chosenLocalidad);
+
+    var minRange = minArrayValue(allNPH),
+      maxRange = maxArrayValue(allNPH);
+
+    maxRange = maxRange + maxArrayValue(allPH);
+
+    minRange = minRange + minArrayValue(allPH);
+    minRange = minRange - (minRange / 100);
+
+    var trace1 = {
+      y: allPorcPH,
+      x: allLocalidad,
+      type: 'bar',
+      name: 'PH',
+      marker: {
+        color: 'rgba(251, 106, 74, 0.8)',
+        width: 1
+      },
+    };
+    var trace2 = {
+      y: allPorcNPH,
+      x: allLocalidad,
+      type: 'bar',
+      name: 'NPH',
+      marker: {
+        color: 'rgba(252, 174, 145, 0.8)',
+        width: 1
+      },
+    };
+
+    var data2 = [trace1, trace2];
+
+    layout2 = {
+      // autosize: true,
+      paper_bgcolor: '#000',
+      plot_bgcolor: '#000',
+      barmode: 'stack',
+      // barnorm: '',
+      margin: {
+        l: 150,
+        t: 50,
+        b: 30,
+        pad: 4
+      },
+      font: {
+        color: '#fff',
+        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+      },
+      showlegend: false,
+      // title: 'Crecimiento de la población de Bogotá D.C.',
+      width: window.innerWidth,
+      height: window.innerHeight /3,
+      yaxis: {
+        zerolinecolor: '#fff'
+      }
+    };
+
+    Plotly.newPlot('plotdiv2', data2, layout2);
+  }
+
   var yearSelector = document.querySelector('#yearSelector');
+  var localidadSelector = document.querySelector('#localidadSelector');
 
   function assignOptions(textArray, selector) {
     for (var i = 0; i < textArray.length; i++) {
@@ -219,10 +334,16 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
   }
 
   assignOptions(listofYears, yearSelector);
+  assignOptions(listofLocalidades, localidadSelector);
 
   function updateYear() {
-    setBubblePlot(yearSelector.value);
+    setYearPlot(yearSelector.value);
+  }
+
+  function updateLocalidad() {
+    setLocalidadPlot(localidadSelector.value);
   }
 
   yearSelector.addEventListener('change', updateYear, false);
+  localidadSelector.addEventListener('change', updateLocalidad, false);
 });
