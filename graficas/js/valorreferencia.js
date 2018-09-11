@@ -66,6 +66,8 @@ Plotly.d3.csv('data/ValorReferencia1.csv', function (err, rows) {
         //   title: 'Población por localidad para el año ' + chosenYear,
         paper_bgcolor: '#000',
         plot_bgcolor: '#000',
+        // width: window.innerWidth,
+        height: window.innerHeight / 2,
         margin: {
           l: 150,
           t: 30,
