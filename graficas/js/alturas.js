@@ -172,7 +172,7 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
       barnorm: '',
       margin: {
         l: 150,
-        t: 50,
+        t: 30,
         b: 30,
         pad: 4
       },
