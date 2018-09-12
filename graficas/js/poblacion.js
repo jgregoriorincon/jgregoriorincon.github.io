@@ -75,7 +75,7 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
     var layout1 = {
       //   title: 'Población por localidad para el año ' + chosenYear,
       width: window.innerWidth,
-      height: window.innerHeight / 3,
+      height: window.innerHeight / 2.5,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
       margin: {
@@ -167,7 +167,7 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
       showlegend: false,
       // title: 'Crecimiento de la población de Bogotá D.C.',
       width: window.innerWidth,
-      height: window.innerHeight / 3,
+      height: window.innerHeight / 2.5,
       yaxis: {
         range: [minRange, maxRange],
         type: 'linear',

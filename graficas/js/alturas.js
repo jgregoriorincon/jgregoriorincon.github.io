@@ -45,8 +45,6 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
         }
       }
     }
-
-    // bubbleSortAscending(currentPoblacion, currentLocalidad);
   }
 
   function getLocalidadData(chosenLocalidad) {
@@ -93,7 +91,7 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
     var layout1 = {
       //   title: 'Población por localidad para el año ' + chosenYear,
       width: window.innerWidth,
-      height: window.innerHeight / 3,
+      height: window.innerHeight / 2.5,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
       showlegend:false,
@@ -107,16 +105,8 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
         color: '#fff',
         family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
       },
-      // hoverlabel: {
-      //   bgcolor: 'black',
-      //   font: {
-      //     color: 'white',
-      //     family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
-      //   }
-      // },
     };
 
-    // Plotly.newPlot('plotdiv1', traces, layout1);
     Plotly.newPlot('plotdiv1', traces, layout1);
   }
 
@@ -176,11 +166,10 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
     var data2 = [trace1, trace2];
 
     layout2 = {
-      // autosize: true,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
       barmode: 'stack',
-      // barnorm: '',
+      barnorm: '',
       margin: {
         l: 150,
         t: 50,
@@ -191,29 +180,11 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
         color: '#fff',
         family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
       },
-      // hoverlabel: {
-      //   bgcolor: 'black',
-      //   font: {
-      //     color: 'white',
-      //     family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
-      //   }
-      // },
       showlegend: false,
       // title: 'Crecimiento de la población de Bogotá D.C.',
       width: window.innerWidth,
-      height: window.innerHeight /3,
-      // xaxis: {
-      //   autorange: true,
-      //   type: 'linear',
-      //   hoverformat: '.2%',
-      //   // gridcolor: '#fff',
-      //   zerolinecolor: '#fff',
-      //   linecolor: '#fff',
-      // },
+      height: window.innerHeight / 2.5,
       yaxis: {
-        // autorange: false,
-        // range: [minRange, maxRange],
-        // type: 'linear',
         zerolinecolor: '#fff'
       }
     };
