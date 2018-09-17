@@ -18,7 +18,6 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
       allYears2 = unpack(rows2, 'Year'),
       allLocalidades2 = unpack(rows2, 'Localidad'),
       allPorcentajes2 = unpack(rows2, 'PorcPredios'),
-      listofYears2 = [],
       listofLocalidades2 = [],
       listofEstratos2 = [],
       currentEstrato2 = [],
@@ -63,7 +62,7 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
         }
       }
 
-      bubbleSortAscending(currentPredio, currentEstrato);
+      // bubbleSortAscending(currentPredio, currentEstrato);
     }
 
     // Default Country Data
@@ -72,8 +71,32 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
     function setBubblePlot(chosenYear) {
       getYearsData(chosenYear);
 
+      var colores = ['#f0f9e8', 
+      '#ccebc5', 
+      '#a8ddb5', 
+      '#7bccc4', 
+      '#4eb3d3', 
+      '#2b8cbe', 
+      '#08589e'];
+
       var data = [];
       for (var i = 0; i < currentEstrato.length; i++) {
+        var colorMarker;
+        if (currentEstrato[i] == 'Sin Estrato') {
+          colorMarker = colores[0];
+        } else if (currentEstrato[i] == 'E1') {
+          colorMarker = colores[1];
+        } else if (currentEstrato[i] == 'E2') {
+          colorMarker = colores[2];
+        } else if (currentEstrato[i] == 'E3') {
+          colorMarker = colores[3];
+        } else if (currentEstrato[i] == 'E4') {
+          colorMarker = colores[4];
+        } else if (currentEstrato[i] == 'E5') {
+          colorMarker = colores[5];
+        } else if (currentEstrato[i] == 'E6') {
+          colorMarker = colores[6];
+        }
 
         var trace2 = {
           y: [chosenYear],
@@ -81,6 +104,9 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
           name: currentEstrato[i],
           type: 'bar',
           orientation: 'h',
+          marker: {
+            color: colorMarker
+          },
         };
         data.push(trace2);
       }
@@ -171,60 +197,96 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
       var traces = [{
         x: listofLocalidades2,
         y: dataE0,
+        type: 'bar',
         fill: 'tozeroy',
         name: 'Sin Estrato',
+        marker: {
+          color: colores[0],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE1,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E1',
+        marker: {
+          color: colores[1],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE2,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E2',
+        marker: {
+          color: colores[2],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE3,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E3',
+        marker: {
+          color: colores[3],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE4,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E4',
+        marker: {
+          color: colores[4],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE5,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E5',
+        marker: {
+          color: colores[5],
+          width: 1
+        },
       },
       {
         x: listofLocalidades2,
         y: dataE6,
+        type: 'bar',
         fill: 'tonexty',
         name: 'E6',
+        marker: {
+          color: colores[6],
+          width: 1
+        },
       }
     ];
 
-    function stackedArea(traces) {
-      for(var i=1; i<traces.length; i++) {
-        for(var j=0; j<(Math.min(traces[i]['y'].length, traces[i-1]['y'].length)); j++) {
-          traces[i]['y'][j] += traces[i-1]['y'][j];
-        }
-      }
-      return traces;
-    }
+    // function stackedArea(traces) {
+    //   for(var i=1; i<traces.length; i++) {
+    //     for(var j=0; j<(Math.min(traces[i]['y'].length, traces[i-1]['y'].length)); j++) {
+    //       traces[i]['y'][j] += traces[i-1]['y'][j];
+    //     }
+    //   }
+    //   return traces;
+    // }
 
     var layout2 = {
       autosize: true,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
+      barmode: 'stack',
       margin: {
         l: 100,
         t: 30,
@@ -240,7 +302,7 @@ Plotly.d3.csv('data/Residencial.csv', function (err, rows) {
       height: window.innerHeight /2 ,
     };
 
-    Plotly.newPlot('plotdiv2', stackedArea(traces), layout2);
+    Plotly.newPlot('plotdiv2', traces, layout2);
 
     }
 
