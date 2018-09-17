@@ -71,7 +71,7 @@ Plotly.d3.csv('data/ValorReferencia1.csv', function (err, rows) {
         margin: {
           l: 150,
           t: 30,
-          b: 100,
+          b: 50,
           pad: 4
         },
         font: {
