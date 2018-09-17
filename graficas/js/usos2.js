@@ -17,6 +17,10 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
     currentLocalidad = [],
     currentPorcentaje = [];
 
+    var currentUso2 = [],
+    currentYear2 = [],
+    currentPorcentaje2 = [];
+
   for (var i = allYears.length - 1; i > 0; i--) {
     if (listofYears.indexOf(allYears[i]) === -1) {
       listofYears.push(allYears[i]);
@@ -47,20 +51,20 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
   }
 
   function getLocalidadData(chosenLocalidad) {
-    allLocalidad = [];
-    allPorcNPH = [];
-    allPorcPH = [];
-    for (var i = 0; i < allYears.length; i++) {
+    currentUso2 = [];
+    currentYear2 = [];
+    currentPorcentaje2 = [];
+    for (var i = 0; i < allLocalidades.length; i++) {
       if (allLocalidades[i] == chosenLocalidad) {
-        allLocalidad.push(allYears[i]);
-        allPorcNPH.push((allPorcNPHs[i] * 100).toFixed(2) + '%');
-        allPorcPH.push((allPorcPHs[i] * 100).toFixed(2) + '%');
+        currentUso2.push(allUsos[i]);
+        currentYear2.push(allYears[i]);
+        currentPorcentaje2.push(parseFloat(allPorcentajes[i]) * 100);
       }
     }
   }
 
   setYearPlot('2018');
-  setLocalidadPlot('USAQUÉN');
+  setLocalidadPlot('Bogotá D.C.');
 
   function setYearPlot(chosenYear) {
     getYearsData(chosenYear);
@@ -252,7 +256,7 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       },
       showlegend: false,
       width: window.innerWidth,
-      height: window.innerHeight /3,
+      height: window.innerHeight /2,
     };
 
     // stackedArea(traces);
@@ -263,63 +267,189 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
   function setLocalidadPlot(chosenLocalidad) {
     getLocalidadData(chosenLocalidad);
 
-    var minRange = minArrayValue(allNPH),
-      maxRange = maxArrayValue(allNPH);
+    var dataBodegas = [],
+      dataClinicas = [],
+      dataComercio = [],
+      dataHoteles = [],
+      dataIndustria = [],
+      dataLotes = [],
+      dataOficinas = [],
+      dataOtros = [],
+      dataResidencial = [],
+      dataUniversidades = [];
 
-    maxRange = maxRange + maxArrayValue(allPH);
+      for (var i = 0; i < currentUso2.length; i++) {
+        switch (currentUso2[i]) {
+          case "RESIDENCIAL":
+            dataResidencial.push(currentPorcentaje2[i]);
+            break;
+          case "OFICINAS":
+            dataOficinas.push(currentPorcentaje2[i]);
+            break;
+          case "COMERCIO":
+            dataComercio.push(currentPorcentaje2[i]);
+            break;
+          case "BODEGAS":
+            dataBodegas.push(currentPorcentaje2[i]);
+            break;
+          case "UNIVERSIDADES Y COLEGIOS":
+            dataUniversidades.push(currentPorcentaje2[i]);
+            break;
+          case "LOTES":
+            dataLotes.push(currentPorcentaje2[i]);
+            break;
+          case "OTROS":
+            dataOtros.push(currentPorcentaje2[i]);
+            break;
+          case "CLINICAS, HOSPITALES, CENTROS MEDICOS":
+            dataClinicas.push(currentPorcentaje2[i]);
+            break;
+          case "HOTELES":
+            dataHoteles.push(currentPorcentaje2[i]);
+            break;
+          case "INDUSTRIA":
+            dataIndustria.push(currentPorcentaje2[i]);
+            break;
+          default:
+            break;
+        }
+      }
 
-    minRange = minRange + minArrayValue(allPH);
-    minRange = minRange - (minRange / 100);
-
-    var trace1 = {
-      y: allPorcPH,
-      x: allLocalidad,
-      type: 'bar',
-      name: 'PH',
-      marker: {
-        color: 'rgba(251, 106, 74, 0.8)',
-        width: 1
+      var traces2 = [{
+        x: listofYears,
+        y: dataBodegas,
+        type: 'bar',
+        fill: 'tozeroy',
+        name: 'Bodegas',
+        marker: {
+          color: colorBodega,
+          width: 1
+        },
       },
-    };
-    var trace2 = {
-      y: allPorcNPH,
-      x: allLocalidad,
-      type: 'bar',
-      name: 'NPH',
-      marker: {
-        color: 'rgba(252, 174, 145, 0.8)',
-        width: 1
+      {
+        x: listofYears,
+        y: dataClinicas,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Clinicas',
+        marker: {
+          color: colorClinica,
+          width: 1
+        },
       },
-    };
+      {
+        x: listofYears,
+        y: dataComercio,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Comercio',
+        marker: {
+          color: colorComercio,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataHoteles,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Hoteles',
+        marker: {
+          color: colorHotel,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataIndustria,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Industria',
+        marker: {
+          color: colorIndustria,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataLotes,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Lotes',
+        marker: {
+          color: colorLote,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataOficinas,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Oficinas',
+        marker: {
+          color: colorOficina,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataOtros,
+        fill: 'tonexty',
+        type: 'bar',
+        name: 'Otros',
+        marker: {
+          color: colorOtro,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataResidencial,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Residencial',
+        marker: {
+          color: colorResidencial,
+          width: 1
+        },
+      },
+      {
+        x: listofYears,
+        y: dataUniversidades,
+        type: 'bar',
+        fill: 'tonexty',
+        name: 'Universidades',
+        marker: {
+          color: colorUniversidad,
+          width: 1
+        },
+      }
+    ];
 
-    var data2 = [trace1, trace2];
-
-    layout2 = {
-      // autosize: true,
+    var layout = {
+      autosize: true,
       paper_bgcolor: '#000',
       plot_bgcolor: '#000',
       barmode: 'stack',
-      // barnorm: '',
       margin: {
-        l: 150,
-        t: 50,
-        b: 30,
-        pad: 4
+        l: 100,
+        t: 30,
+        // b: 50,
+        pad: 0
       },
       font: {
         color: '#fff',
         family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
       },
       showlegend: false,
-      // title: 'Crecimiento de la población de Bogotá D.C.',
       width: window.innerWidth,
-      height: window.innerHeight /3,
-      yaxis: {
-        zerolinecolor: '#fff'
-      }
+      height: window.innerHeight /2.5,
     };
 
-    Plotly.newPlot('plotdiv2', data2, layout2);
+    // stackedArea(traces);
+    Plotly.newPlot('plotdiv1', traces2, layout);
+
   }
 
   var yearSelector = document.querySelector('#yearSelector');
