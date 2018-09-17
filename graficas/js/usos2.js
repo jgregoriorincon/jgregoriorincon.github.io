@@ -247,7 +247,7 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       margin: {
         l: 100,
         t: 30,
-        // b: 50,
+        b: 100,
         pad: 0
       },
       font: {
