@@ -96,7 +96,7 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
       plot_bgcolor: '#000',
       showlegend:false,
       margin: {
-        l: 150,
+        l: 100,
         t: 30,
         b: 100,
         pad: 4
@@ -171,7 +171,7 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
       barmode: 'stack',
       barnorm: '',
       margin: {
-        l: 150,
+        l: 100,
         t: 30,
         b: 30,
         pad: 4
