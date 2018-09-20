@@ -223,8 +223,8 @@ Plotly.d3.csv('data/Comercial.csv', function (err, rows) {
       barmode: 'stack',
       margin: {
         l: 100,
-        t: 30,
-        b: 100,
+        t: 0,
+        b: 150,
         pad: 0
       },
       font: {
@@ -434,7 +434,7 @@ Plotly.d3.csv('data/Comercial.csv', function (err, rows) {
       margin: {
         l: 100,
         t: 0,
-        // b: 50,
+        b: 30,
         pad: 0
       },
       font: {

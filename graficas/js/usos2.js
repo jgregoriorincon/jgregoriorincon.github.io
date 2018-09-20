@@ -246,8 +246,8 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       barmode: 'stack',
       margin: {
         l: 100,
-        t: 30,
-        b: 100,
+        t: 0,
+        b: 150,
         pad: 0
       },
       font: {
@@ -434,8 +434,8 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       barmode: 'stack',
       margin: {
         l: 100,
-        t: 30,
-        // b: 50,
+        t: 0,
+        b: 30,
         pad: 0
       },
       font: {
@@ -444,7 +444,7 @@ Plotly.d3.csv('data/Usos2.csv', function (err, rows) {
       },
       showlegend: false,
       width: window.innerWidth,
-      height: window.innerHeight /2.5,
+      height: window.innerHeight /3,
     };
 
     // stackedArea(traces);
