@@ -66,7 +66,8 @@ $(document).ready(function () {
                 },
                 font: {
                     color: '#fff',
-                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    size: 10
                 },
                 hoverlabel: {
                     bgcolor: 'black',
@@ -118,7 +119,8 @@ $(document).ready(function () {
                 showlegend: false,
                 font: {
                     color: '#fff',
-                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    size: 10
                 },
                 hoverlabel: {
                     bgcolor: 'black',
@@ -169,7 +171,7 @@ $(document).ready(function () {
                 showlegend: false,
                 font: {
                     color: '#fff',
-                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",size: 10
                 },
                 hoverlabel: {
                     bgcolor: 'black',

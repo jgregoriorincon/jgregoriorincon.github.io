@@ -229,7 +229,8 @@ Plotly.d3.csv('data/Comercial.csv', function (err, rows) {
       },
       font: {
         color: '#fff',
-        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        size: 10
       },
       showlegend: false,
       width: window.innerWidth,

@@ -86,7 +86,8 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
       },
       font: {
         color: '#fff',
-        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        size: 10
       },
       hoverlabel: {
         bgcolor: 'black',
@@ -155,7 +156,7 @@ Plotly.d3.csv('data/Poblacion.csv', function (err, rows) {
       },
       font: {
         color: '#fff',
-        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
       },
       hoverlabel: {
         bgcolor: 'black',

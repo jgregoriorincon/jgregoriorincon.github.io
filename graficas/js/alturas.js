@@ -103,7 +103,8 @@ Plotly.d3.csv('data/Alturas.csv', function (err, rows) {
       },
       font: {
         color: '#fff',
-        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+        family: "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        size: 10
       },
     };
 
