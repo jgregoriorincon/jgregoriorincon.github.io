@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/fullpage.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/otro.css">
     <title>El poder de los datos</title>
 </head>
 
@@ -671,37 +672,30 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Registro</h2>
-                        <label>La infraestructura de Datos Espaciales del Distrito Capital tiene el gusto de
-                            invitarlo/a al evento de IDECA titulado "El poder de los datos geográficos hacia una Bogotá
-                            Inteligente", el cual se llevará a cabo en el mes de noviembre del presente año, si desea
-                            participar por favor inscribirse diligenciando el siguiente formato.</label>
-                        <br>
-                        <br>
                         <div>
                             <form name="submit-to-google-sheet">
+                                <label>La infraestructura de Datos Espaciales del Distrito Capital tiene el gusto de invitarlo/a al evento de IDECA titulado "El poder de los datos geográficos hacia una Bogotá Inteligente", el cual se llevará a cabo en el mes de noviembre del presente año, si desea participar por favor inscribirse diligenciando el siguiente formato.</label>
+                                <br>
+                                <br>
                                 <div class="form-group">
                                     <label for="nombresRegistro">Nombres y apellidos</label>
-                                    <input type="text" class="form-control" id="nombresRegistro" placeholder="Nombres y apellidos"
-                                        required>
+                                    <input type="text" class="form-control" id="nombresRegistro" name="nombresRegistro" placeholder="Nombres y apellidos" tabindex="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="emailRegistro">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="emailRegistro" placeholder="Correo electrónico"
-                                        required>
+                                    <input type="email" class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Correo electrónico" tabindex="2" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="celularRegistro">Número de celular</label>
-                                    <input type="tel" class="form-control" id="celularRegistro" placeholder="Número de celular"
-                                        required>
+                                    <input type="tel" class="form-control" id="celularRegistro" name="celularRegistro" placeholder="Número de celular" tabindex="3" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="entidadRegistro">Nombre de la Entidad o Institución</label>
-                                    <input type="tel" class="form-control" id="entidadRegistro" placeholder="Nombre de la Entidad o Institución"
-                                        required>
+                                    <input type="tel" class="form-control" id="entidadRegistro" name="entidadRegistro" placeholder="Nombre de la Entidad o Institución" tabindex="4" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="cargoRegistro">Cargo:</label>
-                                    <select class="form-control" id="cargoRegistro">
+                                    <select class="form-control" id="cargoRegistro" name="cargoRegistro" tabindex="5">
                                         <option>Directivo</option>
                                         <option>Profesional</option>
                                         <option>Técnico</option>
@@ -710,7 +704,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="temasRegistro">Cargo:</label>
-                                    <select class="form-control" id="temasRegistro">
+                                    <select class="form-control" id="temasRegistro" name="temasRegistro" tabindex="6">
                                         <option>Datos geográficos</option>
                                         <option>Analítica de datos</option>
                                         <option>Gobierno digital</option>
@@ -731,10 +725,10 @@
                                         datos personales.</label>
                                     <div style="text-align:center;">
                                         <label class="radio-inline">
-                                            <input type="radio" name="usoDatosRegistro" checked>Si
+                                            <input type="radio" name="usoDatosRegistro" value="Si autorizo" tabindex="7" checked>Si autorizo
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="usoDatosRegistro">No
+                                            <input type="radio" name="usoDatosRegistro" value="No autorizo" tabindex="8">No autorizo
                                         </label>
                                     </div>
                                 </div>
@@ -742,12 +736,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="singlebutton"></label>
                                     <div class="col-md-4 center-block">
-                                        <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary center-block">
-                                            Registrarse
+                                        <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary center-block" tabindex="9"> Registrarse 
                                         </button>
                                     </div>
                                 </div>
-                                <br>
                                 <!-- <button type="submit" class="btn btn-default">Registrarse</button> -->
                             </form>
                             <div class="loading js-loading is-hidden">
@@ -755,6 +747,8 @@
                                     <svg><circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>
                                 </div>
                             </div>
+                            <p class="js-success-message is-hidden" style="text-align:center;">Registro realizado!</p>
+                            <p class="js-error-message is-hidden" style="text-align:center;">Error al procesar el registro!</p>
                         </div>
                         <br>
                     </div>
@@ -769,7 +763,6 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/prefixfree.min.js"></script>
-
     <script src="js/formdata-polyfill.js"></script>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/whatwg-fetch.js"></script>
