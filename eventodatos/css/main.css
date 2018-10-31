@@ -316,18 +316,18 @@ ul{
 }
 
 #section-expositores,
-#home-section{
+#home-section, 
+#agenda-section {
     background: url(../images/evento_fondo.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-#agenda-section{
+/* #agenda-section{
     background: url(../images/agenda.png), url(../images/evento_fondo.png);
     background-size: contain, 100% 100%;
     background-repeat: no-repeat, no-repeat;
     background-position: left top;
-    /* opacity: 0.6; */
-}
+} */
 
 .info-ponente {
     padding: 0 25px;
