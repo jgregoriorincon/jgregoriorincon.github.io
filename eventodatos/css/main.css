@@ -536,3 +536,7 @@ ul{
 body.modal-open {
     overflow: hidden !important;
 }
+img.img-responsive.hidden-md.hidden-lg.fecha-h {
+    max-width:350px;
+    margin:auto auto 15px;    
+}
