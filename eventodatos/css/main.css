@@ -200,11 +200,20 @@ ul{
     left: 0;
     width: 800px
 }
+.agenda {
+    height: 100vh;
+    width: auto;
+    /* position: absolute; */
+    /* bottom: 0;
+    left: 0;
+    width: 800px */
+}
 
 .main-text-bienvenido {
     color:#333333;
     margin: 0;
     padding-right: 50px;
+    font-size: 1.3rem;
 }
 
 .main-title-bienvenido {
@@ -311,6 +320,13 @@ ul{
     background: url(../images/evento_fondo.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+#agenda-section{
+    background: url(../images/agenda.png), url(../images/evento_fondo.png);
+    background-size: contain, 100% 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top;
+    /* opacity: 0.6; */
 }
 
 .info-ponente {
@@ -444,6 +460,7 @@ ul{
         padding: 0 15px !important;
         font-family: 'Source Code Pro', monospace !important;
         font-weight:500;
+        font-size: 1.3rem;
     }
     #bienvenido-section .btn-bienvenidos{
         margin: 15px auto !important;
@@ -499,7 +516,7 @@ ul{
     opacity: 1;
 }
 .modal-content {
-    /* max-height: 450px; */
+    max-height: 75vh;
     overflow: hidden;
     overflow-y: scroll;
 }
