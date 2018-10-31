@@ -212,6 +212,7 @@ ul{
     font-size: 60px;
     position: absolute;
     left: 10%;
+    top:16.8%;
     letter-spacing:10px;
     text-transform: uppercase;
     font-family: 'Source Code Pro', monospace;
@@ -467,4 +468,54 @@ ul{
         transform: translateX(0) !important;
     }
     
+}
+
+.go-to-home {
+    position: fixed !important;
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    position:relative;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: .5;
+    z-index: 99;
+    border: 1px solid #d3d3d3;
+    transition: .3s all ease;
+}
+.go-to-home::before{
+    content:'\f077';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 15px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+.go-to-home:hover{
+    opacity: 1;
+}
+.modal-content {
+    /* max-height: 450px; */
+    overflow: hidden;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+body.modal-open {
+    overflow: hidden !important;
 }
