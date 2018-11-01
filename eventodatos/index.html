@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/otro.css">
     <title>El poder de los datos</title>
+    <link rel="shortcut icon" href="favicon.png" />
 </head>
 <body>
     <a class="go-to-home" href="#home"></a>
@@ -23,11 +24,17 @@
     	            <a href="#bienvenidos"><li>Agenda</li></a>
     	            <a href="#expositores-2018"><li>Expositores</li></a>
     	            <a href="#registro"><li>Registro</li></a>
-    	        </ul>
+                </ul>
+
+                <div class="main-title-lugar">
+                    <h3>Auditorio Archivo de Bogotá</h3>
+                    <h3>Calle 6 B # 5-75</h3>
+                </div>
     	    </div>
     	    <img src="images/evento_lateral.png" alt="" class="img-responsive adorno-lateral">
             <img src="images/evento_fecha_v.png" alt="" class="img-responsive fecha-lateral">
             <img src="images/evento_fecha_h.png" alt="" class="img-responsive hidden-md hidden-lg fecha-h"/>
+
     	</div>
     	<div class="section" id="bienvenido-section">
             <img src="images/evento_bienvenidos.png" alt="" class="img-responsive adorno-bienvenido">
@@ -38,13 +45,12 @@
             <br>
             <p class="main-text-bienvenido">Además, es un espacio para desarrollar competencias en los servidores públicos, quienes podrán comprender a través de las diferentes ponencias y estudios de caso, la aplicación de analítica de datos, BlockChain y otras tecnologías en proyectos desarrollados con enfoque geográfico, convirtiéndose en instrumentos enriquecedores para conocer estrategias que permitan la explotación e innovación basada en los datos, y así contribuir con la construcción conjunta de Bogotá como ciudad inteligente.</p>
             <br>
-            <p class="main-text-bienvenido" style="padding-bottom:20px "><b>¡Anímate a participar, no te lo pierdas!</b><br></p>
+            <p class="main-text-bienvenido" style="padding-bottom:20px"><b style="font-size:2rem;">¡Anímate a participar, no te lo pierdas!</b><br></p>
             <a class="btn-bienvenidos" style="margin-right: 50px;padding: 0;text-decoration: none;text-transform: initial !important;color: #02215A;" target="_blank" href="./images/AgendaPoderDeLosDatos.pdf">Descarga la agenda</a>
-                <!-- href="javascript:void(0)" data-toggle="modal" data-target="#agenda-2018">Descarga la agenda</a> -->
         </div>
-    	<div class="section" id="agenda-section">
+    	<!-- <div class="section" id="agenda-section">
             <img src="images/agenda.png" alt="" style="width: auto; max-height: 100%;width: auto\9;" class="img-responsive">
-        </div>
+        </div> -->
         <div class="section" id="section-expositores">
             <div class="container">
                 <div class="row">
@@ -55,6 +61,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel">
+                            <div class="ponente">
+                                <img src="images/0.png" alt="" class="img-responsive-center">
+                                <div class="info-ponente text-center">
+                                    <div class="nombre-ponente">Olga Lucía López Morales</div>
+                                    <div class="especialidad">Directora de la UAECD</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-0">Más Información</a>
+                                </div>
+                            </div>
                             <div class="ponente">
                                 <img src="images/1.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
@@ -71,7 +85,7 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">Más Información</a>
                                 </div>
                             </div>
-                            <div class="ponente">
+                            <div class="ponente hidden-lg hidden-md">
                                 <img src="images/3.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Sergio Martínez Medina </div>
@@ -87,30 +101,6 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-4">Más Información</a>
                                 </div>
                             </div>
-                            <!-- <div class="ponente hidden-lg hidden-md">
-                                <img src="images/5.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Lorena del Pilar Caro Zambrano </div>
-                                    <div class="especialidad">Jefe de Oficina de Análisis de Información y Estudios Estratégicos</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-5">Más Información</a>
-                                </div>
-                            </div> -->
-                            <!-- <div class="ponente hidden-lg hidden-md">
-                                <img src="images/6.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Paola Andrea Bonilla Castaño</div>
-                                    <div class="especialidad">Directora de Desarrollo Digital – DNP</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-6">Más Información</a>
-                                </div>
-                            </div> -->
-                            <!-- <div class="ponente hidden-lg hidden-md">
-                                <img src="images/7.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Javier Trujillo </div>
-                                    <div class="especialidad">Gerente de Blockchain Academy Colombia <br> Profesor en Platzi</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-7">Más Información</a>
-                                </div>
-                            </div> -->
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/8.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
@@ -119,18 +109,10 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-8">Más Información</a>
                                 </div>
                             </div>
-                            <!-- <div class="ponente hidden-lg hidden-md">
-                                <img src="images/9.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">David Uniman </div>
-                                    <div class="especialidad">Gerente de la Bicicleta</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-9">Más Información</a>
-                                </div>
-                            </div> -->
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/10.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Juliana Galvis</div>
+                                    <div class="nombre-ponente">Juliana Galvis Nieto</div>
                                     <div class="especialidad">Politóloga y Periodista del Equipo de datos de Datasketch</div>
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-10">Más Información</a>
                                 </div>
@@ -151,23 +133,22 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-12">Más Información</a>
                                 </div>
                             </div>
-                            <!-- <div class="ponente hidden-lg hidden-md">
-                                <img src="images/13.png" alt="" class="img-responsive-center">
+                            <div class="ponente hidden-lg hidden-md">
+                                <img src="images/15.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">José Carlos García</div>
-                                    <div class="especialidad">Moderador</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-13">Más Información</a>
+                                    <div class="nombre-ponente">Javier Torres Páez</div>
+                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la  Unidad  Administrativa  Especial  de  Servicios Públicos (UAESP)</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-15">Más Información</a>
                                 </div>
-                            </div> -->
-                            <!--<div class="ponente">
-                                <img src="images/14.png" alt="" class="img-responsive-center">
+                            </div>
+                            <div class="ponente">
+                                <img src="images/16.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Raul Delgado</div>
-                                    <div class="especialidad">Lorem</div>
-                                    <div class="frase"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, accusantium.</p></div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-14">Más Información</a>
+                                    <div class="nombre-ponente">Carlos Gustavo Infante Sepúlveda</div>
+                                    <div class="especialidad">Gerente de la compañía Kudos S.A.S</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-16">Más Información</a>
                                 </div>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,6 +164,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel">
+                            <div class="ponente">
+                                <img src="images/3.png" alt="" class="img-responsive-center">
+                                <div class="info-ponente text-center">
+                                    <div class="nombre-ponente">Sergio Martínez Medina</div>
+                                    <div class="especialidad">Alto Consejero Distrital de TIC</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-3">Más Información</a>
+                                </div>
+                            </div>
                             <div class="ponente">
                                 <img src="images/4.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
@@ -191,45 +180,6 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-4">Más Información</a>
                                 </div>
                             </div>
-                            <!-- <div class="ponente">
-                                <img src="images/5.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Lorena del Pilar Caro Zambrano </div>
-                                    <div class="especialidad">Jefe de Oficina de Análisis de Información y Estudios Estratégicos</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-5">Más Información</a>
-                                </div>
-                            </div> -->
-                            <!-- <div class="ponente">
-                                <img src="images/6.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Paola Andrea Bonilla Castaño</div>
-                                    <div class="especialidad">Directora de Desarrollo Digital – DNP</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-6">Más Información</a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section hidden-sm hidden-xs" id="section-expositores">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="main-title-expositores">Expositores</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="owl-carousel">
-                            <!-- <div class="ponente">
-                                <img src="images/7.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Javier Trujillo </div>
-                                    <div class="especialidad">Gerente de Blockchain Academy Colombia <br> Profesor en Platzi</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-7">Más Información</a>
-                                </div>
-                            </div> -->
                             <div class="ponente">
                                 <img src="images/8.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
@@ -238,14 +188,6 @@
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-8">Más Información</a>
                                 </div>
                             </div>
-                            <!-- <div class="ponente">
-                                <img src="images/9.png" alt="" class="img-responsive-center">
-                                <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">David Uniman </div>
-                                    <div class="especialidad">Gerente de la Bicicleta</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-9">Más Información</a>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -268,7 +210,7 @@
                                     <div class="especialidad">Politóloga y Periodista del Equipo de datos de Datasketch</div>
                                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-10">Más Información</a>
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="ponente">
                                 <img src="images/11.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
@@ -299,36 +241,50 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="owl-carousel-final">
-                            <!-- <div class="ponente">
-                                <img src="images/13.png" alt="" class="img-responsive-center">
+                        <div class="owl-carousel">
+                            <div class="ponente">
+                                <img src="images/16.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">José Carlos García</div>
-                                    <div class="especialidad">Moderador</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-13">Más Información</a>
+                                    <div class="nombre-ponente">Carlos Gustavo Infante Sepúlveda</div>
+                                    <div class="especialidad">Gerente de la compañía Kudos S.A.S</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-16">Más Información</a>
                                 </div>
-                            </div> -->
-                            <!--<div class="ponente">
-                                <img src="images/14.png" alt="" class="img-responsive-center">
+                            </div>
+                            <div class="ponente">
+                                <img src="images/15.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
-                                    <div class="nombre-ponente">Raul Delgado</div>
-                                    <div class="especialidad">Lorem</div>
-                                    <div class="frase"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, accusantium.</p></div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-14">Más Información</a>
+                                    <div class="nombre-ponente">Javier Torres Páez</div>
+                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la  Unidad  Administrativa  Especial  de  Servicios Públicos (UAESP)</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-15">Más Información</a>
                                 </div>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="section" id="register-section">
             <h2 class="main-title-register">Construyamos una ciudad inteligente</h2>
             <div class="image-container"></div>
             <a href="javascript:void(0)" data-toggle="modal" data-target="#registro-2018" class="btn-bienvenidos">Regístrate</a>
+            <div class="mapasbogota col-lg-6 col-md-6 col-sm-12">
+                <iframe width="500" height="500"  frameborder='0' scrolling='no' allowfullscreen src='https://mapas.bogota.gov.co/?l=607&e=-74.08140468200057,4.588193324912743,-74.07110499938197,4.593267825416927,4686&b=261&p=-74.07736527522358,4.591262626685322,4686'></iframe>
+            </div>
         </div>
     </div>
     <div class="ponente-info">
+        <div id="ponente-0" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-body text-justify">
+                        <h2 class="modal-title">Olga Lucía López Morales</h2>
+                        <p>Administradora de Empresas, Especializaciones en Control Interno y Derecho Tributario. Con más de 16 años de experiencia profesional en entidades como la Secretaría Distrital de Hacienda, donde se desempeñó en diferentes cargos, entre otros, Jefe de Unidad de Cobranzas e Impuestos a la Propiedad, Jefe de Unidad de Determinación Impuestos a la Propiedad, Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de Impuestos, Jefe de Oficina de Cobro. En la Unidad Administrativa Especial de Gestión Pensional y Contribuciones Parafiscales –UGPP desempeñó entre otros el cargo de Subdirectora de Determinación de Obligaciones Parafiscales. Fue Vicepresidente de Operaciones en Coljuegos. En la UAECD ha sido Gerente de Gestión Corporativa y Gerente de Información Catastral. Desde el 8 de agosto de 2018 es Directora de la Entidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="ponente-1" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
                 
@@ -388,7 +344,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Sergio Gutiérrez Bonnet</h2>
-                <p>trabaja para hacer una diferencia en la transformación digital de las empresas en Latinoamérica, generando valor a través de los datos, mejorando los procesos de toma de decisión de los CLIENTES.</p>
+                <p>Trabaja para hacer una diferencia en la transformación digital de las empresas en Latinoamérica, generando valor a través de los datos, mejorando los procesos de toma de decisión de los CLIENTES.</p>
                 <p>25 años dedicados al uso de grandes volúmenes de datos y desarrollo de modelos matemáticos y estadísticos para apoyar la toma de mejores decisiones en las organizaciones.</p>
                 <p>Sergio trabaja con las organizaciones implementando tecnología, analítica y estadística para facilitar la toma de decisiones acertadas.</p>
                 <p>Ha apoyado a diversas organizaciones en sus procesos de prevención de fraude y control de lavado de dinero y lavado de activos.</p>
@@ -461,8 +417,8 @@
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
-                        <h2 class="modal-title">Juliana Galvis</h2>
-                <p>Con amplio conocimiento en manejo de bases de datos, uso de métodos cuantitativos y conocimiento en asuntos electorales.</p>
+                        <h2 class="modal-title">Juliana Galvis Nieto</h2>
+                        <p>Politóloga y candidata a magíster en Humanidades Digitales. Actualmente lidera el desarrollo de la base de datos Who Is, además de apoyar investigaciones periodísticas y creación de bases de datos.</p>
                     </div>
                 </div>
             </div>
@@ -489,34 +445,31 @@
                 </div>
             </div>
         </div>
-        <!-- <div id="ponente-13" class="modal fade" role="dialog">
+        <div id="ponente-15" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
-                        <h2 class="modal-title">José Carlos García</h2>
-                <p>Director Digital e Innovacion en Caracol Radio Colombia y Director Amigos TIC. Creador y evangelizador de estrategias de transformación digital. Experto en comunicación, periodismo, contenidos y marketing digital, fiel creyente de que la tecnología nos hace mejores personas, mejores empresas, mejores países y mejores sociedades. Geek irredento. Ha trabajado en EL TIEMPO, Caracol, Burson-Marsteller. Dirige MasterTecno.co, AmigosTIC.co y estratega de la CCIT.</p>
+                        <h2 class="modal-title">Javier Torres Páez</h2>
+                        <p>Ingeniero de Sistemas y Computación y especialista en sistemas de información en la organización (ESIO) de la Universidad de los Andes, con más de veinticinco años de experiencia, líder de diferentes proyectos en el sector financiero y en el sector público, de amplia experiencia en gerencia y ejecución de proyectos que involucran tecnologías de información. Fue responsable por las iniciativas de uso de tecnología en el sector educativo a nivel nacional durante ocho años, y ha asesorado a varios ministros en estrategias de adopción de tecnología en el País. </p>
+                        <p>Posee excelentes capacidades de planeación, de conducción de equipos humanos, de trabajo interdisciplinario, de negociación en diferentes condiciones, de orientación a los resultados y de innovación. Es un reconocido líder de innovación con tecnología de información y escritor de diversos temas.</p>
                     </div>
                 </div>
             </div>
-        </div> -->
-        <!--<div id="ponente-14" class="modal fade" role="dialog">
+        </div>
+        <div id="ponente-16" class="modal fade" role="dialog">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               <div class="modal-body text-justify">
-                <h2 class="modal-title">Juanita Rodríguez Kattah</h2>
-                <p>Ex-Viceministra de Economía Digital del Ministerio de Tecnologías de la Información y las Comunicaciones (MinTIC) Directora de Información y Tecnología en el Ministerio de Defensa de Colombia</p>
-                <p>Durante su tiempo en el Ministerio de TIC, ha trabajado como Viceministra de Economía Digital, Directora de Transformación Digital, Directora de Estándares y Arquitectura de TIC y gerente de las iniciativas de Apps.co y Contenido Digital. Por otro lado, también trabajó en el Ministerio de Defensa, donde fue Directora de Ciencia, Tecnología e Innovación.</p>
-                <p>Ha participado en importantes procesos de transformación digital en el sector de las TIC, como la aprobación de un grupo de beneficios fiscales para las empresas de computación en la nube y para ciertos grupos de insumos necesarios para el desarrollo de empresas de contenido digital.</p>
-                <p>Juanita también dirigió y promovió la producción de eventos como Colombia 4.0 y Expodefensa, ambos enfocados en permitir que los colombianos accedan a información actualizada sobre innovación tecnológica en contenido digital y seguridad.</p>
-                <p>Entre sus mayores logros, puede encontrar la adopción del estándar de computación en la nube desarrollado por el Instituto Nacional de Estándares y Tecnología (NIST) de los EE. UU., Para Colombia: y asesorado sobre la creación del Equipo de Respuesta a Incidentes de Seguridad Informática (CSIRT).</p>
-                <p>Mientras trabajaba para el sector de Defensa en el Ministerio de Defensa Nacional, fue miembro del equipo que estructuró el primer diseño de la Política de Ciber-defensa y Ciber-seguridad (CONPES 3701 de 2011) y asesoró en la implementación de varios programas que comprenden simulación. , radares y sistemas de aeronaves no tripuladas para lograr la apropiación nacional de estas tecnologías.</p>
-                <p>Juanita Rodriguez Kattah es una abogada que, cursa un Master en Sistemas de Información y Gestión de Comunicaciones. También tiene títulos de posgrado en Derecho Internacional de los Negocios, Derecho Internacional Humanitario y Nuevas Tecnologías, Innovación y Gestión de la Ciudad.</p>
+                <h2 class="modal-title">Carlos Gustavo Infante Sepúlveda</h2>
+                <p>Ingeniero de sistemas, Especialista en gerencia de proyectos y Magíster en Geomática con amplia experiencia en formulación, dirección y desarrollo de proyectos de tecnología de la información, en particular en el diseño y ejecución de plataforma que integran el componente geográfico, más de 20 años de experiencia relacionada con el área de la informática, especialmente en el campo de los sistemas de información geográfica, bases de datos y programación.</p>
+                <p>En el desarrollo de sistemas de información geográfica ha participado en proyectos de orden nacional, como el desarrollo del sistema de exploración, contratación y visualización de Ecopetrol, el sistema de información geológico de Ingeominas, sistema de información geotécnico y el sistema de gestión de alcantarillado de la empresa de acueducto de Bogotá, Gerente técnico del proyecto de interrelación Catastro – Registro, entre otros.</p>
+                <p>Actualmente se desempeña como Gerente de la compañía Kudos S.A.S, empresa Colombiana innovadora en el desarrollo de aplicaciones geográficas para Web, durante su gestión ha desarrollado proyectos para la Agencia Nacional de Hidrocarburos, Instituto de Investigación de Recursos Biológicos Alexander von Humboldt, Instituto Amazónico de investigaciones Científicas SINCHI, Servicio Geológico, Cooperación Europea, entre otros. Ha sido docente ocasional de la maestría de sistemas de la Universidad Nacional de Colombia, de la especialización de sistemas de información Geográfica del Instituto Geográfico Agustín Codazzi.</p>
               </div>
             </div>
           </div>
-        </div>-->
+        </div>
         <div id="agenda-2018" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -622,8 +575,13 @@
         $(document).ready(function () {
             $('#fullpage').fullpage({
                 //options here
-                anchors: ['home', 'bienvenidos', 'agenda-2018', 'expositores-2018', 'expositores-2018-2',
-                    'expositores-2018-3', 'expositores-2018-4', 'expositores-2018-5', 'registro'
+                anchors: ['home', 'bienvenidos', 
+                    //'agenda-2018', 
+                    'expositores-2018', 'expositores-2018-2',
+                    'expositores-2018-3', 
+                    'expositores-2018-4', 
+                    //'expositores-2018-5',
+                    'registro'
                 ],
                 autoScrolling: true,
                 scrollHorizontally: true,

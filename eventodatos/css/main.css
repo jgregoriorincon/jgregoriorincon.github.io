@@ -213,7 +213,7 @@ ul{
     color:#333333;
     margin: 0;
     padding-right: 50px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .main-title-bienvenido {
@@ -245,6 +245,28 @@ ul{
     padding-right: 100px;
     text-align: right;
 }
+
+.main-title-lugar {
+    display: block;
+    margin: 150px auto 25px;
+    font-size: 50px;
+    font-weight: 900;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: -o-fit-content;
+    width: fit-content;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase; 
+    position: relative;
+    bottom: 10%;
+}
+
+.main-title-lugar > h3 {
+    margin-bottom: 4px; 
+    margin-top: 4px; 
+}
+
 
 /*Expositores-section*/
 .main-title-expositores {
@@ -485,6 +507,9 @@ ul{
         transform: translateX(0) !important;
     }
     
+    .main-title-lugar {
+        margin: 25px auto 25px;
+    }
 }
 
 .go-to-home {
@@ -540,4 +565,18 @@ img.img-responsive.hidden-md.hidden-lg.fecha-h {
     max-width: 80vw;
     height: auto;
     margin:auto auto 15px;    
+}
+
+.mapasbogota {
+    position: relative;
+    padding-bottom: 75%; 
+    height: 0;
+    overflow: hidden;
+}
+.mapasbogota iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
 }
