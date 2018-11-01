@@ -601,9 +601,9 @@ img.img-responsive.hidden-md.hidden-lg.fecha-h {
 
 #register-section  {
     background-image: url('../images/evento_ciudad_b.png');
-    background-position: top 30vh right;
+    background-position: top 30vh left;
     background-repeat: no-repeat;
-    background-size: auto 40vh;
+    background-size: 50vw auto;
 }
 
 @media (min-width:0) and (max-width:1199px){
