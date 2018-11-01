@@ -60,7 +60,25 @@ ul{
     color: #ffffff;
     text-transform: uppercase;
     font-weight: 300;
+    
+    /* display: block;
+    margin: 0 auto 25px;
+    letter-spacing: 2px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: -o-fit-content;
+    width: fit-content;
+    color: #ffffff;
+    text-transform: uppercase;
+    position: absolute;
+    left: 55%;
+    top: 15%; */
 }
+
+#register-section .btn-bienvenidos{
+    margin-top: 60vh;
+}
+
 /*
 .main-title-register::before,
 .main-title-register::after{
@@ -83,18 +101,18 @@ ul{
 }
 */
 
-#register-section {
-    background: url(../images/evento_ciudad.png);
-    background-position: center;
-    background-size:100%;
+/* #register-section {
+    background-image: url(../images/evento_ciudad.png);
+    background-position: bottom left;
+    background-size:contain;
     background-repeat: no-repeat;
     background-color: #00225c;
-}
-#register-section .image-container{
+} */
+/* #register-section .image-container{
     width:740px;
     height: 400px;
     margin: auto;
-}
+} */
 
 /*Home-Section*/
 #home-section img.img-responsive-center.logo-evento{
@@ -451,13 +469,13 @@ ul{
         font-size: 18px;
         text-align: center;
     }
-    #register-section{
+    /* #register-section{
         background-size: 150%;
-    }
-    #register-section .image-container{
+    } */
+    /* #register-section .image-container{
         width: 100% !important;
         height: 200px
-    }
+    } */
     .main-title-expositores{
         font-size: 20px;
         padding: 25px 0 0
@@ -579,4 +597,20 @@ img.img-responsive.hidden-md.hidden-lg.fecha-h {
     left: 0;
     width: 100% !important;
     height: 100% !important;
+}
+
+#register-section  {
+    background-image: url('../images/evento_ciudad_b.png');
+    background-position: top 30vh right;
+    background-repeat: no-repeat;
+    background-size: auto 40vh;
+}
+
+@media (min-width:0) and (max-width:1199px){
+    #register-section  {
+        background: #00225c;
+    }
+    #register-section .btn-bienvenidos{
+        margin-top: 10vh;
+    }
 }
