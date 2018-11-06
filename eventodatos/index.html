@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -14,41 +15,61 @@
     <title>El poder de los datos</title>
     <link rel="shortcut icon" href="favicon.png" />
 </head>
+
 <body>
     <a class="go-to-home" href="#home"></a>
     <div id="fullpage">
-    	<div class="section" id="home-section">
-    	    <img src="images/evento_logo.png" alt="" class="img-responsive-center logo-evento">
-    	    <div class="home-nav">
-    	        <ul>
-    	            <a href="#bienvenidos"><li>Agenda</li></a>
-    	            <a href="#expositores-2018"><li>Expositores</li></a>
-    	            <a href="javascript:void(0)" data-toggle="modal" data-target="#registro-2018"><li>Registro</li></a>
+        <div class="section" id="home-section">
+            <img src="images/evento_logo.png" alt="" class="img-responsive-center logo-evento">
+            <div class="home-nav">
+                <ul>
+                    <a href="#bienvenidos">
+                        <li>Agenda</li>
+                    </a>
+                    <a href="#expositores-2018">
+                        <li>Expositores</li>
+                    </a>
+                    <!-- <a href="javascript:void(0)" data-toggle="modal" data-target="#registro-2018-google"><li>Registro</li></a> -->
+                    <a href="javascript:void(0)" onclick="openRegister();">
+                        <li>Registro</li>
+                    </a>
                 </ul>
 
                 <div class="main-title-lugar">
                     <h3>Auditorio Archivo de Bogotá</h3>
                     <h3>Calle 6 B # 5-75</h3>
                 </div>
-    	    </div>
-    	    <img src="images/evento_lateral.png" alt="" class="img-responsive adorno-lateral">
+            </div>
+            <img src="images/evento_lateral.png" alt="" class="img-responsive adorno-lateral">
             <img src="images/evento_fecha_v.png" alt="" class="img-responsive fecha-lateral">
-            <img src="images/evento_fecha_h.png" alt="" class="img-responsive hidden-md hidden-lg fecha-h"/>
+            <img src="images/evento_fecha_h.png" alt="" class="img-responsive hidden-md hidden-lg fecha-h" />
 
-    	</div>
-    	<div class="section" id="bienvenido-section">
+        </div>
+        <div class="section" id="bienvenido-section">
             <img src="images/evento_bienvenidos.png" alt="" class="img-responsive adorno-bienvenido">
             <div class="elemento-decorativo-bienvenidos"></div>
             <h1 class="main-title-bienvenido">Bienvenidos</h1>
             <h3 class="main-subitile-bienvenido">Este es <br> El primer paso <br> hacia una ciudad <br> inteligente</h3>
-            <p class="main-text-bienvenido" style="padding-top: 100px">El Foro "El poder de los datos geográficos en Bogotá”, es un encuentro organizado por la Unidad Administrativa Especial de Catastro Distrital (UAECD), coordinadora de la Infraestructura de Datos Espaciales para el Distrito Capital (IDECA), con el propósito que las Entidades de la Administración Distrital, la academia y organizaciones privadas puedan intercambiar experiencias que evidencien la importancia, potencial, uso y valor que tienen los datos en los diferentes sectores de la sociedad.</p>
+            <p class="main-text-bienvenido" style="padding-top: 100px">El Foro "El poder de los datos geográficos en
+                Bogotá”, es un encuentro organizado por la Unidad Administrativa Especial de Catastro Distrital
+                (UAECD), coordinadora de la Infraestructura de Datos Espaciales para el Distrito Capital (IDECA), con
+                el propósito que las Entidades de la Administración Distrital, la academia y organizaciones privadas
+                puedan intercambiar experiencias que evidencien la importancia, potencial, uso y valor que tienen los
+                datos en los diferentes sectores de la sociedad.</p>
             <br>
-            <p class="main-text-bienvenido">Además, es un espacio para desarrollar competencias en los servidores públicos, quienes podrán comprender a través de las diferentes ponencias y estudios de caso, la aplicación de analítica de datos, BlockChain y otras tecnologías en proyectos desarrollados con enfoque geográfico, convirtiéndose en instrumentos enriquecedores para conocer estrategias que permitan la explotación e innovación basada en los datos, y así contribuir con la construcción conjunta de Bogotá como ciudad inteligente.</p>
+            <p class="main-text-bienvenido">Además, es un espacio para desarrollar competencias en los servidores
+                públicos, quienes podrán comprender a través de las diferentes ponencias y estudios de caso, la
+                aplicación de analítica de datos, BlockChain y otras tecnologías en proyectos desarrollados con enfoque
+                geográfico, convirtiéndose en instrumentos enriquecedores para conocer estrategias que permitan la
+                explotación e innovación basada en los datos, y así contribuir con la construcción conjunta de Bogotá
+                como ciudad inteligente.</p>
             <br>
-            <p class="main-text-bienvenido" style="padding-bottom:20px"><b style="font-size:2rem;">¡Anímate a participar, no te lo pierdas!</b><br></p>
-            <a class="btn-bienvenidos" style="margin-right: 50px;padding: 0;text-decoration: none;text-transform: initial !important;color: #02215A;" target="_blank" href="./images/AgendaPoderDeLosDatos.pdf">Descarga la agenda</a>
+            <p class="main-text-bienvenido" style="padding-bottom:20px"><b style="font-size:2rem;">¡Anímate a
+                    participar, no te lo pierdas!</b><br></p>
+            <a class="btn-bienvenidos" style="margin-right: 50px;padding: 0;text-decoration: none;text-transform: initial !important;color: #02215A;"
+                target="_blank" href="./images/AgendaPoderDeLosDatos.pdf">Descarga la agenda</a>
         </div>
-    	<!-- <div class="section" id="agenda-section">
+        <!-- <div class="section" id="agenda-section">
             <img src="images/agenda.png" alt="" style="width: auto; max-height: 100%;width: auto\9;" class="img-responsive">
         </div> -->
         <div class="section" id="section-expositores">
@@ -66,15 +87,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Olga Lucía López Morales</div>
                                     <div class="especialidad">Directora de la UAECD</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-0">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-0">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
                                 <img src="images/1.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Juanita Rodríguez Kattah</div>
-                                    <div class="especialidad">Ex-Viceministra de Economía Digital del Ministerio de Tecnologías de la Información y las Comunicaciones (MinTIC)</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-1">Más Información</a>
+                                    <div class="especialidad">Ex-Viceministra de Economía Digital del Ministerio de
+                                        Tecnologías de la Información y las Comunicaciones (MinTIC)</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-1">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
@@ -82,15 +106,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Elizabeth Blandón Bermúdez</div>
                                     <div class="especialidad">Asesora Internacional de la OEA</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-2">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/3.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Sergio Martínez Medina </div>
-                                    <div class="especialidad">Alto Consejero Distrital de TIC<br>Alcaldía Mayor de Bogotá</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-3">Más Información</a>
+                                    <div class="especialidad">Alto Consejero Distrital de TIC<br>Alcaldía Mayor de
+                                        Bogotá</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-3">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
@@ -98,15 +125,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Sergio Gutiérrez Bonnet</div>
                                     <div class="especialidad">Presidente de INFÓRMESE SPSS Andino</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-4">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-4">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/8.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Mauricio Tovar</div>
-                                    <div class="especialidad">Investigador Blockchain. Co-Director Grupo de Investigación InTIColombia. Universidad Nacional</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-8">Más Información</a>
+                                    <div class="especialidad">Investigador Blockchain. Co-Director Grupo de
+                                        Investigación InTIColombia. Universidad Nacional</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-8">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
@@ -114,15 +144,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Juliana Galvis Nieto</div>
                                     <div class="especialidad">Politóloga y Periodista del Equipo de datos de Datasketch</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-10">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-10">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/11.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Olga Lucía Sarmiento D. </div>
-                                    <div class="especialidad">Investigadora Grupo de Epidemiología de la Universidad de los Andes</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-11">Más Información</a>
+                                    <div class="especialidad">Investigadora Grupo de Epidemiología de la Universidad de
+                                        los Andes</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-11">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
@@ -130,15 +163,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Carlos Lugo Silva</div>
                                     <div class="especialidad">Comisionado de Regulación de Comunicaciones.</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-12">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-12">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente hidden-lg hidden-md">
                                 <img src="images/15.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Javier Torres Páez</div>
-                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la  Unidad  Administrativa  Especial  de  Servicios Públicos (UAESP)</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-15">Más Información</a>
+                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la
+                                        Unidad Administrativa Especial de Servicios Públicos (UAESP)</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-15">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
@@ -146,7 +182,8 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Carlos Gustavo Infante Sepúlveda</div>
                                     <div class="especialidad">Gerente de la compañía Kudos S.A.S</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-16">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-16">Más Información</a>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +206,8 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Sergio Martínez Medina</div>
                                     <div class="especialidad">Alto Consejero Distrital de TIC</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-3">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-3">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
@@ -177,15 +215,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Sergio Gutiérrez Bonnet</div>
                                     <div class="especialidad">Presidente de INFÓRMESE SPSS Andino</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-4">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-4">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
                                 <img src="images/8.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Mauricio Tovar</div>
-                                    <div class="especialidad">Investigador Blockchain. Co-Director Grupo de Investigación InTIColombia. Universidad Nacional</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-8">Más Información</a>
+                                    <div class="especialidad">Investigador Blockchain. Co-Director Grupo de
+                                        Investigación InTIColombia. Universidad Nacional</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-8">Más Información</a>
                                 </div>
                             </div>
                         </div>
@@ -208,15 +249,18 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Juliana Galvis</div>
                                     <div class="especialidad">Politóloga y Periodista del Equipo de datos de Datasketch</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-10">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-10">Más Información</a>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="ponente">
                                 <img src="images/11.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Olga Lucía Sarmiento D. </div>
-                                    <div class="especialidad">Investigadora Grupo de Epidemiología de la Universidad de los Andes</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-11">Más Información</a>
+                                    <div class="especialidad">Investigadora Grupo de Epidemiología de la Universidad de
+                                        los Andes</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-11">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
@@ -224,7 +268,8 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Carlos Lugo Silva</div>
                                     <div class="especialidad">Comisionado de Regulación de Comunicaciones.</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-12">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-12">Más Información</a>
                                 </div>
                             </div>
                         </div>
@@ -247,31 +292,34 @@
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Carlos Gustavo Infante Sepúlveda</div>
                                     <div class="especialidad">Gerente de la compañía Kudos S.A.S</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-16">Más Información</a>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-16">Más Información</a>
                                 </div>
                             </div>
                             <div class="ponente">
                                 <img src="images/15.png" alt="" class="img-responsive-center">
                                 <div class="info-ponente text-center">
                                     <div class="nombre-ponente">Javier Torres Páez</div>
-                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la  Unidad  Administrativa  Especial  de  Servicios Públicos (UAESP)</div>
-                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-15">Más Información</a>
+                                    <div class="especialidad">Director de consultoría de Yobiplex y asesor TIC de la
+                                        Unidad Administrativa Especial de Servicios Públicos (UAESP)</div>
+                                    <a class="more-information" href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#ponente-15">Más Información</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="section" id="register-section">
             <div class="col-lg-6 col-md-6 col-sm-12" id="register-section-registro">
                 <h2 class="main-title-register">Construyamos una ciudad inteligente</h2>
                 <div class="image-container"></div>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#registro-2018" class="btn-bienvenidos">Regístrate</a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#registro-2018-google" class="btn-bienvenidos">Regístrate</a>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="mapasbogota">
-                    <iframe width="500" height="500"  frameborder='0' scrolling='no' allowfullscreen src='https://mapas.bogota.gov.co/?l=607&e=-74.08140468200057,4.588193324912743,-74.07110499938197,4.593267825416927,4686&b=261&p=-74.07736527522358,4.591262626685322,4686'></iframe>
+                    <iframe width="500" height="500" frameborder='0' scrolling='no' allowfullscreen src='https://mapas.bogota.gov.co/?l=607&e=-74.08140468200057,4.588193324912743,-74.07110499938197,4.593267825416927,4686&b=261&p=-74.07736527522358,4.591262626685322,4686'></iframe>
                 </div>
             </div>
 
@@ -284,95 +332,164 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Olga Lucía López Morales</h2>
-                        <p>Administradora de Empresas, Especializaciones en Control Interno y Derecho Tributario. Con más de 16 años de experiencia profesional en entidades como la Secretaría Distrital de Hacienda, donde se desempeñó en diferentes cargos, entre otros, Jefe de Unidad de Cobranzas e Impuestos a la Propiedad, Jefe de Unidad de Determinación Impuestos a la Propiedad, Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de Impuestos, Jefe de Oficina de Cobro. En la Unidad Administrativa Especial de Gestión Pensional y Contribuciones Parafiscales –UGPP desempeñó entre otros el cargo de Subdirectora de Determinación de Obligaciones Parafiscales. Fue Vicepresidente de Operaciones en Coljuegos. En la UAECD ha sido Gerente de Gestión Corporativa y Gerente de Información Catastral. Desde el 8 de agosto de 2018 es Directora de la Entidad.</p>
+                        <p>Administradora de Empresas, Especializaciones en Control Interno y Derecho Tributario. Con
+                            más de 16 años de experiencia profesional en entidades como la Secretaría Distrital de
+                            Hacienda, donde se desempeñó en diferentes cargos, entre otros, Jefe de Unidad de Cobranzas
+                            e Impuestos a la Propiedad, Jefe de Unidad de Determinación Impuestos a la Propiedad,
+                            Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de
+                            Impuestos, Jefe de Oficina de Cobro. En la Unidad Administrativa Especial de Gestión
+                            Pensional y Contribuciones Parafiscales –UGPP desempeñó entre otros el cargo de
+                            Subdirectora de Determinación de Obligaciones Parafiscales. Fue Vicepresidente de
+                            Operaciones en Coljuegos. En la UAECD ha sido Gerente de Gestión Corporativa y Gerente de
+                            Información Catastral. Desde el 8 de agosto de 2018 es Directora de la Entidad.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-1" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-                
+
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Juanita Rodríguez Kattah</h2>
-                        <p>Abogada con más de 16 años de trabajo en el sector público y privado, en asuntos relacionados con ciencia, tecnología e innovación.</p>
+                        <p>Abogada con más de 16 años de trabajo en el sector público y privado, en asuntos
+                            relacionados con ciencia, tecnología e innovación.</p>
 
-                        <p>Ha hecho parte de importantes procesos de transformación digital, recientemente como Viceministra de Economía Digital del Ministerio de Tecnologías de la Información y las Comunicaciones, y antes ocupando diferentes cargos directivos, entre ellos el de Directora de Ciencia, Tecnología e Innovación del Ministerio de Defensa Nacional.</p>
+                        <p>Ha hecho parte de importantes procesos de transformación digital, recientemente como
+                            Viceministra de Economía Digital del Ministerio de Tecnologías de la Información y las
+                            Comunicaciones, y antes ocupando diferentes cargos directivos, entre ellos el de Directora
+                            de Ciencia, Tecnología e Innovación del Ministerio de Defensa Nacional.</p>
 
-                        <p>Entre estas transformaciones se encuentran la puesta en marcha de las apuestas de simulación, radares y aeronaves remotamente tripuladas. Así como la creación de la Corporación de Alta Tecnología para la Defensa (Codaltec), en donde confluyen las capacidades de desarrollo tecnológico en radares y simulación, la administración de proyectos de ciencia y tecnología y la transferencia de tecnologías desarrollada al interior de las FFAA.</p>
+                        <p>Entre estas transformaciones se encuentran la puesta en marcha de las apuestas de
+                            simulación, radares y aeronaves remotamente tripuladas. Así como la creación de la
+                            Corporación de Alta Tecnología para la Defensa (Codaltec), en donde confluyen las
+                            capacidades de desarrollo tecnológico en radares y simulación, la administración de
+                            proyectos de ciencia y tecnología y la transferencia de tecnologías desarrollada al
+                            interior de las FFAA.</p>
 
-                        <p>Además lideró la creación de la fábrica de software al interior de la Agencia Nacional Digital, organización encargada de crear soluciones tecnológicas para el Gobierno colombiano.</p>
+                        <p>Además lideró la creación de la fábrica de software al interior de la Agencia Nacional
+                            Digital, organización encargada de crear soluciones tecnológicas para el Gobierno
+                            colombiano.</p>
 
-                        <p>En materia de Seguridad Digital creó el Equipo de Respuesta a Incidentes Cibernéticos de Gobierno (CSIRT, por sus siglas en inglés), participó en la generación de la primera Estrategia Nacional de Ciberseguridad y Ciberdefensa (Conpes 3701 de 2011) y trabajó en la implementación de la versión más reciente de la Política de Seguridad de Digital (Conpes 3854 de 2016).</p>
+                        <p>En materia de Seguridad Digital creó el Equipo de Respuesta a Incidentes Cibernéticos de
+                            Gobierno (CSIRT, por sus siglas en inglés), participó en la generación de la primera
+                            Estrategia Nacional de Ciberseguridad y Ciberdefensa (Conpes 3701 de 2011) y trabajó en la
+                            implementación de la versión más reciente de la Política de Seguridad de Digital (Conpes
+                            3854 de 2016).</p>
 
-                        <p>Así mismo, logró aprobación de beneficios tributarios para las empresas prestadoras de servicios de Cloud Computing, y a los insumos necesarios para el desarrollo de contenidos digitales.</p>
+                        <p>Así mismo, logró aprobación de beneficios tributarios para las empresas prestadoras de
+                            servicios de Cloud Computing, y a los insumos necesarios para el desarrollo de contenidos
+                            digitales.</p>
 
-                        <p>Se encuentra cursando un Máster en Dirección de Sistemas de Información y Comunicaciones. Además es especialista en Nuevas Tecnologías, Innovación y Gestión de Ciudades, así como en Derecho de los Negocios Internacionales, y en Derecho Aplicable a la Conducción de las Hostilidades.</p>
+                        <p>Se encuentra cursando un Máster en Dirección de Sistemas de Información y Comunicaciones.
+                            Además es especialista en Nuevas Tecnologías, Innovación y Gestión de Ciudades, así como en
+                            Derecho de los Negocios Internacionales, y en Derecho Aplicable a la Conducción de las
+                            Hostilidades.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-2" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-                
+
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Elizabeth Blandón Bermúdez</h2>
-                        <p>Economísta de la Universidad de Medellín, especialista en Gestión Financiera Empresarial y en Gerencia Corporativa de la Universidad Externado de Colombia, Magister en riesgos de la Universidad Rey Juan Carlos de Madrid y en curso MBA en proyectos PMP.</p>
+                        <p>Economísta de la Universidad de Medellín, especialista en Gestión Financiera Empresarial y
+                            en Gerencia Corporativa de la Universidad Externado de Colombia, Magister en riesgos de la
+                            Universidad Rey Juan Carlos de Madrid y en curso MBA en proyectos PMP.</p>
 
-                        <p>Cuenta con más de 20 años de experiencia, experta en diseño de política pública Territorial se ha desempeñado como Viceministra de Economía Digital (E), Directora de Gobierno Digital, lideró la política de datos abiertos y la política de Gobierno digital del Estado Colombiano; reto que la hace ser elegida a nivel internacional entre los 100 personajes mas influyentes en la materia; actualmente se desempeña como asesora internacional en la implementación de la política de Gobierno Digital en Perú.</p>
+                        <p>Cuenta con más de 20 años de experiencia, experta en diseño de política pública Territorial
+                            se ha desempeñado como Viceministra de Economía Digital (E), Directora de Gobierno Digital,
+                            lideró la política de datos abiertos y la política de Gobierno digital del Estado
+                            Colombiano; reto que la hace ser elegida a nivel internacional entre los 100 personajes mas
+                            influyentes en la materia; actualmente se desempeña como asesora internacional en la
+                            implementación de la política de Gobierno Digital en Perú.</p>
 
-                        <p>Elizabeth <b>encuentra en el uso de los datos la mejor manera de llevar a cabo la transformación digital de la sociedad</b>, a partir de un verdadero proceso de apropiación y aprovechamiento; contribuyendo en la generación de valor público, gracias a su impacto en la toma de decisiones de politica basadas en datos que fortalece al ciudadano, estructura territorios sostenibles, generando como consecuencia una prestacion de procesos ágiles y seguros en todo el Ecosistema Digital Regional.</p>
+                        <p>Elizabeth <b>encuentra en el uso de los datos la mejor manera de llevar a cabo la
+                                transformación digital de la sociedad</b>, a partir de un verdadero proceso de
+                            apropiación y aprovechamiento; contribuyendo en la generación de valor público, gracias a
+                            su impacto en la toma de decisiones de politica basadas en datos que fortalece al
+                            ciudadano, estructura territorios sostenibles, generando como consecuencia una prestacion
+                            de procesos ágiles y seguros en todo el Ecosistema Digital Regional.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-3" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-                
+
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Sergio Martínez Medina </h2>
-                <p>Sergio Martínez Medina es economista de la Universidad de los Andes con maestría en estudios interdisciplinarios sobre el desarrollo y especialización en evaluación social de proyectos de la misma universidad. Además, tiene un Máster en regulación de servicios públicos de red por la Universidad de Barcelona. Cuenta con más de 15 años de experiencia en el diseño de políticas públicas y regulatorias tanto en el sector privado como en el público. Ha sido asesor en Telefónica Colombia, y funcionario de la Dirección de Infraestructura del Departamento Nacional de Planeación, así como asesor y consultor de la Comisión de Regulación de Comunicaciones.</p>
+                        <p>Sergio Martínez Medina es economista de la Universidad de los Andes con maestría en estudios
+                            interdisciplinarios sobre el desarrollo y especialización en evaluación social de proyectos
+                            de la misma universidad. Además, tiene un Máster en regulación de servicios públicos de red
+                            por la Universidad de Barcelona. Cuenta con más de 15 años de experiencia en el diseño de
+                            políticas públicas y regulatorias tanto en el sector privado como en el público. Ha sido
+                            asesor en Telefónica Colombia, y funcionario de la Dirección de Infraestructura del
+                            Departamento Nacional de Planeación, así como asesor y consultor de la Comisión de
+                            Regulación de Comunicaciones.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-4" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-                
+
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Sergio Gutiérrez Bonnet</h2>
-                <p>Trabaja para hacer una diferencia en la transformación digital de las empresas en Latinoamérica, generando valor a través de los datos, mejorando los procesos de toma de decisión de los CLIENTES.</p>
-                <p>25 años dedicados al uso de grandes volúmenes de datos y desarrollo de modelos matemáticos y estadísticos para apoyar la toma de mejores decisiones en las organizaciones.</p>
-                <p>Sergio trabaja con las organizaciones implementando tecnología, analítica y estadística para facilitar la toma de decisiones acertadas.</p>
-                <p>Ha apoyado a diversas organizaciones en sus procesos de prevención de fraude y control de lavado de dinero y lavado de activos.</p>
-                <p>Emprendedor de diversos negocios, miembro de #EO. Líder de más de 100 proyectos de analítica y minería de datos, con resultados que han permitido la optimización exponencial de los negocios.</p>
+                        <p>Trabaja para hacer una diferencia en la transformación digital de las empresas en
+                            Latinoamérica, generando valor a través de los datos, mejorando los procesos de toma de
+                            decisión de los CLIENTES.</p>
+                        <p>25 años dedicados al uso de grandes volúmenes de datos y desarrollo de modelos matemáticos y
+                            estadísticos para apoyar la toma de mejores decisiones en las organizaciones.</p>
+                        <p>Sergio trabaja con las organizaciones implementando tecnología, analítica y estadística para
+                            facilitar la toma de decisiones acertadas.</p>
+                        <p>Ha apoyado a diversas organizaciones en sus procesos de prevención de fraude y control de
+                            lavado de dinero y lavado de activos.</p>
+                        <p>Emprendedor de diversos negocios, miembro de #EO. Líder de más de 100 proyectos de analítica
+                            y minería de datos, con resultados que han permitido la optimización exponencial de los
+                            negocios.</p>
                         <p>Director ejecutivo de CALA Analytics – Centro Analítico Latinoamericano.</p>
-                <p>Desarrollo de metodología para inteligencia de mercados basada en el buen uso de datos y analítica.</p>
-                <p>Promoción e implementación de herramientas de automatización de recolección de datos y flujo de información dentro de las organizaciones.</p>
-                <p>Speaker de referencia en diversos países latinoamericanos y Estados Unidos. Docente en mercadeo, riesgo y analítica, tanto en pregrado, como en maestrías.</p>
+                        <p>Desarrollo de metodología para inteligencia de mercados basada en el buen uso de datos y
+                            analítica.</p>
+                        <p>Promoción e implementación de herramientas de automatización de recolección de datos y flujo
+                            de información dentro de las organizaciones.</p>
+                        <p>Speaker de referencia en diversos países latinoamericanos y Estados Unidos. Docente en
+                            mercadeo, riesgo y analítica, tanto en pregrado, como en maestrías.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-8" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-                
+
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Mauricio Tovar</h2>
-                <p>Investigador Blockchain. Co-Director Grupo de Investigación InTIColombia. Universidad Nacional</p>
-                <p>Es Ingeniero Electrónico de la Universidad Nacional de Colombia con estudios de Maestría en Creación y Gestión de Empresas Innovadoras y de Base Tecnológica de la Universidad de Barcelona.</p>
-                <p>Ha sido Director de Extensión de la Sede Bogotá de la Universidad Nacional de Colombia. Actualmente es Co-director del grupo de investigación InTIColombia de la Universidad Nacional, grupo de investigación que investiga en tecnologías de la denominada Cuarta Revolución Industrial como Blockchain, tecnología detrás del bitcoin y desde donde también se ejecutan proyectos como el ViveLab Bogotá.</p>
-                <p> “Por una Colombia que base su desarrollo invirtiendo en su gente: Educación, Ciencia, Tecnología e Innovación”.</p>
-                <p>Especialidades: Blockchain, Cuarta Revoluciòn Industrial, Ciencia, Tecnología e Innovación; Relaciones Universidad - Empresa - Estado - Sociedad; Formulación, gestión y dirección de proyectos de Innovación; Tecnologías de la Información y las comunicaciones TIC; Negociación; Emprendimiento.</p>
+                        <p>Investigador Blockchain. Co-Director Grupo de Investigación InTIColombia. Universidad
+                            Nacional</p>
+                        <p>Es Ingeniero Electrónico de la Universidad Nacional de Colombia con estudios de Maestría en
+                            Creación y Gestión de Empresas Innovadoras y de Base Tecnológica de la Universidad de
+                            Barcelona.</p>
+                        <p>Ha sido Director de Extensión de la Sede Bogotá de la Universidad Nacional de Colombia.
+                            Actualmente es Co-director del grupo de investigación InTIColombia de la Universidad
+                            Nacional, grupo de investigación que investiga en tecnologías de la denominada Cuarta
+                            Revolución Industrial como Blockchain, tecnología detrás del bitcoin y desde donde también
+                            se ejecutan proyectos como el ViveLab Bogotá.</p>
+                        <p> “Por una Colombia que base su desarrollo invirtiendo en su gente: Educación, Ciencia,
+                            Tecnología e Innovación”.</p>
+                        <p>Especialidades: Blockchain, Cuarta Revoluciòn Industrial, Ciencia, Tecnología e Innovación;
+                            Relaciones Universidad - Empresa - Estado - Sociedad; Formulación, gestión y dirección de
+                            proyectos de Innovación; Tecnologías de la Información y las comunicaciones TIC;
+                            Negociación; Emprendimiento.</p>
                     </div>
                 </div>
             </div>
@@ -383,7 +500,9 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Juliana Galvis Nieto</h2>
-                        <p>Politóloga y candidata a magíster en Humanidades Digitales. Actualmente lidera el desarrollo de la base de datos Who Is, además de apoyar investigaciones periodísticas y creación de bases de datos.</p>
+                        <p>Politóloga y candidata a magíster en Humanidades Digitales. Actualmente lidera el desarrollo
+                            de la base de datos Who Is, además de apoyar investigaciones periodísticas y creación de
+                            bases de datos.</p>
                     </div>
                 </div>
             </div>
@@ -394,7 +513,10 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Olga Lucía Sarmiento D.</h2>
-                <p>Profesora asociada del área de Salud Pública en la Facultad de Medicina de la Universidad de los Andes. Médico de la Universidad Javeriana en Bogotá, Colombia, con Maestría y Doctorado del Departamento de Epidemiología de la Escuela de Salud Pública de la Universidad de Carolina del Norte en Chapel.</p>
+                        <p>Profesora asociada del área de Salud Pública en la Facultad de Medicina de la Universidad de
+                            los Andes. Médico de la Universidad Javeriana en Bogotá, Colombia, con Maestría y Doctorado
+                            del Departamento de Epidemiología de la Escuela de Salud Pública de la Universidad de
+                            Carolina del Norte en Chapel.</p>
                     </div>
                 </div>
             </div>
@@ -405,7 +527,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Carlos Lugo Silva</h2>
-                        <p>Abogado, Especialista en Derecho de las Telecomunicaciones, con Maestría en Estudios sociales de la Ciencia y la Tecnología,   y con Doctorado en Estudios Sociales de la Ciencia y la Tecnología. Se ha desempeñado como Gerente de innovación y desarrollo tecnológico del SENA,  Jefe de Innovación Educativa del Ministerio de educación, Director de Apropiación TIC de Mintic, miembro de varias juntas directivas del sector TIC y Educación, actualmente se desempeña como Comisionado de Regulación de Comunicaciones cargo que alterna con el de catedrático del centro de tecnologías de la Universidad de la Sabana.</p>
+                        <p>Abogado, Especialista en Derecho de las Telecomunicaciones, con Maestría en Estudios
+                            sociales de la Ciencia y la Tecnología, y con Doctorado en Estudios Sociales de la Ciencia
+                            y la Tecnología. Se ha desempeñado como Gerente de innovación y desarrollo tecnológico del
+                            SENA, Jefe de Innovación Educativa del Ministerio de educación, Director de Apropiación TIC
+                            de Mintic, miembro de varias juntas directivas del sector TIC y Educación, actualmente se
+                            desempeña como Comisionado de Regulación de Comunicaciones cargo que alterna con el de
+                            catedrático del centro de tecnologías de la Universidad de la Sabana.</p>
                     </div>
                 </div>
             </div>
@@ -416,24 +544,49 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Javier Torres Páez</h2>
-                        <p>Ingeniero de Sistemas y Computación y especialista en sistemas de información en la organización (ESIO) de la Universidad de los Andes, con más de veinticinco años de experiencia, líder de diferentes proyectos en el sector financiero y en el sector público, de amplia experiencia en gerencia y ejecución de proyectos que involucran tecnologías de información. Fue responsable por las iniciativas de uso de tecnología en el sector educativo a nivel nacional durante ocho años, y ha asesorado a varios ministros en estrategias de adopción de tecnología en el País. </p>
-                        <p>Posee excelentes capacidades de planeación, de conducción de equipos humanos, de trabajo interdisciplinario, de negociación en diferentes condiciones, de orientación a los resultados y de innovación. Es un reconocido líder de innovación con tecnología de información y escritor de diversos temas.</p>
+                        <p>Ingeniero de Sistemas y Computación y especialista en sistemas de información en la
+                            organización (ESIO) de la Universidad de los Andes, con más de veinticinco años de
+                            experiencia, líder de diferentes proyectos en el sector financiero y en el sector público,
+                            de amplia experiencia en gerencia y ejecución de proyectos que involucran tecnologías de
+                            información. Fue responsable por las iniciativas de uso de tecnología en el sector
+                            educativo a nivel nacional durante ocho años, y ha asesorado a varios ministros en
+                            estrategias de adopción de tecnología en el País. </p>
+                        <p>Posee excelentes capacidades de planeación, de conducción de equipos humanos, de trabajo
+                            interdisciplinario, de negociación en diferentes condiciones, de orientación a los
+                            resultados y de innovación. Es un reconocido líder de innovación con tecnología de
+                            información y escritor de diversos temas.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="ponente-16" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <div class="modal-body text-justify">
-                <h2 class="modal-title">Carlos Gustavo Infante Sepúlveda</h2>
-                <p>Ingeniero de sistemas, Especialista en gerencia de proyectos y Magíster en Geomática con amplia experiencia en formulación, dirección y desarrollo de proyectos de tecnología de la información, en particular en el diseño y ejecución de plataforma que integran el componente geográfico, más de 20 años de experiencia relacionada con el área de la informática, especialmente en el campo de los sistemas de información geográfica, bases de datos y programación.</p>
-                <p>En el desarrollo de sistemas de información geográfica ha participado en proyectos de orden nacional, como el desarrollo del sistema de exploración, contratación y visualización de Ecopetrol, el sistema de información geológico de Ingeominas, sistema de información geotécnico y el sistema de gestión de alcantarillado de la empresa de acueducto de Bogotá, Gerente técnico del proyecto de interrelación Catastro – Registro, entre otros.</p>
-                <p>Actualmente se desempeña como Gerente de la compañía Kudos S.A.S, empresa Colombiana innovadora en el desarrollo de aplicaciones geográficas para Web, durante su gestión ha desarrollado proyectos para la Agencia Nacional de Hidrocarburos, Instituto de Investigación de Recursos Biológicos Alexander von Humboldt, Instituto Amazónico de investigaciones Científicas SINCHI, Servicio Geológico, Cooperación Europea, entre otros. Ha sido docente ocasional de la maestría de sistemas de la Universidad Nacional de Colombia, de la especialización de sistemas de información Geográfica del Instituto Geográfico Agustín Codazzi.</p>
-              </div>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-body text-justify">
+                        <h2 class="modal-title">Carlos Gustavo Infante Sepúlveda</h2>
+                        <p>Ingeniero de sistemas, Especialista en gerencia de proyectos y Magíster en Geomática con
+                            amplia experiencia en formulación, dirección y desarrollo de proyectos de tecnología de la
+                            información, en particular en el diseño y ejecución de plataforma que integran el
+                            componente geográfico, más de 20 años de experiencia relacionada con el área de la
+                            informática, especialmente en el campo de los sistemas de información geográfica, bases de
+                            datos y programación.</p>
+                        <p>En el desarrollo de sistemas de información geográfica ha participado en proyectos de orden
+                            nacional, como el desarrollo del sistema de exploración, contratación y visualización de
+                            Ecopetrol, el sistema de información geológico de Ingeominas, sistema de información
+                            geotécnico y el sistema de gestión de alcantarillado de la empresa de acueducto de Bogotá,
+                            Gerente técnico del proyecto de interrelación Catastro – Registro, entre otros.</p>
+                        <p>Actualmente se desempeña como Gerente de la compañía Kudos S.A.S, empresa Colombiana
+                            innovadora en el desarrollo de aplicaciones geográficas para Web, durante su gestión ha
+                            desarrollado proyectos para la Agencia Nacional de Hidrocarburos, Instituto de
+                            Investigación de Recursos Biológicos Alexander von Humboldt, Instituto Amazónico de
+                            investigaciones Científicas SINCHI, Servicio Geológico, Cooperación Europea, entre otros.
+                            Ha sido docente ocasional de la maestría de sistemas de la Universidad Nacional de
+                            Colombia, de la especialización de sistemas de información Geográfica del Instituto
+                            Geográfico Agustín Codazzi.</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <div id="agenda-2018" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -446,7 +599,20 @@
                 </div>
             </div>
         </div>
-        <div id="registro-2018" class="modal fade" role="dialog">
+        <!-- <div id="registro-2018-office" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sd modal-md">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-body text-justify">
+                        <h2 class="modal-title">Registro</h2>
+                        <div>
+                            <iframe width="400px" height="500px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div id="registro-2018-google" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sd modal-md">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -457,19 +623,23 @@
                                 <!-- <br> -->
                                 <div class="form-group">
                                     <label for="nombresRegistro">Nombres y apellidos</label>
-                                    <input type="text" class="form-control" id="nombresRegistro" name="nombresRegistro" placeholder="Nombres y apellidos" tabindex="1" required>
+                                    <input type="text" class="form-control" id="nombresRegistro" name="nombresRegistro"
+                                        placeholder="Nombres y apellidos" tabindex="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="emailRegistro">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Correo electrónico" tabindex="2" required>
+                                    <input type="email" class="form-control" id="emailRegistro" name="emailRegistro"
+                                        placeholder="Correo electrónico" tabindex="2" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="celularRegistro">Número de celular</label>
-                                    <input type="tel" class="form-control" id="celularRegistro" name="celularRegistro" placeholder="Número de celular" tabindex="3" required>
+                                    <input type="tel" class="form-control" id="celularRegistro" name="celularRegistro"
+                                        placeholder="Número de celular" tabindex="3" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="entidadRegistro">Nombre de la Entidad o Institución</label>
-                                    <input type="text" class="form-control" id="entidadRegistro" name="entidadRegistro" placeholder="Nombre de la Entidad o Institución" tabindex="4" required>
+                                    <input type="text" class="form-control" id="entidadRegistro" name="entidadRegistro"
+                                        placeholder="Nombre de la Entidad o Institución" tabindex="4" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="cargoRegistro">Cargo:</label>
@@ -492,13 +662,23 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="">Conforme a lo establecido en la Ley 1581 de 2012 y el Decreto 1377 de 2013 sobre protección de datos personales, o norma que haga sus veces, usted otorga su autorización para (i) comunicar eficientemente información propia de la UAECD (ii) comunicar sobre eventos, productos o servicios que relacionados con la UAECD. Usted puede ejercer sus derechos a conocer, actualizar, rectificar y solicitar la supresión de sus datos personales dirigiendocomunicación escrita al correo electrónico <a href="mailto:contactenos@catastrobogota.gov.co" target="_top">contactenos@catastrobogota.gov.co</a>, asunto protección datos personales.</label>
+                                    <label for="">Conforme a lo establecido en la Ley 1581 de 2012 y el Decreto 1377 de
+                                        2013 sobre protección de datos personales, o norma que haga sus veces, usted
+                                        otorga su autorización para (i) comunicar eficientemente información propia de
+                                        la UAECD (ii) comunicar sobre eventos, productos o servicios que relacionados
+                                        con la UAECD. Usted puede ejercer sus derechos a conocer, actualizar,
+                                        rectificar y solicitar la supresión de sus datos personales
+                                        dirigiendocomunicación escrita al correo electrónico <a href="mailto:contactenos@catastrobogota.gov.co"
+                                            target="_top">contactenos@catastrobogota.gov.co</a>, asunto protección
+                                        datos personales.</label>
                                     <div style="text-align:center;">
                                         <label class="radio-inline">
-                                            <input type="radio" name="usoDatosRegistro" value="Si autorizo" tabindex="7" checked>Si autorizo
+                                            <input type="radio" name="usoDatosRegistro" value="Si autorizo" tabindex="7"
+                                                checked>Si autorizo
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="usoDatosRegistro" value="No autorizo" tabindex="8">No autorizo
+                                            <input type="radio" name="usoDatosRegistro" value="No autorizo" tabindex="8">No
+                                            autorizo
                                         </label>
                                     </div>
                                 </div>
@@ -506,18 +686,21 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="singlebutton"></label>
                                     <div class="col-md-4 center-block">
-                                        <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary center-block" tabindex="9"> Registrarse 
+                                        <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary center-block"
+                                            tabindex="9"> Registrarse
                                         </button>
                                     </div>
                                 </div>
                             </form>
                             <div class="loading js-loading is-hidden">
                                 <div class="loading-spinner">
-                                    <svg><circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>
+                                    <svg>
+                                        <circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /></svg>
                                 </div>
                             </div>
                             <p class="js-success-message is-hidden" style="text-align:center;">Registro realizado!</p>
-                            <p class="js-error-message is-hidden" style="text-align:center;">Error al procesar el registro!</p>
+                            <p class="js-error-message is-hidden" style="text-align:center;">Error al procesar el
+                                registro!</p>
                         </div>
                         <br>
                     </div>
@@ -540,11 +723,11 @@
         $(document).ready(function () {
             $('#fullpage').fullpage({
                 //options here
-                anchors: ['home', 'bienvenidos', 
+                anchors: ['home', 'bienvenidos',
                     //'agenda-2018', 
                     'expositores-2018', 'expositores-2018-2',
-                    'expositores-2018-3', 
-                    'expositores-2018-4', 
+                    'expositores-2018-3',
+                    'expositores-2018-4',
                     //'expositores-2018-5',
                     'registro'
                 ],
@@ -591,7 +774,54 @@
                     }
                 }
             });
+        
+            $.fn.bmdIframe = function( options ) {
+                var self = this;
+                var settings = $.extend({
+                    classBtn: '.bmd-modalButton',
+                    defaultW: 640,
+                    defaultH: 360
+                }, options );
+            
+                $(settings.classBtn).on('click', function(e) {
+                var allowFullscreen = $(this).attr('data-bmdVideoFullscreen') || false;
+                
+                var dataVideo = {
+                    'src': $(this).attr('data-bmdSrc'),
+                    'height': $(this).attr('data-bmdHeight') || settings.defaultH,
+                    'width': $(this).attr('data-bmdWidth') || settings.defaultW
+                };
+                
+                if ( allowFullscreen ) dataVideo.allowfullscreen = "";
+                
+                // stampiamo i nostri dati nell'iframe
+                $(self).find("iframe").attr(dataVideo);
+                });
+            
+                // se si chiude la modale resettiamo i dati dell'iframe per impedire ad un video di continuare a riprodursi anche quando la modale è chiusa
+                this.on('hidden.bs.modal', function(){
+                $(this).find('iframe').html("").attr("src", "");
+                });
+            
+                return this;
+            };
         });
+
+        function openRegister() {
+            $(function () {
+                $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+                    function (json) {
+                        if (json.ip.startsWith("186.30")) {
+                            window.open("https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u", "_blank");
+                            // document.getElementById("ifr").src="https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u";
+                            // $('#registro-2018-office').modal('show');
+                        } else {
+                            $('#registro-2018-google').modal('show');
+                        }
+                    }
+                );
+            });
+        }
     </script>
 
     <script>
@@ -635,4 +865,5 @@
         }
     </script>
 </body>
+
 </html>
