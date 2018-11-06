@@ -600,7 +600,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- <div id="registro-2018-office" class="modal fade" role="dialog">
+        <div id="registro-2018-office" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sd modal-md">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -612,7 +612,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div id="registro-2018-google" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sd modal-md">
                 <div class="modal-content">
@@ -814,9 +814,9 @@
                     function (json) {
                         console.log(json);
                         if (json.ip.startsWith("10.35.") || json.ip.startsWith("208.30.")) {
-                            window.open("https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u", "_blank");
+                            // window.open("https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u", "_blank");
                             // document.getElementById("ifr").src="https://forms.office.com/Pages/ResponsePage.aspx?id=NxmlJb1rnUaeJdU8u0vzord8RBHSmgBAix4fajGXZsVUMUZRWjdXWkVSRjRaOEQ1U0hPUTI3T0JGVi4u";
-                            // $('#registro-2018-office').modal('show');
+                            $('#registro-2018-office').modal('show');
                         } else {
                             $('#registro-2018-google').modal('show');
                         }
