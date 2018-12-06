@@ -49,7 +49,7 @@ ul{
     max-width: 100%;
     margin: auto;
 }
-.main-title-register {
+.main-title-presentaciones {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: -o-fit-content;
@@ -75,13 +75,13 @@ ul{
     top: 15%; */
 }
 
-#register-section .btn-bienvenidos{
+#presentaciones-section .btn-bienvenidos{
     margin-top: 60vh;
 }
 
 /*
-.main-title-register::before,
-.main-title-register::after{
+.main-title-presentaciones::before,
+.main-title-presentaciones::after{
     content:'';
     display: block;
     width: 50px;
@@ -91,24 +91,24 @@ ul{
     border:1px dotted;
 }
 
-.main-title-register::after{
+.main-title-presentaciones::after{
     right: 0;
     transform: translateX(100%) translateY(-50%);
 }
-.main-title-register::before{
+.main-title-presentaciones::before{
     left:0;
     transform: translateX(-110%) translateY(-50%);
 }
 */
 
-/* #register-section {
+/* #presentaciones-section {
     background-image: url(../images/evento_ciudad.png);
     background-position: bottom left;
     background-size:contain;
     background-repeat: no-repeat;
     background-color: #00225c;
 } */
-/* #register-section .image-container{
+/* #presentaciones-section .image-container{
     width:740px;
     height: 400px;
     margin: auto;
@@ -207,7 +207,7 @@ ul{
 
 .elemento-decorativo-bienvenidos {
     width: 800px;
-    height: 400px;
+    height: 600px;
     shape-outside: polygon(50% 0%, 0% 100%, 100% 100%);
     float: left;
 }
@@ -239,7 +239,8 @@ ul{
     font-size: 60px;
     position: absolute;
     left: 10%;
-    top:16.8%;
+    /* top:6.8%; */
+    top:5%;
     letter-spacing:10px;
     text-transform: uppercase;
     font-family: 'Source Code Pro', monospace;
@@ -465,14 +466,14 @@ ul{
     }
 }
 @media (min-width:0) and (max-width:1199px){
-    .main-title-register{
+    .main-title-presentaciones{
         font-size: 18px;
         text-align: center;
     }
-    /* #register-section{
+    /* #presentaciones-section{
         background-size: 150%;
     } */
-    /* #register-section .image-container{
+    /* #presentaciones-section .image-container{
         width: 100% !important;
         height: 200px
     } */
@@ -599,18 +600,19 @@ img.img-responsive.hidden-md.hidden-lg.fecha-h {
     height: 100% !important;
 }
 
-#register-section  {
-    background-image: url('../images/evento_ciudad_b.png');
-    background-position: top 30vh left;
-    background-repeat: no-repeat;
-    background-size: 50vw auto;
+#presentaciones-section  {
+    /* background-image: url('../images/evento_ciudad_b.png'); */
+    /* background-position: top 30vh left; */
+    /* background-repeat: no-repeat; */
+    /* background-size: 50vw auto; */
+    background: #fff;
 }
 
 @media (min-width:0) and (max-width:1199px){
-    #register-section  {
-        background: #00225c;
+    #presentaciones-section  {
+        background: #fff;
     }
-    #register-section .btn-bienvenidos{
+    #presentaciones-section .btn-bienvenidos{
         margin-top: 10vh;
     }
 }
