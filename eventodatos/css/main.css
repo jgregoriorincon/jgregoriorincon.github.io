@@ -206,7 +206,7 @@ ul{
 
 
 .elemento-decorativo-bienvenidos {
-    width: 800px;
+    width: 950px;
     height: 600px;
     shape-outside: polygon(50% 0%, 0% 100%, 100% 100%);
     float: left;
@@ -216,7 +216,8 @@ ul{
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 800px
+    width: 600px;
+    z-index: 0 !important;
 }
 .agenda {
     height: 100vh;
@@ -457,7 +458,7 @@ ul{
 }
 @media (min-height:800px) and (max-height:1080px){
     .adorno-bienvenido{
-        width: 950px;
+        width: 850px;
     }
 }
 @media (min-width:1200px) and (max-width:1920px){
