@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mapas Bogotá</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="vendor/themes/theme-defaults.css">
+  <link rel="stylesheet" href="vendor/themes/docsify-pagination.css">
+  <style>
+    :root {
+      /* Reduce the font size */
+      --base-font-size: 14px;
+    }
+  </style>
+  <style>
+    img[src$="centerme"] {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+    <nav>
+      <a href="#/">ES</a>
+    </nav>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Mapas Bogotá',
+      ga: 'UA-16685839-15',
+      themeable: {
+        readyTransition: true, // default
+        responsiveTables: true // default
+      },
+      search: {
+        depth: 3,
+        placeholder: 'Buscar...',
+        noData: '¡ Sin resultados !',
+      },
+      loadSidebar: '_sidebar.md',
+      subMaxLevel: 4,
+      pagination: {
+        previousText: 'Volver',
+        nextText: 'Siguiente',
+        crossChapter: true,
+      },
+      'flexible-alerts': {
+        note: {
+          label: "Nota"
+        },
+        tip: {
+          label: "Consejo"
+        },
+        warning: {
+          label: "Cuidado"
+        },
+        danger: {
+          label: "Alerta"
+        },
+        comment: {
+          label: "Comment",
+          // localization
+          label: {
+            '/en/': 'Comment',
+            '/': 'Comentarios'
+          },
+          // Assuming that we use Font Awesome
+          icon: "fa fa-comments",
+          className: "info"
+        }
+      }
+    }
+  </script>
+  <script src="vendor/docsify.js"></script>
+  <script src="vendor/docsify-themeable.js"></script>
+  <script src="vendor/docsify-tabs.js"></script>
+  <script src="vendor/docsify-copy-code.js"></script>
+  <script src="vendor/docsify-pagination.min.js"></script>
+  <script src="vendor/docsify-plugin-flexible-alerts.js"></script>
+  <script src="vendor/external-script.min.js"></script>
+  <script src="vendor/ga.min.js"></script>
+  <script src="vendor/search.js"></script>
+  <script src="vendor/zoom-image.min.js"></script>
+  <script src="vendor/prism-bash.min.js"></script>
+</body>
+
+</html>
