@@ -1,6 +1,6 @@
 
 *.zip
-
+*.war
 .vscode/Icon
 
 .DS_Store
