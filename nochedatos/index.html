@@ -76,13 +76,13 @@
                     <br>
                     <br>
                     <img src="./images/Logo_Blanco.png" alt=""
-                        style="height: 20vh; width: auto; float: right; margin-right: -15vw;">
+                        style="height: 20vh; width: auto; float: left;">
                 </div>
             </div>
         </div>
         <div class="section" id="Expo-section">
             <div class="Expo-nav">
-                <ul class="flex-container">
+                <ul class="flex-container" onclick="ocultar();">
                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-0">
                         <li class="flex-item">
                             <ul class="flex-container2">
@@ -92,19 +92,19 @@
                             </ul>
                         </li>
                     </a>
+                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">
+                            <li class="flex-item">
+                                <ul class="flex-container2">
+                                    <li class="flex-item2">2</li>
+                                    <li class="flex-item2 nombre">José Carlos García</li>
+                                </ul>
+                            </li>
+                        </a>                    
                     <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-1">
                         <li class="flex-item">
                             <ul class="flex-container2">
-                                <li class="flex-item2">2</li>
-                                <li class="flex-item2 nombre">Juan Sebastián Rozo</li>
-                            </ul>
-                        </li>
-                    </a>
-                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">
-                        <li class="flex-item">
-                            <ul class="flex-container2">
                                 <li class="flex-item2">3</li>
-                                <li class="flex-item2 nombre">José Duarte</li>
+                                <li class="flex-item2 nombre">Sara Castillejo Ditta</li>
                             </ul>
                         </li>
                     </a>
@@ -112,6 +112,14 @@
                         <li class="flex-item">
                             <ul class="flex-container2">
                                 <li class="flex-item2">4</li>
+                                <li class="flex-item2 nombre">Juan Sebastián Rozo</li>
+                            </ul>
+                        </li>
+                    </a>
+                    <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-3">
+                        <li class="flex-item">
+                            <ul class="flex-container2">
+                                <li class="flex-item2">5</li>
                                 <li class="flex-item2 nombre">Ximena Angel Gaviria</li>
                             </ul>
                         </li>
@@ -154,50 +162,61 @@
         </div>
     </div>
     <div class="ponente-info">
-        <div id="ponente-0" class="modal fade" role="dialog">
+        <div id="ponente-0" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="mostrar();">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Olga Lucía López Morales</h2>
                         <h3 class="">Directora de la Unidad Administrativa Especial Catastro Distrital</h3>
-                        <br>
-                        <p>Administradora de Empresas de la Universidad Nacional de Colombia, especializada en Control Interno y en Derecho Tributario.
-                        <br>
-                        <br>
-                        Con más de 20 años de experiencia profesional en diferentes entidades del sector público.  En la Secretaría Distrital de Hacienda se desempeñó como Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de Impuestos, jefe de áreas de cobro y de determinación de impuestos a la propiedad y fiscalización de impuestos a la producción y al consumo; en la Unidad de Gestión Pensional y Parafiscal laboró como Subdirectora de Determinación de Obligaciones, y en Coljuegos como Vicepresidente de Operaciones.
-                        <br>         
+                        <div style="background-color: white;">
+                            <div style="width: 60%; float: left;">
+                                <img src="./images/imgDirectora.jpeg" alt="Olga Lucía López" height="auto" width="90%">
+                            </div>
+                            <div style="width: 40%; float: left;">
+                                <p>Administradora de Empresas de la Universidad Nacional de Colombia, especializada en Control Interno y en Derecho Tributario.
+                                <br>
+                                <br>
+                                Con más de 20 años de experiencia profesional en diferentes entidades del sector público.  En la Secretaría Distrital de Hacienda se desempeñó como Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de Impuestos, jefe de áreas de cobro y de determinación de impuestos a la propiedad y fiscalización de impuestos a la producción y al consumo; en la Unidad de Gestión Pensional y Parafiscal laboró como Subdirectora de Determinación de Obligaciones, y en Coljuegos como Vicepresidente de Operaciones.
+                                <br>         
+                                </p>
+                            </div>
+                        </div>
                         <br>         
                         En la Unidad Administrativa Especial de Catastro Distrital cumplió la función como Gerente de Información Catastral y Gerente de Gestión Corporativa.
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="ponente-1" class="modal fade" role="dialog">
+        <div id="ponente-1" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
-                        <h2 class="modal-title">José Carlos García</h2>
-                        <!-- <h3 class="">Directora de la Unidad Administrativa Especial Catastro Distrital</h3>
-                        <br>
-                        <p>Administradora de Empresas de la Universidad Nacional de Colombia, especializada en Control Interno y en Derecho Tributario.
-                        <br>
-                        <br>
-                        Con más de 20 años de experiencia profesional en diferentes entidades del sector público.  En la Secretaría Distrital de Hacienda se desempeñó como Subdirectora Técnica de Impuestos a la Propiedad, Asesora de la Dirección Distrital de Impuestos, jefe de áreas de cobro y de determinación de impuestos a la propiedad y fiscalización de impuestos a la producción y al consumo; en la Unidad de Gestión Pensional y Parafiscal laboró como Subdirectora de Determinación de Obligaciones, y en Coljuegos como Vicepresidente de Operaciones.
-                        <br>         
-                        <br>         
-                        En la Unidad Administrativa Especial de Catastro Distrital cumplió la función como Gerente de Información Catastral y Gerente de Gestión Corporativa.
-                        </p> -->
+                        <h2 class="modal-title">Sara Castillejo Ditta</h2>
+                        <h3 class="">Periodista y desarrolladora de software</h3>
+                        <div style="background-color: white;">
+                            <div style="width: 60%; float: left;">
+                                <img src="./images/imgSara.jpeg" alt="Olga Lucía López" height="auto" width="90%">
+                            </div>
+                            <div style="width: 40%; float: left;">
+                                <p>Desde la Unidad de Datos de El Tiempo, participó en proyectos como Venezuela a la Fuga, ganador del Latam Digital Media Awards 2018 en categoría de Mejor Visualización de Datos; y La búsqueda de los desaparecidos, merecedor del Premio a la Excelencia Periodística 2019 en la categoría Periodismo de Datos, otorgado por la Sociedad Interamericana de Prensa (SIP). 
+                                <br>
+                                <br>
+                                Actualmente es periodista de datos de la Liga Contra el Silencio.
+                                </p>
+                            </div>
+                        </div>
+                        <br>   
+                        <!-- <h3 class="">Periodista y desarrolladora de software</h3> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div id="ponente-2" class="modal fade" role="dialog">
+        <div id="ponente-2" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">José Duarte</h2>
                         <br>
@@ -207,10 +226,10 @@
                 </div>
             </div>
         </div>
-        <div id="ponente-3" class="modal fade" role="dialog">
+        <div id="ponente-3" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Ximena Angel Gaviria</h2>
                         <!-- <h3 class="">Directora de la Unidad Administrativa Especial Catastro Distrital</h3>
@@ -318,7 +337,15 @@
 
                 return this;
             };
+
         });
+
+        function ocultar(){
+            $(".flex-container").hide();
+        }
+        function mostrar(){
+            $(".flex-container").show();
+        }
     </script>
 </body>
 
