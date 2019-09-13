@@ -101,18 +101,13 @@ ul {
 
 #agenda-div {
     box-sizing: border-box;
-    margin-top: 5vh;
+    margin-top: 100px;
 }
 
 #agenda-title {
     float: left;
     width: 50vw;
 }
-
-/* #agenda-desc {
-    float: left;
-    width: 40%;
-} */
 
 #agenda-logo {
     float: left;
@@ -134,30 +129,6 @@ ul {
 #agenda-title h1 {
     font-size: 5vh;
     letter-spacing: 1vh;
-}
-
-/* #agenda-title h1 {
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -ms-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    transform-origin: 0 0;
-} */
-
-#agenda-desc {
-    color: white;
-    margin-left: -10vw;
-    margin-top: -20vh;
-}
-
-#agenda-desc h2 {
-    font-size: 1.5vw;
-    letter-spacing: 0.3vw;
 }
 
 /* Expo Section */
