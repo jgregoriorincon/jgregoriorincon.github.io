@@ -5,7 +5,7 @@
 }
 
 * {
-    font-family: 'trade', Fallback, sans-serif;
+    font-family: 'trade';
 }
 
 ::-webkit-scrollbar {
@@ -72,6 +72,7 @@ ul {
     background-image: url('../images/Bogota_Gris.png') !important;
     background-position: top 15vh left 35vh !important;
     background-size: 150vw auto !important;
+    background-repeat: no-repeat;
 }
 
 #main-title {
@@ -105,7 +106,7 @@ ul {
 
 #agenda-title {
     float: left;
-    width: 10%;
+    width: 40%;
 }
 
 #agenda-desc {
@@ -131,7 +132,7 @@ ul {
 }
 
 #agenda-title h1 {
-    font-size: 15vh;
+    font-size: 5vh;
     letter-spacing: 1vh;
 }
 
@@ -150,13 +151,13 @@ ul {
 
 #agenda-desc {
     color: white;
-    margin-left: 5vh;
-    margin-top: -18vh;
+    margin-left: -30vw;
+    margin-top: -20vh;
 }
 
 #agenda-desc h2 {
-    font-size: 3.5vh;
-    letter-spacing: 0.5vh;
+    font-size: 1.5vw;
+    letter-spacing: 0.3vw;
 }
 
 /* Expo Section */
@@ -169,6 +170,7 @@ ul {
     background-image: url('../images/Bogota_Naranja.png') !important;
     background-position: top left 15vh !important;
     background-size: 100vw auto !important;
+    background-repeat: no-repeat;
 }
 
 #expo-title {
@@ -275,20 +277,17 @@ ul {
     padding-bottom: 75%;
     height: 0;
     overflow: hidden;
-    width: 60vw !important;
-    height: 75vh !important;
+    width: 50vw !important;
+    height: 50vh !important;
 }
 
 .mapasbogota iframe {
     position: absolute;
-    top: 15vh;
+    top: 20vh;
     left: 10vw;
-    width: 100% !important;
-    height: 100% !important;
 }
 
 #mapa-section>div>div:nth-child(1) {
-    /* position: absolute; */
     margin-top: 15vh;
 }
 
@@ -346,19 +345,8 @@ ul {
     text-decoration: none;
     /* height: 30px; */
 
-    margin-top: 15vh;
-    margin-left: 8vw;
-
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -ms-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    transform-origin: 0 0;   
+    /* margin-top: 15vh;
+    margin-left: 8vw; */
 }
 
 .modal-content {
