@@ -85,8 +85,8 @@ ul {
 }
 
 #main-title h1 {
-    font-size: 10vh;
-    letter-spacing: 1vh;
+    font-size: 7vw;
+    letter-spacing: 0.5vw;
 }
 
 /* Agenda Section */
@@ -104,7 +104,7 @@ ul {
 
 #agenda-div {
     box-sizing: border-box;
-    margin-top: 100px;
+    margin-top: 10vh;
 }
 
 #agenda-title {
@@ -130,8 +130,8 @@ ul {
 }
 
 #agenda-title h1 {
-    font-size: 5vh;
-    letter-spacing: 1vh;
+    font-size: 4vw;
+    letter-spacing: 0.5vw;
 }
 
 /* Expo Section */
@@ -196,7 +196,7 @@ ul {
     margin: auto;
     text-decoration: none;
     color: #ffffff;
-    font-size: 3vh;
+    font-size: 2vw;
     font-weight: unset;
     padding: 0 2vh;
     position: relative;
@@ -350,4 +350,63 @@ ul {
     opacity: 1;
     color: #ffffff;
     z-index: 99;
+}
+
+@media only screen and (max-width: 600px) {
+    #home-section {
+        background-image: url('../images/Bogota_Gris.png') !important;
+        /* background-position: top 15vh left 35vh !important; */
+        background-position: top 55vh left -30vw !important;
+        /* background-size: 150vw auto !important; */
+        background-size: 250vw auto !important;
+        background-repeat: no-repeat;
+    }
+
+    #main-title h1, #agenda-title h1 {
+        font-size: 15vw;
+        letter-spacing: 1vw;
+    }
+
+    .home-nav {
+        width: 100vw;
+        margin: 5vh 0vw 5vh 0vw;
+    }
+
+    .home-nav ul a,
+    .Expo-nav ul a {
+        font-size: 6vw;
+    }
+
+    #agenda-div {
+        margin-top: 5vh;
+    }
+
+    #agenda-title {
+        width: 80vw;
+    }
+
+    #agenda-title h1 {
+        font-size: 10vw;
+        letter-spacing: 0.5vw;
+    }
+
+    #agenda-title h3 {
+        font-size: 5vw;
+        letter-spacing: 0.5vw;
+    }
+
+    .mapasbogota {
+        position: relative;
+        padding-bottom: 75%;
+        height: 0;
+        overflow: hidden;
+        width: 90vw !important;
+        height: 90vh !important;
+    }
+    
+    .mapasbogota iframe {
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+    }
 }
