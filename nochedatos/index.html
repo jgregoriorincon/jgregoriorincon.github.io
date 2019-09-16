@@ -162,18 +162,18 @@
         </div>
     </div>
     <div class="ponente-info">
-        <div id="ponente-0" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
+        <div id="ponente-0" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" onclick="mostrar();">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Olga Lucía López Morales</h2>
                         <h3 class="">Directora de la Unidad Administrativa Especial Catastro Distrital</h3>
                         <div style="background-color: white;">
-                            <div style="width: 60%; float: left;">
+                            <div class="col-lg-7 col-md-7 col-sm-12" style="float: left;">
                                 <img src="./images/imgDirectora.jpeg" alt="Olga Lucía López" height="auto" width="90%">
                             </div>
-                            <div style="width: 40%; float: left;">
+                            <div class="col-lg-5 col-md-5 col-sm-12" style="float: left;">
                                 <p>Administradora de Empresas de la Universidad Nacional de Colombia, especializada en Control Interno y en Derecho Tributario.
                                 <br>
                                 <br>
@@ -188,8 +188,8 @@
                 </div>
             </div>
         </div>
-        <div id="ponente-1" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
+        <div id="ponente-1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
@@ -201,18 +201,18 @@
                 </div>
             </div>
         </div>        
-        <div id="ponente-2" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
+        <div id="ponente-2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Sara Castillejo Ditta</h2>
                         <h3 class="">Periodista y desarrolladora de software</h3>
                         <div style="background-color: white;">
-                            <div style="width: 60%; float: left;">
+                            <div class="col-lg-7 col-md-7 col-sm-12" style="float: left;">
                                 <img src="./images/imgSara.jpeg" alt="Olga Lucía López" height="auto" width="90%">
                             </div>
-                            <div style="width: 40%; float: left;">
+                            <div class="col-lg-5 col-md-5 col-sm-12" style="float: left;">
                                 <p>Desde la Unidad de Datos de El Tiempo, participó en proyectos como Venezuela a la Fuga, ganador del Latam Digital Media Awards 2018 en categoría de Mejor Visualización de Datos; y La búsqueda de los desaparecidos, merecedor del Premio a la Excelencia Periodística 2019 en la categoría Periodismo de Datos, otorgado por la Sociedad Interamericana de Prensa (SIP). 
                                 <br>
                                 <br>
@@ -226,8 +226,8 @@
                 </div>
             </div>
         </div>
-        <div id="ponente-3" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
+        <div id="ponente-3" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
@@ -239,18 +239,18 @@
                 </div>
             </div>
         </div>        
-        <div id="ponente-4" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
+        <div id="ponente-4" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" onclick="mostrar()">&times;</button>
                     <div class="modal-body text-justify">
                         <h2 class="modal-title">Ximena Angel Gaviria</h2>
                         <h3 class="">Emprendedora, Cofundadoa de GPSTRATEGY, con 17+ años de experiencia en medición del Desempeño, Sistemas de Información para Gestión, Inteligencia de Negocios y Analítica.</h3>
                         <div style="background-color: white;">
-                            <div style="width: 60%; float: left;">
+                            <div class="col-lg-7 col-md-7 col-sm-12" style="float: left;">
                                 <img src="./images/imgXimena.jpg" alt="Ximena Angel Gaviria" height="auto" width="90%">
                             </div>
-                            <div style="width: 40%; float: left;">
+                        <div class="col-lg-5 col-md-5 col-sm-12" style="float: left;">
                                 <p>Administradora de Empresas del CESA, con Maestría en Finanzas e Inteligencia de Negocios.
                                 <br>
                                 <br>    
@@ -365,9 +365,22 @@
 
         function ocultar(){
             $(".flex-container").hide();
+            const body = document.body;
+            const scrollY = body.style.top;
+            body.style.position = '';
+            body.style.top = '';
+            body.style.height = '';
+            body.style.overflowY = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            // document.getElementById('dialog').classList.remove('show');
         }
         function mostrar(){
             $(".flex-container").show();
+            // document.getElementById('dialog').classList.add('show');
+            const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+            const body = document.body;
+            body.style.height = '100vh';
+            body.style.overflowY = 'hidden';
         }
     </script>
 </body>

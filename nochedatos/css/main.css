@@ -293,7 +293,7 @@ ul {
     /* line-height: 150px; */
     color: white;
     font-weight: bold;
-    font-size: 10vw;
+    font-size: 10vh;
     text-align: center;
 }
 
@@ -314,7 +314,7 @@ ul {
 .nombre {
     width: 10vw;
     height: 25vh;
-    font-size: 1vw;
+    font-size: 2vh;
     text-decoration: none;
 }
 
@@ -404,5 +404,9 @@ ul {
         position: absolute;
         top: 5vh;
         left: 5vw;
+    }
+
+    .modal-content { 
+        overflow: auto;
     }
 }
