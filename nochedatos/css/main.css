@@ -137,6 +137,14 @@ ul {
     letter-spacing: 0.5vw;
 }
 
+#agenda-title h1 {
+    font-family: 'Gotham' !important;
+}
+
+#agenda-title h3 {
+    font-family: 'GothamLight' !important;
+}
+
 /* Expo Section */
 #Expo-section {
     position: relative;
@@ -401,9 +409,9 @@ ul {
     #agenda-title h1 {
         font-size: 10vw;
         letter-spacing: 0.5vw;
+        font-family: 'Gotham' !important;
     }
 
-    #agenda-title > h3,
     #agenda-title h3 {
         font-family: 'GothamLight' !important;
         font-size: 1.5vw;
