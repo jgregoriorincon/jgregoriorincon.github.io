@@ -420,13 +420,17 @@ ul {
 }
 
 .modal-title {
+    font-family: 'Gotham' !important;
     text-transform: uppercase;
-    font-weight: 900;
     letter-spacing: 5px;
     margin: 0px 0px 20px;
     padding: 0 10px;
     border-left: 10px solid;
     border-color: orange
+}
+
+.modal-text {
+    font-family: 'GothamLight' !important;
 }
 
 .close {
