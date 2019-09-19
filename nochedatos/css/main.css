@@ -68,8 +68,7 @@ ul {
     font-family: 'Gotham';
 }
 
-#home-section,
-#mapa-section {
+#home-section, #mapa-section {
     background-color: #FBB82C !important;
 }
 
@@ -105,7 +104,7 @@ ul {
     background-repeat: no-repeat;
 }
 
-#agenda-div {
+#agenda-div {    
     box-sizing: border-box;
     margin-top: 10vh;
 }
@@ -152,15 +151,15 @@ ul {
 }
 
 #Expo-section {
-    background-color: #019CDE !important;
-    background-image: url('../images/Bogota_Naranja.png') !important;
+    background-color: white !important;
+    color: #FC6821;
+    /* background-image: url('../images/Bogota_Naranja.png') !important;
     background-position: top right 15vw !important;
     background-size: 100vw auto !important;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
-#expo-title {
-    color: white;
+#expo-title {    
     margin-left: 5vh;
     margin-top: 30vh;
 }
@@ -329,7 +328,7 @@ ul {
     height: 150px; */
     /* margin-top: 10px; */
     /* line-height: 150px; */
-    color: white;
+    color: #FC6821;
     font-weight: bold;
     /* font-size: 5vw; */
     /* text-align: center; */
