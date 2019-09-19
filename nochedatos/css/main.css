@@ -1,12 +1,13 @@
 /*==========*/
 @font-face {
-    font-family: Gotham;
+    font-family: 'Gotham';
     src: url("./GothamRounded-Medium.otf") format("opentype");
 }
 
-* {
-    font-family: 'Gotham';
-}
+@font-face {
+    font-family: 'GothamLight';
+    src: url('./GothamRounded-Light.otf') format('opentype');
+  }
 
 ::-webkit-scrollbar {
     width: 1vh;
@@ -64,6 +65,7 @@ ul {
 #home-section,
 #mapa-section {
     position: relative;
+    font-family: 'Gotham';
 }
 
 #home-section,
@@ -85,20 +87,21 @@ ul {
 }
 
 #main-title h1 {
-    font-size: 7vw;
-    letter-spacing: 0.5vw;
+    font-size: 6vw;
+    /* letter-spacing: 0.5vw; */
 }
 
 /* Agenda Section */
 #agenda-section {
     position: relative;
+    font-family: 'GothamLight'
 }
 
 #agenda-section {
-    background-color: #FF6556 !important;
-    background-image: url('../images/Bogota_Verde.png') !important;
-    background-position: top -135vh left 75vh !important;
-    background-size: 125vw auto !important;
+    background-color: #019CDE !important;
+    background-image: url('../images/Bogota_Naranja.png') !important;
+    background-position: top right 15vw !important;
+    background-size: 100vw auto !important;
     background-repeat: no-repeat;
 }
 
@@ -108,7 +111,7 @@ ul {
 }
 
 #agenda-title {
-    float: left;
+    float: right;
     width: 50vw;
 }
 
@@ -125,8 +128,8 @@ ul {
 
 #agenda-title {
     color: white;
-    margin-left: 5vh;
-    /* margin-top: 30vh; */
+    margin-right: 5vh;
+    text-align: justify;
 }
 
 #agenda-title h1 {
@@ -137,12 +140,13 @@ ul {
 /* Expo Section */
 #Expo-section {
     position: relative;
+    font-family: 'Gotham'
 }
 
 #Expo-section {
     background-color: #019CDE !important;
     background-image: url('../images/Bogota_Naranja.png') !important;
-    background-position: top left 15vh !important;
+    background-position: top right 15vw !important;
     background-size: 100vw auto !important;
     background-repeat: no-repeat;
 }
@@ -174,7 +178,7 @@ ul {
 /* Nav Bar */
 .home-nav {
     width: 50vw;
-    margin: 10vh auto;
+    margin: 5vh auto;
     margin-right: 0vh;
 }
 
@@ -372,8 +376,8 @@ ul {
     }
 
     #main-title h1, #agenda-title h1, #mapa-title h1 {
-        font-size: 15vw;
-        letter-spacing: 1vw;
+        font-size: 13vw;
+        /* letter-spacing: 1vw; */
     }
 
     .home-nav {
@@ -399,8 +403,10 @@ ul {
         letter-spacing: 0.5vw;
     }
 
+    #agenda-title > h3,
     #agenda-title h3 {
-        font-size: 5vw;
+        font-family: 'GothamLight' !important;
+        font-size: 1.5vw;
         letter-spacing: 0.5vw;
     }
 
