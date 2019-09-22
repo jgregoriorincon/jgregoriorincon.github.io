@@ -324,6 +324,11 @@ ul {
     transform: scaleY(1);
 }
 
+#home-logo {
+    height: 20vh; 
+    width: auto;
+}
+
 .fp-tableCell {
     display: table-cell;
     vertical-align: text-top;
@@ -457,6 +462,11 @@ ul {
 }
 
 @media only screen and (max-width: 600px) {
+
+    #Expo-section {
+        background-color: #019CDE !important;
+    }
+
     #home-section {
         background-image: url('../images/Bogota_Gris.png') !important;
         /* background-position: top 15vh left 35vh !important; */
@@ -542,9 +552,6 @@ ul {
         overflow: auto;
     }
 
-    #Expo-section {
-        background-color: #019CDE !important;
-    }
 
     .mapa-logo {
         float: right;
@@ -557,4 +564,7 @@ ul {
         height: auto;
     }
     
+    #home-logo {
+        display: none;
+    }
 }
