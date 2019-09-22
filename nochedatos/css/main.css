@@ -183,9 +183,15 @@ ul {
     width: 50vw;
 }
 
+.agenda-logo {
+    float: left; 
+    margin-top: 30vh; 
+    margin-left: 20vw;
+}
+
 #agenda-logo {
-    float: left;
-    width: 10%;
+    width: 200px;
+    height: auto;
 }
 
 #agenda-div::after {
@@ -458,13 +464,18 @@ ul {
     #main-title h1,
     #agenda-title h1,
     #mapa-title h1 {
-        font-size: 13vw;
+        font-size: 11vw;
         /* letter-spacing: 1vw; */
+    }
+
+    #main-title h3, 
+    #agenda-title h3 {
+        font-size: 5vw !important;
     }
 
     .home-nav {
         width: 100vw;
-        margin: 5vh 0vw 5vh 0vw;
+        margin: 0vh 0vw 0vh 0vw;
     }
 
     .home-nav ul a,
@@ -492,6 +503,20 @@ ul {
         letter-spacing: 0.5vw;
     }
 
+    #agenda-enter {
+        display: none;
+    }
+    .agenda-logo {
+        float: left; 
+        margin-top: 0vh; 
+        margin-left: 30vw;
+    }
+    
+    #agenda-logo {
+        width: 40vw;
+        height: auto;
+    }
+
     .mapasbogota {
         position: relative;
         padding-bottom: 75%;
@@ -509,5 +534,9 @@ ul {
 
     .modal-content {
         overflow: auto;
+    }
+
+    #Expo-section {
+        background-color: #019CDE !important;
     }
 }

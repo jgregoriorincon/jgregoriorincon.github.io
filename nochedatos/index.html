@@ -27,7 +27,7 @@
                     <a href="#bienvenidos">
                         <li>¿Qué es?</li>
                     </a>
-                    <a href="#expositores2">
+                    <a href="#expositores">
                         <li>Speakers</li>
                     </a>
                     <a href="http://portafolio.clusterlogistico.net" target="_blank">
@@ -66,13 +66,13 @@
             </div>
         </div>
         <div class="section" id="agenda-section">
-            <div style="float: left; margin-top: 30vh; margin-left: 20vw;">
-                <img src="./images/Logo_Blanco.png" alt="IDECA" width="200px" height="auto">
+            <div class="agenda-logo">
+                <img id="agenda-logo" src="./images/Logo_Blanco.png" alt="IDECA">
             </div>
             <div id="agenda-div">
                 <div id="agenda-title">
                     <h1>¿Qué es la Noche
-                        <br>
+                        <br id="agenda-enter">
                         de Datos?
                     </h1>
                     <br>
@@ -104,57 +104,65 @@
             </div>
         </div>
         <div class="section" id="Expo-section">
-            <div class="row">
-                <div class="col-md-2">
-                    <div id="expo-title">
-                        <h1>
-                            Speakers
-                        </h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 hidden-xs">
+                        <div id="expo-title">
+                            <h1>
+                                Speakers
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-10 ponente-container">
-                    <div class="owl-carousel">
-                        <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-0">
-                            <div class="ponente col-md-9" onclick="ocultar();">
-                                <div class="ponente-cuadro">
-                                    <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
-                                    <br>
-                                    <img src="./images/imgDirectora.jpeg" class="img-responsive-center" alt="">
-                                    <p style="color: white; text-align: center;">
-                                        Olga Lucía López
-                                    </p>
-                                </div>
+                    <div class="col-md-10 hidden-xs-12 ponente-container">
+                        <div class="owl-carousel">
+                            <div class="ponente">
+                                <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-0">
+                                    <div class="col-md-9" onclick="ocultar();">
+                                        <div class="ponente-cuadro">
+                                            <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
+                                            <br>
+                                            <img src="./images/imgDirectora.jpeg" class="img-responsive-center" alt="">
+                                            <p class="info-ponente text-center" style="color: white;">
+                                                Olga Lucía López
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                        <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-1">
-                            <div class="ponente col-md-9" onclick="ocultar();">
-                                <div class="ponente-cuadro">
-                                    <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
-                                    <br>
-                                    <!-- <img src="./images/imgDirectora.jpeg" class="img-responsive-center" alt=""> -->
-                                    <p style="color: white; text-align: center;">
-                                        José Carlos García
-                                    </p>
-                                </div>
+                            <div class="ponente">
+                                <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-1">
+                                    <div class="col-md-9" onclick="ocultar();">
+                                        <div class="ponente-cuadro">
+                                            <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
+                                            <br>
+                                            <!-- <img src="./images/imgDirectora.jpeg" class="img-responsive-center" alt=""> -->
+                                            <p style="color: white; text-align: center;">
+                                                José Carlos García
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                        <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">
-                            <div class="ponente col-md-9" onclick="ocultar();">
-                                <div class="ponente-cuadro">
-                                    <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
-                                    <br>
-                                    <img src="./images/imgSara.jpeg" class="img-responsive-center" alt="">
-                                    <p style="color: white; text-align: center;">
-                                            Sara Castillejo Ditta
-                                    </p>
-                                </div>
+                            <div class="ponente">
+                                <a class="more-information" href="javascript:void(0)" data-toggle="modal" data-target="#ponente-2">
+                                    <div class="col-md-9" onclick="ocultar();">
+                                        <div class="ponente-cuadro">
+                                            <img src="./images/Logo_Blanco.png" class="img-responsive-center" alt="IDECA" style="max-height: 15vh;" width="50px" height="auto">
+                                            <br>
+                                            <img src="./images/imgSara.jpeg" class="img-responsive-center" alt="">
+                                            <p style="color: white; text-align: center;">
+                                                    Sara Castillejo Ditta
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section" id="Expo-section">
+        <div class="section hidden-sm hidden-xs" id="Expo-section">
             <div class="row">
                 <div class="col-md-2">
                     <div id="expo-title">
@@ -386,7 +394,7 @@
         $(document).ready(function () {
             $('#fullpage').fullpage({
                 //options here
-                anchors: ['home', 'bienvenidos', 'expositores', 'expositores2', 'registro'],
+                anchors: ['home', 'bienvenidos', 'expositores', 'registro'],
                 autoScrolling: true,
                 scrollHorizontally: true,
                 responsiveWidth: 1100,
