@@ -345,6 +345,11 @@ ul {
     letter-spacing: 0.5vw;
 }
 
+.mapa-logo {
+    margin-top: 20vh; 
+    margin-left: 10vw;
+}
+
 .mapasbogota {
     position: relative;
     padding-bottom: 75%;
@@ -469,7 +474,8 @@ ul {
     }
 
     #main-title h3, 
-    #agenda-title h3 {
+    #agenda-title h3,
+    #mapa-title h3 {
         font-size: 5vw !important;
     }
 
@@ -503,7 +509,7 @@ ul {
         letter-spacing: 0.5vw;
     }
 
-    #agenda-enter {
+    .enter {
         display: none;
     }
     .agenda-logo {
@@ -539,4 +545,16 @@ ul {
     #Expo-section {
         background-color: #019CDE !important;
     }
+
+    .mapa-logo {
+        float: right;
+        margin-top: -5vh; 
+        margin-left: 10vw;
+    }
+    
+    #mapa-logo {
+        width: 50vw;
+        height: auto;
+    }
+    
 }
