@@ -461,6 +461,12 @@ ul {
     z-index: 99;
 }
 
+.info-ponente {
+    color: white; 
+    margin-top: 10px; 
+    font-size: 2.5vh;
+}
+
 @media only screen and (max-width: 600px) {
 
     #Expo-section {
