@@ -447,6 +447,7 @@ ul {
 
 .modal-text {
     font-family: 'GothamLight' !important;
+    font-size: 2vh;
 }
 
 .close {
@@ -465,6 +466,16 @@ ul {
     color: white; 
     margin-top: 10px; 
     font-size: 2.5vh;
+}
+
+.owl-prev {
+    margin-left: 50px !important; 
+    margin-top: 50px !important;
+}
+
+.owl-next {
+    margin-right: 50px !important; 
+    margin-top: 50px !important;
 }
 
 @media only screen and (max-width: 600px) {
