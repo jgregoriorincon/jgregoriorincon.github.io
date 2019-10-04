@@ -36,6 +36,12 @@ ul {
     margin: auto;
 }
 
+.img-responsive-center1 {
+    display: block;
+    max-height: 80vh;
+    margin: auto;
+}
+
 .ponente {
     margin-top: 20vh;
     height: 50vh;
@@ -494,15 +500,12 @@ ul {
     }
 
     #main-title h1,
-    #agenda-title h1,
-    #mapa-title h1 {
+    #agenda-title h1 {
         font-size: 11vw;
-        /* letter-spacing: 1vw; */
     }
 
     #main-title h3, 
-    #agenda-title h3,
-    #mapa-title h3 {
+    #agenda-title h3 {
         font-size: 5vw !important;
     }
 
@@ -568,7 +571,6 @@ ul {
     .modal-content {
         overflow: auto;
     }
-
 
     .mapa-logo {
         float: right;
