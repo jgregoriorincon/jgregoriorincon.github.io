@@ -33,6 +33,9 @@
                     <a href="#evento">
                         <li>Evento</li>
                     </a>
+                    <a href="#presentaciones">
+                        <li>Presentaciones</li>
+                    </a>
                     <img id="home-logo" src="./images/Logo_Azul.png" alt="logo">
                 </ul>
             </div>
@@ -324,6 +327,36 @@
                 </section>                
             </div>
         </div>
+        <div class="section" id="presentaciones-section">
+            <div class="presentaciones-logo">
+                <img id="presentaciones-logo" src="./images/Logo_Blanco.png" alt="IDECA">
+            </div>
+            <div id="presentaciones-div">
+                <div id="presentaciones-title">
+                    <h1>Presentaciones</h1>
+                    <br>
+                    <br>
+                    <ul>
+                        <li><a class="liPresentaciones01" target="_blank" href="./docs/Olga_López_Directora_CATASTRO.pdf">Olga Lucía Lopéz</a></li>
+                        <li><a class="liPresentaciones02" target="_blank" href="./docs/Presentación_Portal_Bogotá.pdf">Portal Bogotá</a></li>
+                        <li><a class="liPresentaciones03" target="_blank" href="./docs/Gustavo_Quintero_ALTO_CONSEJERO_VICTÍMAS.pdf">Gustavo Quintero</a></li>
+                        <li><a class="liPresentaciones04" target="_blank" href="./docs/Sara_Castillejo_EL_TIEMPO.pdf">Sara Castillejo</a></li>
+                        <li><a class="liPresentaciones05" target="_blank" href="./docs/Juan_Sebastian_Rozo_RAPPI.pdf">Juan Sebastián Rozo</a></li>
+                        <li><a class="liPresentaciones06" target="_blank" href="./docs/Ximena_Angel_GPSTRATEGY.pdf">Ximena Angel Gaviria</a></li>
+                        <li><a class="liPresentaciones07" target="_blank" href="./docs/Nicolas_Grossman_PROPERATI.pdf">Nicolas Grossman</a></li>
+                        <li><a class="liPresentaciones08" target="_blank" href="./docs/Juliana_Restrepo_IDARTES.pdf">Juliana Restrepo</a></li>
+                    </ul>
+                    <br class="enter">
+                    <br class="enter">
+                    <br>
+                    <div style="float: right">
+                        <a href="https://www.ideca.gov.co/" target="_blank">
+                            <img src="./images/Ideca_007@3x.png" alt="IDECA" width="100px" height="auto">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="ponente-info">
         <div id="ponente-0" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -505,7 +538,7 @@
         $(document).ready(function () {
             $('#fullpage').fullpage({
                 //options here
-                anchors: ['home', 'bienvenidos', 'expositores', 'expositores2', 'evento'],
+                anchors: ['home', 'bienvenidos', 'expositores', 'expositores2', 'evento', 'presentaciones'],
                 autoScrolling: true,
                 scrollHorizontally: true,
                 responsiveWidth: 1100,
