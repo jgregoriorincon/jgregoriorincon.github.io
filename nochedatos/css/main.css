@@ -237,37 +237,12 @@ ul {
 }
 
 #presentaciones-title > ul > li {
-    margin-top: 5px !important;
+    margin-top: 10px !important;
 }
 
 #presentaciones-title > ul > li > a:hover {
     color: #05285A;
     font-size: 3.5vh;
-}
-
-.liPresentaciones01 {
-    margin-left: 0em !important;
-}
-.liPresentaciones02 {
-    margin-left: 1.5em !important;
-}
-.liPresentaciones03 {
-    margin-left: 3em !important;
-}
-.liPresentaciones04 {
-    margin-left: 4.5em !important;
-}
-.liPresentaciones05 {
-    margin-left: 6em !important;
-}
-.liPresentaciones06 {
-    margin-left: 7.5em !important;
-}
-.liPresentaciones07 {
-    margin-left: 9em !important;
-}
-.liPresentaciones08 {
-    margin-left: 10.5em !important;
 }
 
 /* Expo Section */
@@ -636,8 +611,5 @@ ul {
         background-position: top left 25vw !important;
         background-size: 150vw auto !important;
         background-repeat: no-repeat;
-    }
-    #presentaciones-title > ul > li > a {
-        margin-left: 2em !important;
     }
 }
