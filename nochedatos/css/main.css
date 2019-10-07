@@ -232,12 +232,12 @@ ul {
 
 #presentaciones-title > ul > li > a {
     color: white;
-    font-size: 3vh;
-    margin-top: 5em !important;
+    font-size: 3.5vh;
+    /* margin-top: 5em !important; */
 }
 
 #presentaciones-title > ul > li {
-    margin-top: 9px !important;
+    margin-top: 5px !important;
 }
 
 #presentaciones-title > ul > li > a:hover {
