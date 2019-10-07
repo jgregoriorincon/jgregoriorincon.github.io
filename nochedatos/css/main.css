@@ -232,7 +232,7 @@ ul {
 
 #presentaciones-title > ul > li > a {
     color: white;
-    font-size: 3.5vh;
+    font-size: 2.8vh;
 }
 
 #presentaciones-title > ul > li {
@@ -241,7 +241,7 @@ ul {
 
 #presentaciones-title > ul > li > a:hover {
     color: #05285A;
-    font-size: 3.5vh;
+    font-size: 3.0vh;
 }
 
 /* Expo Section */
@@ -613,10 +613,10 @@ ul {
     }
 
     #presentaciones-title > ul > li > a {
-        font-size: 2.5vh;
+        font-size: 2.2vh;
     }   
     
     #presentaciones-title > ul > li {
-        margin-top: 20px !important;
+        margin-top: 15px !important;
     } 
 }
