@@ -233,7 +233,6 @@ ul {
 #presentaciones-title > ul > li > a {
     color: white;
     font-size: 3.5vh;
-    /* margin-top: 5em !important; */
 }
 
 #presentaciones-title > ul > li {
@@ -612,4 +611,12 @@ ul {
         background-size: 150vw auto !important;
         background-repeat: no-repeat;
     }
+
+    #presentaciones-title > ul > li > a {
+        font-size: 2.5vh;
+    }   
+    
+    #presentaciones-title > ul > li {
+        margin-top: 20px !important;
+    } 
 }
