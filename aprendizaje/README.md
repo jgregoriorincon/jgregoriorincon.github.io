@@ -1,4 +1,4 @@
-# Ruta de aprendizaje
+# Listado de aprendizaje
 
 ## Sistemas
 - [ ] Patrones de diseño
