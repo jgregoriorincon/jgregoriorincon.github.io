@@ -20,7 +20,7 @@
 - [ ] Rust
 - [ ] Swift
 - [ ] Python
-    	- [ ] NumPy
+	- [ ] NumPy
 	- [ ] Pandas
 	- [ ] TensorFlow
 	- [ ] DJango
