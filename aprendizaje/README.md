@@ -2,11 +2,12 @@
 
 ## Sistemas
 - [ ] Patrones de diseño
-- [ ] MVC
-- [ ] SOLID
+	- [ ] MVC
+	- [ ] SOLID
+ 	- [ ] Hexagon architecture
+  	- [ ] Clean architecture
 
 ## Lenguajes
-
 - [ ] JavaScript
 	- [ ] TypeScript
 	- [ ] Node JS
@@ -19,11 +20,11 @@
 - [ ] Rust
 - [ ] Swift
 - [ ] Python
-	- [ ] Jupyter
-    - [ ] NumPy
+    	- [ ] NumPy
 	- [ ] Pandas
 	- [ ] TensorFlow
 	- [ ] DJango
+	- [x] Jupyter
 - [ ] Java
 - [ ] C#
 - [ ] go
@@ -32,12 +33,10 @@
 - [ ] SQL
 
 ## Cloud
-
 - [ ] AWS
 - [ ] Azure 
 
 ## Web
-
 - [ ] HTML5
 - [ ] CSS3
 	- [ ] Grid
@@ -48,17 +47,17 @@
 - [ ] graphQL
 	
 ## GIS
-
 - [ ] ArcGIS Pro
 - [ ] ArcGIS Enterprise
 - [ ] AGOL
 - [ ] QGIS
 - [ ] FME
-- [ ] ArcPy
-- [ ] PyQGIS
-- [ ] GeoPandas
-- [ ] geoDJango
-- [ ] Librerias
+- [ ] Librerias GIS
+	- [ ] ArcPy
+	- [ ] PyQGIS
+	- [ ] GeoPandas
+	- [ ] geoDJango
+- [ ] Librerias WebGIS
 	- [ ] MapLibre
 	- [ ] Leaflet
 	- [ ] ArcGIS Maps SDK JS
@@ -79,7 +78,5 @@
 
 
 ## Varios
-
 - [ ] SSH
 - [ ] Bash
-- [ ] 
